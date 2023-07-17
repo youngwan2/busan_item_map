@@ -3,7 +3,7 @@
   text-align: center;
   padding: 5px;
   display: flex;
-  background-color: tomato;
+  background-color: rgb(17, 90, 163);
   justify-content: center;
   border: none;
   box-shadow: 5px 5px 10px 0 rgba(128, 128, 128, 0.658);
@@ -26,8 +26,8 @@
   box-shadow: 1px 1px 3px -1px rgba(255, 253, 253, 0.681);
   border: none;
   padding: 15px;
-  background-color: black;
-  color:white;
+  background-color: rgb(255, 255, 255);
+  color:rgb(0, 0, 0);
   border-radius: 5px;
   min-width: 250px;
   margin: 0;
@@ -43,6 +43,7 @@
   z-index: 100;
   top: 12.5px;
   left: 10px;
+  color:black;
   position: absolute;
 }
 
