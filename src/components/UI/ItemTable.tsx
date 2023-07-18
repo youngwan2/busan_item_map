@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import styles from "./ItemTable.module.css";
+import Pagination from "./Pagination";
+
 import { useState, useEffect, useCallback } from "react";
 
 type ItemsType = {
@@ -18,24 +20,26 @@ type ItemsType = {
 function ItemTable() {
   const [items, setItems] = useState<ItemsType[]>([]);
 
-  const getItem = useCallback(async () => {
-    await axios
-      .get(
-        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&numOfRows=10&pageNo=1&resultType=json`
-      )
-      .then((result) => {
-        const itemList = result.data.getLifeInfo.body.items;
-        setItems(itemList.item);
-      });
-  }, []);
+  // const getItem = useCallback(async () => {
+  //   await axios
+  //     .get(
+  //       `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&numOfRows=10&pageNo=1&resultType=json`
+  //     )
+  //     .then((result) => {
+  //       const itemList = result.data.getLifeInfo.body.items;
+  //       setItems(itemList.item);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    getItem();
-  }, [getItem]);
+  // useEffect(() => {
+  //   getItem();
+  // }, [getItem]);
 
   return (
-    <table className={styles.item_table}>
-      <thead>
+    <>
+      {" "}
+      <table className={styles.item_table}>
+        {/* <thead>
         <tr>
           <th>일련번호</th>
           <th>상품명</th>
@@ -64,8 +68,10 @@ function ItemTable() {
               );
             })
           : null}
-      </tbody>
-    </table>
+      </tbody> */}
+      </table>
+      <Pagination></Pagination>
+    </>
   );
 }
 

@@ -1,0 +1,44 @@
+
+/* 페이지네이션 바깥 테두리 */
+.page_container{
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+
+/* 페이지네이션 페이지번호 */
+.page_item{
+    border-radius: 5px;
+    color:white;
+    font-size: 17px;
+    background-color: rgb(56, 102, 255);
+    margin: 0 2px;
+    min-width: 30px;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.page_item:hover{
+    cursor: pointer;
+}
+
+
+/* 이전 페이지 이동 버튼 */
+:is(.prev_btn, .next_btn){
+    background: transparent;
+    border: none;
+    color:rgb(68, 24, 212);
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+:is(.prev_btn, .next_btn):hover{
+    color:rgb(113, 113, 255)
+}
+
+
+/* 다음 페이지 이동 버튼 */
