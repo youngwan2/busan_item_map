@@ -11,9 +11,11 @@
 
 /* 페이지네이션 페이지번호 */
 .page_item{
+    transition: 1s;
     border-radius: 5px;
     color:white;
     font-size: 17px;
+    
     background-color: rgb(56, 102, 255);
     margin: 0 2px;
     min-width: 30px;

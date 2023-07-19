@@ -70,7 +70,7 @@ function ItemTable() {
       </tbody>
       </table>
       <br /><br /><br /><br /><br /><br />
-      <Pagination setPage={setCurrentPage}></Pagination>
+      <Pagination setPage={setCurrentPage} ></Pagination>
     </>
   );
 }

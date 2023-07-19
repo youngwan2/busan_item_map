@@ -1,89 +1,92 @@
 import React from "react";
 import styles from "./Pagination.module.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-
-type PaginationType ={
-  setPage:(currentPage:number) => void
+interface PaginationType{
+  setPage:(updatePage:number)=>void
 }
 
 
 function Pagination({setPage}:PaginationType) {
-  // 총 페이지
-  const [totalNum, setTotalNum] = useState(100);
-  // 현재 페이지
-  const [currentPage, setCurrentPage] = useState(1);
-  // 현재 페이지가 속한 그룹
-  const [currentGroup,setCurrentGroup] = useState(Math.ceil(currentPage / 10));
-  // 마지막 페이지
-  const [lastPage] = useState(currentGroup * 10);
-  // 첫 페이지 번호
-  const [firstPage] = useState(lastPage - 10 + 1);
+  const [items, setItems] = useState<any>();
+  const [totalPage] = useState(100);
+  const [updatePage, setUpdatePage] = useState(1);
 
-  function pageSwitch(i: number) {
-    // console.log("이동페이지:", i);
-  }
+  const render = useCallback(
+    (updatePage: number) => {
+      let pageSize = 10;
+      let currentPage = updatePage;
+      let pageGroup = Math.ceil(currentPage / pageSize);
 
-  /* 페이지네이션 실질적으로 그려넣는 역할 */
-  const render = [];
-  render.push(
-    <button
-      className={styles.prev_btn}
-      style={
-        currentPage === 1 ? { visibility: "hidden" } : { visibility: "visible" }
+      const lastPage = pageGroup * pageSize;
+      const firstPage = lastPage - pageSize + 1;
+      console.log(
+        "현재 그룹:",
+        pageGroup,
+        "현재페이지:",
+        currentPage,
+        "첫 페이지:",
+        firstPage,
+        "마지막페이지:",
+        lastPage
+      );
+
+      const renderItem = [];
+
+      renderItem.push(
+        <button
+          onClick={() => {
+            console.log(updatePage);
+            if (currentPage <= 1) return;
+            setUpdatePage((updatePage) => (updatePage -= 1));
+            setPage(updatePage)
+          }}
+          className={styles.prev_btn}
+        >
+          Prev
+        </button>
+      );
+      for (let i = firstPage; i <= lastPage; i++) {
+        renderItem.push(
+          <li
+          style={i===currentPage?{backgroundColor:'rgb(24, 58, 170)'}:{backgroundColor:''}}
+            onClick={() => {
+              setUpdatePage(i);
+              setPage(i)
+            }}
+            className={styles.page_item}
+          >
+            {i}
+          </li>
+        );
       }
-      onClick={() => {
-        if (currentPage === 1) return;
-        setCurrentPage((number) => (number -= 1));
-   
-        console.log("현재 페이지:",currentPage)
-        setPage(currentPage)
-      }}
-    >
-      Prev
-    </button>
-  );
-  for (let i = firstPage-1; i < lastPage; i++) {
-    render.push(
-      <li
-        style={
-          currentPage-1 === i 
-            ? { backgroundColor:"rgb(19, 66, 221)" }
-            : { backgroundColor: "" }
-        }
-        onClick={() => {
-          const switchPage = i+1;
-          let updatePage = switchPage
-          pageSwitch(updatePage);
-          setCurrentPage((number) => (number = updatePage));
-          console.log("현재 페이지:",currentPage)
-          setPage(currentPage)
-        }}
-        className={styles.page_item}
-        key={i+1}
-      >
-        {i + 1}
-      </li>
-    );
-  }
-  render.push(
-    <button
-      className={styles.next_btn}
-      onClick={() => {
-        setCurrentPage((number) => (number += 1));
-        console.log("현재 페이지:",currentPage)
-        setPage(currentPage)
-      }}
-    >
-      Next
-    </button>
+
+      renderItem.push(
+        <button
+          onClick={() => {
+            console.log(updatePage);
+            if (currentPage === totalPage) return;
+            setUpdatePage((updatePage) => (updatePage += 1));
+            setPage(updatePage)
+          }}
+          className={styles.next_btn}
+        >
+          Prev
+        </button>
+      );
+
+      setItems(renderItem);
+    },
+    [totalPage]
   );
 
-
+  useEffect(() => {
+    render(updatePage);
+  }, [updatePage, render]);
 
   return (
     <article>
-      <ul className={styles.page_container}>{render}</ul>
+      <ul className={styles.page_container}>{items}</ul>
     </article>
   );
 }
