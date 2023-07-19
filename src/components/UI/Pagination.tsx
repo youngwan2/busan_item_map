@@ -1,14 +1,20 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import styles from "./Pagination.module.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
-function Pagination() {
+
+type PaginationType ={
+  setPage:(currentPage:number) => void
+}
+
+
+function Pagination({setPage}:PaginationType) {
   // 총 페이지
   const [totalNum, setTotalNum] = useState(100);
   // 현재 페이지
   const [currentPage, setCurrentPage] = useState(1);
   // 현재 페이지가 속한 그룹
-  const [currentGroup] = useState(Math.ceil(currentPage / 10));
+  const [currentGroup,setCurrentGroup] = useState(Math.ceil(currentPage / 10));
   // 마지막 페이지
   const [lastPage] = useState(currentGroup * 10);
   // 첫 페이지 번호
@@ -29,26 +35,32 @@ function Pagination() {
       onClick={() => {
         if (currentPage === 1) return;
         setCurrentPage((number) => (number -= 1));
+   
+        console.log("현재 페이지:",currentPage)
+        setPage(currentPage)
       }}
     >
       Prev
     </button>
   );
-  for (let i = 0; i < 10; i++) {
+  for (let i = firstPage-1; i < lastPage; i++) {
     render.push(
       <li
         style={
-          currentPage === i + 1
-            ? { backgroundColor: "black" }
+          currentPage-1 === i 
+            ? { backgroundColor:"rgb(19, 66, 221)" }
             : { backgroundColor: "" }
         }
         onClick={() => {
-          const switchPage = i + 1;
-          pageSwitch(switchPage);
-          setCurrentPage((number) => (number = switchPage));
+          const switchPage = i+1;
+          let updatePage = switchPage
+          pageSwitch(updatePage);
+          setCurrentPage((number) => (number = updatePage));
+          console.log("현재 페이지:",currentPage)
+          setPage(currentPage)
         }}
         className={styles.page_item}
-        key={i}
+        key={i+1}
       >
         {i + 1}
       </li>
@@ -59,15 +71,18 @@ function Pagination() {
       className={styles.next_btn}
       onClick={() => {
         setCurrentPage((number) => (number += 1));
+        console.log("현재 페이지:",currentPage)
+        setPage(currentPage)
       }}
     >
       Next
     </button>
   );
 
+
+
   return (
     <article>
-      <h1>페이지네이션</h1>
       <ul className={styles.page_container}>{render}</ul>
     </article>
   );

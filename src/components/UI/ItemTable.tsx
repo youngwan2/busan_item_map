@@ -19,29 +19,29 @@ type ItemsType = {
 
 function ItemTable() {
   const [items, setItems] = useState<ItemsType[]>([]);
+  const [currnetPage,setCurrentPage] = useState(1);
 
-  // const getItem = useCallback(async () => {
-  //   await axios
-  //     .get(
-  //       `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&numOfRows=10&pageNo=1&resultType=json`
-  //     )
-  //     .then((result) => {
-  //       const itemList = result.data.getLifeInfo.body.items;
-  //       setItems(itemList.item);
-  //     });
-  // }, []);
+  const getItem = useCallback(async (currentPage:number) => {
+    await axios
+      .get(
+        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&numOfRows=10&pageNo=${currentPage}&resultType=json`
+      )
+      .then((result) => {
+        const itemList = result.data.getLifeInfo.body.items;
+        setItems(itemList.item);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   getItem();
-  // }, [getItem]);
+  useEffect(() => {
+    getItem(currnetPage);
+  }, [getItem,currnetPage]);
 
   return (
     <>
       {" "}
       <table className={styles.item_table}>
-        {/* <thead>
+        <thead>
         <tr>
-          <th>일련번호</th>
           <th>상품명</th>
           <th>판매점</th>
           <th>주소</th>
@@ -56,7 +56,6 @@ function ItemTable() {
           ? items.map((item, i) => {
               return (
                 <tr key={i}>
-                  <td>{i + 1}</td>
                   <td>{item.itemName}</td>
                   <td>{item.bsshNm}</td>
                   <td>{item.adres}</td>
@@ -68,9 +67,10 @@ function ItemTable() {
               );
             })
           : null}
-      </tbody> */}
+      </tbody>
       </table>
-      <Pagination></Pagination>
+      <br /><br /><br /><br /><br /><br />
+      <Pagination setPage={setCurrentPage}></Pagination>
     </>
   );
 }
