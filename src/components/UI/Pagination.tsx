@@ -71,13 +71,13 @@ function Pagination({setPage}:PaginationType) {
           }}
           className={styles.next_btn}
         >
-          Prev
+          Next
         </button>
       );
 
       setItems(renderItem);
     },
-    [totalPage]
+    [totalPage,setPage]
   );
 
   useEffect(() => {

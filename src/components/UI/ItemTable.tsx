@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import styles from "./ItemTable.module.css";
+import Search from "./Search";
 import Pagination from "./Pagination";
 
 import { useState, useEffect, useCallback } from "react";
@@ -19,57 +20,65 @@ type ItemsType = {
 
 function ItemTable() {
   const [items, setItems] = useState<ItemsType[]>([]);
-  const [currnetPage,setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [gugun, setGugun] = useState("금정구");
 
-  const getItem = useCallback(async (currentPage:number) => {
+  const getItem = useCallback(async (currentPage: number, gugun: string) => {
+    console.log("지역:", gugun);
     await axios
       .get(
-        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&numOfRows=10&pageNo=${currentPage}&resultType=json`
+        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=10&pageNo=${currentPage}&resultType=json`
       )
       .then((result) => {
+        console.log("검색결과:", result);
         const itemList = result.data.getLifeInfo.body.items;
         setItems(itemList.item);
       });
   }, []);
 
   useEffect(() => {
-    getItem(currnetPage);
-  }, [getItem,currnetPage]);
+    getItem(currentPage, gugun);
+  }, [getItem, currentPage, gugun]);
 
   return (
     <>
-      {" "}
+      <Search setGugun={setGugun} setCurrentPage ={setCurrentPage}></Search>{" "}
       <table className={styles.item_table}>
         <thead>
-        <tr>
-          <th>상품명</th>
-          <th>판매점</th>
-          <th>주소</th>
-          <th>등록일</th>
-          <th>카테고리</th>
-          <th>단위</th>
-          <th>단위 당 가격</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Array.isArray(items)
-          ? items.map((item, i) => {
-              return (
-                <tr key={i}>
-                  <td>{item.itemName}</td>
-                  <td>{item.bsshNm}</td>
-                  <td>{item.adres}</td>
-                  <td>{item.examinDe}</td>
-                  <td>{item.pumNm}</td>
-                  <td>{item.unit}</td>
-                  <td>{item.unitprice.toLocaleString()}(원)</td>
-                </tr>
-              );
-            })
-          : null}
-      </tbody>
+          <tr>
+            <th>상품명</th>
+            <th>판매점</th>
+            <th>주소</th>
+            <th>등록일</th>
+            <th>카테고리</th>
+            <th>단위</th>
+            <th>단위 당 가격</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(items)
+            ? items.map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{item.itemName}</td>
+                    <td>{item.bsshNm}</td>
+                    <td>{item.adres}</td>
+                    <td>{item.examinDe}</td>
+                    <td>{item.pumNm}</td>
+                    <td>{item.unit}</td>
+                    <td>{item.unitprice.toLocaleString()}(원)</td>
+                  </tr>
+                );
+              })
+            : null}
+        </tbody>
       </table>
-      <br /><br /><br /><br /><br /><br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <Pagination setPage={setCurrentPage} ></Pagination>
     </>
   );
