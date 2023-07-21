@@ -31,3 +31,20 @@ td{
     padding: 10px 5px;
     border-bottom: 1px solid rgb(194, 190, 190);
 }
+
+
+
+/* .modalMap{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.map_close_icon{
+    position: relative;
+    left: 91.4%;
+    background-color: black;
+    color:white;
+    padding: 5px;
+} */

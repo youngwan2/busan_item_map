@@ -3,7 +3,8 @@ import axios from "axios";
 import styles from "./ItemTable.module.css";
 import Search from "./Search";
 import Pagination from "./Pagination";
-
+import { useNavigate } from "react-router-dom";
+import KaMap from "./KaMap";
 import { useState, useEffect, useCallback } from "react";
 
 type ItemsType = {
@@ -18,11 +19,19 @@ type ItemsType = {
   unitprice: number;
 };
 
+type laLoType = {
+  la: string;
+  lo: string;
+};
+
 function ItemTable() {
   const [items, setItems] = useState<ItemsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [laLo, setLaLo] = useState<laLoType>();
   const [gugun, setGugun] = useState("금정구");
+  const [isDisplay, setIsDisplay] = useState(true);
 
+  const navigate = useNavigate();
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
     console.log("지역:", gugun);
     await axios
@@ -33,6 +42,9 @@ function ItemTable() {
         console.log("검색결과:", result);
         const itemList = result.data.getLifeInfo.body.items;
         setItems(itemList.item);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -42,7 +54,7 @@ function ItemTable() {
 
   return (
     <>
-      <Search setGugun={setGugun} setCurrentPage ={setCurrentPage}></Search>{" "}
+      <Search setGugun={setGugun} setCurrentPage={setCurrentPage}></Search>{" "}
       <table className={styles.item_table}>
         <thead>
           <tr>
@@ -59,7 +71,13 @@ function ItemTable() {
           {Array.isArray(items)
             ? items.map((item, i) => {
                 return (
-                  <tr key={i}>
+                  <tr
+                    key={i}
+                    onClick={() => {
+                      setLaLo({ la: item.la, lo: item.lo });
+                      setIsDisplay((result) => (result = !result));
+                    }}
+                  >
                     <td>{item.itemName}</td>
                     <td>{item.bsshNm}</td>
                     <td>{item.adres}</td>
@@ -73,13 +91,14 @@ function ItemTable() {
             : null}
         </tbody>
       </table>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Pagination setPage={setCurrentPage} ></Pagination>
+      <br /> <br /> <br /> <br /> <br /> <br />
+      <Pagination setPage={setCurrentPage}></Pagination>
+      <KaMap
+        la={laLo?.la}
+        lo={laLo?.lo}
+        isDisplay={isDisplay}
+        setIsDisplay={setIsDisplay}
+      ></KaMap>
     </>
   );
 }

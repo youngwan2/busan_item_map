@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Detail from "../components/page/Detail";
 import App from "../App";
+import KaMap from "../components/UI/KaMap";
 
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     path: "/detail/:id",
     element: <Detail></Detail>,
     errorElement:<h1>에러가 발생했습니다.</h1>
+  },
+  {
+    path:'/map',
+    element:<KaMap></KaMap>
   },
   {
     path:'*',
