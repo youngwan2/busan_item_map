@@ -1,46 +1,42 @@
-
 /* 페이지네이션 바깥 테두리 */
-.page_container{
-    display: flex;
-    max-width: 800px;
-    margin: 0 auto;
-    justify-content: center;
-    border-radius: 20px;
+.page_container {
+  display: flex;
+  width: 100%;
+  margin: 5px auto 20px auto;
+  justify-content: center;
+  padding: 5px;
 }
-
 
 /* 페이지네이션 페이지번호 */
-.page_item{
-    transition: 1s;
-    border-radius: 5px;
-    color:white;
-    font-size: 17px;
-    
-    background-color: rgb(56, 102, 255);
-    margin: 0 2px;
-    min-width: 30px;
-    text-align: center;
-    padding: 10px;
+.page_item {
+  transition: 1s;
+  border-radius: 50%;
+  color: white;
+  font-size: 17px;
+  margin: 0 1px;
 
+  background-color: rgb(56, 102, 255);
+  min-width: 30px;
+  text-align: center;
+  padding: 8px;
 }
 
-.page_item:hover{
-    cursor: pointer;
+.page_item:hover {
+  cursor: pointer;
+  background-color: rgba(119, 119, 255, 0.699);
 }
-
 
 /* 이전 페이지 이동 버튼 */
-:is(.prev_btn, .next_btn){
-    background: transparent;
-    border: none;
-    color:rgb(68, 24, 212);
-    font-size: 1.1em;
-    cursor: pointer;
+:is(.prev_btn, .next_btn) {
+  background: transparent;
+  border: none;
+  color: rgb(163, 141, 241);
+  font-size: 1.1em;
+  cursor: pointer;
 }
 
-:is(.prev_btn, .next_btn):hover{
-    color:rgb(113, 113, 255)
+:is(.prev_btn, .next_btn):hover {
+  color: rgb(69, 69, 255);
 }
-
 
 /* 다음 페이지 이동 버튼 */

@@ -3,6 +3,8 @@
 table{
     border-collapse: collapse;
     position: relative;
+    max-width: 80%;
+    width: 100%;
     left: 50%;
     top: 5rem;
     transform: translate(-50%);
@@ -30,6 +32,11 @@ td{
     text-align: center;
     padding: 10px 5px;
     border-bottom: 1px solid rgb(194, 190, 190);
+}
+
+
+tr:hover{
+    background-color: rgb(199, 199, 255);
 }
 
 

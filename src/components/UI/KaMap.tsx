@@ -70,6 +70,9 @@ function KaMap({
 
   return (
     <article
+     onDoubleClick={()=>{
+      setIsDisplay && setIsDisplay(!isDisplay);
+     }}
       className={styles.Map}
       style={isDisplay ? { display: "none" } : { display: "block" }}
     >

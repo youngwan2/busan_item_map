@@ -6,7 +6,7 @@ import KaMap from "../components/UI/KaMap";
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path:'/busan_item_map/',
     element:<App></App>,
     errorElement:<h2>컴포넌트를 불러오는 중에 문제가 발생하였습니다.</h2>,
   },
