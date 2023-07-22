@@ -30,13 +30,14 @@ function ItemTable() {
   const [laLo, setLaLo] = useState<laLoType>();
   const [gugun, setGugun] = useState("금정구");
   const [isDisplay, setIsDisplay] = useState(true);
+  const [bsshNm, setBsshNm] = useState('')
 
   const navigate = useNavigate();
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
     console.log("지역:", gugun);
     await axios
       .get(
-        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=10&pageNo=${currentPage}&resultType=json`
+        `http://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
       )
       .then((result) => {
         console.log("검색결과:", result);
@@ -76,6 +77,7 @@ function ItemTable() {
                     onClick={() => {
                       setLaLo({ la: item.la, lo: item.lo });
                       setIsDisplay((result) => (result = !result));
+                      setBsshNm((result) =>(result =item.bsshNm))
                     }}
                   >
                     <td>{item.itemName}</td>
@@ -96,6 +98,7 @@ function ItemTable() {
       <KaMap
         la={laLo?.la}
         lo={laLo?.lo}
+        bss ={bsshNm}
         isDisplay={isDisplay}
         setIsDisplay={setIsDisplay}
       ></KaMap>
