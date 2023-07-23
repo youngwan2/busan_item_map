@@ -17,7 +17,6 @@ function KaMap({
   isDisplay,
   setIsDisplay,
 }: KaMapType) {
-  console.log(la, lo);
 
   useEffect(() => {
     const script = document.createElement("script");

@@ -1,6 +1,14 @@
 
 
+.loading{
+    position: relative;
+    left: 120%;
+    font-size: 1.7rem;
+}
+
+
 table{
+    text-align: center;
     border-collapse: collapse;
     position: relative;
     max-width: 80%;

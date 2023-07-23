@@ -1,10 +1,12 @@
-import React from "react";
+
 import axios from "axios";
 import styles from "./ItemTable.module.css";
-import Search from "./Search";
 import Pagination from "./Pagination";
 import { useNavigate } from "react-router-dom";
+import ReactSpinner from "./loading/ReactSpinner";
 import KaMap from "./KaMap";
+import Header from "./Header";
+
 import { useState, useEffect, useCallback } from "react";
 
 type ItemsType = {
@@ -30,22 +32,25 @@ function ItemTable() {
   const [laLo, setLaLo] = useState<laLoType>();
   const [gugun, setGugun] = useState("금정구");
   const [isDisplay, setIsDisplay] = useState(true);
-  const [bsshNm, setBsshNm] = useState('')
+  const [bsshNm, setBsshNm] = useState("");
 
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
-    console.log("지역:", gugun);
+    // console.log("지역:", gugun);
     await axios
       .get(
         `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
       )
       .then((result) => {
-        console.log("검색결과:", result);
+        // console.log("검색결과:", result);
         const itemList = result.data.getLifeInfo.body.items;
         setItems(itemList.item);
+
+        setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -55,7 +60,7 @@ function ItemTable() {
 
   return (
     <>
-      <Search setGugun={setGugun} setCurrentPage={setCurrentPage}></Search>{" "}
+      <Header isStyle={true}></Header>
       <table className={styles.item_table}>
         <thead>
           <tr>
@@ -69,6 +74,12 @@ function ItemTable() {
           </tr>
         </thead>
         <tbody>
+          <td
+            style={isLoading ? { display: "block" } : { display: "none" }}
+            className={styles.loading}
+          >
+            <ReactSpinner/>
+          </td>
           {Array.isArray(items)
             ? items.map((item, i) => {
                 return (
@@ -77,7 +88,7 @@ function ItemTable() {
                     onClick={() => {
                       setLaLo({ la: item.la, lo: item.lo });
                       setIsDisplay((result) => (result = !result));
-                      setBsshNm((result) =>(result =item.bsshNm))
+                      setBsshNm((result) => (result = item.bsshNm));
                     }}
                   >
                     <td>{item.itemName}</td>
@@ -98,7 +109,7 @@ function ItemTable() {
       <KaMap
         la={laLo?.la}
         lo={laLo?.lo}
-        bss ={bsshNm}
+        bss={bsshNm}
         isDisplay={isDisplay}
         setIsDisplay={setIsDisplay}
       ></KaMap>

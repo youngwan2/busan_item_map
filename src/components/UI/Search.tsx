@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+
+import { useEffect, useState } from "react";
+import useGetData from "../../custom/useGetData";
 import styles from "./Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-type setGugunType = {
-  setGugun: (gugun: string) => void;
-  setCurrentPage:(page:number) =>void;
-};
 
-function Search({ setGugun,setCurrentPage }: setGugunType) {
-  //   const [stage, setStage] = useState('')
 
+function Search(){
+
+   const url =`http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?servicekey=${process.env.REACT_APP_BUSAN_KEY}&type=json`
+
+
+    // const {data, loading,error} =useGetData(url)
+  // console.log(data,loading,error)
   return (
     <article className={styles.search}>
       <div className={styles.search_container}>
@@ -23,12 +26,10 @@ function Search({ setGugun,setCurrentPage }: setGugunType) {
         <input
           onKeyUp={(e) => {
             if (e.code === "Enter") {
-              setGugun(e.currentTarget.value);
-              setCurrentPage(1)
               console.log(e.currentTarget.value)
             }
           }}
-          placeholder="부산시 구군/물품명을 입력해보세요!"
+          placeholder="음식명을 입력 후 [Enter] 를 눌러주세요!!"
           type="text"
           id="search"
           className={styles.search_input}

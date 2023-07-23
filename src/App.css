@@ -1,13 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
+
 * {
-    margin: 0;
+  margin: 0;
 }
-ul{
-    padding: 0;
+ul {
+  padding: 0;
 }
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Orbit", sans-serif;
+}
+
+.video_con {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(80deg, black, rgb(104, 101, 101));
+}
+video {
+  position: fixed;
+  filter: blur(1px);
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0.6;
+  width: 1800px;
 }

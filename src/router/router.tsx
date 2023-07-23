@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Detail from "../components/page/Detail";
 import App from "../App";
 import KaMap from "../components/UI/KaMap";
+import ItemTable from "../components/UI/ItemTable";
 
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path:'/map',
     element:<KaMap></KaMap>
+  },
+  {
+    path:'/busan_item_map/item',
+    element:<ItemTable></ItemTable>
   },
   {
     path:'*',
