@@ -1,5 +1,4 @@
 
-
 .loading{
     position: relative;
     left: 120%;
@@ -18,6 +17,11 @@ table{
     transform: translate(-50%);
     border-radius: 10px;
     box-shadow: 1px 1px 15px 0 rgb(9, 6, 58);
+    animation: appear 1s 1 ease-in-out;
+}
+
+@keyframes appear {
+  from {opacity: 0;}
 }
 
 

@@ -5,8 +5,12 @@
   margin: 5px auto 20px auto;
   justify-content: center;
   padding: 5px;
+  animation: appear 1s 1 ease-in-out;
 }
-
+  @keyframes appear {
+    from {opacity: 0; transform: translateY(100px);}
+  }
+  
 /* 페이지네이션 페이지번호 */
 .page_item {
   transition: 1s;

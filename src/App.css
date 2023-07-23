@@ -16,7 +16,23 @@ a {
 
 body {
   font-family: "Orbit", sans-serif;
+  animation: appear 1s 1 ease-in-out;
 }
+
+@keyframes appear {
+  from {opacity: 0;}
+}
+
+
+.App{
+
+  animation: appear 1s 1 ease-in-out;
+}
+
+@keyframes appear {
+  from {opacity: 0;}
+}
+
 
 .video_con {
   position: fixed;
