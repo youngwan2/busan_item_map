@@ -10,6 +10,7 @@ header{
     height: 57px;
     padding: 0 0 8px 0;
     z-index: 1000;
+    box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.286);
 }
 
 header .header_flex{
@@ -33,7 +34,7 @@ header h1{
 }
 .menu ul li{
     font-size: 15px;
-    padding: 8px 10px 3px 10px;
+    padding: 8px 10px 4px 10px;
     text-align: center;
     display: inline-block;
     font-weight: 500;

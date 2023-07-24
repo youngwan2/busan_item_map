@@ -4,6 +4,16 @@
 }
 
 
+.select_con{
+    top: 0.5rem;
+    position: relative;
+}
+
 @keyframes appear {
     from {opacity: 0;}
+}
+
+
+.content_container{
+
 }
