@@ -23,7 +23,7 @@ const loading = true;
 const dataReducer = (state: any, action: any) => {
   switch (action.type) {
     case "success":
-      return { ...state, loading: false, data:action.payload };
+      return { ...state, loading: false, data: action.payload };
     case "loading":
       return { ...state, loading: true, data: action.payload };
     case "error":
@@ -46,6 +46,7 @@ function useGetData(url: string) {
       axios
         .get(url)
         .then((response) => {
+          if(typeof response.data  === 'string') return 
           console.log(response.data)
           dispatch({ type: "success", payload: response.data });
         })

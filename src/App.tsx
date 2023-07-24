@@ -16,7 +16,7 @@ function App() {
           loop
         ></video>
       </article>
-      <Search></Search>
+      <Search fixed={false}></Search>
       {/* <ItemTable></ItemTable> */}
     </div>
   );

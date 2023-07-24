@@ -3,6 +3,7 @@ import Detail from "../components/page/Detail";
 import App from "../App";
 import KaMap from "../components/UI/KaMap";
 import ItemTable from "../components/UI/ItemTable";
+import Select from "../components/page/Select";
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path:'/busan_item_map/item',
     element:<ItemTable></ItemTable>
+  },
+  {
+    path:'/busan_item_map/search',
+    element:<Select></Select>
   },
   {
     path:'*',
