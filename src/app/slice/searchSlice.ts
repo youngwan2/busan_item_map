@@ -7,7 +7,7 @@ const asyncGetSearchData = createAsyncThunk(
   "searchSlice/asyncGetSearchData",
   async (item:string) => {
     const response = await axios.get(
-      `http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?servicekey=${process.env.REACT_APP_BUSAN_KEY}&type=json&desc_kor=${item}`
+      `https://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?servicekey=${process.env.REACT_APP_BUSAN_KEY}&type=json&desc_kor=${item}`
     );
     const data = await response.data;
 
