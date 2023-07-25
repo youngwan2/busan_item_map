@@ -1,25 +1,39 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Header from "./Header";
+import axios from "axios";
 
 interface SearchType {
   fixed: boolean;
 }
 
 function Search({ fixed }: SearchType) {
+
+  const test = useAppSelector((state) => { return state.search.value })
+  console.log(test)
+
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  // const [url, setURL] = useState("");
+  const getSearchData = useCallback(async (item: string) => {
+    try {
+      const response = await axios.get(`http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?servicekey=${process.env.REACT_APP_BUSAN_KEY}&type=json&desc_kor=${item}`)
+      const data = await response.data
+      const getData = await data.body.items
+      await dispatch(getData)
+      
+      return 0
+    } catch (error) {
+      console.log(error)
+    }
+  }, [dispatch])
 
-  // const sendURL = (item: string) => {
-  //   console.log(item);
-  //   setURL(
-  //     `http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?servicekey=${process.env.REACT_APP_BUSAN_KEY}&type=json&desc_kor=${item}`
-  //   );
-  // };
+
+
 
   return (
     <>
@@ -29,10 +43,10 @@ function Search({ fixed }: SearchType) {
         style={
           fixed
             ? {
-                position: "relative",
-                top: "8rem",
-                maxWidth: "600px",
-              }
+              position: "relative",
+              top: "8rem",
+              maxWidth: "600px",
+            }
             : { position: "fixed" }
         }
       >
@@ -47,6 +61,7 @@ function Search({ fixed }: SearchType) {
             onKeyUp={(e) => {
               if (e.code === "Enter") {
                 // sendURL(e.currentTarget.value);
+                getSearchData(e.currentTarget.value)
                 navigate("/busan_item_map/search");
               }
             }}

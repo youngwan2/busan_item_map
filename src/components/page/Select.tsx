@@ -1,7 +1,6 @@
 import styles from "./Select.module.css";
 import Search from "../UI/Search";
 import { useState } from "react";
-import { useAppSelector } from "../../app/hooks";
 
 interface ItemType {
   ANIMAL_PLANT: string;
@@ -22,8 +21,6 @@ interface ItemType {
 function Select() {
   const [topFixed, setTopFixed] = useState(true);
 
-  const getSelect = useAppSelector((state)=>{ return state.select})
-  console.log("get:",getSelect.value)
   return (
     <section className={styles.select}>
       <article className={styles.select_con}>
