@@ -19,6 +19,7 @@ header .header_flex{
     max-width: 1400px;
 }
 
+/* 로고 */
 header h1{
     font-weight: 600;
     padding: 8px 10px 3px 10px;
@@ -27,8 +28,10 @@ header h1{
     min-width: 40%;
     color: white;
     height: 50px;
+    cursor: pointer;
 } 
 
+/* 메뉴 */
 .menu ul {
     display: flex;
 }
