@@ -48,3 +48,12 @@ video {
   opacity: 0.6;
   width: 1800px;
 }
+
+
+.header_scroll{
+  transition: 1s;
+  z-index: 10000;
+  position: fixed;
+  top: 4px;
+  width: 100%;
+}

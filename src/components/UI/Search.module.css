@@ -2,7 +2,7 @@
 
 .search{
   z-index: 100;
-    border: 1px solid black;
+    border: 1px solid rgb(28, 99, 231);
     text-align: center;
     padding: 5px;
     position: fixed;
@@ -11,6 +11,12 @@
     transform: translate(-50%,-50%);
     display: flex;
     border: none;
+    animation: appear 1s 1 ease-in-out;
+    transform-origin: center center;
+}
+
+@keyframes appear {
+  from {transform: translate(-60%,-120%); opacity: 0;}  
 }
 
 
@@ -34,9 +40,8 @@
   border: none;
   padding: 20px;
   background-color: rgb(255, 255, 255);
-  color:white;
+  color:rgb(0, 0, 0);
   border-radius: 30px;
-  min-width: 250px;
   margin: 0;
   position: relative;
 }
@@ -47,19 +52,21 @@
 
 .search_input:focus {
   outline: none;
-  background-color: rgb(52, 102, 254);
+  
 }
 
 .search_input:focus::placeholder{
-  color:white;
+  color:rgb(94, 76, 254);
+  font-weight: 600;
 }
 
 
 /* 검색창 아이콘 */
 .search_icon {
   z-index: 100;
-  top: 19.5px;
-  left: 10px;
+  top: 16.9px;
+  font-size: 20px;
+  left: 18px;
   color: black;
   position: absolute;
 }

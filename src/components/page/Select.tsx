@@ -24,7 +24,6 @@ function Select() {
   const test = useAppSelector((state) => {
     return state.search.value;
   });
-  console.log(test);
 
   return (
     <section className={styles.select}>
@@ -38,7 +37,7 @@ function Select() {
             console.log(item);
             return (
               <ul className={styles.search_items} key={item.DESC_KOR+item.BGN_YEAR}>
-                <li><h3>{item.DESC_KOR}{`(${item.BGN_YEAR})`}</h3></li>
+                <li><strong>{item.DESC_KOR}{`(${item.BGN_YEAR})`}</strong></li>
                 <li>
                   <span>열량(kcal):</span>
                   {item.NUTR_CONT1}

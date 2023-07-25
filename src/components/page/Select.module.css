@@ -31,18 +31,31 @@
   background-color: white;
   border-radius: 5px;
   transition: 1s;
+  font-family: "Orbit", sans-serif;
 }
 
 .search_items:hover {
-  background-color: rgba(126, 126, 126, 0.128);
-  scale: 1.1 1.1;
+  background-color: rgba(215, 215, 215, 0.128);
+  scale: 1.05 1.05;
   z-index: 1000;
   transform: translateZ(10px) translateY(10px);
 }
 
-.search_items h3 {
+.search_items:hover strong {
+  background-color: rgb(215, 39, 39);
+}
+
+.search_items:hover span{
+  border-color: rgb(239, 109, 109);
+}
+
+.search_items strong {
+  transition: 0.5s;
   text-align: center;
-  background-color: rgba(190, 11, 11, 0.794);
+  display: block;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  background-color: rgba(11, 56, 190, 0.794);
   color: white;
   border-radius: 5px;
   box-shadow: inset 0 0 1px 1px rgb(94, 92, 92);
@@ -50,10 +63,11 @@
 }
 
 .search_items span {
+  transition: 0.5s;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.796);
   min-width: 130px;
-  border: 1px solid rgb(113, 107, 107);
+  border: 1px solid rgb(119, 134, 251);
   margin: 5px 5px 5px 0;
   padding-left: 6px;
   border-radius: 5px;

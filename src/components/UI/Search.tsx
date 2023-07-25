@@ -40,16 +40,17 @@ function Search({ fixed }: SearchType) {
             onKeyUp={(e) => {
               if (e.code === "Enter") {
                 // sendURL(e.currentTarget.value);
-                dispatch(asyncGetSearchData(e.currentTarget.value));
-                navigate("/busan_item_map/search");
+                if (e.currentTarget.value !== "")
+                  dispatch(asyncGetSearchData(e.currentTarget.value));
                 e.currentTarget.value = "";
+                return navigate("/busan_item_map/search");
               }
             }}
             placeholder="음식명을 입력 후 [Enter] 를 눌러주세요!!"
             type="text"
             id="search"
             className={styles.search_input}
-            style={fixed ? { boxShadow: "0 0 1px 1px black" } : {}}
+            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow:'inset 0 0 5px 2px rgba(55,55,55,0.5)' } : {}}
           />
         </div>
       </article>
