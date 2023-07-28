@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import {useEffect,useState} from 'react'
+import { useEffect, useState } from 'react'
 
 interface HeaderType {
   isStyle: boolean;
@@ -9,13 +9,13 @@ function Header({ isStyle }: HeaderType) {
   const navigate = useNavigate();
   const [scroll, setScroll] = useState(0)
 
-  useEffect(()=>{
-    window.addEventListener('scroll',()=>{
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
       setScroll(window.scrollY)
     })
   })
   return (
-    <div className="header_scroll" style={scroll>50?{visibility:'hidden', transform:`translateY(-100px)`}:{visibility:'visible', transform:`translateY(-8px)`}} >
+    <div className="header_scroll" style={scroll > 50 ? { visibility: 'hidden', transform: `translateY(-100px)` } : { visibility: 'visible', transform: `translateY(-8px)` }} >
       <header
         className={styles.header}
         style={
@@ -43,6 +43,8 @@ function Header({ isStyle }: HeaderType) {
               </li>
             </ul>
           </nav>
+          {/* 가로 624 px 이하 부터 적용 */}
+          <button className={styles.menu_icon}>메뉴</button>
         </div>
       </header>
     </div>

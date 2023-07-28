@@ -22,7 +22,7 @@
 
 /* 검색창 전체 컨테이너 */
 .search_container {
-  min-width: 600px;
+  min-width: 300px;
   max-width: 900px;
   margin: 20px auto;
   width: 100%;

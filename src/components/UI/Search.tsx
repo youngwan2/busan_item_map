@@ -22,10 +22,10 @@ function Search({ fixed }: SearchType) {
         style={
           fixed
             ? {
-                position: "relative",
-                top: "8rem",
-                maxWidth: "600px",
-              }
+              position: "relative",
+              top: "8rem",
+              maxWidth: "600px",
+            }
             : { position: "fixed" }
         }
       >
@@ -50,7 +50,7 @@ function Search({ fixed }: SearchType) {
             type="text"
             id="search"
             className={styles.search_input}
-            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow:'inset 0 0 5px 2px rgba(55,55,55,0.5)' } : {}}
+            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow: 'inset 0 0 5px 2px rgba(55,55,55,0.5)' } : {}}
           />
         </div>
       </article>
