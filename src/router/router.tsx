@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Detail from "../components/page/Detail";
 import App from "../App";
 import KaMap from "../components/UI/KaMap";
 import ItemTable from "../components/UI/ItemTable";
 import Select from "../components/page/Select";
+import HccpSearch from "../components/page/HccpSearch";
 
 
 const router = createBrowserRouter([
@@ -11,11 +11,6 @@ const router = createBrowserRouter([
     path:'/busan_item_map/',
     element:<App></App>,
     errorElement:<h2>컴포넌트를 불러오는 중에 문제가 발생하였습니다.</h2>,
-  },
-  {
-    path: "/detail/:id",
-    element: <Detail></Detail>,
-    errorElement:<h1>에러가 발생했습니다.</h1>
   },
   {
     path:'/map',
@@ -28,6 +23,10 @@ const router = createBrowserRouter([
   {
     path:'/busan_item_map/search',
     element:<Select></Select>
+  },
+  {
+    path:'/busan_item_map/haccp',
+    element:<HccpSearch></HccpSearch>
   },
   {
     path:'*',

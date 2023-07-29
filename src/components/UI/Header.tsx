@@ -1,21 +1,34 @@
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderType {
   isStyle: boolean;
 }
 function Header({ isStyle }: HeaderType) {
   const navigate = useNavigate();
-  const [scroll, setScroll] = useState(0)
+  const [scroll, setScroll] = useState(0);
+  const [onDisplay, setOnDisplay] = useState(false);
 
+  function menuDisplayFun() {
+    setOnDisplay((result) => (result = !result));
+  }
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      setScroll(window.scrollY)
-    })
-  })
+    window.addEventListener("scroll", () => {
+      setScroll(window.scrollY);
+    });
+  });
   return (
-    <div className="header_scroll" style={scroll > 50 ? { visibility: 'hidden', transform: `translateY(-100px)` } : { visibility: 'visible', transform: `translateY(-8px)` }} >
+    <div
+      className="header_scroll"
+      style={
+        scroll > 50
+          ? { visibility: "hidden", transform: `translateY(-100px)` }
+          : { visibility: "visible", transform: `translateY(-8px)` }
+      }
+    >
       <header
         className={styles.header}
         style={
@@ -25,15 +38,24 @@ function Header({ isStyle }: HeaderType) {
         }
       >
         <div className={styles.header_flex}>
-          <h1
-            className={styles.home_log}
-            onClick={() => {
-              navigate("/busan_item_map");
-            }}
-          >
-            FoodPick
+          <h1>
+            <span
+              className={styles.home_log}
+              onClick={() => {
+                navigate("/busan_item_map");
+              }}
+            >
+              FoodPick
+            </span>
           </h1>
-          <nav className={styles.menu}>
+          <nav className={onDisplay ? styles.onMenu : styles.offMenu}>
+            <button
+              className={styles.closeBtn}
+              style={!onDisplay ? { display: "none" } : { display: "block" }}
+              onClick={menuDisplayFun}
+            >
+              X
+            </button>
             <ul>
               <li>
                 <Link to={"/busan_item_map/search"}>식품영양정보조회</Link>
@@ -41,10 +63,21 @@ function Header({ isStyle }: HeaderType) {
               <li>
                 <Link to={"/busan_item_map/item"}>부산생필품정보</Link>
               </li>
+              <li>
+                <Link to={"/busan_item_map/haccp"}>HACCP제품정보조회</Link>
+              </li>
             </ul>
           </nav>
           {/* 가로 624 px 이하 부터 적용 */}
-          <button className={styles.menu_icon}>메뉴</button>
+          <button
+            className={styles.menu_icon}
+            onClick={menuDisplayFun}
+            style={
+              onDisplay ? { visibility: "hidden" } : { visibility: "visible" }
+            }
+          >
+            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+          </button>
         </div>
       </header>
     </div>

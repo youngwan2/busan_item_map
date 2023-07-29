@@ -6,7 +6,7 @@ header {
   width: 100%;
   height: 57px;
   padding: 0 0 8px 0;
-  font-family: 'Orbit', sans-serif;
+  font-family: "Orbit", sans-serif;
   z-index: 1000;
   box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.286);
 }
@@ -26,46 +26,83 @@ header h1 {
   min-width: 40%;
   color: white;
   height: 50px;
+}
+
+header h1 span{
   cursor: pointer;
 }
 
 /* 메뉴 */
-.menu ul {
+nav ul {
   display: flex;
 }
-.menu ul li {
+nav ul li {
   font-size: 15px;
-  padding: 8px 10px 4px 10px;
+  padding: 18px 10px 16px 10px;
+  width: 150px;
   text-align: center;
   display: inline-block;
   font-weight: 500;
 }
 
-.menu ul li:hover {
+nav ul li:hover {
   cursor: pointer;
   background-color: black;
 }
 
-.menu ul li a {
+nav ul li a {
   color: white;
   text-decoration: none;
 }
 
-.menu_icon{
-    display: none;
-    border: none;
-    background-color: transparent;
+.menu_icon {
+  color: white;
+  font-size: 1.8rem;
+  display: none;
+  border: none;
+  margin-right: 5px;
+  background-color: transparent;
+}
+
+
+.closeBtn {
+  position: absolute;
+  display: none;
+  visibility: hidden;
 }
 
 /* 미디어 쿼리 설정 */
 /* 634px */
 
-@media screen and (max-width:634px) {
-    .menu{
-        display: none;
-    }
+@media screen and (max-width: 634px) {
 
-    .menu_icon{
-        display: block;
-    }
+  nav.offMenu{
+    display: none;
+  }
+
+  nav{
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.238);
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+  }
+
+  .menu_icon {
+    display: block;
+  }
+
+  .closeBtn {
+    visibility: visible;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px;
+  }
 }
