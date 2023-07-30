@@ -1,13 +1,11 @@
-import React from "react";
 import styles from "./Pagination.module.css";
 import { useState, useEffect, useCallback } from "react";
 
-interface PaginationType{
-  setPage:(updatePage:number)=>void
+interface PaginationType {
+  setPage: (updatePage: number) => void;
 }
 
-
-function Pagination({setPage}:PaginationType) {
+function Pagination({ setPage }: PaginationType) {
   const [items, setItems] = useState<any>();
   const [totalPage] = useState(100);
   const [updatePage, setUpdatePage] = useState(1);
@@ -35,24 +33,30 @@ function Pagination({setPage}:PaginationType) {
 
       renderItem.push(
         <button
+        key={-1}
           onClick={() => {
             console.log(updatePage);
             if (currentPage <= 1) return;
             setUpdatePage((updatePage) => (updatePage -= 1));
-            setPage(updatePage)
+            setPage(updatePage);
           }}
           className={styles.prev_btn}
         >
-          Prev
+            {'<'}
         </button>
       );
       for (let i = firstPage; i <= lastPage; i++) {
         renderItem.push(
           <li
-          style={i===currentPage?{backgroundColor:'rgb(24, 58, 170)'}:{backgroundColor:''}}
+          key={i}
+            style={
+              i === currentPage
+                ? { backgroundColor: "rgb(24, 58, 170)" }
+                : { backgroundColor: "" }
+            }
             onClick={() => {
               setUpdatePage(i);
-              setPage(i)
+              setPage(i);
             }}
             className={styles.page_item}
           >
@@ -63,21 +67,22 @@ function Pagination({setPage}:PaginationType) {
 
       renderItem.push(
         <button
+        key={-2}
           onClick={() => {
             console.log(updatePage);
             if (currentPage === totalPage) return;
             setUpdatePage((updatePage) => (updatePage += 1));
-            setPage(updatePage)
+            setPage(updatePage);
           }}
           className={styles.next_btn}
         >
-          Next
+          {'>'}
         </button>
       );
 
       setItems(renderItem);
     },
-    [totalPage,setPage]
+    [totalPage, setPage]
   );
 
   useEffect(() => {

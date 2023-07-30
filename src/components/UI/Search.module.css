@@ -23,7 +23,7 @@
 /* 검색창 전체 컨테이너 */
 .search_container {
   min-width: 400px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 20px auto;
   width: 100%;
   position: relative;
@@ -70,3 +70,10 @@
   color: black;
   position: absolute;
 }
+
+
+@media screen and (max-width:405px){
+  .search_container {
+    min-width: 350px;
+    
+  }}

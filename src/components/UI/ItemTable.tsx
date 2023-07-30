@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import styles from "./ItemTable.module.css";
 import Pagination from "./Pagination";
@@ -74,12 +73,12 @@ function ItemTable() {
           </tr>
         </thead>
         <tbody>
-          <td
+          <span
             style={isLoading ? { display: "block" } : { display: "none" }}
             className={styles.loading}
           >
-            <ReactSpinner/>
-          </td>
+            <ReactSpinner />
+          </span>
           {Array.isArray(items)
             ? items.map((item, i) => {
                 return (

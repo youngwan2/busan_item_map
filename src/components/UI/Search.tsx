@@ -38,7 +38,8 @@ function Search({ fixed }: SearchType) {
           </label>
           <input
             onKeyUp={(e) => {
-              if (e.code === "Enter") {
+              console.log(e)
+              if (e.code === "Enter" ||e.keyCode===13) {
                 // sendURL(e.currentTarget.value);
                 if (e.currentTarget.value !== "")
                   dispatch(asyncGetSearchData(e.currentTarget.value));
@@ -46,6 +47,7 @@ function Search({ fixed }: SearchType) {
                 return navigate("/busan_item_map/search");
               }
             }}
+    
             placeholder="음식명을 입력 후 [Enter] 를 눌러주세요!!"
             type="text"
             id="search"

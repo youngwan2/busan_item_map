@@ -16,13 +16,13 @@
   transition: 1s;
   border-radius: 50%;
   color: white;
-  font-size: 17px;
+  font-size: 15px;
   margin: 0 1px;
 
   background-color: rgb(56, 102, 255);
   min-width: 30px;
   text-align: center;
-  padding: 8px;
+  padding: 2px;
 }
 
 .page_item:hover {
