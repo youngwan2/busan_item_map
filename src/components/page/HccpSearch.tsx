@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../UI/Header";
 import styles from "./HccpSearch.module.css";
 import { useEffect, useState, useCallback } from "react";
@@ -21,20 +20,23 @@ export type ItemsType = {
 
 function HccpSearch() {
   const [productName, setProductName] = useState("");
+  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<ItemsType[]>([]);
   const [filterItems, setFilterItems] = useState<ItemsType[]>([]);
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
 
   const getAxios = async (productName: string) => {
+    setLoading(true)
     const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${process.env.REACT_APP_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=30`;
     const response = await axios.get(url);
     const data = response.data;
     const items = data.body.items;
-    console.log(items);
     setItems(items);
+    setLoading(false)
   };
 
+  // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
   const filter = useCallback(
     (productId: string) => {
       const result = items.filter((item, i) => {
@@ -73,9 +75,10 @@ function HccpSearch() {
         >
           조회
         </button>
+        <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>{"로딩중입니다..."}</div>
       </div>
-
       <section className={styles.content_container}>
+
         {Array.isArray(items) ? (
           items.map((item, i) => {
             return (
@@ -87,7 +90,6 @@ function HccpSearch() {
                   }}
                 >
                   <img src={`${item.item.imgurl1}`} alt="상품이미지"></img>
-                  <hr />
                   <p>{item.item.prdlstNm}</p>
                 </div>
               </figure>

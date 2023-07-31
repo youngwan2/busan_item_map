@@ -5,7 +5,7 @@
     width: 100%;
     max-width: 900px;
     min-width: 300px;
-    height: 80vh;
+    min-height: 80vh;
     position: fixed;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -38,8 +38,15 @@
   
   .modal_content_con {
     display: flex;
-    margin-top: 3rem;
-  }
+    margin: 3rem;
+
+ }
+ .modal_content_con img{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+ }
+
   .modal_content_con p div {
     padding: 2px;
     border: 1px solid rgb(207, 204, 204);
@@ -48,9 +55,27 @@
   
   .modal_figure {
     min-width: 300px;
-    min-height: 480px;
-    max-width: 650px !important;
+    min-height: 300px;
+    max-width: 350px !important;
     width: 100% !important;
     margin: 0 10px !important;
   }
   
+
+  @media (max-width: 890px) {
+    .modal_content_con {
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    .modal_figure{
+      max-width: 500px !important;
+      width: 100%;
+    }
+
+    .modal_content_con>div{
+      margin-top: 2rem;
+      max-width: 500px;
+    }
+  }

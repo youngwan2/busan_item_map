@@ -30,7 +30,6 @@ function Modal({ filterItems, setModal, modal }: ModalType) {
         <section>
           {Array.isArray(filterItems) ? (
             filterItems.map((item, i) => {
-              console.log(item);
               return (
                 <div className={styles.modal_content_con}>
                   <figure className={styles.modal_figure}>
