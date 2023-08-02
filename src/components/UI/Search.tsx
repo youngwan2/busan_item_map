@@ -10,7 +10,7 @@ interface SearchType {
   fixed: boolean;
 }
 
-function Search({ fixed }: SearchType) {
+function Search({ fixed}: SearchType) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -22,10 +22,10 @@ function Search({ fixed }: SearchType) {
         style={
           fixed
             ? {
-              position: "relative",
-              top: "8rem",
-              maxWidth: "600px",
-            }
+                position: "relative",
+                top: "8rem",
+                maxWidth: "600px",
+              }
             : { position: "fixed" }
         }
       >
@@ -37,22 +37,30 @@ function Search({ fixed }: SearchType) {
             />
           </label>
           <input
+            onEnded={() => {
+              navigate("/busan_item_map/search");
+            }}
             onKeyUp={(e) => {
-              console.log(e)
-              if (e.code === "Enter" ||e.keyCode===13) {
-                // sendURL(e.currentTarget.value);
+              console.log(e);
+              if (e.code === "Enter" || e.keyCode === 13) {
                 if (e.currentTarget.value !== "")
                   dispatch(asyncGetSearchData(e.currentTarget.value));
                 e.currentTarget.value = "";
                 return navigate("/busan_item_map/search");
               }
             }}
-    
             placeholder="음식명을 입력 후 [Enter] 를 눌러주세요!!"
             type="text"
             id="search"
             className={styles.search_input}
-            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow: 'inset 2px 3px 3px 3px rgba(55,55,55,0.7)' } : {}}
+            style={
+              fixed
+                ? {
+                    border: "1px solid rgba(28, 99, 231,0.1)",
+                    boxShadow: "inset 2px 3px 3px 3px rgba(55,55,55,0.7)",
+                  }
+                : {}
+            }
           />
         </div>
       </article>

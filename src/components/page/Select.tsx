@@ -34,7 +34,7 @@ function Select() {
       <section className={styles.content_container}>
         {/* {test[0]} */}
         {Array.isArray(test) ? (
-          test.map((item: any, i) => {
+          test.map((item: any) => {
             console.log(item);
             return (
               <ul className={styles.search_items} key={item.DESC_KOR+item.BGN_YEAR}>
