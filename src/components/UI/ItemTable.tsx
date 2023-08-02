@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ReactSpinner from "./loading/ReactSpinner";
 import KaMap from "./KaMap";
 import Header from "./Header";
+import Movement from "./movement/Movement";
 
 import { useState, useEffect, useCallback } from "react";
 
@@ -112,6 +113,7 @@ function ItemTable() {
         isDisplay={isDisplay}
         setIsDisplay={setIsDisplay}
       ></KaMap>
+      <Movement></Movement>
     </>
   );
 }

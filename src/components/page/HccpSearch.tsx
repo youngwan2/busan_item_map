@@ -3,6 +3,8 @@ import styles from "./HccpSearch.module.css";
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Modal from "../UI/HccpModal/modal";
+import ReactSpinner from "../UI/loading/ReactSpinner";
+import Movement from "../UI/movement/Movement";
 
 export type ItemsType = {
   item: {
@@ -20,20 +22,24 @@ export type ItemsType = {
 
 function HccpSearch() {
   const [productName, setProductName] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<ItemsType[]>([]);
   const [filterItems, setFilterItems] = useState<ItemsType[]>([]);
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
 
   const getAxios = async (productName: string) => {
-    setLoading(true)
-    const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${process.env.REACT_APP_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=30`;
-    const response = await axios.get(url);
-    const data = response.data;
-    const items = data.body.items;
-    setItems(items);
-    setLoading(false)
+    try {
+      setLoading(true)
+      const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${process.env.REACT_APP_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=30`;
+      const response = await axios.get(url);
+      const data = response.data;
+      const items = data.body.items;
+      setItems(items);
+      setLoading(false)
+    } catch (err) {
+      console.log("아이템 로드 중 에러:", err)
+    }
   };
 
   // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
@@ -64,7 +70,10 @@ function HccpSearch() {
           placeholder="상품명을 입력해주세요!"
           onKeyUp={(e) => {
             setProductName(e.currentTarget.value);
-            if (e.code === "Enter") getAxios(e.currentTarget.value);
+            if (e.code === "Enter") { 
+              getAxios(e.currentTarget.value)
+              e.currentTarget.value=''
+            };
           }}
         />
         <button
@@ -75,7 +84,8 @@ function HccpSearch() {
         >
           조회
         </button>
-        <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>{"로딩중입니다..."}</div>
+        <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>  <ReactSpinner /></div>
+
       </div>
       <section className={styles.content_container}>
 
@@ -104,6 +114,7 @@ function HccpSearch() {
         setModal={setModal}
         modal={modal}
       ></Modal>
+      <Movement/>
     </div>
   );
 }

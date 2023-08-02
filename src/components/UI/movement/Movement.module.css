@@ -1,0 +1,30 @@
+
+.movement{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.movement button{
+    border-radius: 20px;
+    background-color: white;
+}
+
+.movement button:hover{
+    background-color: rgb(192, 192, 251);
+}
+
+
+@media screen and (min-width: 768px) {
+    
+.movement{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+    
+}

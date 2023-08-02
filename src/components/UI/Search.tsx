@@ -52,7 +52,7 @@ function Search({ fixed }: SearchType) {
             type="text"
             id="search"
             className={styles.search_input}
-            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow: 'inset 0 0 5px 2px rgba(55,55,55,0.5)' } : {}}
+            style={fixed ? { border: '1px solid rgba(28, 99, 231,0.1)', boxShadow: 'inset 2px 3px 3px 3px rgba(55,55,55,0.7)' } : {}}
           />
         </div>
       </article>
