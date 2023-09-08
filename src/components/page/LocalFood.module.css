@@ -23,7 +23,8 @@
 /* 지역/음식 이미지 */
 .contents img {
     margin: 2rem 10px 10px 10px;
-    filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.533));
+    border-radius: 10px;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.325));
 }
 
 .contents .sub_title {
@@ -95,10 +96,23 @@
 
 /** 좌측 카테고리 */
 
+
+.category_con {
+  z-index: 100000;
+}
 .category_con .category li {
     cursor: pointer;
     list-style: decimal;
     
+  }
+
+  .category_con .category_search_input {
+  position: absolute;
+  top: 10px;
+  border: none;
+  border-bottom: 2px solid black;
+  left: 70px;
+  z-index: 10000000;
   }
   
   .category_con .category li:hover {
@@ -133,9 +147,10 @@
 /** 카테고리 온/오프 버튼 */
 .slide_btn_inner {
   position: fixed;
-  left: 3px;
+  left: 18rem;
+  border-radius: 5px;
   writing-mode: vertical-lr;
-  top: 5px;
+  top: 10px;
   background-color: rgba(87, 98, 251, 0.819);
   box-shadow: inset 5px 4px 1px rgb(154, 164, 216),
     inset -4px -3px 3px rgb(40, 45, 75);
@@ -146,20 +161,21 @@
 
 .slide_btn_outer {
   border: none;
-  box-shadow: inset 5px 4px 1px rgb(154, 164, 216),
-    inset -4px -3px 3px rgb(40, 45, 75);
+  z-index: 100000;
+  box-shadow: inset 2px 2px 1px rgb(154, 164, 216),
+    inset -2px -2px 2px rgb(40, 45, 75);
   position: fixed;
   border-radius: 20px;
-  width: 50px;
-  left: 3px;
-  background-color: rgba(87, 98, 251, 0.819);
-  top: 50%;
+  width: 70px;
+  padding: 5px 0;
+  color:white;
+  left: 5px;
+  background-color: rgb(42, 84, 238);
+  top: 5rem;
   writing-mode: vertical-lr;
-  transform: translate(0, -50%);
-  height: 40vh;
 }
 
 :is(.slide_btn_outer, .slide_btn_inner):hover {
-  background-color: rgb(130, 130, 222);
+  background-color: rgb(141, 141, 245);
 }
 
