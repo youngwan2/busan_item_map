@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
+
+.LocalFood {
+  margin: 5rem auto 0 auto;
+  display: flex;
+  max-width: 1800px;
+  padding: 0 20px;
+  font-family: "Orbit", sans-serif;
+}
+
+.LocalFood_title {
+  text-align: center;
+}
+
+
+/** 콘텐츠(조회된 데이터 보이는 영역) */
+.contents {
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.contents img {
+    margin: 10px;
+    filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.533));
+}
+
+.contents .foods_sumry {
+    margin: 1.8rem auto 0 auto;
+
+    max-width: 1000px;
+}
+
+.foods_flex_con {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .foods {
+      padding: 10px;
+      border-radius: 10px;
+      margin: 5px;
+      transition: 0.5s;
+      max-width: 420px;
+      text-align: justify;
+      border: 1px solid rgba(0, 0, 0, 0.598);
+      border-bottom: 2px solid black;
+  }
+  
+  
+  .foods p{
+      margin: 5px 0;
+      font-family: "Orbit", sans-serif;
+  }
+  .foods p span{
+      color:rgb(255, 255, 255);
+      display: inline-block;
+      background-color: rgb(98, 98, 227);
+      border-radius: 10px;
+      padding: 5px;
+      margin: 5px;
+      text-align: center;
+      min-width: 95px;
+  }
+
+
+/** 좌측 카테고리 */
+
+.category_con .category li {
+    cursor: pointer;
+    list-style: decimal;
+    
+  }
+  
+  .category_con .category li:hover {
+    color: rgb(63, 63, 248);
+    border: 1px dashed rgb(179, 179, 224);
+    font-weight: 600;
+  }
+  
+  .category_con .category {
+    background-color: rgb(255, 255, 255);
+    max-width: 350px;
+    overflow-y: scroll;
+    width: 100%;
+    font-size: 15px;
+    top: 0;
+    z-index: 100000;
+    position: fixed;
+    padding: 3rem 50px 0 50px;
+    max-height: 100vh;
+  }
+  
+  .category_con .category::-webkit-scrollbar {
+    background-color: rgb(179, 179, 224);
+    width: 10px;
+  }
+  
+  .category_con .category::-webkit-scrollbar-thumb {
+    background-color: rgb(75, 91, 236);
+    border-radius: 10px;
+  }
+  
+/** 카테고리 온/오프 버튼 */
+.slide_btn_inner {
+  position: fixed;
+  left: 3px;
+  writing-mode: vertical-lr;
+  top: 5px;
+  background-color: rgba(87, 98, 251, 0.819);
+  box-shadow: inset 5px 4px 1px rgb(154, 164, 216),
+    inset -4px -3px 3px rgb(40, 45, 75);
+  border: none;
+  color: white;
+  padding: 5px 8px;
+}
+
+.slide_btn_outer {
+  border: none;
+  box-shadow: inset 5px 4px 1px rgb(154, 164, 216),
+    inset -4px -3px 3px rgb(40, 45, 75);
+  position: fixed;
+  border-radius: 20px;
+  width: 50px;
+  left: 3px;
+  background-color: rgba(87, 98, 251, 0.819);
+  top: 50%;
+  writing-mode: vertical-lr;
+  transform: translate(0, -50%);
+  height: 40vh;
+}
+
+:is(.slide_btn_outer, .slide_btn_inner):hover {
+  background-color: rgb(130, 130, 222);
+}
+

@@ -1,20 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-type initialStateType = {
-  value: string[];
-};
+type InitialStateType = string[]
 
-const initialState = [""];
+const initialState: InitialStateType = [""];
 
+/* HACCP 인증을 받은 음식 데이터를 검색하여 들고 온다. */
 export const haccpSearchSlice = createSlice({
   name: "haccp",
   initialState,
   reducers: {
     haccpDataTemp(state, action: PayloadAction<string[]>) {
       state = action.payload;
-
-      console.log(state)
     },
   },
 });

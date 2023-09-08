@@ -57,6 +57,9 @@ function Header({ isStyle }: HeaderType) {
             </button>
             <ul>
               <li>
+                <Link to={"/busan_item_map/localfood"}>향토음식조회</Link>
+              </li>
+              <li>
                 <Link to={"/busan_item_map/search"}>식품영양정보조회</Link>
               </li>
               <li>
