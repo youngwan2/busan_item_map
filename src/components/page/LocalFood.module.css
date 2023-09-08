@@ -18,18 +18,31 @@
   padding: 10px;
   text-align: center;
   width: 100%;
-  border: 1px solid black;
 }
 
+/* 지역/음식 이미지 */
 .contents img {
-    margin: 10px;
+    margin: 2rem 10px 10px 10px;
     filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.533));
 }
 
-.contents .foods_sumry {
-    margin: 1.8rem auto 0 auto;
+.contents .sub_title {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
 
+.contents .foods_sumry {
+    margin: 2rem auto 3rem auto;
     max-width: 1000px;
+}
+
+.contents .foods_detail_url {
+  background-color: rgb(99, 99, 232);
+  border-radius: 20px;
+  color:white;
+  margin: 0 auto;
+  padding: 5px;
+  max-width: 900px;
 }
 
 .foods_flex_con {
@@ -38,17 +51,26 @@
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    transform: perspective(600px);
   }
   
   .foods {
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 1px;
       margin: 5px;
       transition: 0.5s;
       max-width: 420px;
       text-align: justify;
       border: 1px solid rgba(0, 0, 0, 0.598);
-      border-bottom: 2px solid black;
+      border-top: 5px solid rgb(136, 150, 251) ;
+      border-left: 5px solid rgb(78, 89, 201) ;
+      border-right: 5px solid rgb(78, 89, 201) ;
+      border-bottom: 5px solid rgb(68, 78, 186) ;
+  }
+
+  .foods:hover {
+    background-color: rgb(239, 239, 239);
+    transform: translate(0,-5px);
   }
   
   
@@ -66,6 +88,9 @@
       text-align: center;
       min-width: 95px;
   }
+
+
+
 
 
 /** 좌측 카테고리 */

@@ -57,7 +57,7 @@ function Search({ fixed}: SearchType) {
               fixed
                 ? {
                     border: "1px solid rgba(28, 99, 231,0.1)",
-                    boxShadow: "inset 2px 3px 3px 3px rgba(55,55,55,0.7)",
+                    boxShadow: "2px 3px 3px 3px rgba(55,55,55,0.5)",
                   }
                 : {}
             }
