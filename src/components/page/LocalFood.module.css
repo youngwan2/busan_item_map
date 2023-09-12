@@ -96,9 +96,26 @@
 
 /** 좌측 카테고리 */
 
+.category_con .category_shift_btn_con {
+  position: fixed;
+  z-index: 10000000000000;
+  top: 50%;
+  transform: translate(0,-50%);
+  left: 17rem;
+}
+
+.category_con .category_shift_btn_con li{
+  font-size: 1.6rem;
+}
+
+.category_con .category_shift_btn_con li:hover {
+  color:rgb(59, 59, 227);
+  cursor: pointer;
+}
 
 .category_con {
   z-index: 100000;
+  
 }
 .category_con .category li {
     cursor: pointer;

@@ -1,7 +1,7 @@
 import styles from './LocalFood.module.css'
 import { localFoods } from './localfood(202212)'
 import Header from '../UI/Header'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { MouseEvent } from 'react'
 
 
@@ -25,6 +25,10 @@ type localFoodType = {
 }
 
 const LocalFood = () => {
+
+    const categoryRef = useRef<HTMLOListElement>(null)
+    const topBtn = useRef<HTMLLIElement>(null)
+    const bottomBtn = useRef<HTMLLIElement>(null)
     const [title, setTitle] = useState<string[]>()
     const [searchResult, setSearchResult] = useState<localFoodType[]>()
     const [display, setDisplay] = useState(false)
@@ -57,6 +61,20 @@ const LocalFood = () => {
         setSearchResult(choiceFood)
     }
 
+    // 카테고리 상단 이동
+    const categoryTopShifter = () => {
+        topBtn.current?.addEventListener('click', () => {
+            categoryRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+        })
+    }
+
+    // 카테고리 하단 이동
+    const catgoryBottomShiter = () => {
+        bottomBtn.current?.addEventListener('click', () => {
+            categoryRef.current?.scrollTo({ top: 100000, behavior: 'smooth' })
+        })
+    }
+
     useEffect(() => {
         categoryFilter()
     }, [])
@@ -65,9 +83,11 @@ const LocalFood = () => {
         <>
             <Header isStyle={true} />
 
-            <article className={styles.category_con} style={display ? { display: 'block' } : { display: 'none' }}>
-                <input className={styles.category_search_input} type="text" placeholder='fsdfds'/>
-                <ol className={styles.category} >
+
+            {/* 주제별 카테고리 */}
+            <article className={styles.category_con} style={display ? { display: 'block' } : { display: 'none' }} >
+                <input className={styles.category_search_input} type="text" placeholder='fsdfds' />
+                <ol className={styles.category} ref={categoryRef} >
                     <button
                         onClick={() => {
                             setDisplay(false)
@@ -79,6 +99,11 @@ const LocalFood = () => {
                         )
                     })}
                 </ol>
+                <ul className={styles.category_shift_btn_con}>
+                    <li onClick={categoryTopShifter} ref={topBtn}>▲</li>
+                    <li>■</li>
+                    <li onClick={catgoryBottomShiter} ref={bottomBtn}>▼</li>
+                </ul>
             </article>
             <section className={styles.LocalFood}>
                 <button
@@ -87,12 +112,13 @@ const LocalFood = () => {
                     }}
                     className={styles.slide_btn_outer} style={!display ? { display: 'block' } : { display: 'none' }}>카테고리</button>
 
+                {/* 주제별 세부 내용 */}
                 <section className={styles.contents}>
                     <h3>향토음식조회</h3>
                     <p>※ 현재 기능은 검색 기능없이 카테고리 내 주제별 선택을 통해 검색이 가능합니다.</p>
 
                     {/* 대표 이미지 */}
-                    <img width={380} height={380} src={searchResult !== undefined && searchResult[0].main_thumb_url !=='' ? `${searchResult[0].main_thumb_url}` : process.env.PUBLIC_URL + '/not-image.png'} alt='thumb'></img>
+                    <img width={380} height={380} src={searchResult !== undefined && searchResult[0].main_thumb_url !== '' ? `${searchResult[0].main_thumb_url}` : process.env.PUBLIC_URL + '/not-image.png'} alt='thumb'></img>
                     <h3 className={styles.sub_title}>{searchResult !== undefined ? searchResult[0].sbjt_nm : null}</h3>
                     <p className={styles.foods_sumry}> {searchResult !== undefined ? searchResult[0].sumry_cn.replace(/&nbsp;/gi, ' ') : null}</p>
                     <p className={styles.foods_detail_url}>{searchResult !== undefined ? searchResult[0].cntnts_url : null}</p>

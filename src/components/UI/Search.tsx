@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { asyncGetSearchData } from "../../app/slice/searchSlice";
-import Header from "./Header";
+
 
 interface SearchType {
   fixed: boolean;
@@ -15,8 +15,6 @@ function Search({ fixed}: SearchType) {
   const dispatch = useAppDispatch();
 
   return (
-    <>
-      <Header isStyle={true}></Header>
       <article
         className={styles.search}
         style={
@@ -64,7 +62,6 @@ function Search({ fixed}: SearchType) {
           />
         </div>
       </article>
-    </>
   );
 }
 

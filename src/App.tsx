@@ -1,11 +1,13 @@
 import "./App.css";
 import Search from "./components/UI/Search";
+import Header from "./components/UI/Header";
 
 
 
 function App() {
   return (
     <div className="App">
+      <Header isStyle={true}></Header>
 
       <article className="video_con">
         <video
