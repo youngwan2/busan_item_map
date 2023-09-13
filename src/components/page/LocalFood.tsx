@@ -1,7 +1,7 @@
 import styles from './LocalFood.module.css'
 import { localFoods } from './localfood(202212)'
 import Header from '../UI/Header'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, ChangeEvent } from 'react'
 import { MouseEvent } from 'react'
 
 
@@ -25,7 +25,6 @@ type localFoodType = {
 }
 
 const LocalFood = () => {
-
     const categoryRef = useRef<HTMLOListElement>(null)
     const topBtn = useRef<HTMLLIElement>(null)
     const bottomBtn = useRef<HTMLLIElement>(null)
@@ -35,13 +34,11 @@ const LocalFood = () => {
 
     // 전체 목록에서 중복을 제외한 카테고리 목록을 필터링하는 함수
     const categoryFilter = () => {
-
         const filterList: any[] = []
         localFoods?.forEach((data) => {
             filterList.push(data.data_title_nm)
         })
         const filterTitle = [...new Set(filterList)]
-
         setTitle(filterTitle)
     }
 
@@ -75,6 +72,13 @@ const LocalFood = () => {
         })
     }
 
+
+    // 주제별 필터 검색 함수
+    const titleFilter=(e:ChangeEvent<HTMLInputElement>)=>{
+        const value =e.target.value
+        console.log(value)
+    }
+
     useEffect(() => {
         categoryFilter()
     }, [])
@@ -82,11 +86,9 @@ const LocalFood = () => {
     return (
         <>
             <Header isStyle={true} />
-
-
             {/* 주제별 카테고리 */}
             <article className={styles.category_con} style={display ? { display: 'block' } : { display: 'none' }} >
-                <input className={styles.category_search_input} type="text" placeholder='fsdfds' />
+                <input onChange={titleFilter} className={styles.category_search_input} type="text" placeholder='키워드를 입력하세요!' />
                 <ol className={styles.category} ref={categoryRef} >
                     <button
                         onClick={() => {
@@ -101,10 +103,11 @@ const LocalFood = () => {
                 </ol>
                 <ul className={styles.category_shift_btn_con}>
                     <li onClick={categoryTopShifter} ref={topBtn}>▲</li>
-                    <li>■</li>
                     <li onClick={catgoryBottomShiter} ref={bottomBtn}>▼</li>
                 </ul>
             </article>
+
+            {/* 디테일 내용 영역 */}
             <section className={styles.LocalFood}>
                 <button
                     onClick={() => {
