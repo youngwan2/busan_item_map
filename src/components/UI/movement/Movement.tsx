@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 const Movement = () => {
 
     const [scrollY, setScrollY] = useState(0)
-    console.log(scrollY)
-
     const scrollYHandler = () => {
         setScrollY(window.scrollY)
     }

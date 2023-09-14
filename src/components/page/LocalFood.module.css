@@ -90,6 +90,7 @@
 }
 
 /** 좌측 카테고리 */
+
 .category_con .category_shift_btn_con {
   position: fixed;
   z-index: 10000000000000;
@@ -117,19 +118,20 @@
 
 /* 카테고리 내 필터링 검색창*/
 .category_con .category_search_input {
-  position: absolute;
-  top: 10px;
+  position: fixed;
+  top: 18px;
+  box-shadow: inset 2px 2px 3px rgb(160, 162, 164),inset -2px -2px 3px rgb(116, 118, 132);
   border: none;
-  left: 70px;
+  left: 20px;
   z-index: 10000000;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   color: white;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 10px 15px;
 }
 
 .category_con .category_search_input::placeholder {
-  color: rgb(186, 181, 181);
+  color: rgba(185, 184, 173, 0.905);
 }
 
 .category_con .category_search_input:focus {
@@ -142,16 +144,18 @@
   font-weight: 600;
 }
 
+/* 카테고리 목록 전체 컨테이너 */
 .category_con .category {
   background-color: rgb(255, 255, 255);
   max-width: 350px;
   overflow-y: scroll;
   width: 100%;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.394);
   font-size: 15px;
   top: 0;
   z-index: 100000;
   position: fixed;
-  padding: 5rem 50px 0 50px;
+  padding: 5rem 50px 5px 50px;
   max-height: 100vh;
 }
 
@@ -165,19 +169,70 @@
   border-radius: 10px;
 }
 
+
+/* 카테고리 내 검색 버튼*/
+.category_con .search_btn {
+  z-index: 10000000;
+  border-radius: 5px;
+  color:white;
+  border: none;
+  background-color:transparent;
+  position: fixed;
+  top: 1.38rem;
+  left: 14.5rem;
+}
+
+
 /** 카테고리 온/오프 버튼 */
 .slide_btn_inner {
   position: fixed;
   left: 17.6rem;
   border-radius: 5px;
-  writing-mode: vertical-lr;
-  top: 15px;
-  background-color: rgba(87, 98, 251, 0.819);
-  box-shadow: inset 5px 4px 1px rgb(154, 164, 216),
-    inset -4px -3px 3px rgb(40, 45, 75);
+  top: 20px;
   border: none;
   color: white;
+  transition: 0.5s;
+
   padding: 5px 8px;
+}
+.slide_btn_inner::before {
+  content:'카테고리 닫기 버튼입니다.';
+  box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.37);
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  transition: 0.5s;
+  transform-origin: left center;
+  width: 300px;
+  scale: 0.1;
+  border-bottom-left-radius: 40%;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  left: 3rem;
+  top: -1rem;
+  padding: 10px;
+  background-color: rgb(68, 112, 215);
+  color:white;
+}
+.slide_btn_inner:hover::before {
+  content:'카테고리 닫기 버튼입니다.';
+  scale: 1;
+  box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.37);
+  position: absolute;
+  display: inline-block;
+  opacity: 1;
+  width: 300px;
+  border-bottom-left-radius: 40%;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  left: 3rem;
+  top: -1rem;
+  padding: 10px;
+  background-color: rgb(68, 112, 215);
+  color:white;
+
 }
 
 .slide_btn_outer {
@@ -196,6 +251,3 @@
   writing-mode: vertical-lr;
 }
 
-:is(.slide_btn_outer, .slide_btn_inner):hover {
-  background-color: rgb(141, 141, 245);
-}

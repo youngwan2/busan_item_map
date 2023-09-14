@@ -1,7 +1,7 @@
 import styles from './LocalFood.module.css'
 import { localFoods } from './localfood(202212)'
 import Header from '../UI/Header'
-import { useEffect, useState, useRef, ChangeEvent } from 'react'
+import { useEffect, useState, useRef, KeyboardEvent } from 'react'
 import { MouseEvent } from 'react'
 
 
@@ -29,6 +29,7 @@ const LocalFood = () => {
     const topBtn = useRef<HTMLLIElement>(null)
     const bottomBtn = useRef<HTMLLIElement>(null)
     const [title, setTitle] = useState<string[]>()
+    const [searchTargetTitle, setSearchTargetTitle] = useState('')
     const [searchResult, setSearchResult] = useState<localFoodType[]>()
     const [display, setDisplay] = useState(false)
 
@@ -72,13 +73,33 @@ const LocalFood = () => {
         })
     }
 
-
     // 주제별 필터 검색 함수
-    const titleFilter=(e:ChangeEvent<HTMLInputElement>)=>{
-        const value =e.target.value
-        console.log(value)
+    const titleFilter = (e: KeyboardEvent<HTMLInputElement>) => {
+        const value = e.currentTarget.value
+        setSearchTargetTitle(value) // 검색 버튼 클릭 시 조회에 활용 예정
+
+        if (e.key === 'Enter') {
+            setTitle(categorySearchFilter(value))
+        }
+        if (value.length < 1) {
+            categoryFilter()
+        }
     }
 
+    // 카테고리 검색 함수
+    const categorySearch = (e: MouseEvent<HTMLButtonElement>) => {
+      const searchList =  categorySearchFilter(searchTargetTitle)
+        setTitle(searchList)
+    }
+
+    // 카테고리 검색어와 일치하는 문자열 배열만 반환하는 함수(필터링함수)
+    function categorySearchFilter(value: string) {
+        const filterTitle = title?.filter((title) => {
+            return title.includes(value)
+        })
+
+        return filterTitle
+    }
     useEffect(() => {
         categoryFilter()
     }, [])
@@ -88,13 +109,14 @@ const LocalFood = () => {
             <Header isStyle={true} />
             {/* 주제별 카테고리 */}
             <article className={styles.category_con} style={display ? { display: 'block' } : { display: 'none' }} >
-                <input onChange={titleFilter} className={styles.category_search_input} type="text" placeholder='키워드를 입력하세요!' />
+                <input onKeyUp={titleFilter} className={styles.category_search_input} type="text" placeholder='키워드를 입력하세요!' />
+                <button className={styles.search_btn} onClick={categorySearch}> <img src={process.env.PUBLIC_URL + `/icon/search.svg`} alt="searchIcon" width={30} height={35}/> </button>
                 <ol className={styles.category} ref={categoryRef} >
                     <button
                         onClick={() => {
                             setDisplay(false)
                         }}
-                        className={styles.slide_btn_inner}>닫기</button>
+                        className={styles.slide_btn_inner}> <img src={process.env.PUBLIC_URL +'/icon/close.svg'} width={30} height={30} alt="" /></button>
                     {title?.map((title) => {
                         return (
                             <li onClick={searchFilter}>{title}</li>

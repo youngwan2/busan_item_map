@@ -73,7 +73,7 @@ nav ul li a {
 /* 미디어 쿼리 설정 */
 /* 634px */
 
-@media screen and (max-width: 634px) {
+@media screen and (max-width: 1061px) {
   nav.offMenu {
     display: none;
   }

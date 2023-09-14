@@ -67,3 +67,14 @@ tr:hover{
     color:white;
     padding: 5px;
 } */
+
+
+@media screen and (max-width:750px) {
+    td {
+        font-size: 13px;
+    }
+    th {
+        font-size: 14px;
+    }
+    
+}
