@@ -60,7 +60,7 @@ function Header({ isStyle }: HeaderType) {
                 <Link to={"/busan_item_map/localfood"}>향토음식조회</Link>
               </li>
               <li>
-                <Link to={"/busan_item_map/search"}>식품영양정보조회</Link>
+                <Link to={"/busan_item_map/nutrition"}>식품영양정보조회</Link>
               </li>
               <li>
                 <Link to={"/busan_item_map/item"}>부산생필품정보</Link>

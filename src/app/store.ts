@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchSlice from "./slice/searchSlice";
 import { haccpSearchSlice } from "./slice/haccpSearch";
 
 /* 스토어 생성 */
 const store = configureStore({
   reducer: {
-    search: searchSlice.reducer,
     haccp: haccpSearchSlice.reducer,
   },
 });

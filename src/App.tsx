@@ -1,5 +1,4 @@
 import "./App.css";
-import Search from "./components/UI/Search";
 import Header from "./components/UI/Header";
 
 
@@ -17,8 +16,6 @@ function App() {
           loop
         ></video>
       </article>
-      <Search fixed={false}></Search>
-      {/* <ItemTable></ItemTable> */}
     </div>
   );
 }
