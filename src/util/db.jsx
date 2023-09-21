@@ -87,7 +87,7 @@ const Database = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("/Nutrition.json").then((response) => {
+    axios.get(`/busan_item_map/Nutrition.json`).then((response) => {
       const data = response.data;
       createDB(data, itemName);
     });
