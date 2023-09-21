@@ -61,6 +61,7 @@ function ItemTable() {
   return (
     <>
       <Header isStyle={true}></Header>
+      <h2 style={{textAlign:'center', margin:"6rem 0"}}>부산생필품 정보조회</h2>
       <table className={styles.item_table}>
         <thead>
           <tr>

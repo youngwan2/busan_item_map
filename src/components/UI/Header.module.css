@@ -7,7 +7,7 @@ header {
   height: 57px;
   padding: 0 0 8px 0;
   font-family: 'Orbit', sans-serif;
-  z-index: 1000;
+  z-index: 1000000000;
   box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.286);
 }
 
@@ -33,10 +33,10 @@ header h1 span {
 }
 
 /* 메뉴 */
-nav ul {
+header nav ul {
   display: flex;
 }
-nav ul li {
+header nav ul li {
   font-size: 15px;
   padding: 18px 10px 16px 10px;
   width: 150px;
@@ -45,12 +45,12 @@ nav ul li {
   font-weight: 500;
 }
 
-nav ul li:hover {
+header nav ul li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.398);
 }
 
-nav ul li a {
+header nav ul li a {
   color: white;
   text-decoration: none;
 }
@@ -74,27 +74,32 @@ nav ul li a {
 /* 634px */
 
 @media screen and (max-width: 1061px) {
-  nav.offMenu {
+  header nav.offMenu {
     display: none;
   }
 
-  nav {
+  header nav {
     position: fixed;
     width: 300px;
-    min-height: 102vh;
+    top: 0;
+    min-height: 120vh;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.238);
+    background-color: rgba(0, 0, 0, 0.631);
   }
 
-  nav ul {
+  header nav ul {
     display: flex;
     flex-direction: column;
     margin:5rem 0 0 0;
     padding: 0;
   }
 
-  nav ul li {
+  header nav ul li {
     width: 100%;
+  }
+
+  header nav ul li:hover {
+
   }
 
   .menu_icon {
@@ -104,7 +109,13 @@ nav ul li a {
   .closeBtn {
     visibility: visible;
     border: none;
-    background-color: black;
+    right:  10px;
+    top: 10px;
+    border-radius: 10px;
+    min-width: 40px;
+    min-height: 30px;
+    position: absolute;
+    background-color: rgba(101, 105, 220, 0.921);
     color: white;
     padding: 10px;
   }

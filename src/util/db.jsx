@@ -2,14 +2,16 @@ import axios from "axios";
 import styles from "./db.module.css";
 import { useEffect, useCallback, useState, useRef } from "react";
 import DbSideMenu from "./dbSideMenu";
+import ReactSpinner from "../components/UI/loading/ReactSpinner";
 
 const Database = () => {
   const [getNutritions, setNutritions] = useState([]);
   const [itemKey, setItemKey] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [itemName, setItemName] = useState("");
 
   const itemRef = useRef(null);
-
+  const inputRef = useRef(null);
   // 데이터베이스를 연결하고 초기 데이터를 셋팅
   const createDB = useCallback((data, itemName) => {
     const dbName = "nutritionDB";
@@ -57,14 +59,13 @@ const Database = () => {
 
       // 인덱스 기반 조회
       const index = nutritionStore.index("식품명");
-      console.log("조회신청식품명:", itemName);
-
       const itemsList = [];
       const itemsK = [];
 
       index.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (itemName.length < 2) return;
+        setIsLoading(true);
         if (cursor) {
           if (cursor.key.includes(itemName)) {
             const results = cursor.value;
@@ -79,6 +80,7 @@ const Database = () => {
         } else {
           setNutritions(itemsList);
           setItemKey(itemsK);
+          setIsLoading(false);
         }
       };
     };
@@ -95,14 +97,17 @@ const Database = () => {
     if (itemRef.current) {
       console.log(itemRef.current);
     }
+
+    inputRef.current.focus();
   });
 
   return (
     <section className={styles.container}>
       <DbSideMenu itemsKey={itemKey} />
-
       {/* 아이템 검색창  */}
       <input
+        style={{ padding: " 1px 9px", margin: "10px 0" }}
+        ref={inputRef}
         type="text"
         placeholder="음식명을 입력해주세요!"
         onKeyUp={(e) => {
@@ -114,17 +119,27 @@ const Database = () => {
           }
         }}
       />
-      <button type="button">검색</button>
-      <h4 style={{ textAlign: "center", margin: "20px" }}>
-        {itemName || "입력내용이 나오는 영역입니다."}
-      </h4>
+      <button
+        type="button"
+        onClick={() => {
+          setItemName(inputRef.current.value);
+          setTimeout(() => {
+            inputRef.current.value = "";
+          }, 100);
+        }}
+      >
+        검색
+      </button>
+      <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span style={{ margin: "0.5rem 0", display: "inline-block" }}>
         총 검색 결과는 {getNutritions.length}개 입니다.
-      </span>
-
+      </span>{" "}
+      <br />
+      {isLoading ? <ReactSpinner /> : ""}
+      <br />
       {/* 아이템 검색 결과가 나오는 섹션 */}
       <section className={styles.item_section}>
-        {Array.isArray(getNutritions) ? (
+        {Array.isArray(getNutritions) && getNutritions[0] !== undefined ? (
           getNutritions.map((item) => {
             return (
               <article key={item.id} className={styles.item_box} ref={itemRef}>
@@ -269,7 +284,13 @@ const Database = () => {
             );
           })
         ) : (
-          <div>대신나옴</div>
+          <div className={styles.message}>
+            검색명이 포함된 모든 목록을 불러오므로 명확한 검색어를 입력
+            바랍니다. 참고로, 조회된 각 목록을 클릭하면, 주요 영양소의
+            일일권장섭취량을 시각적으로 확인할 수 있으니 이용 시 참고 바랍니다.
+            <br />
+            (알림- 데이터 시각화는 현재 준비중입니다.).
+          </div>
         )}
       </section>
     </section>

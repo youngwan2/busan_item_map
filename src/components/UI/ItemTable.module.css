@@ -13,7 +13,7 @@ table{
     max-width: 80%;
     width: 100%;
     left: 50%;
-    top: 5rem;
+    top: -3rem;
     transform: translate(-50%);
     border-radius: 10px;
     box-shadow: 2px 5px 5px 1px rgb(191, 188, 250);

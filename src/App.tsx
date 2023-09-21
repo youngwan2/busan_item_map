@@ -1,12 +1,12 @@
 import "./App.css";
 import Header from "./components/UI/Header";
-
-
+import Introduce from "./components/UI/Introduce";
 
 function App() {
   return (
     <div className="App">
       <Header isStyle={true}></Header>
+      <Introduce />
 
       <article className="video_con">
         <video

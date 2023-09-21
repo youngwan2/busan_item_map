@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
+
 .Nutrition_section {
-  margin: 7rem auto 0 auto;
+  margin: 6rem auto 0 auto;
   max-width: 1600px;
+  font-family: 'Orbit', sans-serif;
   text-align: center;
 }
 
 
 .nutrition_title {
-  margin: 2rem 0;
+  margin: 1rem 0;
 }

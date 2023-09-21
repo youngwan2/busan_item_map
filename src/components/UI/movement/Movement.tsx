@@ -27,7 +27,7 @@ const Movement = () => {
             <button
                 style={scrollY > document.body.offsetHeight - 1000 ? { visibility: 'hidden' } : { visibility: 'visible' }}
                 onClick={() => {
-                    window.scrollTo({ 'top': 10000, behavior: 'smooth' })
+                    window.scrollTo({ 'top': 10000000000, behavior: 'smooth' })
                 }}><FontAwesomeIcon icon={faChevronDown} /></button>
         </article>
 

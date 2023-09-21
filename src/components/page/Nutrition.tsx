@@ -7,7 +7,7 @@ const Nutrition = () => {
     <>
       <Header isStyle={true} />
       <section className={styles.Nutrition_section}>
-        <h1 className={styles.nutrition_title}>식품영양정보조회</h1>
+        <h2 className={styles.nutrition_title}>식품영양정보조회</h2>
         <Database />
       </section>
     </>

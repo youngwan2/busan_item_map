@@ -1,0 +1,80 @@
+
+.Introduce {
+    width: 100%;
+    min-height: 100vh;
+    z-index: 100;
+    margin-top: 1rem;
+    color:white;
+    position: absolute;
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 1200px;
+}
+
+.Introduce a {
+    text-decoration: none;
+    color:white;
+    font-size: 1.25em;
+}
+
+/* 인트로 헤더 */
+.intro_header {
+    text-align: center;
+    min-height: 20vh;
+    padding: 10px;
+    margin-top: 5rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.249);
+    
+}
+
+.intro_title {
+    font-size: 2.5rem;
+    margin: 20px;
+}
+
+/* 주요 콘텐츠 */
+.intro_main {
+    text-align: center;
+    min-height: 20vh;
+    padding: 10px;
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.249);
+}
+
+.intro_main_menu {
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.intro_main_menu strong {
+    margin: 5px 0 10px 0;
+    display: inline-block;
+}
+.intro_main_menu li {
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: inset -3px -5px 5px rgb(5, 27, 75);
+    background-color: rgba(56, 81, 246, 0.671);
+    max-width: 370px;
+    margin: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.intro_main_menu li:hover {
+    background-color: rgb(21, 92, 234);
+}
+
+/* 인트로 풋터 */
+.intro_footer {
+    text-align: center;
+    min-height: 20vh;
+    padding: 10px;
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.249);
+}
