@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { haccpSearchSlice } from "./slice/haccpSearch";
+import nutritionSearch from "./slice/nutritionSearch";
 
 /* 스토어 생성 */
 const store = configureStore({
   reducer: {
     haccp: haccpSearchSlice.reducer,
+    nutrition: nutritionSearch
   },
 });
 

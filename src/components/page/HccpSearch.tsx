@@ -69,7 +69,7 @@ function HccpSearch() {
   return (
     <>
       <div className={styles.Haccp}>
-        <h2 style={{textAlign:"center", margin:"6rem 0"}}>HACCP제품 정보조회</h2>
+        <h2 style={{ textAlign: "center", margin: "6rem 0" }}>HACCP제품 정보조회</h2>
         {/* 검색창 */}
         <div className={styles.search_container}>
           <input
@@ -101,7 +101,7 @@ function HccpSearch() {
             <ReactSpinner />
           </div>
         </div>
-{/* 잠깐 알고가기 */}
+        {/* 잠깐 알고가기 */}
         <p className={styles.message}> <span>잠깐 알고가기</span> <br />해썹(HACCP) 제도는 식품, 축산물, 사료 등을 만드는 과정에서 생물학적, 화학적, 물리적 위해요인들이 발생할 수 있는 상황을 과학적으로 분석하고 사전에 위해요인의 발생여건들을 차단하여 소비자에게 안전하고 깨끗한 제품을 공급하기 위한 시스템적인 규정을 말합니다.</p> <br />
         {/* 검색 결과 보이는 곳 */}
         <section className={styles.content_container}>
@@ -132,7 +132,9 @@ function HccpSearch() {
         ></Modal>
         <Movement />
       </div>
-      <Header isStyle={true} /></>
+      <Header isStyle={true} />
+
+    </>
   );
 }
 

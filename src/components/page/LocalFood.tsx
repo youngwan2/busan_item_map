@@ -181,7 +181,7 @@ const LocalFood = () => {
             height={380}
             src={
               searchResult !== undefined &&
-              searchResult[0].main_thumb_url !== ""
+                searchResult[0].main_thumb_url !== ""
                 ? `${searchResult[0].main_thumb_url}`
                 : process.env.PUBLIC_URL + "/not-image.png"
             }
@@ -197,7 +197,7 @@ const LocalFood = () => {
               : null}
           </p>
           <p className={styles.foods_detail_url}>
-            <a target="__blank" style={{color:"white", textDecoration:'none'}} href={`${searchResult !== undefined ? searchResult[0].cntnts_url : 'https://encykorea.aks.ac.kr/Article/E0062997'}`}>{searchResult !== undefined ? '자세히 보기(링크)' : '"향토음식"이란 지방의 특산품이나 특유의 조리법 등을 이용하여 만든 그 지역의 전통 음식을 의미합니다(링크). '}</a>
+            <a target="__blank" style={{ color: "white", textDecoration: 'none' }} href={`${searchResult !== undefined ? searchResult[0].cntnts_url : 'https://encykorea.aks.ac.kr/Article/E0062997'}`}>{searchResult !== undefined ? '자세히 보기(링크)' : '"향토음식"이란 지방의 특산품이나 특유의 조리법 등을 이용하여 만든 그 지역의 전통 음식을 의미합니다(링크). '}</a>
           </p>
           <article className={styles.foods_flex_con}>
             {searchResult?.map((foods) => {
@@ -245,6 +245,7 @@ const LocalFood = () => {
           </article>
         </section>
       </section>
+
     </>
   );
 };

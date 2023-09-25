@@ -1,6 +1,9 @@
 import axios from "axios";
 import styles from "./db.module.css";
 import { useEffect, useCallback, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { getNutritionDataFromDB } from "../app/slice/nutritionSearch";
 import DbSideMenu from "./dbSideMenu";
 import ReactSpinner from "../components/UI/loading/ReactSpinner";
 
@@ -9,6 +12,10 @@ const Database = () => {
   const [itemKey, setItemKey] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [itemName, setItemName] = useState("");
+
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   const itemRef = useRef(null);
   const inputRef = useRef(null);
@@ -95,11 +102,10 @@ const Database = () => {
 
   useEffect(() => {
     if (itemRef.current) {
-      console.log(itemRef.current);
     }
 
     inputRef.current.focus();
-  });
+  }, []);
 
   return (
     <section className={styles.container}>
@@ -140,9 +146,17 @@ const Database = () => {
       {/* 아이템 검색 결과가 나오는 섹션 */}
       <section className={styles.item_section}>
         {Array.isArray(getNutritions) && getNutritions[0] !== undefined ? (
-          getNutritions.map((item) => {
+          getNutritions.map((item, i) => {
             return (
-              <article key={item.id} className={styles.item_box} ref={itemRef}>
+              <article
+                key={item.id}
+                className={styles.item_box}
+                ref={itemRef}
+                onClick={() => {
+                  navigate(`/busan_item_map/nutrition/${item.id}`);
+                  dispatch(getNutritionDataFromDB(getNutritions[i]));
+                }}
+              >
                 <section id={`${item.id}`}>
                   <h4 className={styles.item_name}>{item.식품명}</h4>
                   <strong className={styles.sub_title}>일반정보</strong>
@@ -177,9 +191,10 @@ const Database = () => {
                     </p>
                   </>
                 </section>
+
                 {/* 3대 영양소 */}
                 <section>
-                  <strong className={styles.sub_title}>3대 영양소</strong>
+                  <strong className={styles.sub_title}>3대 영양소 </strong>
                   <>
                     <p>
                       <span>탄수화물(g)</span>
@@ -222,6 +237,7 @@ const Database = () => {
                     </p>
                   </>
                 </section>
+
                 {/* 비타민 */}
                 <section>
                   <strong className={styles.sub_title}>비타민</strong>
@@ -246,6 +262,7 @@ const Database = () => {
                     </p>
                   </>
                 </section>
+
                 {/* 그 외 성분 */}
                 <section>
                   <strong className={styles.sub_title}>그 외 성분</strong>

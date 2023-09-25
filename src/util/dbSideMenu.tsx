@@ -1,5 +1,5 @@
 import styles from "./dbSideMenu.module.css";
-import {  useRef } from "react";
+import { useRef} from "react";
 import Movement from "../components/UI/movement/Movement";
 const DbSideMenu = ({ itemsKey }: any) => {
   const sidebarRef = useRef<HTMLAreaElement>(null);
@@ -63,9 +63,9 @@ const DbSideMenu = ({ itemsKey }: any) => {
           )}
         </ol>
       </article>
-      <Movement/>
+      <Movement />
     </>
   );
 };
 
-export default DbSideMenu;
+export default DbSideMenu
