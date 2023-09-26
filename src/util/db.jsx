@@ -157,7 +157,7 @@ const Database = () => {
                   dispatch(getNutritionDataFromDB(getNutritions[i]));
                 }}
               >
-                <section id={`${item.id}`}>
+                <section>
                   <h4 className={styles.item_name}>{item.식품명}</h4>
                   <strong className={styles.sub_title}>일반정보</strong>
                   <>

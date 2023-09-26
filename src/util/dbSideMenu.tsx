@@ -51,7 +51,7 @@ const DbSideMenu = ({ itemsKey }: any) => {
           {Array.isArray(itemsKey) ? (
             itemsKey.map((tit) => {
               return (
-                <li>
+                <li key={tit.id}>
                   <a href={`#${tit.id}`}>
                     {tit.title}({tit.title2})
                   </a>
