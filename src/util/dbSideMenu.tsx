@@ -1,5 +1,5 @@
 import styles from "./dbSideMenu.module.css";
-import {  useRef } from "react";
+import { useRef} from "react";
 import Movement from "../components/UI/movement/Movement";
 const DbSideMenu = ({ itemsKey }: any) => {
   const sidebarRef = useRef<HTMLAreaElement>(null);
@@ -51,7 +51,7 @@ const DbSideMenu = ({ itemsKey }: any) => {
           {Array.isArray(itemsKey) ? (
             itemsKey.map((tit) => {
               return (
-                <li>
+                <li key={tit.id}>
                   <a href={`#${tit.id}`}>
                     {tit.title}({tit.title2})
                   </a>
@@ -63,9 +63,9 @@ const DbSideMenu = ({ itemsKey }: any) => {
           )}
         </ol>
       </article>
-      <Movement/>
+      <Movement />
     </>
   );
 };
 
-export default DbSideMenu;
+export default DbSideMenu

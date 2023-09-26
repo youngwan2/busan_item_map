@@ -5,6 +5,7 @@ import ItemTable from "../components/UI/ItemTable";
 import HccpSearch from "../components/page/HccpSearch";
 import LocalFood from "../components/page/LocalFood";
 import Nutrition from "../components/page/Nutrition";
+import NutritionDetail from "../components/page/NutritionDetail";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/busan_item_map/haccp",
     element: <HccpSearch></HccpSearch>,
+  },
+  {
+    path: "/busan_item_map/nutrition/:id",
+    element: <NutritionDetail />
   },
   {
     path: "*",
