@@ -3,6 +3,7 @@ import styles from "./HccpSearch.module.css";
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
 import Modal from "../UI/HccpModal/modal";
+import HccpResult from "../module/HccpResult";
 import ReactSpinner from "../UI/loading/ReactSpinner";
 import Movement from "../UI/movement/Movement";
 
@@ -21,14 +22,14 @@ export type ItemsType = {
 };
 
 function HccpSearch() {
-  const [productName, setProductName] = useState("");
+  const [productName, setProductName] = useState(""); // 상품 이름
   const [loading, setLoading] = useState(false);
-  const [items, setItems] = useState<ItemsType[]>([]);
-  const [filterItems, setFilterItems] = useState<ItemsType[]>([]);
+  const [items, setItems] = useState<ItemsType[]>([]); // 상품목록
+  const [filterItems, setFilterItems] = useState<ItemsType[]>([]); // 사용자가 선택한 아이템
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
 
-  const input = useRef<any>("");
+  const input = useRef<any>(null);
 
   const getAxios = async (productName: string) => {
     try {
@@ -49,7 +50,7 @@ function HccpSearch() {
   // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
   const filter = useCallback(
     (productId: string) => {
-      const result = items.filter((item, i) => {
+      const result = items.filter((item) => {
         return item.item.prdlstReportNo === productId;
       });
 
@@ -85,6 +86,7 @@ function HccpSearch() {
               }
             }}
           />
+          {/* 조회 버튼 */}
           <button
             className={styles.search_btn}
             onClick={() => {
@@ -104,27 +106,7 @@ function HccpSearch() {
         {/* 잠깐 알고가기 */}
         <p className={styles.message}> <span>잠깐 알고가기</span> <br />해썹(HACCP) 제도는 식품, 축산물, 사료 등을 만드는 과정에서 생물학적, 화학적, 물리적 위해요인들이 발생할 수 있는 상황을 과학적으로 분석하고 사전에 위해요인의 발생여건들을 차단하여 소비자에게 안전하고 깨끗한 제품을 공급하기 위한 시스템적인 규정을 말합니다.</p> <br />
         {/* 검색 결과 보이는 곳 */}
-        <section className={styles.content_container}>
-          {Array.isArray(items) ? (
-            items.map((item) => {
-              return (
-                <figure key={item.item.prdlstReportNo}>
-                  <div
-                    onClick={() => {
-                      setModal(true);
-                      setProductId(item.item.prdlstReportNo);
-                    }}
-                  >
-                    <img src={`${item.item.imgurl1}`} alt="상품이미지"></img>
-                    <p>{item.item.prdlstNm}</p>
-                  </div>
-                </figure>
-              );
-            })
-          ) : (
-            <div></div>
-          )}
-        </section>
+        <HccpResult items={items} setModal={setModal} setProductId={setProductId} modal={modal}/>
         <Modal
           filterItems={filterItems}
           setModal={setModal}

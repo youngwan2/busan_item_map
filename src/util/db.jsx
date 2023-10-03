@@ -103,7 +103,6 @@ const Database = () => {
   useEffect(() => {
     if (itemRef.current) {
     }
-
     inputRef.current.focus();
   }, []);
 
@@ -306,7 +305,6 @@ const Database = () => {
             바랍니다. 참고로, 조회된 각 목록을 클릭하면, 주요 영양소의
             일일권장섭취량을 시각적으로 확인할 수 있으니 이용 시 참고 바랍니다.
             <br />
-            (알림- 데이터 시각화는 현재 준비중입니다.).
           </div>
         )}
       </section>

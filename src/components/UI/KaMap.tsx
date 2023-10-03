@@ -1,5 +1,5 @@
 /*global kakao*/
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./KaMap.module.css";
 
 interface KaMapType {
@@ -75,6 +75,7 @@ function KaMap({
       className={styles.Map}
       style={isDisplay ? { display: "none" } : { display: "block" }}
     >
+      {/* 지도 닫기 버튼 */}
       <span
         onClick={() => {
           setIsDisplay && setIsDisplay(!isDisplay);

@@ -37,7 +37,7 @@ const NutritionDetail = () => {
       <button
         style={{ margin: "10px" }}
         onClick={() => {
-          window.history.back();
+          window.history.back()
         }}
       >
         뒤로가기
