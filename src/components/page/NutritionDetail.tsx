@@ -97,7 +97,6 @@ const NutritionDetail = () => {
             </>
           </section>
           {/* 비타민 */}
-
           <section className={styles.vitamin}>
             <strong>비타민</strong>
             <>

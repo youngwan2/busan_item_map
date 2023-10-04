@@ -5,49 +5,59 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { getNutritionDataFromDB } from "../app/slice/nutritionSearch";
 import DbSideMenu from "./dbSideMenu";
+import SearchResult from "../components/module/SearchResult";
 import ReactSpinner from "../components/UI/loading/ReactSpinner";
 
 const Database = () => {
-  const [getNutritions, setNutritions] = useState([]);
-  const [itemKey, setItemKey] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [getNutritions, setNutritions] = useState([]); //조회된 영양 정보 저장
+  const [nextIndex, setNextIndex] = useState(0); //
+  const [itemKey, setItemKey] = useState([]); // 선택한 item의 키를 저장
+  const [isLoading, setIsLoading] = useState(false); // 영양정보 렌더링 로딩 상태
   const [itemName, setItemName] = useState("");
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
-  const itemRef = useRef(null);
+  const containerRef = useRef(null);
   const inputRef = useRef(null);
+  const addBtnRef = useRef(null);
+
   // 데이터베이스를 연결하고 초기 데이터를 셋팅
   const createDB = useCallback((data, itemName) => {
-    const dbName = "nutritionDB";
-    const request = indexedDB.open(dbName, 1);
+    const dbName = "nutritionDB"; // 데이터베이스 이름
+    const request = indexedDB.open(dbName, 1); // 데이터베이스를 1버전으로 오픈
 
+    // 데이터베이스 연결 요청 실패 시 에러를 띄운다.
     request.onerror = (error) => {
       console.error("데이터베이스 요청실패::", error);
     };
 
     // 데이터베이스 수정, 변경, 생성 등 요청 결과가 정상적으로 업데이트 되었다면 트리거
     request.onupgradeneeded = (e) => {
-      const db = e.target.result;
+      const db = e.target.result; // 데이버베이스를 참조하는 인스턴스가 담긴다.
+      // 관계형으로 따지면 테이블을 생성하는 부분
       const objectStore = db.createObjectStore("nutritions", {
-        keyPath: "id",
-        autoIncrement: true,
+        keyPath: "id", //-- 기본키를 id 로 지정
+        autoIncrement: true, // -- 데이터 추가시 기본키를 자동 증가 시킴
       });
 
-      // 인덱스 생성
+      // 인덱스 생성(식품명 입력하면 해당 식품명을 인덱스로 하여 빠르게 데이터를 조회)
       objectStore.createIndex("식품명", "식품명");
       // 데이터 추가 전 객체 저장소가 생성되었다면 oncomplete 이벤트가 트리거된다.
+      // 즉, 객체 저장소에 대한 트랜잭션(연산) 성공 시 실행된다.
       objectStore.transaction.oncomplete = (event) => {
+        // 해당 객체저장소에 대한 읽기 쓰기에 관한 트랜잭션을 허용
         const nutritionStore = db
           .transaction(["nutritions"], "readwrite")
           .objectStore("nutritions");
 
+        // 데이터를 객체 저장소에 추가한다.
         const addData = data.forEach((item) => {
           nutritionStore.add(item);
         });
 
+        // 데이터 추가 연산이 성공했다면 실행
         addData?.addEventListener("success", (e) => {
           console.log("성공하면 인덱스 가져온다:", e.target.result);
         });
@@ -71,6 +81,7 @@ const Database = () => {
 
       index.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
+        // 입력받은 아이템 이름의 길이가 2 보다 밑이라면 탈출
         if (itemName.length < 2) return;
         setIsLoading(true);
         if (cursor) {
@@ -93,16 +104,20 @@ const Database = () => {
     };
   }, []);
 
+  // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
     axios.get(`/busan_item_map/Nutrition.json`).then((response) => {
       const data = response.data;
       createDB(data, itemName);
+      setNextIndex(0);
+      if (addBtnRef.current) {
+        addBtnRef.current.style.visibility = "visible";
+      }
     });
   }, [createDB, itemName]);
 
+  // 컴포넌트가 마운트된 뒤에 input 에 포커스를 맞춘다.
   useEffect(() => {
-    if (itemRef.current) {
-    }
     inputRef.current.focus();
   }, []);
 
@@ -136,166 +151,26 @@ const Database = () => {
         검색
       </button>
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
-      <span style={{ margin: "0.5rem 0", display: "inline-block" }}>
-        총 검색 결과는 {getNutritions.length}개 입니다.
+      <span className={styles.result_msg}>
+        {getNutritions.slice(0,nextIndex+4).length}/{getNutritions.length}(개)
       </span>{" "}
       <br />
       {isLoading ? <ReactSpinner /> : ""}
       <br />
       {/* 아이템 검색 결과가 나오는 섹션 */}
-      <section className={styles.item_section}>
+      <section className={styles.item_section} ref={containerRef}>
         {Array.isArray(getNutritions) && getNutritions[0] !== undefined ? (
-          getNutritions.map((item, i) => {
+          getNutritions.slice(0, nextIndex + 4).map((item, i) => {
             return (
               <article
                 key={item.id}
                 className={styles.item_box}
-                ref={itemRef}
                 onClick={() => {
                   navigate(`/busan_item_map/nutrition/${item.id}`);
                   dispatch(getNutritionDataFromDB(getNutritions[i]));
                 }}
               >
-                <section>
-                  <h4 className={styles.item_name}>{item.식품명}</h4>
-                  <strong className={styles.sub_title}>일반정보</strong>
-                  <>
-                    <p>
-                      <span>식품기원명</span>
-                      {item.식품기원명 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>출처명</span>
-                      {item.출처명 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>식품중량</span>
-                      {item.식품중량 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>데이터생성일자</span>
-                      {item.데이터생성일자 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>데이터기준일자</span>
-                      {item.데이터기준일자 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>영양성분함량기준량</span>
-                      {item.영양성분함량기준량 || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>에너지(kcal)</span>
-                      {item["에너지(kcal)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
-
-                {/* 3대 영양소 */}
-                <section>
-                  <strong className={styles.sub_title}>3대 영양소 </strong>
-                  <>
-                    <p>
-                      <span>탄수화물(g)</span>
-                      {item["탄수화물(g)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>단백질(g)</span>
-                      {item["단백질(g)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>지방(g)</span>
-                      {item["지방(g)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
-
-                {/* 무기질 */}
-                <section>
-                  <strong className={styles.sub_title}>무기질</strong>
-                  <>
-                    <p>
-                      <span>칼슘(mg)</span>
-                      {item["칼슘(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>철(mg)</span>
-                      {item["철(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>인(mg)</span>
-                      {item["인(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>칼륨(mg)</span>
-                      {item["칼륨(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>나트륨(mg)</span>
-                      {item["나트륨(mg)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
-
-                {/* 비타민 */}
-                <section>
-                  <strong className={styles.sub_title}>비타민</strong>
-                  <>
-                    <p>
-                      <span>비타민A(μg RAE)</span>
-                      {item["비타민 A(μg RAE)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
-                {/* 기타 영양소 */}
-                <section>
-                  <strong className={styles.sub_title}>기타 영양소</strong>
-                  <>
-                    <p>
-                      <span>당류(g)</span>
-                      {item["당류(g)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>식이섬유(g)</span>
-                      {item["식이섬유(g)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
-
-                {/* 그 외 성분 */}
-                <section>
-                  <strong className={styles.sub_title}>그 외 성분</strong>
-                  <>
-                    <p>
-                      <span>레티놀(ug)</span>
-                      {item["레티놀(μg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>베타카로틴(μg)</span>
-                      {item["베타카로틴(μg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>티아민(mg)</span>
-                      {item["티아민(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>리보플라빈(mg)</span>
-                      {item["리보플라빈(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>콜레스테롤(mg)</span>
-                      {item["콜레스테롤(mg)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>포화지방산(g)</span>
-                      {item["포화지방산(g)"] || "정보 없음"}
-                    </p>
-                    <p>
-                      <span>트랜스지방산(g)</span>
-                      {item["트랜스지방산(g)"] || "정보 없음"}
-                    </p>
-                  </>
-                </section>
+                <SearchResult item={item}></SearchResult>
               </article>
             );
           })
@@ -308,6 +183,23 @@ const Database = () => {
           </div>
         )}
       </section>
+      <button
+        disabled={getNutritions.length === 0}
+        className={styles.add_btn}
+        ref={addBtnRef}
+        onClick={(e) => {
+          const copy = getNutritions.slice(nextIndex, nextIndex + 4);
+
+          if (copy.length === 0) {
+            e.target.style.visibility = "hidden";
+            alert("불러올 데이터가 존재하지 않습니다.");
+          }
+
+          setNextIndex((prev) => (prev += 4));
+        }}
+      >
+        더보기
+      </button>
     </section>
   );
 };
