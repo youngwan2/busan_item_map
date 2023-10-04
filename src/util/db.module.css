@@ -6,10 +6,32 @@
 
 .item_section {
   display: flex;
-
+  margin: -2rem;
   justify-content: center;
   flex-wrap: wrap;
 }
+
+/* 검색창 */
+.search_input {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  border-right: none;
+}
+
+.search_input:focus {
+  outline:none;
+}
+
+.search_btn {
+  padding: 10px;
+  color: white;
+  background-color: rgb(119, 119, 238);
+}
+
+.search_btn:hover {
+  background-color: rgb(133, 133, 209);
+}
+
 
 /* 각 음식목록 데이터 컨테이너 */
 .item_section .item_box {
@@ -71,7 +93,7 @@
 
 /* 메시지 */
 .message {
-  margin: 20px 10px;
+  margin: 0px 10px 3rem 10px;
   position: relative;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.386);
@@ -96,7 +118,7 @@
 /* 추가 버튼 */
 .add_btn {
   padding: 10px;
-  margin: 20px;
+  margin: 50px 0 0 0;
 }
 
 .result_msg {

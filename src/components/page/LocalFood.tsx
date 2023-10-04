@@ -1,10 +1,11 @@
 import styles from "./LocalFood.module.css";
 import { localFoods } from "./localfood(202212)";
 import Header from "../UI/Header";
+import LocalSearchResult from "../module/LocalSearchResult";
 import { useEffect, useState, useRef, KeyboardEvent } from "react";
 import { MouseEvent } from "react";
 
-type localFoodType = {
+export type localFoodType = {
   addr: string;
   cntnts_url: string;
   core_kwrd_cn: string;
@@ -168,8 +169,8 @@ const LocalFood = () => {
         </button>
 
         {/* 주제별 세부 내용 */}
+        <h2>향토음식조회</h2>
         <section className={styles.contents}>
-          <h2>향토음식조회</h2>
           <p>
             ※ 현재 기능은 검색 기능없이 카테고리 내 주제별 선택을 통해 검색이
             가능합니다.
@@ -181,14 +182,14 @@ const LocalFood = () => {
             height={380}
             src={
               searchResult !== undefined &&
-                searchResult[0].main_thumb_url !== ""
+              searchResult[0].main_thumb_url !== ""
                 ? `${searchResult[0].main_thumb_url}`
                 : process.env.PUBLIC_URL + "/not-image.png"
             }
             alt="thumb"
           ></img>
           <h3 className={styles.sub_title}>
-            {searchResult !== undefined ? searchResult[0].sbjt_nm : null}
+            {searchResult !== undefined ? searchResult[0].data_title_nm : null}
           </h3>
           <p className={styles.foods_sumry}>
             {" "}
@@ -197,55 +198,24 @@ const LocalFood = () => {
               : null}
           </p>
           <p className={styles.foods_detail_url}>
-            <a target="__blank" style={{ color: "white", textDecoration: 'none' }} href={`${searchResult !== undefined ? searchResult[0].cntnts_url : 'https://encykorea.aks.ac.kr/Article/E0062997'}`}>{searchResult !== undefined ? '자세히 보기(링크)' : '"향토음식"이란 지방의 특산품이나 특유의 조리법 등을 이용하여 만든 그 지역의 전통 음식을 의미합니다(링크). '}</a>
+            <a
+              target="__blank"
+              style={{ color: "white", textDecoration: "none" }}
+              href={`${
+                searchResult !== undefined
+                  ? searchResult[0].cntnts_url
+                  : "https://encykorea.aks.ac.kr/Article/E0062997"
+              }`}
+            >
+              {searchResult !== undefined
+                ? "자세히 보기(링크)"
+                : '"향토음식"이란 지방의 특산품이나 특유의 조리법 등을 이용하여 만든 그 지역의 전통 음식을 의미합니다(링크). '}
+            </a>
           </p>
-          <article className={styles.foods_flex_con}>
-            {searchResult?.map((foods) => {
-              return (
-                <div className={styles.foods}>
-                  <p>
-                    <span>식별 </span>
-                    {foods.data_manage_no}
-                  </p>
-                  <p>
-                    <span>주소 </span>
-                    {foods.addr}
-                  </p>
-                  <p>
-                    <span>관련 식당명 </span>
-                    {foods.relate_rstrnt_nm}
-                  </p>
-                  <p>
-                    <span>식당번호 </span>
-                    {foods.rstrnt_tel_no}
-                  </p>
-                  <p>
-                    <span>등록일자 </span>
-                    {foods.regist_de}
-                  </p>
-                  <p>
-                    <span>키워드 </span>
-                    {foods.core_kwrd_cn}
-                  </p>
-                  <p>
-                    <span>갱신일자 </span>
-                    {foods.opn_de}
-                  </p>
-                  <p>
-                    <span>시도 </span>
-                    {foods.ctprvn_nm}
-                  </p>
-                  <p>
-                    <span>시구군 </span>
-                    {foods.signgu_nm}
-                  </p>
-                </div>
-              );
-            })}
-          </article>
+          <h2 style={{ marginTop: "3rem" }}>관련 식당</h2>
+                <LocalSearchResult searchResult={searchResult}></LocalSearchResult>
         </section>
       </section>
-
     </>
   );
 };

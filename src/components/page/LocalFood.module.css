@@ -5,6 +5,8 @@
   display: flex;
   max-width: 1800px;
   padding: 0 20px;
+  text-align: center;
+  flex-direction: column;
   font-family: 'Orbit', sans-serif;
 }
 
@@ -15,8 +17,13 @@
 /** 콘텐츠(조회된 데이터 보이는 영역) */
 .contents {
   padding: 10px;
+  animation: appear 1s 1 ease-in-out;
   text-align: center;
   width: 100%;
+}
+
+@keyframes appear {
+  from {opacity: 0; visibility: hidden;}
 }
 
 /* 지역/음식 이미지 */
@@ -34,6 +41,8 @@
 .contents .foods_sumry {
   margin: 2rem auto 3rem auto;
   max-width: 1000px;
+  line-height: 1.8;
+  font-size: 17px;
 }
 
 /*음식 세부 내용 사이트 링크*/

@@ -126,7 +126,7 @@ const Database = () => {
       <DbSideMenu itemsKey={itemKey} />
       {/* 아이템 검색창  */}
       <input
-        style={{ padding: " 1px 9px", margin: "10px 0" }}
+        className={styles.search_input}
         ref={inputRef}
         type="text"
         placeholder="음식명을 입력해주세요!"
@@ -140,6 +140,7 @@ const Database = () => {
         }}
       />
       <button
+        className={styles.search_btn}
         type="button"
         onClick={() => {
           setItemName(inputRef.current.value);
@@ -152,7 +153,8 @@ const Database = () => {
       </button>
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span className={styles.result_msg}>
-        {getNutritions.slice(0,nextIndex+4).length}/{getNutritions.length}(개)
+        {getNutritions.slice(0, nextIndex + 4).length}/{getNutritions.length}
+        (개)
       </span>{" "}
       <br />
       {isLoading ? <ReactSpinner /> : ""}
@@ -177,8 +179,7 @@ const Database = () => {
         ) : (
           <div className={styles.message}>
             검색명이 포함된 모든 목록을 불러오므로 명확한 검색어를 입력
-            바랍니다. 참고로, 조회된 각 목록을 클릭하면, 주요 영양소의
-            일일권장섭취량을 시각적으로 확인할 수 있으니 이용 시 참고 바랍니다.
+            바랍니다. 조회된 각 목록을 클릭하면, 세부 내용 페이지로 이동합니다.
             <br />
           </div>
         )}
