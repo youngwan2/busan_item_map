@@ -41,7 +41,7 @@ function Header({ isStyle }: HeaderType) {
             <span
               className={styles.home_log}
               onClick={() => {
-                navigate("/busan_item_map");
+                navigate("/");
               }}
             >
               FoodPick
@@ -57,16 +57,16 @@ function Header({ isStyle }: HeaderType) {
             </button>
             <ul>
               <li>
-                <Link to={"/busan_item_map/localfood"}>향토음식조회</Link>
+                <Link to={"/localfood"}>향토음식조회</Link>
               </li>
               <li>
-                <Link to={"/busan_item_map/nutrition"}>식품영양정보조회</Link>
+                <Link to={"/nutrition"}>식품영양정보조회</Link>
               </li>
               <li>
-                <Link to={"/busan_item_map/item"}>부산생필품정보</Link>
+                <Link to={"/item"}>부산생필품정보</Link>
               </li>
               <li>
-                <Link to={"/busan_item_map/haccp"}>HACCP제품정보조회</Link>
+                <Link to={"/haccp"}>HACCP제품정보조회</Link>
               </li>
             </ul>
           </nav>

@@ -6,10 +6,11 @@ import HccpSearch from "../components/page/HccpSearch";
 import LocalFood from "../components/page/LocalFood";
 import Nutrition from "../components/page/Nutrition";
 import NutritionDetail from "../components/page/NutritionDetail";
+import NotFound from "../components/errror/NotFound";
 
 const router = createBrowserRouter([
   {
-    path: "/busan_item_map/",
+    path: "/",
     element: <App></App>,
     errorElement: <h2>컴포넌트를 불러오는 중에 문제가 발생하였습니다.</h2>,
   },
@@ -18,28 +19,28 @@ const router = createBrowserRouter([
     element: <KaMap></KaMap>,
   },
   {
-    path: "/busan_item_map/localfood",
+    path: "/localfood",
     element: <LocalFood></LocalFood>,
   },
   {
-    path: "/busan_item_map/nutrition",
+    path: "/nutrition",
     element: <Nutrition></Nutrition>,
   },
   {
-    path: "/busan_item_map/item",
+    path: "/item",
     element: <ItemTable></ItemTable>,
   },
   {
-    path: "/busan_item_map/haccp",
+    path: "/haccp",
     element: <HccpSearch></HccpSearch>,
   },
   {
-    path: "/busan_item_map/nutrition/:id",
+    path: "/nutrition/:id",
     element: <NutritionDetail />
   },
   {
     path: "*",
-    element: <h2>여기는 존재하지 않는 페이지 입니다.</h2>,
+    element: <NotFound/>
   },
 ]);
 

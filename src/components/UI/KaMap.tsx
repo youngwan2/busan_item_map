@@ -33,7 +33,7 @@ function KaMap({
           center: new kakao.maps.LatLng(Number(la), Number(lo)),
           level: 3,
         };
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
         const map = new kakao.maps.Map(container, options);
         map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW); //지도 위에 로드뷰 도로 올리기
 

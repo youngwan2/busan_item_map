@@ -106,7 +106,7 @@ const Database = () => {
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-    axios.get(`/busan_item_map/Nutrition.json`).then((response) => {
+    axios.get(`/Nutrition.json`).then((response) => {
       const data = response.data;
       createDB(data, itemName);
       setNextIndex(0);
@@ -168,7 +168,7 @@ const Database = () => {
                 key={item.id}
                 className={styles.item_box}
                 onClick={() => {
-                  navigate(`/busan_item_map/nutrition/${item.id}`);
+                  navigate(`/nutrition/${item.id}`);
                   dispatch(getNutritionDataFromDB(getNutritions[i]));
                 }}
               >

@@ -24,25 +24,25 @@ const Introduce = () => {
             <ul className={styles.intro_main_menu}>
               <li>
                 <strong>
-                  <Link to={"/busan_item_map/localfood"}>향토음식조회</Link>
+                  <Link to={"/localfood"}>향토음식조회</Link>
                 </strong>
                 <p>각 지역의 명물이라 할 수 있는 향토음식을 주제별로 조회할 수 있는 서비스를 제공합니다.</p>
               </li>
               <li>
                 <strong>
-                  <Link to={"/busan_item_map/nutrition"}>식품영양조회</Link>
+                  <Link to={"/nutrition"}>식품영양조회</Link>
                 </strong>
                 <p>우리가 자주 시켜먹는 배달음식뿐만 아니라 각종 식품에 대한 영양정보를 조회하여 제공합니다.</p>
               </li>
               <li>
                 <strong>
-                  <Link to={"/busan_item_map/item"}> 부산생필품정보</Link>
+                  <Link to={"/item"}> 부산생필품정보</Link>
                 </strong>
                 <p>부산광역시 내 각종 생필품 정보를 테이블 형식으로 페이지 단위로 나눠서 정보를 제공합니다. 항목을 클릭하면 해당 장소의 위치 정보를 지도 api를 사용하여 제공합니다.</p>
               </li>
               <li>
                 <strong>
-                  <Link to={"/busan_item_map/haccp"}> HACCP제품조회</Link>
+                  <Link to={"/haccp"}> HACCP제품조회</Link>
                 </strong>
                 <p>무엇이든 안전한 식품이 좋겠죠? HACCP로 등록된 식품 정보에 대한 조회 서비스를 제공합니다. 이미지뿐만 아니라 해당 제품의 영양정보도 제공하니 활용해보시기 추천드립니다.</p>
               </li>
