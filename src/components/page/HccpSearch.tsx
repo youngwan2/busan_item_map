@@ -6,6 +6,7 @@ import Modal from "../UI/HccpModal/modal";
 import HccpResult from "../module/HccpResult";
 import ReactSpinner from "../UI/loading/ReactSpinner";
 import Movement from "../UI/movement/Movement";
+import NavSearch from "../UI/NavSearch";
 
 export type ItemsType = {
   item: {
@@ -115,7 +116,7 @@ function HccpSearch() {
         <Movement />
       </div>
       <Header isStyle={true} />
-
+      <NavSearch/>
     </>
   );
 }

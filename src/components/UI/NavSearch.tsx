@@ -15,6 +15,20 @@ function NavSearch() {
   const [display, setDisplay] = useState(false);
   const [items, setItems] = useState<DictionaryType[]>();
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function focus() {
+    if (display && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }
+
+  useEffect(() => {
+    focus();
+  }, [display]);
+
   const reqNaverSearchAPI = (value: string) => {
     axios
       .get(`http://localhost:3000/search/encyc?query=${value}`)
@@ -56,12 +70,16 @@ function NavSearch() {
         }
       >
         <h2 style={{ textAlign: "center" }}>네이버 백과사전</h2>
+        <button className={styles.close_btn} onClick={()=>{
+          setDisplay(false)
+        }}>나가기</button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
           <input
+            ref={inputRef}
             className={styles.user_input}
             type="search"
             onKeyUp={(e) => {

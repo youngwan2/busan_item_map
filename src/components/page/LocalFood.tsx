@@ -2,8 +2,8 @@ import styles from "./LocalFood.module.css";
 import { localFoods } from "./localfood(202212)";
 import Header from "../UI/Header";
 import LocalSearchResult from "../module/LocalSearchResult";
-import { useEffect, useState, useRef, KeyboardEvent } from "react";
-import { MouseEvent } from "react";
+import { useEffect, useState, useRef, KeyboardEvent,MouseEvent } from "react";
+import NavSearch from "../UI/NavSearch";
 
 export type localFoodType = {
   addr: string;
@@ -216,6 +216,7 @@ const LocalFood = () => {
                 <LocalSearchResult searchResult={searchResult}></LocalSearchResult>
         </section>
       </section>
+      <NavSearch/>
     </>
   );
 };

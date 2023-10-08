@@ -45,9 +45,6 @@ app.get('/search/encyc', function (req, res) {
 
 
 
-
-
-
 app.get('*',(req,res)=>{
     res.sendFile(__path)
 
