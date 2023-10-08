@@ -1,0 +1,235 @@
+
+.gpt_container {
+    position: fixed;
+    max-width: 460px;
+    background: url("/public/images/chatback.png");
+    filter: brightness(105%);
+    background-position: center;
+    transition: 0.5s ease-in-out;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 50px 10px rgba(226, 222, 222, 0.368);
+    right: 2rem;
+    background-color: white;
+    z-index: 100000000000000000;
+    bottom: 7rem;
+    padding: 20px;
+  }
+
+/* 쳇 아이콘 */
+.chat_icon {
+    position: fixed;
+    transition: 1s;
+    right: 2.1rem;
+    bottom: 13rem;
+    background: url('/public/icon/chatIcon.png');
+    background-position: center;
+    background-size: cover;
+    height: 68px;
+    border: none;
+    border-radius: 50%;
+    box-shadow:  0 0 20px 1px rgb(202, 201, 201);
+    background-color: rgb(91, 168, 249);
+    width: 68px;
+    z-index: 10000000000;
+    animation: updown infinite ease-in-out 1.7s alternate;
+  }
+  
+  @keyframes updown {
+    from {
+      transform: translateY(-5px);
+    }
+  }
+  
+.chat_icon:hover {
+    background-color: rgb(124, 154, 255);
+}
+
+.chat_icon:hover::before {
+  content: "";
+  position: absolute;
+  left: -1em;
+  top: 5px;
+  border-left: 15px solid white;
+  z-index: 100000;
+  filter: drop-shadow(3px 0 1px rgb(7, 54, 117));
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+}
+
+.chat_icon:hover::after {
+  content: "AI CHAT";
+  border: 3px solid rgb(29, 126, 252);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: -10px;
+  left: -6rem;
+  color: black;
+}
+
+
+
+
+/* 닫기 버튼 */
+.close_btn {
+    position: fixed;
+    right: 0em;
+    bottom: -5rem;
+    font-size: 2rem;
+    color:white;
+    font-weight: 700;
+    border: none;
+    background-color: rgb(111, 139, 224);
+    box-sizing: 0 0 5px 1px black;
+    border-radius: 50%;
+    padding: 15px 20px;
+}
+
+
+.chat_title {
+  color: white;
+  position: relative;
+  font-size: 2.8rem;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.chat_title::after {
+  content: "";
+  left: 5px;
+  position: absolute;
+  bottom: -2rem;
+}
+
+/* 안내 메시지 */
+.chat_meg {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    box-shadow: 0 0 5px 2px rgb(110, 141, 219);
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 250px;
+    text-align: center;
+    transform: translate(-50%);
+}
+
+/* 로딩 메시지 */
+.loading_meg {
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    padding: 8px;
+    box-shadow: 0 0 5px 0px rgb(92, 173, 239);
+    z-index: 10000000000000;
+    border-radius: 10px;
+    background-color: white;
+    transform: translate(-50%,-50%);
+}
+
+.content_ul {
+  max-width: 430px;
+  width: 100%;
+  position: relative;
+  margin: 1rem auto 1rem auto;
+  padding: 10px;
+  box-shadow: inset 0 0 5px 1px #0e3e74;
+  border-radius: 5px;
+  min-width: 210px;
+  height: 100vh;
+  max-height: 500px;
+  background-color: white;
+  overflow: hidden auto;
+}
+
+.content_ul::-webkit-scrollbar {
+  width: 3px;
+  background-color: white;
+}
+
+.content_ul::-webkit-scrollbar-thumb {
+  background-color: rgb(103, 103, 242);
+  border-radius: 10px;
+}
+
+/* 상대 닉네임 */
+.content_ul .target {
+  margin: 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+/* 상대 코멘트 */
+.content_ul .comment {
+  border-radius: 5px;
+  position: relative;
+  color: white;
+  max-width: 340px;
+  padding: 8px 10px;
+  box-shadow: 0 0 5px 1px rgba(20, 54, 116, 0.656);
+}
+
+.content_ul .comment:nth-of-type(2n) {
+  animation: left_appear 1s 1 ease-in-out;
+}
+
+.content_ul .comment:nth-of-type(2n-1) {
+  animation: right_appear 1s 1 ease-in-out;
+}
+
+@keyframes left_appear {
+  from {
+    opacity: 0;
+    transform: translate(-30px);
+  }
+}
+@keyframes right_appear {
+  from {
+    opacity: 0;
+    transform: translate(30px);
+  }
+}
+
+
+.input_area {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.user_input {
+  border: none;
+  box-shadow: inset 0 0 3px 1px rgb(75, 75, 76);
+  border-radius: 5px;
+  padding: 10px 10px;
+  max-width: 300px;
+  width: 100%;
+  resize: none;
+  min-width: 210px;
+}
+
+.submit_btn {
+  border: none;
+  box-shadow: inset 0 0 3px 1px rgb(82, 82, 82);
+  border-radius: 5px;
+  margin: 0 5px;
+  min-width: 40px;
+}
+
+.submit_btn:hover {
+  background-color: rgb(215, 240, 255);
+}
+
+/* 미디어 쿼리 캘럭시 폴드 280px */
+@media screen and (max-width: 281px) {
+  .chat_title {
+    font-size: 2rem;
+  }
+  .content_ul .comment {
+    left: 0 !important;
+  }
+}

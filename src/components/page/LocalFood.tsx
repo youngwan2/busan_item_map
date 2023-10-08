@@ -4,6 +4,7 @@ import Header from "../UI/Header";
 import LocalSearchResult from "../module/LocalSearchResult";
 import { useEffect, useState, useRef, KeyboardEvent,MouseEvent } from "react";
 import NavSearch from "../UI/NavSearch";
+import GPT from "../../util/kakao/gpt";
 
 export type localFoodType = {
   addr: string;
@@ -217,6 +218,7 @@ const LocalFood = () => {
         </section>
       </section>
       <NavSearch/>
+      <GPT/>
     </>
   );
 };

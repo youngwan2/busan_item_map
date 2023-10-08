@@ -1,8 +1,11 @@
 import ThreeChart from "../../chart/ThreeChart";
 import MineralChart from "../../chart/MineralChart";
+import NavSearch from "../UI/NavSearch";
+import Movement from "../UI/movement/Movement";
 import styles from "./NutritionDetail.module.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useState, useRef, useEffect } from "react";
+import GPT from "../../util/kakao/gpt";
 
 const NutritionDetail = () => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -63,7 +66,6 @@ const NutritionDetail = () => {
             id={`${detailNutritionData.id}`}
             className={styles.general_info}
           >
-            <h4>{detailNutritionData.식품명}</h4>
             <strong>일반정보</strong>
             <>
               <p>
@@ -210,6 +212,9 @@ const NutritionDetail = () => {
           <hr />
         </div>
       </article>
+      <NavSearch/>
+      <GPT/>
+      <Movement/>
     </div>
   );
 };

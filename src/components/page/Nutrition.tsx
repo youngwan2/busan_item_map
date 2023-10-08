@@ -2,6 +2,7 @@ import styles from "./Nutrition.module.css";
 import Database from "../../util/db";
 import Header from "../UI/Header";
 import NavSearch from "../UI/NavSearch";
+import GPT from "../../util/kakao/gpt";
 
 const Nutrition = () => {
   return (
@@ -12,6 +13,7 @@ const Nutrition = () => {
         <Database />
       </section>
       <NavSearch/>
+      <GPT/>
     </>
   );
 };

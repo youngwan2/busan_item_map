@@ -7,6 +7,7 @@ import HccpResult from "../module/HccpResult";
 import ReactSpinner from "../UI/loading/ReactSpinner";
 import Movement from "../UI/movement/Movement";
 import NavSearch from "../UI/NavSearch";
+import GPT from "../../util/kakao/gpt";
 
 export type ItemsType = {
   item: {
@@ -117,6 +118,7 @@ function HccpSearch() {
       </div>
       <Header isStyle={true} />
       <NavSearch/>
+      <GPT/>
     </>
   );
 }
