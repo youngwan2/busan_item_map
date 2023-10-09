@@ -13,25 +13,50 @@ function GPT() {
   const [loading, setLoading] = useState(false);
   const [display, setDisplay] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const ulRef = useRef<HTMLUListElement>(null);
 
+  const list = [...conversations];
   function reqGPT(prompt: string) {
     setLoading(true);
-    const list = [...conversations];
+
     list.push({ target: "user", comment: prompt });
-    axios
-      .post("/gpt", { prompt })
-      .then((result) => {
-        list.push({ target: "AI상담사", comment: result.data.text });
-        setConversations((prev) => {
-          return (prev = list);
+
+    if (process.env.NODE_ENV !== "production") {
+      axios
+        .post("http://localhost:3000/gpt", { prompt })
+        .then((result) => {
+          list.push({ target: "AI상담사", comment: result.data.text });
+          setConversations((prev) => {
+            return (prev = list);
+          });
+          console.log(list);
+          if (inputRef.current) inputRef.current.value = "";
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        console.log(list);
-        if (inputRef.current) inputRef.current.value = "";
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    } else {
+      axios
+        .post("/gpt", { prompt })
+        .then((result) => {
+          list.push({ target: "AI상담사", comment: result.data.text });
+          setConversations((prev) => {
+            return (prev = list);
+          });
+          console.log(list);
+          if (inputRef.current) inputRef.current.value = "";
+
+          setLoading(false);
+
+          if (loading === true) {
+              ulRef.current?.scrollTo({top:1000000})
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
   return (
     <>
@@ -50,8 +75,18 @@ function GPT() {
         className={styles.gpt_container}
         style={
           display
-            ? { visibility: "visible", opacity: 1, transform: "scale(1)",transformOrigin:'bottom right'  }
-            : { visibility: "hidden", opacity: 0,transform: "scale(0)",transformOrigin:'bottom right' }
+            ? {
+                visibility: "visible",
+                opacity: 1,
+                transform: "scale(1)",
+                transformOrigin: "bottom right",
+              }
+            : {
+                visibility: "hidden",
+                opacity: 0,
+                transform: "scale(0)",
+                transformOrigin: "bottom right",
+              }
         }
       >
         <h2 className={styles.chat_title}>FoodPick</h2>
@@ -63,16 +98,25 @@ function GPT() {
         >
           X
         </button>
-        <ul className={styles.content_ul}>
+        <ul className={styles.content_ul} ref={ulRef}>
           {conversations[0] === undefined && (
             <li className={styles.chat_meg}>
               음식과 관련한 궁금증을 물어보세요!
             </li>
           )}
-          {loading&&<li className={styles.loading_meg}> 잠시만 기다려주세요. 열심히 답변 중 입니다.</li>}
+          {loading && (
+            <li className={styles.loading_meg}>
+              {" "}
+              잠시만 기다려주세요. 열심히 답변 중 입니다.
+            </li>
+          )}
           {conversations.map((content: Content, i: number) => {
             return (
-              <li key={i} style={{ margin: "10px 0" }}>
+              <li
+                key={i}
+                style={{ margin: "10px 0" }}
+                className={styles.chat_li}
+              >
                 <p
                   style={
                     content.target === "user"
@@ -93,11 +137,15 @@ function GPT() {
         </ul>
         <div className={styles.input_area}>
           <input
+            placeholder="현재 응답 상태가 매끄럽지 못합니다."
             ref={inputRef}
             type="text"
             className={styles.user_input}
             onKeyUp={(e) => {
               setPrompt(e.currentTarget.value);
+              if (e.code === "Enter") {
+                reqGPT(e.currentTarget.value);
+              }
             }}
           ></input>
           <button

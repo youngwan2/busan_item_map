@@ -48,9 +48,9 @@ app.get("/search/encyc", function (req, res) {
 const reqKakaoGpt = async (
   prompt,
   res,
-  max_tokens = 2,
+  max_tokens = 28,
   temperature = 1.0,
-  top_p = 1.0,
+  top_p = 0.5,
   n = 1
 ) => {
 
