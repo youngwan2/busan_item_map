@@ -11,7 +11,7 @@
 - 부산 생필품 정보 외에도 향토음식정보, HACCP 인증 제품 정보, 각종 식품에 대한 영양정보를 제공합니다.
 
 ## 배포 URL
-- https://busan-item-map.vercel.app
+- <a href="https://busan-item-map.vercel.app" target="_blank">https://busan-item-map.vercel.app</a>
 
 
 ## 사용된 라이브러리 및 프레임워크(기타 도구포함)
