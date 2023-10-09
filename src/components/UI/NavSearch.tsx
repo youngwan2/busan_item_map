@@ -31,7 +31,7 @@ function NavSearch() {
 
   const reqNaverSearchAPI = (value: string) => {
     axios
-      .get(`http://localhost:3000/search/encyc?query=${value}`)
+      .get(`/search/encyc?query=${value}`)
       .then((result) => {
         const data = result.data.response.items;
         console.log(data);

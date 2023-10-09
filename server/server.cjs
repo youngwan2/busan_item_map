@@ -8,9 +8,10 @@ const cors = require("cors");
 
 app.use(cors({ origin: "*" }));
 app.use("/", express.static(path.join(__dirname, "/build")));
+app.use("/", express.static(path.join(__dirname, "/build/Nutrition.json")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-const PORT = 3000;
+const PORT = process.env.PORT||3000;
 const __path = path.join(__dirname, "/build", "index.html");
 
 const client_id = process.env.NAVER_CLIENT_ID;
@@ -94,3 +95,6 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(PORT, "포트가 열림");
 });
+
+
+module.exports = app

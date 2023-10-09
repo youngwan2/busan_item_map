@@ -34,15 +34,9 @@
     background-color: rgb(91, 168, 249);
     width: 68px;
     z-index: 10000000000;
-    animation: updown infinite ease-in-out 1.7s alternate;
   }
   
-  @keyframes updown {
-    from {
-      transform: translateY(-5px);
-    }
-  }
-  
+
 .chat_icon:hover {
     background-color: rgb(124, 154, 255);
 }

@@ -19,7 +19,7 @@ function GPT() {
     const list = [...conversations];
     list.push({ target: "user", comment: prompt });
     axios
-      .post("http://localhost:3000/gpt", { prompt })
+      .post("/gpt", { prompt })
       .then((result) => {
         list.push({ target: "AI상담사", comment: result.data.text });
         setConversations((prev) => {
