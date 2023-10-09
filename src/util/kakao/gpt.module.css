@@ -22,8 +22,8 @@
 .chat_icon {
     position: fixed;
     transition: 1s;
-    right: 2.1rem;
-    bottom: 13rem;
+    right: 2.15rem;
+    bottom: 7.5rem;
     background: url('/public/icon/chatIcon.png');
     background-position: center;
     background-size: cover;

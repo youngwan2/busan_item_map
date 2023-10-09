@@ -8,13 +8,8 @@ function App() {
       <Header isStyle={true}></Header>
       <Introduce />
       <GPT/>
-      <article className="video_con">
-        <video
-          src={process.env.PUBLIC_URL + "/images/egg.mp4"}
-          autoPlay
-          muted
-          loop
-        ></video>
+      <article className="background">
+        <img src={process.env.PUBLIC_URL + "/images/background.png"} alt="background"/>
       </article>
     </div>
   );

@@ -6,19 +6,12 @@
   position: fixed;
   width: 70px;
   height: 70px;
-  bottom: 7.5rem;
+  bottom: 12.5rem;
   right: 2rem;
   color: white;
   padding: 10px;
   z-index: 100000000000000;
   filter: drop-shadow(0 0 20px);
-  animation: updown infinite ease-in-out 1.5s alternate-reverse;
-}
-
-@keyframes updown {
-  from {
-    transform: translateY(-5px);
-  }
 }
 
 .nav_search_icon:hover::before {
