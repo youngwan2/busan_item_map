@@ -118,7 +118,7 @@ const Database = () => {
       });
 
     } else {
-      axios.get(`https://busan-item-map.vercel.app/Nutrition.json`).then((response) => {
+      axios.get(`https://busan-item-map-youngwan2.vercel.app/Nutrition.json`).then((response) => {
         const data = response.data;
         createDB(data, itemName);
         setNextIndex(0);
