@@ -127,14 +127,6 @@ const Database = () => {
         }
       }).catch((error)=>{
         console.error(error)
-        axios.get(`https://busan-item-map-youngwan2.vercel.app/Nutrition.json`).then((response) => {
-          const data = response.data;
-          createDB(data, itemName);
-          setNextIndex(0);
-          if (addBtnRef.current) {
-            addBtnRef.current.style.visibility = "visible";
-          }
-        })
       })
     }
 
