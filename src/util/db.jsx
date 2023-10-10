@@ -1,9 +1,9 @@
-import axios from "axios";
 import styles from "./db.module.css";
 import { useEffect, useCallback, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { getNutritionDataFromDB } from "../app/slice/nutritionSearch";
+import { nutritions } from "./Nutrition";
 import DbSideMenu from "./dbSideMenu";
 import SearchResult from "../components/module/SearchResult";
 import ReactSpinner from "../components/UI/loading/ReactSpinner";
@@ -106,31 +106,13 @@ const Database = () => {
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-
-    if(process.env.NODE_ENV !== 'production') {
-      axios.get(`/Nutrition.json`).then((response) => {
-        const data = response.data;
-        createDB(data, itemName);
-        setNextIndex(0);
-        if (addBtnRef.current) {
-          addBtnRef.current.style.visibility = "visible";
-        }
-      });
-
-    } else {
-      axios.get(`https://busan-item-map.vercel.app/Nutrition.json`).then((response) => {
-        const data = response.data;
-        createDB(data, itemName);
-        setNextIndex(0);
-        if (addBtnRef.current) {
-          addBtnRef.current.style.visibility = "visible";
-        }
-      }).catch((error)=>{
-        console.error(error)
-      })
+    if (nutritions) {
+      createDB(nutritions, itemName);
+      setNextIndex(0);
+      if (addBtnRef.current) {
+        addBtnRef.current.style.visibility = "visible";
+      }
     }
-
-
   }, [createDB, itemName]);
 
   // 컴포넌트가 마운트된 뒤에 input 에 포커스를 맞춘다.
