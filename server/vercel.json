@@ -1,18 +1,16 @@
 {
-    "builds": [
+    "functions": 
         {
-            "src": "server.cjs",
-            "use": "@vercel/node"
+        "api/server.cjs": {
+            "memory":1024,
+            "maxDuration":10
         }
-    ],
+        }
+    ,
     "routes": [
         {
           "src": "/(.*)",
-          "dest": "server.cjs",
-          "methods":["POST"],
-          "headers": {
-            "Content-Length":"450MB"
-          }
+          "dest": "server.cjs"
         }
     ]
   }
