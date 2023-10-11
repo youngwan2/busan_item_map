@@ -8,7 +8,6 @@ const cors = require("cors");
 
 app.use(cors({ origin: "*" }));
 app.use("/", express.static(path.join(__dirname, "/build")));
-app.use("/", express.static(path.join(__dirname, "/build/Nutrition.json")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 const PORT = process.env.PORT||3000;
@@ -18,15 +17,12 @@ const client_id = process.env.NAVER_CLIENT_ID;
 const client_secret = process.env.NAVER_CLIENT_SECRET;
 const KAKAO_KEY = process.env.REACT_APP_KAKAO_APP_KEY;
 
-console.log(KAKAO_KEY)
-
 // 네이버 지식백과 api
 app.get("/search/encyc", function (req, res) {
 
   const api_url =
     "https://openapi.naver.com/v1/search/encyc?query=" +
     encodeURI(req.query.query); // JSON 결과
-  const axios = require("axios");
   const options = {
     url: api_url,
     headers: {
@@ -54,7 +50,6 @@ const reqKakaoGpt = async (
   n = 1
 ) => {
 
-  console.log("키:",KAKAO_KEY);
   const data = JSON.stringify({
     prompt: prompt,
     max_tokens: max_tokens,

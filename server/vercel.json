@@ -8,7 +8,11 @@
     "routes": [
         {
           "src": "/(.*)",
-          "dest": "server.cjs"
+          "dest": "server.cjs",
+          "methods":["POST"],
+          "headers": {
+            "Content-Length":"450MB"
+          }
         }
     ]
   }
