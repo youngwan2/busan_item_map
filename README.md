@@ -32,6 +32,8 @@
 ### 데이터베이스
 - #### IndexedDB
 
+## 백엔드 저장소 주소
+- https://github.com/youngwan2/busan-item-map-server
 
 ## 향후 계획
 - Chart.js 를 활용한 데이터 시각화를 통해 주요 영양소의 하루 권장섭취량과 조회 식품의 영양소 비율을 시각적으로 보여줄 수 있도록 기능을 추가할 예정입니다.
