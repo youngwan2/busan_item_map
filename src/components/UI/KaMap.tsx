@@ -87,7 +87,7 @@ function KaMap({
       <section
         id="map"
         className={styles.KaMap}
-        style={{ width: "500px", height: "500px", display: "block" }}
+        style={{ maxWidth: "500px", maxHeight: "500px", width:'90%',height:'100%',display: "block" }}
       ></section>
     </article>
   );

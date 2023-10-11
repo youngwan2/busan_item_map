@@ -34,9 +34,12 @@ function ItemTable() {
   const [isDisplay, setIsDisplay] = useState(true);
   const [bsshNm, setBsshNm] = useState("");
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
+
+    setIsLoading(true)
+
     // console.log("지역:", gugun);
     await axios
       .get(
@@ -75,12 +78,6 @@ function ItemTable() {
           </tr>
         </thead>
         <tbody>
-          <span
-            style={isLoading ? { display: "block" } : { display: "none" }}
-            className={styles.loading}
-          >
-            <ReactSpinner />
-          </span>
           {Array.isArray(items)
             ? items.map((item, i) => {
                 return (
@@ -102,7 +99,7 @@ function ItemTable() {
                   </tr>
                 );
               })
-            : null}
+            : <tr><td>아무런 내용이 존재하지 않습니다.</td></tr>}
         </tbody>
       </table>
       <br /> <br /> <br /> <br /> <br /> <br />
@@ -115,6 +112,12 @@ function ItemTable() {
         setIsDisplay={setIsDisplay}
       ></KaMap>
       <Movement></Movement>
+      <span
+            style={isLoading ? { display: "block" } : { display: "none" }}
+            className={styles.loading}
+          >
+            <ReactSpinner />
+          </span>
     </>
   );
 }

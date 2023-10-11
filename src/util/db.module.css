@@ -1,12 +1,12 @@
 .container {
   max-width: 1600px;
   margin: 0 auto;
+  width: 100%;
   text-align: center;
 }
 
 .item_section {
   display: flex;
-  margin: -2rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -15,6 +15,8 @@
 .search_input {
   margin-top: 1rem;
   padding: 10px 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
   border-right: none;
 }
 
@@ -24,6 +26,8 @@
 
 .search_btn {
   padding: 10px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   color: white;
   background-color: rgb(119, 119, 238);
 }
@@ -99,6 +103,7 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.386);
   padding: 10px;
   max-width: 500px;
+  width: 80%;
   background-color: rgb(122, 122, 251);
   border-radius: 10px;
   box-shadow: 20px 20px 5px rgba(0, 0, 0, 0.287);
@@ -118,7 +123,21 @@
 /* 추가 버튼 */
 .add_btn {
   padding: 10px;
-  margin: 50px 0 0 0;
+  margin: 50px 0 30px 0;
+  border: none;
+  color:white;
+  box-shadow: inset -2px -3px 2px rgb(45, 42, 204);
+  border-radius: 20%;
+  background-color: rgba(101, 101, 243, 0.876);
+}
+
+.add_btn:hover {
+  cursor: pointer;
+  background-color: rgb(134, 134, 203);
+}
+
+.add_btn:disabled {
+  display: none;
 }
 
 .result_msg {

@@ -179,8 +179,7 @@ const LocalFood = () => {
 
           {/* 대표 이미지 */}
           <img
-            width={380}
-            height={380}
+            style={{maxWidth:380,width:'100%'}}
             src={
               searchResult !== undefined &&
               searchResult[0].main_thumb_url !== ""

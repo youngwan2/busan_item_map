@@ -105,7 +105,7 @@
     box-shadow: 0 0 1px 1px rgb(110, 141, 219), 15px 15px 5px rgba(11, 49, 75, 0.276);
     padding: 10px;
     border-radius: 5px;
-    min-width: 200px;
+    min-width: 220px;
     text-align: center;
     transform: translate(-50%);
 }
@@ -133,7 +133,7 @@
   box-shadow: inset 0 0 5px 1px #0e3e74;
   border-radius: 5px;
   min-width: 210px;
-  height: 100vh;
+  height: 90vh;
   max-height: 500px;
   background-color: white;
   overflow: hidden auto;
@@ -215,6 +215,25 @@
 .submit_btn:hover {
   background-color: rgb(215, 240, 255);
 }
+
+
+/* 미디어 쿼리 800px */
+@media screen and (max-width: 800px) {
+  .chat_icon {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 5px;
+  }
+
+  .close_btn {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    right: -26px;
+  }
+}
+
 
 /* 미디어 쿼리 캘럭시 폴드 280px */
 @media screen and (max-width: 281px) {

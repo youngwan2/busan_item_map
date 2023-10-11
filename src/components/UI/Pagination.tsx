@@ -39,6 +39,7 @@ function Pagination({ setPage }: PaginationType) {
             if (currentPage <= 1) return;
             setUpdatePage((updatePage) => (updatePage -= 1));
             setPage(updatePage);
+            window.scrollTo({top:0, behavior:'smooth'})
           }}
           className={styles.prev_btn}
         >
@@ -57,6 +58,7 @@ function Pagination({ setPage }: PaginationType) {
             onClick={() => {
               setUpdatePage(i);
               setPage(i);
+              window.scrollTo({top:0, behavior:'smooth'})
             }}
             className={styles.page_item}
           >
@@ -73,6 +75,7 @@ function Pagination({ setPage }: PaginationType) {
             if (currentPage === totalPage) return;
             setUpdatePage((updatePage) => (updatePage += 1));
             setPage(updatePage);
+            window.scrollTo({top:0, behavior:'smooth'})
           }}
           className={styles.next_btn}
         >

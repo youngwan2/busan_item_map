@@ -1,7 +1,12 @@
 
 .loading{
-    position: relative;
-    left: 120%;
+    position: fixed ;
+    left: 50%;
+    top: 50%;
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 100px 50px rgba(33, 120, 207, 0.478);
+    transform: translate(-50%,-50%);
     font-size: 1.7rem;
 }
 
@@ -10,7 +15,7 @@ table{
     text-align: center;
     border-collapse: collapse;
     position: relative;
-    max-width: 80%;
+    max-width: 90%;
     width: 100%;
     left: 50%;
     top: -3rem;

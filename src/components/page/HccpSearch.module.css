@@ -28,13 +28,14 @@
   border-radius: 10px;
   border: 1px solid rgb(136, 156, 255);
   padding: 10px 15px;
-  min-width: 250px;
+  min-width: 150px;
   width: 100%;
 }
 .search_input:focus {
   outline: none;
 }
 
+/* 검색 버튼 */
 .search_btn {
   position: absolute;
   right: 0;

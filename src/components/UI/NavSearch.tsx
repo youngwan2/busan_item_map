@@ -110,6 +110,7 @@ function NavSearch() {
             type="search"
             onKeyUp={(e) => {
               setUserInputValue(e.currentTarget.value);
+              if(e.code ==="Enter") reqNaverSearchAPI(e.currentTarget.value);
             }}
           />
           <button

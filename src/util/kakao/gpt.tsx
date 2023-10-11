@@ -101,7 +101,8 @@ function GPT() {
         <ul className={styles.content_ul} ref={ulRef}>
           {conversations[0] === undefined && (
             <li className={styles.chat_meg}>
-              음식과 관련한 궁금증을 물어보세요!
+              음식과 관련한 궁금증을 물어보세요! <br />
+              ex) 아르기닌은 무엇인가요?
             </li>
           )}
           {loading && (
@@ -137,7 +138,7 @@ function GPT() {
         </ul>
         <div className={styles.input_area}>
           <input
-            placeholder="현재 응답 상태가 매끄럽지 못합니다."
+            placeholder="ex) 단백질에 대해 설명해주세요"
             ref={inputRef}
             type="text"
             className={styles.user_input}
