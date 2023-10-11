@@ -1,5 +1,6 @@
-# 프로젝트명
-#### 식품 정보공유 웹 사이트; B.I.M
+## 프로젝트명
+- 식품 정보공유 웹 사이트: <mark><b>B.I.M</b></mark>
+
 <p style="text-aligin:center">
   <img src="https://github.com/youngwan2/busan_item_map/assets/107159871/fb37c04d-1e47-49cd-adf5-29d437f003d6" alt="홈페이지 프리뷰">
   </p>
@@ -17,10 +18,8 @@
 - 네이버 지식백과 API와 연동하여 사이트 이용 중 모르는 용어에 대한 정보조회를 지원합니다.
 
 ## 배포 URL(도메인)
-### 배포 클라우드: 클라우드타입
 - <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
 - <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
-
 
 ## 사용된 라이브러리 및 프레임워크(기타 도구포함)
 ### 프론트엔드
