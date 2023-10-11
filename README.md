@@ -10,8 +10,10 @@
 - 지도 내 마커 위에 마우스 호버하면 해당 위치 내 판매점 이름이 표시됩니다.
 - 부산 생필품 정보 외에도 향토음식정보, HACCP 인증 제품 정보, 각종 식품에 대한 영양정보를 제공합니다.
 
-## 배포 URL
-- <a href="https://busan-item-map.vercel.app" target="_blank">https://busan-item-map.vercel.app</a>
+## 배포 URL(도메인)
+### 배포 클라우드: 클라우드타입
+- <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
+- <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
 
 
 ## 사용된 라이브러리 및 프레임워크(기타 도구포함)
