@@ -170,7 +170,7 @@ const LocalFood = () => {
         </button>
 
         {/* 주제별 세부 내용 */}
-        <h2>향토음식조회</h2>
+        <h2 className={styles.title}>향토음식조회</h2>
         <section className={styles.contents}>
           <p>
             ※ 현재 기능은 검색 기능없이 카테고리 내 주제별 선택을 통해 검색이

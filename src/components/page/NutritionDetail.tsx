@@ -37,14 +37,17 @@ const NutritionDetail = () => {
   });
   return (
     <div ref={pageRef}>
-      <button
-        style={{ margin: "10px" }}
-        onClick={() => {
-          window.history.back()
-        }}
-      >
-        뒤로가기
-      </button>
+      <div className={styles.detail_page_btn_container}>
+        <button
+          className={styles.back_btn}
+          style={{ margin: "10px" }}
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          뒤로가기
+        </button>
+      </div>
 
       <article className={styles.detail_article} key={detailNutritionData.id}>
         <h2 className={styles.detail_page_title}>
@@ -212,9 +215,9 @@ const NutritionDetail = () => {
           <hr />
         </div>
       </article>
-      <NavSearch/>
-      <GPT/>
-      <Movement/>
+      <NavSearch />
+      <GPT />
+      <Movement />
     </div>
   );
 };

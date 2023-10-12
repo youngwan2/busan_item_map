@@ -18,11 +18,11 @@ const DbSideMenu = ({ itemsKey }: any) => {
              `;
         }}
       >
-        바로가기
+        메뉴
       </button>{" "}
       <article className={styles.DbSideBar} ref={sidebarRef}>
         <div className={styles.sideBar_header}>
-          <h2>음식목록({itemsKey.length})</h2>
+          <h2 className={styles.sideBar_title}>음식목록({itemsKey.length})</h2>
           <span
             style={{
               position: "fixed",

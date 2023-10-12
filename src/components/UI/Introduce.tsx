@@ -1,19 +1,56 @@
 import styles from "./Introduce.module.css";
+import { useRef,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Introduce = () => {
+
+
+  const headerRef = useRef<HTMLAreaElement>(null)
+  const mainRef = useRef<HTMLAreaElement>(null)
+  const footerRef = useRef<HTMLAreaElement>(null)
+
+  useEffect(() => {
+if(headerRef.current && mainRef.current && footerRef.current) {
+    const callback = (entries:any) => { 
+      entries.forEach((entry:any)=>{
+        if(entry.isIntersecting) {
+          entry.target.style.cssText =`
+            visibility: visible;
+            opacity:1;
+            transform:translateY(0)
+          `
+        }
+      })
+    }
+
+    const options= {
+      root:null,
+      thresholds:0
+    }
+
+    const observer = new IntersectionObserver(callback, options)
+
+
+    observer.observe(headerRef.current)
+    observer.observe(mainRef.current)
+    observer.observe(footerRef.current)
+  }
+  },[])
+
   return (
     <div className={styles.Introduce}>
-      <section className={styles.intro_header}>
-        <h2 className={styles.intro_title}>FoodPick 사이트 소개</h2>
+      {/* 헤더 */}
+      <section className={styles.intro_header} ref={headerRef} id="intro_header">
+        <img className={styles.logo} src={process.env.PUBLIC_URL +'/images/logo.png'} alt="홈페이지 로고" />
+        <h2 className={styles.intro_title}>Food Pick</h2>
         <article className={styles.intro_content}>
           <p>
-            저희 사이트는 다양한 음식 관련 데이터를 간편하게 조회하여 필요한
-            정보를 얻어가실 수 있도록 하는 정보 조회 및 제공 사이트 입니다.
+           식품/영양정보 조회의 모든 것!
           </p>
         </article>
       </section>
-      <section className={styles.intro_main}>
+      {/* 주요 콘텐츠 */}
+      <section className={styles.intro_main} ref={mainRef} id="intro_main">
         <h2 className={styles.intro_title}>주요 콘텐츠</h2>
         <article className={styles.intro_content}>
           <p>
@@ -50,7 +87,8 @@ const Introduce = () => {
           </nav>
         </article>
       </section>
-      <section className={styles.intro_footer}>
+      {/* 푸터 */}
+      <section className={styles.intro_footer} ref={footerRef} id="intro_footer">
         <h2 className={styles.intro_title}>추후 계획</h2>
         <article className={styles.intro_content}>
           <p>

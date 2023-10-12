@@ -1,17 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
 
 .LocalFood {
   margin: 5rem auto 0 auto;
   display: flex;
   max-width: 1800px;
-  padding: 0 20px;
   text-align: center;
+
   flex-direction: column;
-  font-family: 'Orbit', sans-serif;
+  font-family: "Orbit", sans-serif;
 }
 
 .LocalFood_title {
   text-align: center;
+}
+
+/* 페이지 타이틀 */
+.LocalFood .title {
+  background-color: black;
+  text-shadow: 5px 5px 10px black;
+  padding: 9rem 0;
+  font-size: 2.5rem;
+  margin: 1rem 0 3rem 0 !important;
+  color: white;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  background: url("/public/images/localfoodback.png");
+}
+
+.LocalFood .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: linear-gradient(
+    -180deg,
+    rgba(0, 0, 0, 0.274),
+    rgb(255, 255, 255)
+  );
+  bottom: 0;
+}
+
+.LocalFood .title::after {
+  content: "향토음식조회";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 /** 콘텐츠(조회된 데이터 보이는 영역) */
@@ -23,7 +58,10 @@
 }
 
 @keyframes appear {
-  from {opacity: 0; visibility: hidden;}
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 /* 지역/음식 이미지 */
@@ -85,7 +123,7 @@
 
 .foods p {
   margin: 5px 0;
-  font-family: 'Orbit', sans-serif;
+  font-family: "Orbit", sans-serif;
 }
 .foods p span {
   color: rgb(255, 255, 255);
@@ -105,7 +143,7 @@
   z-index: 10000000000000;
   top: 50%;
   transform: translate(0, -50%);
-  left: 17rem;
+  left: 18.6rem;
 }
 
 .category_con .category_shift_btn_con li {
@@ -129,22 +167,28 @@
 .category_con .category_search_input {
   position: fixed;
   top: 18px;
-  box-shadow: inset 2px 2px 3px rgb(160, 162, 164),inset -2px -2px 3px rgb(116, 118, 132);
   border: none;
+  max-width: 200px;
   left: 20px;
   z-index: 10000000;
-  background-color: rgb(0, 0, 0);
-  color: white;
-  border-radius: 20px;
+  box-shadow: 0 0 1px 1px rgb(50, 97, 236);
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
   padding: 10px 15px;
 }
 
 .category_con .category_search_input::placeholder {
-  color: rgba(185, 184, 173, 0.905);
+  color: rgba(9, 16, 79, 0.905);
 }
 
 .category_con .category_search_input:focus {
   outline: none;
+  color:white;
+  background-color: rgb(63, 115, 247);
+}
+
+.category_con .category_search_input:focus::placeholder {
+  color:white;
 }
 
 .category_con .category li:hover {
@@ -178,26 +222,31 @@
   border-radius: 10px;
 }
 
-
 /* 카테고리 내 검색 버튼*/
 .category_con .search_btn {
   z-index: 10000000;
   border-radius: 5px;
-  color:white;
+  color: white;
   border: none;
-  background-color:transparent;
+  padding: 4px 8px;
+  box-shadow: 0 0 1px 1px rgb(81, 81, 241);
+  background-color: white;
   position: fixed;
-  top: 1.38rem;
+  top: 1.18rem;
   left: 14.5rem;
 }
-
 
 /** 카테고리 온/오프 버튼 */
 .slide_btn_inner {
   position: fixed;
   left: 17.6rem;
+  padding: 6px 7px !important;
   border-radius: 5px;
+  margin: 0 3px;
+    box-shadow: 0 0 1px 1px rgb(81, 81, 241);
   top: 20px;
+  background-color: white;
+
   border: none;
   color: white;
   transition: 0.5s;
@@ -205,7 +254,7 @@
   padding: 5px 8px;
 }
 .slide_btn_inner::before {
-  content:'카테고리 닫기 버튼입니다.';
+  content: "닫기";
   box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.37);
   position: absolute;
   display: inline-block;
@@ -222,16 +271,16 @@
   top: -1rem;
   padding: 10px;
   background-color: rgb(68, 112, 215);
-  color:white;
+  color: white;
 }
 .slide_btn_inner:hover::before {
-  content:'카테고리 닫기 버튼입니다.';
+  content: "닫기";
   scale: 1;
   box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.37);
   position: absolute;
   display: inline-block;
   opacity: 1;
-  width: 300px;
+  width: 100px;
   border-bottom-left-radius: 40%;
   border-top-left-radius: 100%;
   border-top-right-radius: 20px;
@@ -240,8 +289,7 @@
   top: -1rem;
   padding: 10px;
   background-color: rgb(68, 112, 215);
-  color:white;
-
+  color: white;
 }
 
 .slide_btn_outer {
@@ -259,4 +307,3 @@
   top: 5rem;
   writing-mode: vertical-lr;
 }
-

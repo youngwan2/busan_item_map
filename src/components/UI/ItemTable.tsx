@@ -8,6 +8,8 @@ import Header from "./Header";
 import Movement from "./movement/Movement";
 
 import { useState, useEffect, useCallback } from "react";
+import GPT from "../../util/kakao/gpt";
+import NavSearch from "./NavSearch";
 
 type ItemsType = {
   adres: string;
@@ -35,7 +37,6 @@ function ItemTable() {
   const [bsshNm, setBsshNm] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
 
     setIsLoading(true)
@@ -64,7 +65,7 @@ function ItemTable() {
   return (
     <>
       <Header isStyle={true}></Header>
-      <h2 style={{textAlign:'center', margin:"6rem 0"}}>부산생필품 정보조회</h2>
+      <h2 className={styles.title} style={{textAlign:'center', margin:"6rem 0"}}>부산생필품 정보조회</h2>
       <table className={styles.item_table}>
         <thead>
           <tr>
@@ -118,6 +119,9 @@ function ItemTable() {
           >
             <ReactSpinner />
           </span>
+
+    <GPT/>
+    <NavSearch/>
     </>
   );
 }

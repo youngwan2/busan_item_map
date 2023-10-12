@@ -1,8 +1,9 @@
 /* 페이지네이션 바깥 테두리 */
 .page_container {
   display: flex;
+  z-index: 100000000000000;
   width: 100%;
-  margin: -8rem auto 20px auto;
+  margin: -5rem auto 20px auto;
   justify-content: center;
   padding: 5px;
   animation: appear 1s 1 ease-in-out;

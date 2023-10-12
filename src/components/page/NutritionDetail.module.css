@@ -1,16 +1,36 @@
+.detail_page_btn_container {
+    background: linear-gradient(5deg, rgba(29, 79, 196, 0.805), rgb(53, 53, 225));
+    box-shadow: 0 0 3px 1px black;
+    position: fixed;
+    overflow-y: auto;
+    z-index: 10000000000;
+    width: 100%;
+}
 
+
+/* 뒤로가기 버튼 */
+.back_btn {
+    background-color: white;
+    box-shadow: inset 2px 2px 2px 0 rgb(100, 99, 99);
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+/* 페이지 제목 */
 .detail_page_title {
-    margin: 30px 0 50px 0;
+    margin: 5rem 0 50px 0;
     display: inline-block;
     border-left: 10px solid rgb(90, 151, 232);
     padding:  0 10px;
+    font-weight: 600;
     letter-spacing: 1.5px;
 
 }
 
 .detail_article {
     max-width: 1900px;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
     padding: 10px;
     display: flex;
     position: absolute;

@@ -18,16 +18,16 @@ function Pagination({ setPage }: PaginationType) {
 
       const lastPage = pageGroup * pageSize;
       const firstPage = lastPage - pageSize + 1;
-      console.log(
-        "현재 그룹:",
-        pageGroup,
-        "현재페이지:",
-        currentPage,
-        "첫 페이지:",
-        firstPage,
-        "마지막페이지:",
-        lastPage
-      );
+      // console.log(
+      //   "현재 그룹:",
+      //   pageGroup,
+      //   "현재페이지:",
+      //   currentPage,
+      //   "첫 페이지:",
+      //   firstPage,
+      //   "마지막페이지:",
+      //   lastPage
+      // );
 
       const renderItem = [];
 

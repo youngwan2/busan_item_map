@@ -106,11 +106,11 @@ const Database = () => {
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-      createDB(nutritions, itemName);
-      setNextIndex(0);
-      if (addBtnRef.current) {
-        addBtnRef.current.style.visibility = "visible";
-      }
+    createDB(nutritions, itemName);
+    setNextIndex(0);
+    if (addBtnRef.current) {
+      addBtnRef.current.style.visibility = "visible";
+    }
   }, [createDB, itemName]);
 
   // 컴포넌트가 마운트된 뒤에 input 에 포커스를 맞춘다.
@@ -122,32 +122,34 @@ const Database = () => {
     <section className={styles.container}>
       <DbSideMenu itemsKey={itemKey} />
       {/* 아이템 검색창  */}
-      <input
-        className={styles.search_input}
-        ref={inputRef}
-        type="text"
-        placeholder="음식명을 입력해주세요!"
-        onKeyUp={(e) => {
-          if (e.code === "Enter") {
-            setItemName(e.target.value);
+      <div className={styles.search_container}>
+        <input
+          className={styles.search_input}
+          ref={inputRef}
+          type="text"
+          placeholder="음식명을 입력해주세요!"
+          onKeyUp={(e) => {
+            if (e.code === "Enter") {
+              setItemName(e.target.value);
+              setTimeout(() => {
+                e.target.value = "";
+              }, 100);
+            }
+          }}
+        />
+        <button
+          className={styles.search_btn}
+          type="button"
+          onClick={() => {
+            setItemName(inputRef.current.value);
             setTimeout(() => {
-              e.target.value = "";
+              inputRef.current.value = "";
             }, 100);
-          }
-        }}
-      />
-      <button
-        className={styles.search_btn}
-        type="button"
-        onClick={() => {
-          setItemName(inputRef.current.value);
-          setTimeout(() => {
-            inputRef.current.value = "";
-          }, 100);
-        }}
-      >
-        검색
-      </button>
+          }}
+        >
+          검색
+        </button>
+      </div>
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span className={styles.result_msg}>
         {getNutritions.slice(0, nextIndex + 4).length}/{getNutritions.length}
@@ -162,6 +164,7 @@ const Database = () => {
           getNutritions.slice(0, nextIndex + 4).map((item, i) => {
             return (
               <article
+                id={item.id}
                 key={item.id}
                 className={styles.item_box}
                 onClick={() => {

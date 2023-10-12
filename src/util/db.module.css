@@ -11,25 +11,39 @@
   flex-wrap: wrap;
 }
 
+
+.search_container {
+  display: flex;
+  margin: 4rem auto 0 auto;
+  max-width: 500px;
+  width: 100%;
+  justify-content: center;
+}
+
 /* 검색창 */
-.search_input {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-right: none;
+.search_container .search_input {
+  border-radius: 5px;
+  border: 1px solid #889cff;
+  padding: 10px 15px;
+  min-width: 180px;
+  width: 100%;
+  margin: 0 5px;
 }
 
 .search_input:focus {
   outline:none;
 }
 
-.search_btn {
-  padding: 10px;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+.search_container .search_btn {
+  right: 0;
+  border-radius: 5px;
+  min-width: 65px;
   color: white;
-  background-color: rgb(119, 119, 238);
+  box-shadow: inset 2px 2px 2px rgb(133, 149, 252),
+    inset -2px -2px 2px rgb(30, 43, 125);
+  padding: 11px 15px;
+  border: none;
+  background-color: rgb(98, 98, 238);
 }
 
 .search_btn:hover {
@@ -97,7 +111,7 @@
 
 /* 메시지 */
 .message {
-  margin: 0px 10px 3rem 10px;
+  margin: -1rem 10px 3rem 10px;
   position: relative;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.386);
@@ -107,6 +121,7 @@
   background-color: rgb(122, 122, 251);
   border-radius: 10px;
   box-shadow: 20px 20px 5px rgba(0, 0, 0, 0.287);
+  animation: appear 1s 1 ease-in-out;
 }
 
 .message::before {

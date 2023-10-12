@@ -2,12 +2,40 @@
 
 .Nutrition_section {
   margin: 6rem auto 0 auto;
-  max-width: 1600px;
   font-family: 'Orbit', sans-serif;
   text-align: center;
 }
 
 
 .nutrition_title {
-  margin: 1rem 0;
+  background-color: black;
+  text-shadow: 5px 5px 8px black;
+  padding: 8rem 0;
+  font-size: 2.5rem;
+  margin: 1rem 0 2rem 0 !important;
+  color:white;
+  background-size: contain;
+  box-shadow: inset 0 0 5px 2px rgba(165, 164, 164, 0.657) !important;
+  background-position: center !important;
+  position: relative;
+  background: url('/public/images/nutritionback.png');
+}
+
+.nutrition_title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background:rgba(44, 44, 44, 0.4);
+  bottom: 0;
+}
+
+.nutrition_title::after {
+  content: '식품영양정보조회';
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%);
+
 }

@@ -1,14 +1,15 @@
 /* 카테고리를 불러오는 버튼 */
 .list_load_btn {
-  background-color: rgb(89, 89, 222);
+  background-color: rgb(103, 103, 252);
   color: white;
   border: none;
-  padding: 3px 5px;
+  padding: 10px;
   min-height: 40px;
+  font-size: 15px;
   position: fixed;
   left: 10px;
   top: 5rem;
-  box-shadow: inset 2px 3px rgb(79, 106, 226), inset -3px -3px rgb(13, 36, 163);
+  box-shadow: inset -2px -2px rgb(38, 51, 126);
   border-radius: 20px;
 }
 
@@ -71,6 +72,8 @@
   color: rgb(0, 0, 0);
 }
 
+
+
 .DbSideBar::content {
   content: "";
   position: fixed;
@@ -118,4 +121,10 @@
 
 .title_list li a:hover {
   color: rgb(63, 63, 209);
+}
+
+
+/* 사이드 바 제목 */
+.sideBar_title {
+  font-size: 1.5rem;
 }

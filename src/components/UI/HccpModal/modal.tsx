@@ -19,7 +19,7 @@ function Modal({ filterItems, setModal, modal }: ModalType) {
             : { visibility: "hidden", opacity: 0,scale:'0.5 0.5',transformOrigin:'left top' }
         }
       >
-        <h2>상품상세</h2>
+        <h2 className={styles.modal_title}>상품상세</h2>
         <button
           onClick={() => {
             setModal(false);

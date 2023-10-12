@@ -34,7 +34,7 @@
     color:rgb(185, 193, 233);
   }
   
-  .modal h2 {
+  .modal_title {
     background-color: rgba(0, 0, 255, 0.697);
     color: white;
     border-top-left-radius: 5px;

@@ -15,7 +15,7 @@ a {
 }
 
 body {
-  font-family: "Orbit", sans-serif;
+  font-family: "Orbit", sans-serif !important;
   animation: appear 1s 1 ease-in-out;
 
 }
