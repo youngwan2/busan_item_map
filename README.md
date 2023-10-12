@@ -8,6 +8,11 @@
   <img src="https://github.com/youngwan2/busan_item_map/assets/107159871/256f8cdf-6e65-412b-8a45-4f43d2313e91" alt="홈페이지 프리뷰"/>
   </p>
 
+
+## 배포 URL(도메인)
+- <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
+- <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
+
 ## 프로젝트 목적
 - (목적) 다양한 식품 정보를 적재적소에 검색하여 활용할 수 있는 사이트가 있으면 좋겠다는 개인적인 바람에 의해 개발하였습니다. 
 
@@ -19,10 +24,6 @@
 - 학교 급식, 외식, 가정식 등의 다양한 음식의 영양성분 정보를 제공하며, 더보기 버튼을 활용하여 대량의 데이터를 필요에 따라 추가 조회할 수 있으며, 3대 영양소에 대한 시각화 정보를 제공합니다.
 - AI Chat 을 활용하여 유동적으로 사용자가 원하는 질문에 대한 답변을 제공합니다.
 - 네이버 지식백과 API와 연동하여 사이트 이용 중 모르는 용어에 대한 정보조회를 지원합니다.
-
-## 배포 URL(도메인)
-- <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
-- <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
 
 ## 사용된 라이브러리 및 프레임워크(기타 도구포함)
 ### 프론트엔드
