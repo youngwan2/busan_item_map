@@ -7,6 +7,7 @@ import LocalFood from "../components/page/LocalFood";
 import Nutrition from "../components/page/Nutrition";
 import NutritionDetail from "../components/page/NutritionDetail";
 import NotFound from "../components/errror/NotFound";
+import Recipe from "../components/page/Recipe";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/nutrition/:id",
     element: <NutritionDetail />
+  },
+  {
+    path: "/food-recipe",
+    element: <Recipe/>
   },
   {
     path: "*",

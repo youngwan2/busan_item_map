@@ -15,14 +15,14 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
         items.map((item) => {
           return (
             // 조회된 각 아이템
-            <figure key={item.item.prdlstReportNo}>
+            <figure key={item.item.prdlstReportNo} onClick={() => {
+              setModal(true); // 모달 활성화
+              setProductId(item.item.prdlstReportNo); // 선택한 아이템 id 상태 관리
+            }}>
               <div
                 id="item_box"
                 role="listitem"
-                onClick={() => {
-                  setModal(true); // 모달 활성화
-                  setProductId(item.item.prdlstReportNo); // 선택한 아이템 id 상태 관리
-                }}
+
               >
                 <img src={`${item.item.imgurl1}`} alt="상품이미지"></img>
                 <p>{item.item.prdlstNm}</p>
