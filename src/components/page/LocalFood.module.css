@@ -45,13 +45,14 @@
 .LocalFood .title::after {
   content: "향토음식조회";
   position: absolute;
+  min-width: 220px;
   left: 50%;
   transform: translate(-50%);
 }
 
 /** 콘텐츠(조회된 데이터 보이는 영역) */
 .contents {
-  padding: 10px;
+  padding: 5px 10px 5px 0;
   animation: appear 1s 1 ease-in-out;
   text-align: center;
   width: 100%;
@@ -66,7 +67,7 @@
 
 /* 지역/음식 이미지 */
 .contents img {
-  margin: 2rem 10px 10px 10px;
+  margin: 2rem 5px 10px 5px;
   border-radius: 10px;
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.325));
 }
