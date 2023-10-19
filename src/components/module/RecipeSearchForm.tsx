@@ -20,6 +20,12 @@ function RecipeSearchForm({
 }: RecipeSearchFormType) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(()=>{
+    if(inputRef.current) {
+      inputRef.current.focus()
+    }
+  },[])
+
   return (
     <article className={styles.search_form}>
       <div className={styles.search_input_area}>

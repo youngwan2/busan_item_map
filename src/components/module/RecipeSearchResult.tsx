@@ -1,13 +1,12 @@
 import { RecipeType } from "../../type/RecipeType";
 import styles from "../page/recipe/Recipe.module.css";
-import { useNavigate, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 interface ResultType {
   recipes?: RecipeType[];
   meg: string;
 }
 
 function RecipeSearchResult({ recipes, meg }: ResultType) {
-  const navigate = useNavigate();
   return (
     <>
       <h3 className={styles.undefined_meg}>{meg}</h3>
