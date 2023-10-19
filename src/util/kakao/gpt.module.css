@@ -13,7 +13,7 @@
   box-shadow: inset 5px 5px 4px rgba(88, 109, 152, 0.704), inset -7px -5px 8px rgb(41, 67, 120), 20px 20px 5px rgba(0, 0, 0, 0.301);
   right: 2rem;
   background-color: white;
-  z-index: 100000000000000000000;
+  z-index: 10000000000000000000;
   bottom: 5rem;
   padding: 20px;
 }

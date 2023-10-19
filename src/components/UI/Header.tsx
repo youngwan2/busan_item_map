@@ -68,6 +68,9 @@ function Header({ isStyle }: HeaderType) {
               <li>
                 <Link to={"/haccp"}>HACCP제품정보조회</Link>
               </li>
+              <li>
+                <Link to={"/food-recipe"}>레시피정보조회</Link>
+              </li>
             </ul>
           </nav>
           {/* 가로 624 px 이하 부터 적용 */}

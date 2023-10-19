@@ -29,9 +29,9 @@ function Modal({ filterItems, setModal, modal }: ModalType) {
         </button>
         <section>
           {Array.isArray(filterItems) ? (
-            filterItems.map((item) => {
+            filterItems.map((item,i) => {
               return (
-                <div className={styles.modal_content_con}>
+                <div className={styles.modal_content_con} key={item.item.prdlstReportNo}>
                   <figure className={styles.modal_figure}>
                     <img src={`${item.item.imgurl1}`} alt="상품이미지" />
                   </figure>
@@ -39,27 +39,27 @@ function Modal({ filterItems, setModal, modal }: ModalType) {
                     <p>
                       <strong>상품명</strong>
                       <br />
-                      <div>{item.item.prdlstNm??'알수없음'}</div>
+                      <span>{item.item.prdlstNm??'알수없음'}</span>
                     </p>
                     <p>
                       <strong>제조사</strong>
                       <br />
-                      <div>{item.item.manufacture??'알수없음'}</div>
+                      <span>{item.item.manufacture??'알수없음'}</span>
                     </p>
                     <p>
                       <strong>성분</strong>
                       <br />
-                      <div>{item.item.rawmtrl??'알수없음'}</div>
+                      <span>{item.item.rawmtrl??'알수없음'}</span>
                     </p>
                     <p>
                       <strong>알러지</strong>
                       <br />
-                      <div>{item.item.allergy??'알수없음'}</div>
+                      <span>{item.item.allergy??'알수없음'}</span>
                     </p>
                     <p>
                       <strong>바코드</strong>
                       <br />
-                      <div>{item.item.barcode??'알수없음'}</div>
+                      <span>{item.item.barcode??'알수없음'}</span>
                     </p>
                   </div>
                 </div>
