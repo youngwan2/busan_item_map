@@ -5,12 +5,15 @@ import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
 import { RecipeType } from "../../../type/RecipeType";
 import RecipeNutrition from "./RecipeNutrition";
+import NextRecipe from "../../module/NextRecipe";
 
 function RecipeDetail() {
-  const detailSectionRef = useRef<HTMLBaseElement>(null)
+  const detailSectionRef = useRef<HTMLBaseElement>(null);
   const params = useParams();
   const [count, setCount] = useState([]);
   const [recipe, setRecipe] = useState<RecipeType>();
+
+
   const state = useAppSelector((state) => {
     return state.recipe;
   }).value.filter((recipe) => {
@@ -19,13 +22,14 @@ function RecipeDetail() {
 
   useEffect(() => {
     setRecipe(state[0]);
-  }, []);
+    console.log(recipe)
+  }, [params]);
 
-  useEffect(()=>{
-    if(detailSectionRef.current) {
-      detailSectionRef.current.scrollIntoView({block:'start'})
+  useEffect(() => {
+    if (detailSectionRef.current) {
+      detailSectionRef.current.scrollIntoView({ block: "start" });
     }
-  },[])
+  }, []);
   return (
     <>
       <Header isStyle={true} />
@@ -58,35 +62,94 @@ function RecipeDetail() {
           <section>
             <h3>만드는 법</h3>
             <article className={styles.recipe_making_items}>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL01 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG01} alt="만드는법1" />
                 <p>{recipe?.MANUAL01}</p>
               </figure>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL02 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG02} alt="만드는법2" />
                 <p>{recipe?.MANUAL02}</p>
               </figure>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL03 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG03} alt="만드는법3" />
                 <p>{recipe?.MANUAL03}</p>
               </figure>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL04 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG04} alt="만드는법4" />
                 <p>{recipe?.MANUAL04}</p>
               </figure>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL05 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG05} alt="만드는법5" />
                 <p>{recipe?.MANUAL05}</p>
               </figure>
-              <figure>
+              <figure
+                style={
+                  recipe?.MANUAL06 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
                 <img src={recipe?.MANUAL_IMG06} alt="만드는법6" />
                 <p>{recipe?.MANUAL06}</p>
+              </figure>
+              <figure
+                style={
+                  recipe?.MANUAL07 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
+                <img src={recipe?.MANUAL_IMG07} alt="만드는법7" />
+                <p>{recipe?.MANUAL07}</p>
+              </figure>
+              <figure
+                style={
+                  recipe?.MANUAL08 === "" || recipe === undefined
+                    ? { display: "none" }
+                    : { display: "block" }
+                }
+              >
+                <img src={recipe?.MANUAL_IMG08} alt="만드는법8" />
+                <p>{recipe?.MANUAL08}</p>
               </figure>
             </article>
           </section>
         </article>
       </section>
-      <RecipeNutrition recipe={recipe}/>
+      <RecipeNutrition recipe={recipe} />
+      <hr />
+      <br />
+      <NextRecipe param ={params.id} />
     </>
   );
 }

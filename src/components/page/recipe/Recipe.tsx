@@ -66,7 +66,7 @@ function Recipe() {
       console.log("카테고리 비선택 및 검색어가 존재");
       return axios
         .get(
-          `http://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/20/RCP_NM=${searchFoodName}`
+          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/20/RCP_NM=${searchFoodName}`
         )
         .then((response) => {
           axiosThen(response);
@@ -81,7 +81,7 @@ function Recipe() {
       console.log("카테고리 선택 및 검색어 존재");
       return axios
         .get(
-          `http://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/20/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`
+          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/20/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`
         )
         .then((response) => {
           axiosThen(response);
@@ -106,9 +106,9 @@ function Recipe() {
           checkedMenu={checkedMenu}
           categories={categories}
         />
-        <span style={{ textAlign: "center" }}>
+        <div className={styles.loading_spinner} style={loading?{display:'inline-block' }:{display:'none'}}>
           {loading && <ReactSpinner />}
-        </span>
+        </div>
 
         <RecipeSearchResult
           recipes={recipes}

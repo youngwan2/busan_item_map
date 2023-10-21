@@ -179,3 +179,13 @@
     text-align: center;
     margin: 2rem;
 }
+
+
+/* 로딩 스피너 */
+.loading_spinner {
+  position: fixed;
+  left: 50%;
+  box-shadow: 0 0 20px 5px rgba(131, 177, 250, 0.688);
+  top: 50%;
+  transform: translate(-50%,-50%);
+}

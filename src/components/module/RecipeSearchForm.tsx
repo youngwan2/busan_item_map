@@ -20,17 +20,18 @@ function RecipeSearchForm({
 }: RecipeSearchFormType) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(()=>{
-    if(inputRef.current) {
-      inputRef.current.focus()
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
-  },[])
+  }, []);
 
   return (
     <article className={styles.search_form}>
       <div className={styles.search_input_area}>
         <label htmlFor="recipe_search"></label>
         <input
+          ref={inputRef}
           id="recipe_search"
           type="search"
           onKeyUp={(e) => {
@@ -54,7 +55,6 @@ function RecipeSearchForm({
           return (
             <p className={styles.checkbox_item} key={category}>
               <input
-                ref={inputRef}
                 name="category"
                 onClick={(e) => {
                   setCheckedMenu(e.currentTarget.value);
