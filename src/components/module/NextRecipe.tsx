@@ -1,4 +1,4 @@
-import styles from "../page/recipe/RecipeDetail.module.css";
+import styles from "../page/recipe/RecipeDetail.module.scss";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect, useRef } from "react";
@@ -31,11 +31,10 @@ function NextRecipe({ param }: Type) {
             (articleRef.current.style.cssText = `
                 opacity:1;
                 visibility: visible;
-                bottom:0.5rem;
                 transform:translate(0,0);
              `);
-             articleRef.current && observer.unobserve(articleRef.current);
-        } 
+          articleRef.current && observer.unobserve(articleRef.current);
+        }
       });
     }, options);
 
@@ -53,13 +52,13 @@ function NextRecipe({ param }: Type) {
       <button
         style={
           currentIndex <= 0
-            ? { visibility: "hidden" }
-            : { visibility: "visible" }
+            ? { visibility: "hidden", opacity:0 }
+            : { visibility: "visible", opacity:1 }
         }
       >
         <Link to={`/food-recipe/detail/${prevRecipe?.RCP_SEQ}`}>
           <h4 style={{ background: `url(${prevRecipe?.ATT_FILE_NO_MAIN})` }}>
-            {prevRecipe?.RCP_NM}
+            {prevRecipe?.RCP_NM||"아이템이 존재하지 않습니다"}
           </h4>
           <span className={styles.btn_icons_left}>
             <FaArrowAltCircleLeft />
@@ -69,13 +68,13 @@ function NextRecipe({ param }: Type) {
       <button
         style={
           currentIndex === lastIndex
-            ? { visibility: "hidden" }
-            : { visibility: "visible" }
+            ? { visibility: "hidden", opacity:0 }
+            : { visibility: "visible", opacity:1 }
         }
       >
         <Link to={`/food-recipe/detail/${nextRecipe?.RCP_SEQ}`}>
           <h4 style={{ background: `url(${nextRecipe?.ATT_FILE_NO_MAIN})` }}>
-            {nextRecipe?.RCP_NM}
+            {nextRecipe?.RCP_NM||"아이템이 존재하지 않습니다."}
           </h4>
           <span className={styles.btn_icons_right}>
             <FaArrowAltCircleRight />

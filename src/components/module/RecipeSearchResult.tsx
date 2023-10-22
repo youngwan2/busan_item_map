@@ -1,19 +1,34 @@
+import { useEffect, useState } from "react";
 import { RecipeType } from "../../type/RecipeType";
-import styles from "../page/recipe/Recipe.module.css";
-import {  Link } from "react-router-dom";
+import styles from "../page/recipe/Recipe.module.scss";
+import { Link } from "react-router-dom";
 interface ResultType {
   recipes?: RecipeType[];
   meg: string;
+  extraRecipeDataCount: number;
+  setEndRecipeDataCheck: (count: number) => void;
 }
 
-function RecipeSearchResult({ recipes, meg }: ResultType) {
+function RecipeSearchResult({
+  recipes,
+  meg,
+  extraRecipeDataCount,
+  setEndRecipeDataCheck,
+}: ResultType) {
+  useEffect(() => {
+    const count = recipes?.slice(0, extraRecipeDataCount).length||0;
+    setEndRecipeDataCheck(count)
+  }, [extraRecipeDataCount]);
   return (
     <>
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article className={styles.search_result_container}>
-        {recipes?.map((recipe) => {
+        {recipes?.slice(0, extraRecipeDataCount).map((recipe) => {
           return (
-            <Link to={`/food-recipe/detail/${recipe.RCP_SEQ}`} key={recipe.RCP_SEQ}>
+            <Link
+              to={`/food-recipe/detail/${recipe.RCP_SEQ}`}
+              key={recipe.RCP_SEQ}
+            >
               <ul
                 className={styles.recipe_item_con}
                 style={{
@@ -27,7 +42,6 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
                   <p className={styles.recipe_main_category}>
                     {recipe.RCP_PAT2}
                   </p>
-                  <p className={styles.recipe_main_weight}>{recipe.INFO_WGT}</p>
                 </li>
               </ul>
             </Link>

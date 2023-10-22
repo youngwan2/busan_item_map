@@ -1,0 +1,134 @@
+.recipe_detail_section {
+  margin: 0 auto;
+  text-align: center;
+  padding: 5rem 10px;
+  border-radius: 5px;
+  max-width: 1200px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.32);
+  min-height: 120vh !important;
+}
+
+.page_title {
+  margin: 2rem;
+}
+
+.recipe_content_con {
+  margin: 2rem 0;
+  section {
+    margin-top: 3rem;
+  }
+}
+
+.recipe_image {
+  max-width: 600px;
+  width: 100%;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.etc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div {
+    display: flex;
+  }
+
+  p {
+    margin: 10px 10px;
+    max-width: 100px;
+    background-color: goldenrod;
+    padding: 3px 8px;
+    min-width: 60px;
+    border-radius: 10px;
+  }
+}
+
+/* 만드는법 */
+.recipe_making_items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  figure {
+    max-height: 700px;
+    min-height: 400px;
+    border-radius: 5px;
+    img {
+      border-radius: 10px;
+    }
+  }
+  figure:hover {
+    box-shadow: 0 0 1px 3px rgb(139, 139, 253);
+  }
+}
+
+/* 이전/다음 페이지 */
+.pagination_article {
+  margin: 0 auto;
+  min-width: 280px;
+  transition: 0.5s;
+  position: relative;
+  bottom: 0;
+  transform: translate(0, -30px);
+  visibility: hidden;
+  opacity: 0;
+  max-width: 800px;
+  width: 100%;
+  height: 40vh;
+  text-align: center;
+    button {
+      width: 48%;
+      margin: 0 5px;
+      filter: brightness(80%);
+      padding: 0;
+      position: relative;
+      transition: 0.5s ease-in-out;
+      border-radius: 5px;
+      border: 3px solid rgb(125, 125, 255);
+      height: 200px;
+      a {
+        text-decoration: none;
+        color: rgb(241, 242, 255);
+        text-shadow: 1px 1px 2px rgb(6, 21, 86);
+      }
+    }
+
+    button:hover {
+      filter: brightness(100%);
+      box-shadow: 0 0 50px 0 rgb(93, 93, 255);
+    }
+
+
+    h4 {
+      background-position: center !important;
+      width: 100%;
+      height: 100%;
+      padding-top: 3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    
+      background-size: cover !important;
+    }
+}
+
+
+
+/* 페이지 버튼 아이콘 */
+
+.btn_icons_left {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  color: rgb(96, 96, 248);
+  font-size: 3rem;
+  transform: translate(0, -50%);
+}
+.btn_icons_right {
+  position: absolute;
+  color: rgb(96, 96, 248);
+  right: 1rem;
+  font-size: 3rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}

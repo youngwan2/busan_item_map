@@ -1,4 +1,4 @@
-import styles from "./RecipeDetail.module.css";
+import styles from "./RecipeDetail.module.scss";
 import Header from "../../UI/Header";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -13,8 +13,8 @@ function RecipeDetail() {
   const [count, setCount] = useState([]);
   const [recipe, setRecipe] = useState<RecipeType>();
 
-
   const state = useAppSelector((state) => {
+    sessionStorage.setItem("recipe", JSON.stringify({recipes:state.recipe.value}));
     return state.recipe;
   }).value.filter((recipe) => {
     return recipe.RCP_SEQ === params.id;
@@ -22,7 +22,7 @@ function RecipeDetail() {
 
   useEffect(() => {
     setRecipe(state[0]);
-    console.log(recipe)
+    console.log(recipe);
   }, [params]);
 
   useEffect(() => {
@@ -147,9 +147,10 @@ function RecipeDetail() {
         </article>
       </section>
       <RecipeNutrition recipe={recipe} />
+      <br />
       <hr />
       <br />
-      <NextRecipe param ={params.id} />
+      <NextRecipe param={params.id} />
     </>
   );
 }

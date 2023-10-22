@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import styles from "../page/recipe/Recipe.module.css";
+import styles from "../page/recipe/Recipe.module.scss";
 
 interface RecipeSearchFormType {
   setCheckedMenu: (p: string) => void;
@@ -8,6 +8,7 @@ interface RecipeSearchFormType {
   userInputValue: string;
   checkedMenu: string;
   categories: string[];
+  setExtraRecipeDataCount: (count: number) => void;
 }
 
 function RecipeSearchForm({
@@ -17,6 +18,7 @@ function RecipeSearchForm({
   userInputValue,
   checkedMenu,
   categories,
+  setExtraRecipeDataCount,
 }: RecipeSearchFormType) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -45,6 +47,7 @@ function RecipeSearchForm({
           onClick={() => {
             // onClick("호출")
             getRecipeDataFromApi(userInputValue, checkedMenu);
+            setExtraRecipeDataCount(0);
           }}
         >
           검색
