@@ -28,20 +28,20 @@
 
 ## 사용된 주요 라이브러리 및 프레임워크(기타 API포함)
 ### 프론트엔드
-- #### React.js
-- #### Typescript.js
-- #### Chart.js
-- #### Redux-Toolkit
-- #### KaKao Map API
-- #### 공공데이터포털 API
+- React.js
+- Typescript.js
+- Chart.js
+- Redux-Toolkit
+- KaKao Map API
+- 공공데이터포털 API
 
 ### 백엔드
-- #### Node.js(express)
-- #### KaKao KoGPT API
-- #### Naver Search API
+- Node.js(express)
+- KaKao KoGPT API
+- Naver Search API
   
 ### 데이터베이스
-- #### IndexedDB
+- IndexedDB
 
 ## 향후 계획
 - 식품 이미지를 사용자가 올리면, 해당 이미지를 분석하여 영양정보를 제공하는 AI 기능을 tensorflow.js 를 활용하여 도입해볼 예정입니다.
