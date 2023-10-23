@@ -18,7 +18,7 @@ function DbResult({ getNutritions, nextIndex }:ResultType) {
   return (
     <section className={styles.item_section} ref={containerRef}>
       {Array.isArray(getNutritions) && getNutritions[0] !== undefined ? (
-        getNutritions.slice(0, nextIndex + 4).map((item, i) => {
+        getNutritions.slice(0, nextIndex + 8).map((item, i) => {
           return (
             <article
               id={item.id}

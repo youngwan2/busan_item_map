@@ -16,11 +16,11 @@ function DbAddButton({ getNutritions, setNextIndex, nextIndex }: ButtonType) {
       disabled={getNutritions.length === 0}
       className={styles.add_btn}
       onClick={() => {
-        const copy = getNutritions.slice(nextIndex, nextIndex + 4);
+        const copy = getNutritions.slice(nextIndex, nextIndex + 8);
         if (copy.length === getNutritions.length) {
             alert("추가 데이터가 존재하지 않습니다.")
         }
-        setNextIndex((nextIndex += 4));
+        setNextIndex((nextIndex += 8));
       }}
     >
       더보기

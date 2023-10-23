@@ -25,7 +25,7 @@
 }
 
 .list_load_btn::before {
-  content: "조회한 음식 목록을 확인할 수 있습니다. 조회된 목록 중 하나를 클릭하면 해당 위치로 이동합니다.";
+  content: "조회한 음식 목록을 확인할 수 있습니다. 조회된 목록 중 하나를 클릭하면 상세 페이지로 이동합니다.";
   position: absolute;
   right: -13.6rem;
   opacity: 0;
@@ -71,8 +71,6 @@
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
-
-
 
 .DbSideBar::content {
   content: "";
@@ -123,8 +121,20 @@
   color: rgb(63, 63, 209);
 }
 
-
 /* 사이드 바 제목 */
 .sideBar_title {
   font-size: 1.5rem;
+}
+
+/* 사이드바 오버레이 */
+.side_bar_overlay {
+  background-color: rgba(0, 0, 0, 0.336);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 110%;
+  visibility: hidden;
+  transition: 1s;
+  min-height: 100vh;
 }

@@ -13,10 +13,10 @@ function DbSearch({ setItemName }: { setItemName: (name: string) => void }) {
       <input
         className={styles.search_input}
         ref={inputRef}
-        type="text"
+        type="search"
         placeholder="음식명을 입력해주세요!"
-        onKeyUp={(e) => {
-          if (e.code === "Enter") {
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
             setItemName(e.currentTarget.value);
             setTimeout(() => {
               inputRef.current && (inputRef.current.value = '')

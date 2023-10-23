@@ -113,7 +113,7 @@ const Database = () => {
       <DbSearch setItemName={setItemName} />
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span className={styles.result_msg}>
-        {nutrtionAtom.slice(0, nextIndex + 4).length}/{nutrtionAtom.length}
+        {nutrtionAtom.slice(0, nextIndex + 8).length}/{nutrtionAtom.length}
         (개)
       </span>{" "}
       <br />

@@ -1,13 +1,15 @@
 import Header from "../UI/Header";
-import styles from "./HccpSearch.module.css";
+import styles from "./HccpSearch.module.scss";
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
 import Modal from "../UI/HccpModal/modal";
 import HccpResult from "../module/HccpResult";
-import ReactSpinner from "../UI/loading/ReactSpinner";
 import Movement from "../UI/movement/Movement";
 import NavSearch from "../UI/NavSearch";
 import GPT from "../../util/kakao/gpt";
+import { useRecoilState } from "recoil";
+import { HaccpData } from "../../atom/Haccp";
+import HaccpSearchForm from "../module/HaccpSearchForm";
 
 export type ItemsType = {
   item: {
@@ -26,24 +28,24 @@ export type ItemsType = {
 function HccpSearch() {
   const [productName, setProductName] = useState(""); // 상품 이름
   const [loading, setLoading] = useState(false);
-  const [items, setItems] = useState<ItemsType[]>([]); // 상품목록
+  const [itemsAtom, setItemsAtom] = useRecoilState<ItemsType[]>(HaccpData);
   const [filterItems, setFilterItems] = useState<ItemsType[]>([]); // 사용자가 선택한 아이템
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
+  const [extraHaccpCount, setExtraHaccpDataCount] = useState(0);
 
-  const input = useRef<any>(null);
-
+  const haccpContainerRef = useRef<HTMLBaseElement>(null);
   const getAxios = async (productName: string) => {
     try {
       setLoading(true);
-      const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${process.env.REACT_APP_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=30`;
+      const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${process.env.REACT_APP_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
       const response = await axios.get(url);
       const data = response.data;
       const items = data.body.items;
-      setItems(items);
+      setItemsAtom(items);
       setLoading(false);
 
-      input.current.value = " ";
+      setProductName("");
     } catch (err) {
       console.log("아이템 로드 중 에러:", err);
     }
@@ -52,63 +54,64 @@ function HccpSearch() {
   // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
   const filter = useCallback(
     (productId: string) => {
-      const result = items.filter((item) => {
+      const result = itemsAtom.filter((item) => {
         return item.item.prdlstReportNo === productId;
       });
 
       setFilterItems(result);
     },
-    [items]
+    [itemsAtom]
   );
+
+  async function search() {
+    const INITIAL_COUNT = 8;
+    setExtraHaccpDataCount(INITIAL_COUNT);
+    getAxios(productName);
+  }
 
   useEffect(() => {
     if (productId) filter(productId);
   }, [productId, filter]);
 
-  useEffect(() => {
-    input.current.focus();
-  }, []);
+  // 스크롤높이 추적 함수
+  function windowScrollTraces() {
+    if (
+      haccpContainerRef.current?.offsetHeight! <=
+      window.scrollY + window.innerHeight - 90
+    ) {
+      setExtraHaccpDataCount((old) => (old += 8));
+    }
+  }
 
+  useEffect(() => {
+    if (haccpContainerRef.current && itemsAtom.length > extraHaccpCount) {
+      window.addEventListener("scroll", windowScrollTraces);
+
+      return () => {
+        window.removeEventListener("scroll", windowScrollTraces);
+      };
+    } else {
+      setExtraHaccpDataCount(itemsAtom.length);
+    }
+  }, [itemsAtom.length, extraHaccpCount]);
   return (
     <>
-      <div className={styles.Haccp}>
+      <section className={styles.Haccp} ref={haccpContainerRef}>
         <Header isStyle={true} />
-        <h2 style={{ textAlign: "center", margin: "6rem 0" }} className={styles.haccp_page_title}>
+        <h2
+          style={{ textAlign: "center", margin: "6rem 0" }}
+          className={styles.haccp_page_title}
+        >
           HACCP제품 정보조회
         </h2>
         <div className={styles.haccp_inner_container}>
           {/* 검색창 */}
-          <div className={styles.search_container}>
-            <input
-              ref={input}
-              className={styles.search_input}
-              type="text"
-              id={styles.search}
-              placeholder="상품명을 입력해주세요!"
-              onKeyUp={(e) => {
-                setProductName(e.currentTarget.value);
-                if (e.code === "Enter") {
-                  getAxios(e.currentTarget.value);
-                }
-              }}
-            />
-            {/* 조회 버튼 */}
-            <button
-              className={styles.search_btn}
-              onClick={() => {
-                getAxios(productName);
-              }}
-            >
-              조회
-            </button>
-            <div
-              className={styles.spinner}
-              style={loading ? { display: "block" } : { display: "none" }}
-            >
-              {" "}
-              <ReactSpinner />
-            </div>
-          </div>
+          <HaccpSearchForm
+            setProductName={setProductName}
+            loading={loading}
+            search={search}
+            productName={productName}
+          />
           {/* 잠깐 알고가기 */}
           <p className={styles.message}>
             {" "}
@@ -120,12 +123,14 @@ function HccpSearch() {
           </p>{" "}
           <br />
         </div>
+
         {/* 검색 결과 보이는 곳 */}
         <HccpResult
-          items={items}
+          items={itemsAtom}
           setModal={setModal}
           setProductId={setProductId}
           modal={modal}
+          extraCount={extraHaccpCount}
         />
         <Modal
           filterItems={filterItems}
@@ -133,7 +138,7 @@ function HccpSearch() {
           modal={modal}
         ></Modal>
         <Movement />
-      </div>
+      </section>
 
       <NavSearch />
       <GPT />
