@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,7 +44,7 @@ function Header({ isStyle }: HeaderType) {
                 navigate("/");
               }}
             >
-              FoodPick
+              FoodPicker
             </span>
           </h1>
           <nav className={onDisplay ? styles.onMenu : styles.offMenu}>
@@ -62,14 +62,20 @@ function Header({ isStyle }: HeaderType) {
               <li>
                 <Link to={"/nutrition"}>식품영양정보조회</Link>
               </li>
-              <li>
-                <Link to={"/item"}>부산생필품정보</Link>
-              </li>
+
               <li>
                 <Link to={"/haccp"}>HACCP제품정보조회</Link>
               </li>
               <li>
                 <Link to={"/food-recipe"}>레시피정보조회</Link>
+              </li>
+              <li className={styles.etc_menu_con}>
+              <Link to={"#"}>기타 서비스</Link>
+                <ul className={styles.etc_menu}>
+                  <li>
+                    <Link to={"/item"}>부산생필품정보</Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>

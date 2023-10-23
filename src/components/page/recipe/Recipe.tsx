@@ -11,6 +11,7 @@ import ReactSpinner from "../../UI/loading/ReactSpinner";
 import GPT from "../../../util/kakao/gpt";
 import NavSearch from "../../UI/NavSearch";
 import Movement from "../../UI/movement/Movement";
+import RecipeMessage from "../../module/RecipeMessage";
 
 const API_KEY = process.env.REACT_APP_FOOD_KEY;
 
@@ -38,6 +39,10 @@ function Recipe() {
   const state = useAppSelector((state) => {
     return state.recipe;
   });
+
+  useEffect(()=>{
+    document.title ="레시피 정보조회 | FoodPicker"
+  },[])
 
   useEffect(() => {
     setRecipes(state.value);
@@ -141,34 +146,7 @@ function Recipe() {
           {loading && <ReactSpinner />}
         </div>
 
-        <article className={styles.message_container} style={!messageSpanDisplay?{maxWidth:'30px', maxHeight:'40px'}:{maxWidth:'240px', maxHeight:'40px'}}>
-          <button
-            style={!messageSpanDisplay?{transform:'rotate(0)'}:{transform:'rotate(-180deg)'}}
-            onClick={() => {
-              setMessageSpanDisplay((old) => (old = !old));
-            }}
-          >
-            {"←"}
-          </button>
-          <span
-            className={styles.message}
-            style={
-              !messageSpanDisplay
-                ? {
-                    visibility: "hidden",
-                    opacity: 0,
-                    transform: "translateX(5px)",
-                  }
-                : {
-                    visibility: "visible",
-                    opacity: 1,
-                    transform: "translateX(0)",
-                  }
-            }
-          >
-            {state.value.length}개 중 {endRecipeDataCheck} 포스트 조회..
-          </span>
-        </article>
+      <RecipeMessage messageSpanDisplay={messageSpanDisplay} setMessageSpanDisplay={setMessageSpanDisplay} endRecipeDataCheck={endRecipeDataCheck} state={state}/>
 
         <RecipeSearchResult
           recipes={recipes}

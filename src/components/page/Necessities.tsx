@@ -1,15 +1,14 @@
 import axios from "axios";
-import styles from "./ItemTable.module.css";
-import Pagination from "./Pagination";
-import { useNavigate } from "react-router-dom";
-import ReactSpinner from "./loading/ReactSpinner";
-import KaMap from "./KaMap";
-import Header from "./Header";
-import Movement from "./movement/Movement";
+import styles from "./Necessities.module.css";
+import Pagination from "../UI/Pagination";
+import ReactSpinner from "../UI/loading/ReactSpinner";
+import KaMap from "../UI/KaMap";
+import Header from "../UI/Header";
+import Movement from "../UI/movement/Movement";
 
 import { useState, useEffect, useCallback } from "react";
 import GPT from "../../util/kakao/gpt";
-import NavSearch from "./NavSearch";
+import NavSearch from "../UI/NavSearch";
 
 type ItemsType = {
   adres: string;
@@ -28,7 +27,7 @@ type laLoType = {
   lo: string;
 };
 
-function ItemTable() {
+function Necessities() {
   const [items, setItems] = useState<ItemsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [laLo, setLaLo] = useState<laLoType>();
@@ -38,8 +37,7 @@ function ItemTable() {
 
   const [isLoading, setIsLoading] = useState(false);
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
-
-    setIsLoading(true)
+    setIsLoading(true);
 
     // console.log("지역:", gugun);
     await axios
@@ -62,10 +60,19 @@ function ItemTable() {
     getItem(currentPage, gugun);
   }, [getItem, currentPage, gugun]);
 
+  useEffect(()=>{
+    document.title = '부산생필품 정보조회 | foodPicker'
+  },[])
+
   return (
     <>
       <Header isStyle={true}></Header>
-      <h2 className={styles.title} style={{textAlign:'center', margin:"6rem 0"}}>부산생필품 정보조회</h2>
+      <h2
+        className={styles.title}
+        style={{ textAlign: "center", margin: "6rem 0" }}
+      >
+        부산생필품 정보조회
+      </h2>
       <table className={styles.item_table}>
         <thead>
           <tr>
@@ -79,28 +86,32 @@ function ItemTable() {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(items)
-            ? items.map((item, i) => {
-                return (
-                  <tr
-                    key={i}
-                    onClick={() => {
-                      setLaLo({ la: item.la, lo: item.lo });
-                      setIsDisplay((result) => (result = !result));
-                      setBsshNm((result) => (result = item.bsshNm));
-                    }}
-                  >
-                    <td>{item.itemName}</td>
-                    <td>{item.bsshNm}</td>
-                    <td>{item.adres}</td>
-                    <td>{item.examinDe}</td>
-                    <td>{item.pumNm}</td>
-                    <td>{item.unit}</td>
-                    <td>{item.unitprice.toLocaleString()}(원)</td>
-                  </tr>
-                );
-              })
-            : <tr><td>아무런 내용이 존재하지 않습니다.</td></tr>}
+          {Array.isArray(items) ? (
+            items.map((item, i) => {
+              return (
+                <tr
+                  key={i}
+                  onClick={() => {
+                    setLaLo({ la: item.la, lo: item.lo });
+                    setIsDisplay((result) => (result = !result));
+                    setBsshNm((result) => (result = item.bsshNm));
+                  }}
+                >
+                  <td>{item.itemName}</td>
+                  <td>{item.bsshNm}</td>
+                  <td>{item.adres}</td>
+                  <td>{item.examinDe}</td>
+                  <td>{item.pumNm}</td>
+                  <td>{item.unit}</td>
+                  <td>{item.unitprice.toLocaleString()}(원)</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td>아무런 내용이 존재하지 않습니다.</td>
+            </tr>
+          )}
         </tbody>
       </table>
       <br /> <br /> <br /> <br /> <br /> <br />
@@ -114,16 +125,15 @@ function ItemTable() {
       ></KaMap>
       <Movement></Movement>
       <span
-            style={isLoading ? { display: "block" } : { display: "none" }}
-            className={styles.loading}
-          >
-            <ReactSpinner />
-          </span>
-
-    <GPT/>
-    <NavSearch/>
+        style={isLoading ? { display: "block" } : { display: "none" }}
+        className={styles.loading}
+      >
+        <ReactSpinner />
+      </span>
+      <GPT />
+      <NavSearch />
     </>
   );
 }
 
-export default ItemTable;
+export default Necessities;

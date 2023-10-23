@@ -10,7 +10,6 @@ import NextRecipe from "../../module/NextRecipe";
 function RecipeDetail() {
   const detailSectionRef = useRef<HTMLBaseElement>(null);
   const params = useParams();
-  const [count, setCount] = useState([]);
   const [recipe, setRecipe] = useState<RecipeType>();
 
   const state = useAppSelector((state) => {
@@ -19,6 +18,13 @@ function RecipeDetail() {
   }).value.filter((recipe) => {
     return recipe.RCP_SEQ === params.id;
   });
+
+
+  
+  useEffect(()=>{
+    document.title ="레시피 상세조회 | FoodPicker"
+  },[])
+
 
   useEffect(() => {
     setRecipe(state[0]);

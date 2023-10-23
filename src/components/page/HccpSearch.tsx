@@ -69,6 +69,12 @@ function HccpSearch() {
     getAxios(productName);
   }
 
+
+  
+  useEffect(()=>{
+    document.title ="HACCP 제품 정보조회 | FoodPicker"
+  },[])
+
   useEffect(() => {
     if (productId) filter(productId);
   }, [productId, filter]);

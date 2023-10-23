@@ -20,6 +20,14 @@ const NutritionDetail = () => {
     }
   }, []);
 
+  useEffect(()=>{
+    document.title =  detailNutritionData ? (
+      `${detailNutritionData.식품명} : ${detailNutritionData.식품기원명}`
+    ) : (
+      "Not Found 404 | FoodPicker"
+    )
+  },[])
+
   // 3대 영양소 정보
   const [threeInfo] = useState({
     탄수화물: detailNutritionData["탄수화물(g)"],

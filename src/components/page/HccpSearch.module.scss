@@ -111,6 +111,7 @@ figure {
   border-bottom-left-radius: 10px;
   box-shadow: 0 0 8px 3px rgba(178, 176, 176, 0.565);
   text-align: center;
+  animation: appear 1s 1 ease-in-out;
 
   img {
     border-radius: 5px;
@@ -127,6 +128,12 @@ figure {
     border-bottom-right-radius: 10px;
     vertical-align: middle;
     padding-top: 10px;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: perspective(600px) translate(0, -30px) rotateX(80deg) scale(0.8); opacity: 0; visibility: hidden;
   }
 }
 
@@ -148,7 +155,7 @@ figure:hover {
   position: fixed;
   top: 5rem;
   transition: 1s;
-  z-index: 10000;
+  z-index: 10;
   max-width: 240px;
   right: 2rem;
   min-height: 40px;

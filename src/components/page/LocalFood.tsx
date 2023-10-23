@@ -44,10 +44,6 @@ const LocalFood = () => {
     setTitle(filterTitle);
   };
 
-  /*     // 에러 이미지 대체 하는 함수
-        const errImageReplace = (e: SyntheticEvent<HTMLImageElement>) => {
-            // e.currentTarget.src = '/error.png'
-        } */
 
   // 카테고리 중 목록 선택시 데이터 조회하는 함수
   const searchFilter = (e: MouseEvent<HTMLLIElement>) => {
@@ -104,6 +100,12 @@ const LocalFood = () => {
   useEffect(() => {
     categoryFilter();
   }, []);
+
+  
+  useEffect(()=>{
+    document.title ="향토음식조회 | FoodPicker"
+  },[])
+
 
   return (
     <>

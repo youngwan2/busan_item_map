@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../page/recipe/Recipe.module.scss";
 
 interface RecipeSearchFormType {
@@ -28,10 +28,10 @@ function RecipeSearchForm({
     }
   }, []);
 
-// 레시피 검색 함수
-  function search() {
-    const MIN_COUNT =8
-    getRecipeDataFromApi(userInputValue,checkedMenu);
+  // 레시피 검색 함수
+  function search(value: string) {
+    const MIN_COUNT = 8;
+    getRecipeDataFromApi(value, checkedMenu);
     setExtraRecipeDataCount(MIN_COUNT);
   }
 
@@ -44,14 +44,20 @@ function RecipeSearchForm({
           id="recipe_search"
           type="search"
           onKeyDown={(e) => {
-            setUserInputValue(e.currentTarget.value);
+            const value = e.currentTarget.value;
+            setUserInputValue(value);
             if (e.key === "Enter") {
-              search()
+              search(userInputValue);
             }
           }}
         />
         <button
-          onClick={search}
+          onClick={(e) => {
+            const list = e.currentTarget.parentElement?.children!;
+            const input = list[1] as HTMLInputElement;
+            const inputValue: string = input.value;
+            search(inputValue);
+          }}
         >
           검색
         </button>

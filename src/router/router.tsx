@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import KaMap from "../components/UI/KaMap";
-import ItemTable from "../components/UI/ItemTable";
+import ItemTable from "../components/page/Necessities";
 import HccpSearch from "../components/page/HccpSearch";
 import LocalFood from "../components/page/LocalFood";
 import Nutrition from "../components/page/Nutrition";
