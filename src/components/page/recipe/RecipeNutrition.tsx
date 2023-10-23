@@ -2,7 +2,7 @@ import { RecipeType } from "../../../type/RecipeType";
 import GPT from "../../../util/kakao/gpt";
 import NavSearch from "../../UI/NavSearch";
 import Movement from "../../UI/movement/Movement";
-import styles from './RecipeNutrition.module.css'
+import styles from './RecipeNutrition.module.scss'
 import { useState } from "react";
 function RecipeNutrition({recipe}:{recipe?:RecipeType}) {
 

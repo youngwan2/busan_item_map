@@ -81,21 +81,18 @@
   }
 }
 
-
 /* 검색- 분류(체크박스)*/
 .search_form .search_sortby_area {
   margin: 1rem auto;
   min-width: 200px;
   max-width: 280px;
-}
-
-.search_form .search_sortby_area input {
-  margin: 5px;
-}
-
-.search_form .search_sortby_area .checkbox_item {
-  display: inline-block;
-  margin: 0 4px;
+  input {
+    margin: 5px;
+  }
+  .checkbox_item {
+    display: inline-block;
+    margin: 0 4px;
+  }
 }
 
 /* ====RecipeSearchResult.tsx */
@@ -110,14 +107,13 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-}
-
-.search_result_container a {
-  text-decoration: none;
-  margin: 10px;
-  min-width: 300px;
-  width: 100%;
-  max-width: 300px;
+  a {
+    text-decoration: none;
+    margin: 10px;
+    min-width: 300px;
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .recipe_item_con {
@@ -131,6 +127,11 @@
   max-width: 350px;
   transition: 0.5s;
   height: 300px;
+  animation: appear 1s 1 ease-in-out;
+}
+
+@keyframes appear {
+  from {transform: translateY(-30px); visibility: hidden; opacity: 0;}
 }
 
 .recipe_item_con:hover > .recipe_main_item {
@@ -185,10 +186,7 @@
   transform: translate(-50%, -50%);
 }
 
-
 /* 안내 메시지 */
-
-
 
 .message_container {
   position: fixed;
@@ -206,13 +204,13 @@
   flex-direction: column;
 
   button {
-    color:white;
+    color: white;
     padding: 2px 5px;
     transition: 1s;
     font-size: 14px;
     background-color: rgb(26, 78, 133);
     border-radius: 5px;
-    left:8px;
+    left: 8px;
     top: 20%;
     transform: translate(0, -50%);
     border: none;
@@ -222,13 +220,11 @@
     transition: 0.8s;
     min-width: 180px;
     font-size: 13px;
-
   }
 }
 
-
 .message_container::before {
-  content: '';
+  content: "";
   position: absolute;
   right: -13px;
   top: 5px;

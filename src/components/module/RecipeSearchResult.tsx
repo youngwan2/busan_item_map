@@ -16,14 +16,14 @@ function RecipeSearchResult({
   setEndRecipeDataCheck,
 }: ResultType) {
   useEffect(() => {
-    const count = recipes?.slice(0, extraRecipeDataCount).length||0;
+    const count = recipes?.slice(0, extraRecipeDataCount).length as number;
     setEndRecipeDataCheck(count)
   }, [extraRecipeDataCount]);
   return (
     <>
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article className={styles.search_result_container}>
-        {recipes?.slice(0, extraRecipeDataCount).map((recipe) => {
+        {recipes?.slice(0, extraRecipeDataCount||8).map((recipe) => {
           return (
             <Link
               to={`/food-recipe/detail/${recipe.RCP_SEQ}`}

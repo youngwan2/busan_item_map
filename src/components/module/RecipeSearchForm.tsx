@@ -28,6 +28,13 @@ function RecipeSearchForm({
     }
   }, []);
 
+// 레시피 검색 함수
+  function search() {
+    const MIN_COUNT =8
+    getRecipeDataFromApi(userInputValue,checkedMenu);
+    setExtraRecipeDataCount(MIN_COUNT);
+  }
+
   return (
     <article className={styles.search_form}>
       <div className={styles.search_input_area}>
@@ -36,19 +43,15 @@ function RecipeSearchForm({
           ref={inputRef}
           id="recipe_search"
           type="search"
-          onKeyUp={(e) => {
+          onKeyDown={(e) => {
             setUserInputValue(e.currentTarget.value);
-            // if (e.code === "Enter") {
-            //  return getRecipeDataFromApi(userInputValue,checkedMenu);
-            // }
+            if (e.key === "Enter") {
+              search()
+            }
           }}
         />
         <button
-          onClick={() => {
-            // onClick("호출")
-            getRecipeDataFromApi(userInputValue, checkedMenu);
-            setExtraRecipeDataCount(0);
-          }}
+          onClick={search}
         >
           검색
         </button>

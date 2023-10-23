@@ -1,27 +1,23 @@
 import styles from "./db.module.css";
-import { useEffect, useCallback, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
-import { getNutritionDataFromDB } from "../app/slice/nutritionSearch";
+import { useEffect, useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
+import { NutritionData, NutritionKeyItemData } from "../atom/Nutritions";
+
 import { nutritions } from "./Nutrition";
 import DbSideMenu from "./dbSideMenu";
-import SearchResult from "../components/module/SearchResult";
 import ReactSpinner from "../components/UI/loading/ReactSpinner";
+import DbAddButton from "./dbAddButton";
+import DbSearch from "./dbSearch";
+import DbResult from "./dbResult";
 
 const Database = () => {
-  const [getNutritions, setNutritions] = useState([]); //조회된 영양 정보 저장
   const [nextIndex, setNextIndex] = useState(0); //
-  const [itemKey, setItemKey] = useState([]); // 선택한 item의 키를 저장
   const [isLoading, setIsLoading] = useState(false); // 영양정보 렌더링 로딩 상태
   const [itemName, setItemName] = useState("");
 
-  const navigate = useNavigate();
-
-  const dispatch = useAppDispatch();
-
-  const containerRef = useRef(null);
-  const inputRef = useRef(null);
-  const addBtnRef = useRef(null);
+  const [nutrtionAtom, setNutritionAtom] = useRecoilState(NutritionData);
+  const [nutrtionItemKeyAtom, setNutritionItemKeyAtom] =
+    useRecoilState(NutritionKeyItemData);
 
   // 데이터베이스를 연결하고 초기 데이터를 셋팅
   const createDB = useCallback((data, itemName) => {
@@ -46,7 +42,7 @@ const Database = () => {
       objectStore.createIndex("식품명", "식품명");
       // 데이터 추가 전 객체 저장소가 생성되었다면 oncomplete 이벤트가 트리거된다.
       // 즉, 객체 저장소에 대한 트랜잭션(연산) 성공 시 실행된다.
-      objectStore.transaction.oncomplete = (event) => {
+      objectStore.transaction.oncomplete = () => {
         // 해당 객체저장소에 대한 읽기 쓰기에 관한 트랜잭션을 허용
         const nutritionStore = db
           .transaction(["nutritions"], "readwrite")
@@ -96,8 +92,8 @@ const Database = () => {
           }
           cursor.continue();
         } else {
-          setNutritions(itemsList);
-          setItemKey(itemsK);
+          setNutritionAtom(itemsList);
+          setNutritionItemKeyAtom(itemsK)
           setIsLoading(false);
         }
       };
@@ -108,99 +104,28 @@ const Database = () => {
   useEffect(() => {
     createDB(nutritions, itemName);
     setNextIndex(0);
-    if (addBtnRef.current) {
-      addBtnRef.current.style.visibility = "visible";
-    }
   }, [createDB, itemName]);
-
-  // 컴포넌트가 마운트된 뒤에 input 에 포커스를 맞춘다.
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   return (
     <section className={styles.container}>
-      <DbSideMenu itemsKey={itemKey} />
+      <DbSideMenu itemsKey={nutrtionItemKeyAtom} />
       {/* 아이템 검색창  */}
-      <div className={styles.search_container}>
-        <input
-          className={styles.search_input}
-          ref={inputRef}
-          type="text"
-          placeholder="음식명을 입력해주세요!"
-          onKeyUp={(e) => {
-            if (e.code === "Enter") {
-              setItemName(e.target.value);
-              setTimeout(() => {
-                e.target.value = "";
-              }, 100);
-            }
-          }}
-        />
-        <button
-          className={styles.search_btn}
-          type="button"
-          onClick={() => {
-            setItemName(inputRef.current.value);
-            setTimeout(() => {
-              inputRef.current.value = "";
-            }, 100);
-          }}
-        >
-          검색
-        </button>
-      </div>
+      <DbSearch setItemName={setItemName} />
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span className={styles.result_msg}>
-        {getNutritions.slice(0, nextIndex + 4).length}/{getNutritions.length}
+        {nutrtionAtom.slice(0, nextIndex + 4).length}/{nutrtionAtom.length}
         (개)
       </span>{" "}
       <br />
       {isLoading ? <ReactSpinner /> : ""}
       <br />
       {/* 아이템 검색 결과가 나오는 섹션 */}
-      <section className={styles.item_section} ref={containerRef}>
-        {Array.isArray(getNutritions) && getNutritions[0] !== undefined ? (
-          getNutritions.slice(0, nextIndex + 4).map((item, i) => {
-            return (
-              <article
-                id={item.id}
-                key={item.id}
-                className={styles.item_box}
-                onClick={() => {
-                  navigate(`/nutrition/${item.id}`);
-                  dispatch(getNutritionDataFromDB(getNutritions[i]));
-                }}
-              >
-                <SearchResult item={item}></SearchResult>
-              </article>
-            );
-          })
-        ) : (
-          <div className={styles.message}>
-            검색명이 포함된 모든 목록을 불러오므로 명확한 검색어를 입력
-            바랍니다. 조회된 각 목록을 클릭하면, 세부 내용 페이지로 이동합니다.
-            <br />
-          </div>
-        )}
-      </section>
-      <button
-        disabled={getNutritions.length === 0}
-        className={styles.add_btn}
-        ref={addBtnRef}
-        onClick={(e) => {
-          const copy = getNutritions.slice(nextIndex, nextIndex + 4);
-
-          if (copy.length === 0) {
-            e.target.style.visibility = "hidden";
-            alert("불러올 데이터가 존재하지 않습니다.");
-          }
-
-          setNextIndex((prev) => (prev += 4));
-        }}
-      >
-        더보기
-      </button>
+      <DbResult getNutritions={nutrtionAtom} nextIndex={nextIndex} />
+      <DbAddButton
+        getNutritions={nutrtionAtom}
+        setNextIndex={setNextIndex}
+        nextIndex={nextIndex}
+      />
     </section>
   );
 };
