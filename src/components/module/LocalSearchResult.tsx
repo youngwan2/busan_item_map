@@ -10,7 +10,7 @@ function LocalSearchResult({searchResult}:Type) {
         <article className={styles.foods_flex_con}>
         {searchResult?.map((foods) => {
           return (
-            <div className={styles.foods}>
+            <div className={styles.foods} key={foods.data_manage_no}>
               <p>
                 <span>식별 </span>
                 {foods.data_manage_no}

@@ -6,10 +6,11 @@ import HccpSearch from "../components/page/HccpSearch";
 import LocalFood from "../components/page/LocalFood";
 import Nutrition from "../components/page/Nutrition";
 import NutritionDetail from "../components/page/NutritionDetail";
-import NotFound from "../components/errror/NotFound";
+import NotFound from "../components/error/NotFound";
 import Recipe from "../components/page/recipe/Recipe";
 import RecipeDetail from "../components/page/recipe/RecipeDetail";
 import Header from "../components/UI/Header";
+import Calculator from "../components/page/Calculator";
 
 const router = createBrowserRouter([
   {
@@ -20,10 +21,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <App></App>,
         errorElement: <h2>컴포넌트를 불러오는 중에 문제가 발생하였습니다.</h2>,
-      },
-      {
-        path: "/map",
-        element: <KaMap></KaMap>,
       },
       {
         path: "/localfood",
@@ -49,6 +46,10 @@ const router = createBrowserRouter([
         path: "/food-recipe/detail/:id",
         element: <RecipeDetail />,
       },
+      {
+        path:'/calculate',
+        element:<Calculator/>
+      }
     ],
   },
   {

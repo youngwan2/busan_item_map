@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "../page/recipe/Recipe.module.scss";
 
 interface RecipeSearchFormType {

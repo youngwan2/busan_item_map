@@ -82,6 +82,9 @@ function Header({ isStyle }: HeaderType) {
                     <li>
                       <Link to={"/item"}>부산생필품정보</Link>
                     </li>
+                    <li>
+                      <Link to={"/calculate"}>체질량지수</Link>
+                    </li>
                   </ul>
                 </li>
               </ul>

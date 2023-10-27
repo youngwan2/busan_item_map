@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useState } from "react";
 import { ItemsType } from "../page/HccpSearch";
 import styles from "../page/HccpSearch.module.scss";
 
@@ -53,7 +53,7 @@ function HccpResult({
           </span>
         </article>
       {Array.isArray(items) ? (
-        items.slice(0, extraCount+8).map((item) => {
+        items.slice(0, extraCount).map((item) => {
           return (
             // 조회된 각 아이템
             <figure
