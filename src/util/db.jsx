@@ -11,11 +11,11 @@ import DbSearch from "./dbSearch";
 import DbResult from "./dbResult";
 
 const Database = () => {
-  const [nextIndex, setNextIndex] = useState(0); //
+  const [nextIndex, setNextIndex] = useState(0); 
   const [isLoading, setIsLoading] = useState(false); // 영양정보 렌더링 로딩 상태
   const [itemName, setItemName] = useState("");
 
-  const [nutrtionAtom, setNutritionAtom] = useRecoilState(NutritionData);
+  const [nutritionAtom, setNutritionAtom] = useRecoilState(NutritionData);
   const [nutrtionItemKeyAtom, setNutritionItemKeyAtom] =
     useRecoilState(NutritionKeyItemData);
 
@@ -93,7 +93,7 @@ const Database = () => {
           cursor.continue();
         } else {
           setNutritionAtom(itemsList);
-          setNutritionItemKeyAtom(itemsK)
+          setNutritionItemKeyAtom(itemsK);
           setIsLoading(false);
         }
       };
@@ -108,21 +108,21 @@ const Database = () => {
 
   return (
     <section className={styles.container}>
-      <DbSideMenu itemsKey={nutrtionItemKeyAtom} />
+      <DbSideMenu itemsKey={nutrtionItemKeyAtom} getNutritions={nutritionAtom} />
       {/* 아이템 검색창  */}
       <DbSearch setItemName={setItemName} />
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
       <span className={styles.result_msg}>
-        {nutrtionAtom.slice(0, nextIndex + 8).length}/{nutrtionAtom.length}
+        {nutritionAtom.slice(0, nextIndex + 8).length}/{nutritionAtom.length}
         (개)
       </span>{" "}
       <br />
       {isLoading ? <ReactSpinner /> : ""}
       <br />
       {/* 아이템 검색 결과가 나오는 섹션 */}
-      <DbResult getNutritions={nutrtionAtom} nextIndex={nextIndex} />
+      <DbResult getNutritions={nutritionAtom} nextIndex={nextIndex} />
       <DbAddButton
-        getNutritions={nutrtionAtom}
+        getNutritions={nutritionAtom}
         setNextIndex={setNextIndex}
         nextIndex={nextIndex}
       />

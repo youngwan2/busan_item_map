@@ -1,11 +1,9 @@
 import "./App.css";
-import Header from "./components/UI/Header";
 import Introduce from "./components/UI/Introduce";
 import GPT from "./util/kakao/gpt";
 function App() {
   return (
     <div className="App">
-      <Header isStyle={true}></Header>
       <Introduce />
       <GPT/>
       <article className="background">

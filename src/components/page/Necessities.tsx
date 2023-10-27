@@ -66,7 +66,6 @@ function Necessities() {
 
   return (
     <>
-      <Header isStyle={true}></Header>
       <h2
         className={styles.title}
         style={{ textAlign: "center", margin: "6rem 0" }}

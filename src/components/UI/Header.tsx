@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +20,7 @@ function Header({ isStyle }: HeaderType) {
     });
   });
   return (
+    <>
     <div
       className="header_scroll"
       style={
@@ -91,7 +92,10 @@ function Header({ isStyle }: HeaderType) {
           </button>
         </div>
       </header>
+      
     </div>
+    <Outlet/>
+    </>
   );
 }
 

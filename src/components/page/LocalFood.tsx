@@ -5,6 +5,7 @@ import LocalSearchResult from "../module/LocalSearchResult";
 import { useEffect, useState, useRef, KeyboardEvent,MouseEvent } from "react";
 import NavSearch from "../UI/NavSearch";
 import GPT from "../../util/kakao/gpt";
+import Movement from "../UI/movement/Movement";
 
 export type localFoodType = {
   addr: string;
@@ -109,7 +110,6 @@ const LocalFood = () => {
 
   return (
     <>
-      <Header isStyle={true} />
       {/* 주제별 카테고리 */}
       <article
         className={styles.category_con}
@@ -220,6 +220,7 @@ const LocalFood = () => {
       </section>
       <NavSearch/>
       <GPT/>
+      <Movement/>
     </>
   );
 };

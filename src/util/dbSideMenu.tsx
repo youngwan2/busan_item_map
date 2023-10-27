@@ -2,10 +2,14 @@ import styles from "./dbSideMenu.module.css";
 import { useRef } from "react";
 import Movement from "../components/UI/movement/Movement";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { getNutritionDataFromDB } from "../app/slice/nutritionSearch";
 
-const DbSideMenu = ({ itemsKey }: any) => {
+const DbSideMenu = ({ itemsKey,getNutritions }: any) => {
   const sidebarRef = useRef<HTMLAreaElement>(null);
   const sidebarOverlayRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useAppDispatch()
 
   function sideBarDisplayHandler() {
     if (sidebarRef.current && sidebarOverlayRef.current) {
@@ -72,9 +76,11 @@ const DbSideMenu = ({ itemsKey }: any) => {
         </div>
         <ol className={styles.title_list}>
           {Array.isArray(itemsKey) ? (
-            itemsKey.map((tit) => {
+            itemsKey.map((tit,i) => {
               return (
-                <li key={tit.id}>
+                <li key={tit.id} onClick={()=>{
+                  dispatch(getNutritionDataFromDB(getNutritions[i]))
+                }}>
                   <Link to={`/nutrition/${tit.id}`}>
                     {tit.title}({tit.title2})
                   </Link>

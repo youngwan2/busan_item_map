@@ -127,7 +127,6 @@ function Recipe() {
 
   return (
     <>
-      <Header isStyle={true} />
       <section className={styles.Recipe} ref={sectionRef}>
         <h2 className={styles.page_title}>음식 레시피</h2>
         <RecipeSearchForm
