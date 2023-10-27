@@ -1,4 +1,3 @@
-import Header from "../UI/Header";
 import styles from "./HccpSearch.module.scss";
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
@@ -68,8 +67,6 @@ function HccpSearch() {
     setExtraHaccpDataCount(INITIAL_COUNT);
     getAxios(productName);
   }
-
-
   
   useEffect(()=>{
     document.title ="HACCP 제품 정보조회 | FoodPicker"
@@ -103,7 +100,6 @@ function HccpSearch() {
   return (
     <>
       <section className={styles.Haccp} ref={haccpContainerRef}>
-        <Header isStyle={true} />
         <h2
           style={{ textAlign: "center", margin: "6rem 0" }}
           className={styles.haccp_page_title}

@@ -122,13 +122,12 @@ const LocalFood = () => {
           placeholder="키워드를 입력하세요!"
         />
         <button className={styles.search_btn} onClick={categorySearch}>
-          {" "}
           <img
             src={process.env.PUBLIC_URL + `/icon/search.svg`}
             alt="searchIcon"
             width={30}
             height={35}
-          />{" "}
+          />
         </button>
         <ol className={styles.category} ref={categoryRef}>
           <button
@@ -137,7 +136,6 @@ const LocalFood = () => {
             }}
             className={styles.slide_btn_inner}
           >
-            {" "}
             <img
               src={process.env.PUBLIC_URL + "/icon/close.svg"}
               width={30}

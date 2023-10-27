@@ -32,8 +32,9 @@ function RecipeSearchResult({
               <ul
                 className={styles.recipe_item_con}
                 style={{
-                  backgroundImage: `url(${recipe.ATT_FILE_NO_MAIN})`,
+                  backgroundImage: `url(${recipe.ATT_FILE_NO_MAIN||process.env.PUBLIC_URL+'/not-image.png'})`,
                   backgroundPosition: "center",
+                  backgroundSize:"cover"
                 }}
               >
                 <li className={styles.recipe_main_item}>

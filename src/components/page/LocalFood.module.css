@@ -300,11 +300,10 @@
     inset -2px -2px 2px rgb(40, 45, 75);
   position: fixed;
   border-radius: 20px;
-  width: 70px;
+  width: 80px;
   padding: 5px 0;
   color: white;
   left: 5px;
   background-color: rgb(42, 84, 238);
   top: 5rem;
-  writing-mode: vertical-lr;
 }

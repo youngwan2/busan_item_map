@@ -38,7 +38,6 @@ function RecipeDetail() {
   }, []);
   return (
     <>
-      <Header isStyle={true} />
       <section className={styles.recipe_detail_section} ref={detailSectionRef}>
         <h2 className={styles.page_title}>{recipe?.RCP_NM}</h2>
         <img
