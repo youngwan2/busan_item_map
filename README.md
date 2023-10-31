@@ -39,8 +39,8 @@
 - <img src="https://img.shields.io/badge/공공데이터포털API-82B816?style=for-the-badge&logo=public&logoColor=white">
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
-- KaKao KoGPT API
-- Naver Search API
+- <img src="https://img.shields.io/badge/KoGPT(KaKao) API-FF4655?style=for-the-badge&logo=&logoColor=white">
+- <img src="https://img.shields.io/badge/Naver Search API-FA4155?style=for-the-badge&logo=&logoColor=white">
   
 ### 데이터베이스
 - <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
@@ -49,8 +49,8 @@
 - 식품 이미지를 사용자가 올리면, 해당 이미지를 분석하여 영양정보를 제공하는 AI 기능을 tensorflow.js 를 활용하여 도입해볼 예정입니다.
 - 그 외에도 있으면 좋은 기능이 발견되면 지속적으로 개선해 나갈 예정입니다.
 
----
-## 개선 
+
+## 개선사항 
 - (문제) 식품 영양정보조회, 음식 레시피 세부 페이지 이동 후 이전 페이지로 이동 시 조회 결과가 초기화 되는 문제수정(23.10.21 - 23.10.23).
 - (개선)레시피 세부 내용 조회 시 이전/다음 게시글을 조회할 수 있는 페이지 이동기능 추가(23.10.21).
 - (개선)레시피 조회 시 무한 스크롤 기능 추가.(23.10.22).
