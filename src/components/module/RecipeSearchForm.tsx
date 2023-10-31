@@ -29,6 +29,7 @@ function RecipeSearchForm({
   // 레시피 검색 함수
   function search(value: string) {
     getRecipeDataFromApi(value, checkedMenu);
+    sessionStorage.setItem("currentRecipes", `${0}`);
   }
 
   return (

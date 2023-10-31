@@ -63,6 +63,7 @@ function HccpSearch() {
 
   async function search() {
     getAxios(productName);
+    sessionStorage.setItem('currentHccp',`${0}`)
   }
   
   useEffect(()=>{

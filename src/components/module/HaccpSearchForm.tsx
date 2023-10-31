@@ -35,7 +35,7 @@ function HaccpSearchForm({
         onKeyUp={async (e) => {
           setProductName(e.currentTarget.value);
           if (e.code === "Enter") {
-            await search();
+            search();
           }
         }}
       />
@@ -43,7 +43,7 @@ function HaccpSearchForm({
       <button
         className={styles.search_btn}
         onClick={async () => {
-          await search();
+          search();
         }}
       >
         조회

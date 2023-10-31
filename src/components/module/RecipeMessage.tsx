@@ -1,18 +1,14 @@
+import { RecipeType } from "../../type/RecipeType";
 import styles from "../page/recipe/Recipe.module.scss";
-
+import { useState } from "react";
 interface Type {
-  messageSpanDisplay: boolean;
-  setMessageSpanDisplay: (bool: boolean) => void;
-  state: any;
-  extraRecipeDataCount?:number
+  recipes?: RecipeType[];
+  visibleRecipes?: RecipeType[]
 }
 
-function RecipeMessage({
-  messageSpanDisplay,
-  setMessageSpanDisplay,
-  state,
-  extraRecipeDataCount,
-}: Type) {
+function RecipeMessage({ recipes,visibleRecipes }: Type) {
+  const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
+
   return (
     <article
       className={styles.message_container}
@@ -50,7 +46,8 @@ function RecipeMessage({
               }
         }
       >
-        {state.value.length}개 중 {extraRecipeDataCount} 포스트 조회..
+        {recipes?.length}개 중{" "}
+        {visibleRecipes?.length} 포스트 조회..
       </span>
     </article>
   );

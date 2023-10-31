@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { RecipeType } from "../../type/RecipeType";
 import styles from "../page/recipe/Recipe.module.scss";
 import { Link } from "react-router-dom";
+import RecipeMessage from "./RecipeMessage";
 
 interface ResultType {
   recipes?: RecipeType[];
@@ -10,50 +11,63 @@ interface ResultType {
 
 function RecipeSearchResult({ recipes, meg }: ResultType) {
   const [visibleRecipes, setVisibleRecipes] = useState<RecipeType[]>([]);
+  const [currentLength, setCurrentLength] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const loadingRef = useRef<HTMLDivElement | null>(null);
-
-  const [loading,setLoading] = useState('')
 
   useEffect(() => {
     if (recipes) {
       setVisibleRecipes(recipes.slice(0, 10));
+      setCurrentLength(currentLength);
     }
   }, [recipes]);
 
+
   useEffect(() => {
     const container = containerRef.current;
-    const loading = loadingRef.current;
 
     // 스크롤 처리 함수
     const handleScroll = () => {
-      if (container && loading) {
-        if (container.getBoundingClientRect().bottom <= window.innerHeight + 100) {
-          const currentLength = visibleRecipes.length;
+      if (container) {
+        if (
+          container.getBoundingClientRect().bottom <=
+          window.innerHeight + 100
+        ) {
+          const currentLength = Number(sessionStorage.getItem("currentRecipes"));
+          setCurrentLength(currentLength);
           const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
           if (nextRecipes && nextRecipes.length > 0) {
-            setVisibleRecipes((prevRecipes) => [...prevRecipes, ...nextRecipes]);
+            setVisibleRecipes((prevRecipes) => [
+              ...prevRecipes,
+              ...nextRecipes,
+            ]);
           }
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
+    sessionStorage.setItem("currentRecipes", `${visibleRecipes.length}`);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+
     };
-  }, [recipes, visibleRecipes]);
+  }, [recipes, visibleRecipes,currentLength]);
 
   return (
     <>
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article ref={containerRef} className={styles.search_result_container}>
         {visibleRecipes.map((recipe) => (
-          <Link to={`/food-recipe/detail/${recipe.RCP_SEQ}`} key={recipe.RCP_SEQ}>
+          <Link
+            to={`/food-recipe/detail/${recipe.RCP_SEQ}`}
+            key={recipe.RCP_SEQ}
+          >
             <ul
               className={styles.recipe_item_con}
               style={{
-                backgroundImage: `url(${recipe.ATT_FILE_NO_MAIN || process.env.PUBLIC_URL + "/not-image.png"})`,
+                backgroundImage: `url(${
+                  recipe.ATT_FILE_NO_MAIN ||
+                  process.env.PUBLIC_URL + "/not-image.png"
+                })`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
               }}
@@ -67,8 +81,10 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
           </Link>
         ))}
         <br />
-        <div ref={loadingRef}>{loading}</div>
       </article>
+      <aside>
+        <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes}/>
+      </aside>
     </>
   );
 }

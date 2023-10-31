@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ItemsType } from "../page/HccpSearch";
 import styles from "../page/HccpSearch.module.scss";
+import HccpMeg from "./HccpMeg";
 
 interface Type {
   items: ItemsType[];
@@ -11,15 +12,14 @@ interface Type {
 
 function HccpResult({ items, setModal, setProductId, modal }: Type) {
   const containerRef = useRef<HTMLBaseElement>(null);
-
   const totalItemCount = items.length;
-  const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   const [visibleHCCP, setVisibleHCCP] = useState<ItemsType[]>([]);
 
   // 초기 렌더링 값 지정
   useEffect(() => {
     if (items) {
-      const initialItems = items.slice(0, 10);
+      const currentPage = Number(sessionStorage.getItem('currentHccp'))||10
+      const initialItems = items.slice(0, currentPage);
       setVisibleHCCP(initialItems);
     }
   }, [items]);
@@ -35,6 +35,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
           const nextHccp = items?.slice(length, length + 10);
           if (nextHccp && nextHccp.length > 0)
             setVisibleHCCP((prev) => [...prev, ...nextHccp]);
+          sessionStorage.setItem('currentHccp',`${visibleHCCP.length}`)
         }
       }
     }
@@ -46,45 +47,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
 
   return (
     <section className={styles.content_container} ref={containerRef}>
-      <article
-        className={styles.message_container}
-        style={
-          !messageSpanDisplay
-            ? { maxWidth: "30px", maxHeight: "40px" }
-            : { maxWidth: "240px", maxHeight: "40px" }
-        }
-      >
-        <button
-          style={
-            !messageSpanDisplay
-              ? { transform: "rotate(0)" }
-              : { transform: "rotate(-180deg)" }
-          }
-          onClick={() => {
-            setMessageSpanDisplay((old) => (old = !old));
-          }}
-        >
-          {"←"}
-        </button>
-        <span
-          className={styles.message}
-          style={
-            !messageSpanDisplay
-              ? {
-                  visibility: "hidden",
-                  opacity: 0,
-                  transform: "translateX(5px)",
-                }
-              : {
-                  visibility: "visible",
-                  opacity: 1,
-                  transform: "translateX(0)",
-                }
-          }
-        >
-          {totalItemCount}개 중 {visibleHCCP.length} 포스트 조회..
-        </span>
-      </article>
+      <HccpMeg currentPage ={visibleHCCP.length} totalPage={totalItemCount}/>
       {Array.isArray(items) ? (
         visibleHCCP.map((item, i) => {
           return (

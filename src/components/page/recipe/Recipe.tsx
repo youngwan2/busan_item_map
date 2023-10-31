@@ -10,7 +10,6 @@ import ReactSpinner from "../../UI/loading/ReactSpinner";
 import GPT from "../../../util/kakao/gpt";
 import NavSearch from "../../UI/NavSearch";
 import Movement from "../../UI/movement/Movement";
-import RecipeMessage from "../../module/RecipeMessage";
 
 const API_KEY = process.env.REACT_APP_FOOD_KEY;
 
@@ -29,7 +28,6 @@ function Recipe() {
   const [undefinedMessage, setUndefinedMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<RecipeType[]>();
-  const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
 
   const sectionRef = useRef<HTMLBaseElement>(null);
   const dispatch = useAppDispatch();
@@ -120,13 +118,6 @@ function Recipe() {
         >
           {loading && <ReactSpinner />}
         </div>
-
-        <RecipeMessage
-          messageSpanDisplay={messageSpanDisplay}
-          setMessageSpanDisplay={setMessageSpanDisplay}
-          state={state}
-        />
-
         <RecipeSearchResult
           recipes={recipes}
           meg={undefinedMessage}
