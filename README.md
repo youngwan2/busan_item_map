@@ -26,27 +26,27 @@
 - AI Chat 을 활용하여 유동적으로 사용자가 원하는 질문에 대한 답변을 제공합니다.
 - 네이버 지식백과 API와 연동하여 사이트 이용 중 모르는 용어에 대한 정보조회를 지원합니다.
 - (추가)음식 레시피 조회 기능을 제공합니다. 사용자는 자신이 원하는 음식의 레시피를 음식타입 및 키워드 검색을 통해 조회할 수 있습니다(23.10.18)
+- (추가) BMI 측정 및 BMI 별 건강관리 팁을 제공하는 기능을 제공합니다(23.10.29 ~ 개발중)
 
 ## 사용된 주요 라이브러리 및 프레임워크(기타 API포함)
 ### 프론트엔드
-- React.js
-- Typescript.js
-- Chart.js
-- Redux-Toolkit
-- KaKao Map API
-- 공공데이터포털 API
-
+- <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+- <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+- <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
+- <img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+- <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
+- <img src="https://img.shields.io/badge/Kakao Map API-FFCD00?style=for-the-badge&logo=kakao&logoColor=white">
+- <img src="https://img.shields.io/badge/공공데이터포털API-82B816?style=for-the-badge&logo=public&logoColor=white">
 ### 백엔드
-- Node.js(express)
+- <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
 - KaKao KoGPT API
 - Naver Search API
   
 ### 데이터베이스
-- IndexedDB
+- <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
 
 ## 향후 계획
 - 식품 이미지를 사용자가 올리면, 해당 이미지를 분석하여 영양정보를 제공하는 AI 기능을 tensorflow.js 를 활용하여 도입해볼 예정입니다.
-- 카테고리별로 사용자가 원하는 음식에 대한 레시피 정보를 얻어갈 수 있도록 기능을 추가해볼 예정입니다.
 - 그 외에도 있으면 좋은 기능이 발견되면 지속적으로 개선해 나갈 예정입니다.
 
 ---
@@ -55,3 +55,4 @@
 - (개선)레시피 세부 내용 조회 시 이전/다음 게시글을 조회할 수 있는 페이지 이동기능 추가(23.10.21).
 - (개선)레시피 조회 시 무한 스크롤 기능 추가.(23.10.22).
 - (개선)HACCP 제품 정보조회 시 무한 스크롤 기능 추가(23.10.23)
+- (개선) HACCP, 식품 영양정보조회, 레시피 정보 조회 시 무한 스크롤 기능 리팩토링:: 스크롤 이벤트 리스너의 중복 호출로 인한 메모리 누수 문제, 중복된 데이터를 조회하여 대량 데이터 렌더링 시 화면이 버벅이는 문제 등을 개선(23.10.31)
