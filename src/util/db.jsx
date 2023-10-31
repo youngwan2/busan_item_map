@@ -6,12 +6,11 @@ import { NutritionData, NutritionKeyItemData } from "../atom/Nutritions";
 import { nutritions } from "./Nutrition";
 import DbSideMenu from "./dbSideMenu";
 import ReactSpinner from "../components/UI/loading/ReactSpinner";
-import DbAddButton from "./dbAddButton";
 import DbSearch from "./dbSearch";
 import DbResult from "./dbResult";
 
 const Database = () => {
-  const [nextIndex, setNextIndex] = useState(0); 
+  const [nextIndex, setNextIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false); // 영양정보 렌더링 로딩 상태
   const [itemName, setItemName] = useState("");
 
@@ -108,24 +107,18 @@ const Database = () => {
 
   return (
     <section className={styles.container}>
-      <DbSideMenu itemsKey={nutrtionItemKeyAtom} getNutritions={nutritionAtom} />
+      <DbSideMenu
+        itemsKey={nutrtionItemKeyAtom}
+        getNutritions={nutritionAtom}
+      />
       {/* 아이템 검색창  */}
       <DbSearch setItemName={setItemName} />
       <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
-      <span className={styles.result_msg}>
-        {nutritionAtom.slice(0, nextIndex + 8).length}/{nutritionAtom.length}
-        (개)
-      </span>{" "}
       <br />
       {isLoading ? <ReactSpinner /> : ""}
       <br />
       {/* 아이템 검색 결과가 나오는 섹션 */}
       <DbResult getNutritions={nutritionAtom} nextIndex={nextIndex} />
-      <DbAddButton
-        getNutritions={nutritionAtom}
-        setNextIndex={setNextIndex}
-        nextIndex={nextIndex}
-      />
     </section>
   );
 };

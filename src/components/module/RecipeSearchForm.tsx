@@ -8,7 +8,6 @@ interface RecipeSearchFormType {
   userInputValue: string;
   checkedMenu: string;
   categories: string[];
-  setExtraRecipeDataCount: (count: number) => void;
 }
 
 function RecipeSearchForm({
@@ -18,7 +17,6 @@ function RecipeSearchForm({
   userInputValue,
   checkedMenu,
   categories,
-  setExtraRecipeDataCount,
 }: RecipeSearchFormType) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,9 +28,7 @@ function RecipeSearchForm({
 
   // 레시피 검색 함수
   function search(value: string) {
-    const MIN_COUNT = 8;
     getRecipeDataFromApi(value, checkedMenu);
-    setExtraRecipeDataCount(MIN_COUNT);
   }
 
   return (

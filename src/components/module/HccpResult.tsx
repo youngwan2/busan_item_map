@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ItemsType } from "../page/HccpSearch";
 import styles from "../page/HccpSearch.module.scss";
 
@@ -7,57 +7,90 @@ interface Type {
   setModal: (a: boolean) => void;
   setProductId: (a: string) => void;
   modal: boolean;
-  extraCount: number;
 }
 
-function HccpResult({
-  items,
-  setModal,
-  setProductId,
-  modal,
-  extraCount,
-}: Type) {
+function HccpResult({ items, setModal, setProductId, modal }: Type) {
+  const containerRef = useRef<HTMLBaseElement>(null);
 
-  const totalItemCount = items.length
-
+  const totalItemCount = items.length;
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
+  const [visibleHCCP, setVisibleHCCP] = useState<ItemsType[]>([]);
+
+  // 초기 렌더링 값 지정
+  useEffect(() => {
+    if (items) {
+      const initialItems = items.slice(0, 10);
+      setVisibleHCCP(initialItems);
+    }
+  }, [items]);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (items && visibleHCCP.length > 0) {
+        if (
+          containerRef.current?.getBoundingClientRect().bottom! <
+          window.innerHeight + 100
+        ) {
+          const length = visibleHCCP.length;
+          const nextHccp = items?.slice(length, length + 10);
+          if (nextHccp && nextHccp.length > 0)
+            setVisibleHCCP((prev) => [...prev, ...nextHccp]);
+        }
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [visibleHCCP]);
 
   return (
-    <section className={styles.content_container}>
-   <article className={styles.message_container} style={!messageSpanDisplay?{maxWidth:'30px', maxHeight:'40px'}:{maxWidth:'240px', maxHeight:'40px'}}>
-          <button
-            style={!messageSpanDisplay?{transform:'rotate(0)'}:{transform:'rotate(-180deg)'}}
-            onClick={() => {
-              setMessageSpanDisplay((old) => (old = !old));
-            }}
-          >
-            {"←"}
-          </button>
-          <span
-            className={styles.message}
-            style={
-              !messageSpanDisplay
-                ? {
-                    visibility: "hidden",
-                    opacity: 0,
-                    transform: "translateX(5px)",
-                  }
-                : {
-                    visibility: "visible",
-                    opacity: 1,
-                    transform: "translateX(0)",
-                  }
-            }
-          >
-            {totalItemCount}개 중 {extraCount} 포스트 조회..
-          </span>
-        </article>
+    <section className={styles.content_container} ref={containerRef}>
+      <article
+        className={styles.message_container}
+        style={
+          !messageSpanDisplay
+            ? { maxWidth: "30px", maxHeight: "40px" }
+            : { maxWidth: "240px", maxHeight: "40px" }
+        }
+      >
+        <button
+          style={
+            !messageSpanDisplay
+              ? { transform: "rotate(0)" }
+              : { transform: "rotate(-180deg)" }
+          }
+          onClick={() => {
+            setMessageSpanDisplay((old) => (old = !old));
+          }}
+        >
+          {"←"}
+        </button>
+        <span
+          className={styles.message}
+          style={
+            !messageSpanDisplay
+              ? {
+                  visibility: "hidden",
+                  opacity: 0,
+                  transform: "translateX(5px)",
+                }
+              : {
+                  visibility: "visible",
+                  opacity: 1,
+                  transform: "translateX(0)",
+                }
+          }
+        >
+          {totalItemCount}개 중 {visibleHCCP.length} 포스트 조회..
+        </span>
+      </article>
       {Array.isArray(items) ? (
-        items.slice(0, extraCount).map((item) => {
+        visibleHCCP.map((item, i) => {
           return (
             // 조회된 각 아이템
             <figure
-              key={item.item.prdlstReportNo}
+              key={i}
               onClick={() => {
                 setModal(true); // 모달 활성화
                 setProductId(item.item.prdlstReportNo); // 선택한 아이템 id 상태 관리

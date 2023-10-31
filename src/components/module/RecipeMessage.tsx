@@ -4,14 +4,14 @@ interface Type {
   messageSpanDisplay: boolean;
   setMessageSpanDisplay: (bool: boolean) => void;
   state: any;
-  endRecipeDataCheck: number;
+  extraRecipeDataCount?:number
 }
 
 function RecipeMessage({
   messageSpanDisplay,
   setMessageSpanDisplay,
   state,
-  endRecipeDataCheck,
+  extraRecipeDataCount,
 }: Type) {
   return (
     <article
@@ -50,7 +50,7 @@ function RecipeMessage({
               }
         }
       >
-        {state.value.length}개 중 {endRecipeDataCheck} 포스트 조회..
+        {state.value.length}개 중 {extraRecipeDataCount} 포스트 조회..
       </span>
     </article>
   );

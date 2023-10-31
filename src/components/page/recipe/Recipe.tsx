@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { RecipeType } from "../../../type/RecipeType";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { setRecipe } from "../../../app/slice/recipeSearch";
-import Header from "../../UI/Header";
 import RecipeSearchForm from "../../module/RecipeSearchForm";
 import RecipeSearchResult from "../../module/RecipeSearchResult";
 import ReactSpinner from "../../UI/loading/ReactSpinner";
@@ -30,8 +29,6 @@ function Recipe() {
   const [undefinedMessage, setUndefinedMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<RecipeType[]>();
-  const [extraRecipeDataCount, setExtraRecipeDataCount] = useState(8);
-  const [endRecipeDataCheck, setEndRecipeDataCheck] = useState(0);
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
 
   const sectionRef = useRef<HTMLBaseElement>(null);
@@ -40,9 +37,9 @@ function Recipe() {
     return state.recipe;
   });
 
-  useEffect(()=>{
-    document.title ="레시피 정보조회 | FoodPicker"
-  },[])
+  useEffect(() => {
+    document.title = "레시피 정보조회 | FoodPicker";
+  }, []);
 
   useEffect(() => {
     setRecipes(state.value);
@@ -105,32 +102,11 @@ function Recipe() {
     }
   };
 
-  // 스크롤높이 추적 함수
-  function windowScrollTraces() {
-    if (
-      sectionRef.current?.offsetHeight! <=
-      window.scrollY + window.innerHeight - 50
-    ) {
-      setExtraRecipeDataCount((old) => (old += 8));
-    }
-  }
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      window.addEventListener("scroll", windowScrollTraces);
-
-      return () => {
-        window.removeEventListener("scroll", windowScrollTraces);
-      };
-    }
-  }, []);
-
   return (
     <>
       <section className={styles.Recipe} ref={sectionRef}>
         <h2 className={styles.page_title}>음식 레시피</h2>
         <RecipeSearchForm
-          setExtraRecipeDataCount={setExtraRecipeDataCount}
           setCheckedMenu={setCheckedMenu}
           setUserInputValue={setUserInputValue}
           getRecipeDataFromApi={getRecipeDataFromApi}
@@ -145,13 +121,15 @@ function Recipe() {
           {loading && <ReactSpinner />}
         </div>
 
-      <RecipeMessage messageSpanDisplay={messageSpanDisplay} setMessageSpanDisplay={setMessageSpanDisplay} endRecipeDataCheck={endRecipeDataCheck} state={state}/>
+        <RecipeMessage
+          messageSpanDisplay={messageSpanDisplay}
+          setMessageSpanDisplay={setMessageSpanDisplay}
+          state={state}
+        />
 
         <RecipeSearchResult
           recipes={recipes}
           meg={undefinedMessage}
-          extraRecipeDataCount={extraRecipeDataCount}
-          setEndRecipeDataCheck={setEndRecipeDataCheck}
         ></RecipeSearchResult>
       </section>
       <GPT />

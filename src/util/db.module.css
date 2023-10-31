@@ -140,6 +140,7 @@
   padding: 10px;
   margin: 50px 0 30px 0;
   border: none;
+  bottom: 0;
   color:white;
   box-shadow: inset -2px -3px 2px rgb(45, 42, 204);
   border-radius: 20%;
@@ -168,4 +169,10 @@
   top: 4.6rem;
   right: 20px;
   border-radius: 10px;
+}
+
+.result_msg button {
+  margin: 5px;
+  border-radius: 10%;
+  border: none;
 }

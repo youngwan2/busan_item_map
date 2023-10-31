@@ -31,9 +31,8 @@ function HccpSearch() {
   const [filterItems, setFilterItems] = useState<ItemsType[]>([]); // 사용자가 선택한 아이템
   const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
-  const [extraHaccpCount, setExtraHaccpDataCount] = useState(0);
-
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
+  
   const getAxios = async (productName: string) => {
     try {
       setLoading(true);
@@ -63,8 +62,6 @@ function HccpSearch() {
   );
 
   async function search() {
-    const INITIAL_COUNT = 8;
-    setExtraHaccpDataCount(INITIAL_COUNT);
     getAxios(productName);
   }
   
@@ -76,27 +73,7 @@ function HccpSearch() {
     if (productId) filter(productId);
   }, [productId, filter]);
 
-  // 스크롤높이 추적 함수
-  function windowScrollTraces() {
-    if (
-      haccpContainerRef.current?.offsetHeight! <=
-      window.scrollY + window.innerHeight - 90
-    ) {
-      setExtraHaccpDataCount((old) => (old += 8));
-    }
-  }
 
-  useEffect(() => {
-    if (haccpContainerRef.current && itemsAtom.length > extraHaccpCount) {
-      window.addEventListener("scroll", windowScrollTraces);
-
-      return () => {
-        window.removeEventListener("scroll", windowScrollTraces);
-      };
-    } else {
-      setExtraHaccpDataCount(itemsAtom.length);
-    }
-  }, [itemsAtom.length, extraHaccpCount]);
   return (
     <>
       <section className={styles.Haccp} ref={haccpContainerRef}>
@@ -132,7 +109,6 @@ function HccpSearch() {
           setModal={setModal}
           setProductId={setProductId}
           modal={modal}
-          extraCount={extraHaccpCount}
         />
         <Modal
           filterItems={filterItems}
