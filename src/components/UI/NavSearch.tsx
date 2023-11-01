@@ -90,7 +90,7 @@ function NavSearch() {
               }
         }
       >
-        <h3 style={{ textAlign: "center" }}>네이버 백과사전</h3>
+        <h3 style={{ textAlign: "center", color:'black' }}>네이버 백과사전</h3>
         <button
           className={styles.close_btn}
           onClick={() => {

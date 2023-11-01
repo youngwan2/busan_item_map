@@ -37,6 +37,7 @@ function RecipeSearchForm({
       <div className={styles.search_input_area}>
         <label htmlFor="recipe_search"></label>
         <input
+        placeholder="ex) 스파게티"
           ref={inputRef}
           id="recipe_search"
           type="search"

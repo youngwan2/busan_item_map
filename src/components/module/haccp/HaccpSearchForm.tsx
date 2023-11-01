@@ -31,7 +31,7 @@ function HaccpSearchForm({
         className={styles.search_input}
         type="text"
         id={styles.search}
-        placeholder="상품명을 입력해주세요!"
+        placeholder="ex) 치킨"
         onKeyUp={async (e) => {
           setProductName(e.currentTarget.value);
           if (e.code === "Enter") {

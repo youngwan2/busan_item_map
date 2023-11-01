@@ -2,6 +2,9 @@ import { useState, useRef } from "react";
 import BmiResult from "./bmi/BmiResult";
 import styles from "../page/Calculate.module.scss";
 import BmiButton from "./bmi/BmiButton";
+import Movement from "../UI/movement/Movement";
+import GPT from "../../util/kakao/gpt";
+import NavSearch from "../UI/NavSearch";
 
 function BmiCalculator() {
   const [weight, setWeight] = useState(0);
@@ -13,20 +16,6 @@ function BmiCalculator() {
 
   return (
     <section className={styles.calcul_input_area}>
-      {/* 몸무게 */}
-      <div className={styles.weight_input_con}>
-        <label htmlFor="weight">몸무게</label>
-        <input
-          ref={weightElRef}
-          id="weight"
-          type="number"
-          placeholder="kg"
-          onKeyUp={(e) => {
-            const weight = Number(e.currentTarget.value);
-            setWeight(weight);
-          }}
-        />
-      </div>
       {/* 신장 */}
       <div className={styles.height_input_con}>
         <label htmlFor="height" placeholder="m">
@@ -44,6 +33,20 @@ function BmiCalculator() {
           placeholder="m"
         />
       </div>
+      {/* 몸무게 */}
+      <div className={styles.weight_input_con}>
+        <label htmlFor="weight">몸무게</label>
+        <input
+          ref={weightElRef}
+          id="weight"
+          type="number"
+          placeholder="kg"
+          onKeyUp={(e) => {
+            const weight = Number(e.currentTarget.value);
+            setWeight(weight);
+          }}
+        />
+      </div>
       {/* 계산/초기화 버튼 */}
       <BmiButton
         setResult={setResult}
@@ -54,6 +57,9 @@ function BmiCalculator() {
       />
       {/* bmi 추가 정보 */}
       <BmiResult result={result} />
+      <Movement />
+      <GPT />
+      <NavSearch />
     </section>
   );
 }
