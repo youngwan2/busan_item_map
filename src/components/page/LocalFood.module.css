@@ -68,12 +68,19 @@
 /* 지역/음식 이미지 */
 .contents img {
   margin: 2rem 5px 10px 5px;
-  border-radius: 10px;
+  border-radius: 50%;
+  min-height: 350px;
+  max-height: 350px;
+  transition: 1s;
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.325));
 }
 
+.contents img:hover {
+  border-radius: 10px;
+}
+
 .contents .sub_title {
-  margin-top: 3rem;
+  margin: 3rem 0 2rem 0;
   font-size: 1.5rem;
 }
 
@@ -82,6 +89,10 @@
   max-width: 1000px;
   line-height: 1.8;
   font-size: 17px;
+  padding: 10px;
+}
+
+.contents .foods_sumry:hover {
 }
 
 /*음식 세부 내용 사이트 링크*/
@@ -90,7 +101,7 @@
   border-radius: 20px;
   color: white;
   margin: 0 auto;
-  padding: 5px;
+  padding: 8px;
   max-width: 500px;
 }
 
@@ -184,12 +195,12 @@
 
 .category_con .category_search_input:focus {
   outline: none;
-  color:white;
+  color: white;
   background-color: rgb(63, 115, 247);
 }
 
 .category_con .category_search_input:focus::placeholder {
-  color:white;
+  color: white;
 }
 
 .category_con .category li:hover {
@@ -244,7 +255,7 @@
   padding: 6px 7px !important;
   border-radius: 5px;
   margin: 0 3px;
-    box-shadow: 0 0 1px 1px rgb(81, 81, 241);
+  box-shadow: 0 0 1px 1px rgb(81, 81, 241);
   top: 20px;
   background-color: white;
 
