@@ -12,7 +12,7 @@ function DbAddButton({
 
   return (
     <button
-      style={!hasNextPage ? { display: "none" } : { display: "inline-block" }}
+      style={!hasNextPage ? { visibility: "hidden" } : { visibility: "visible" }}
       ref={buttonRef}
       className={styles.add_btn}
       onClick={onAddPostRenderEvent}

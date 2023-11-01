@@ -79,18 +79,18 @@ function NavSearch() {
             ? {
                 visibility: "visible",
                 opacity: 1,
-                transform: "scale(1)  translate(-50%)",
+                transform:'translate(-50%,-50%)',
                 transformOrigin: "bottom bottom",
               }
             : {
                 visibility: "hidden",
                 opacity: 0,
-                transform: "scale(0.5) translate(-50%)",
-                transformOrigin: "right bottom",
+                transform:'translate(-50%,50%))',
+                transformOrigin: "center bottom",
               }
         }
       >
-        <h2 style={{ textAlign: "center" }}>네이버 백과사전</h2>
+        <h3 style={{ textAlign: "center" }}>네이버 백과사전</h3>
         <button
           className={styles.close_btn}
           onClick={() => {

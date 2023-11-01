@@ -1,5 +1,5 @@
-import ReactSpinner from "../UI/loading/ReactSpinner";
-import styles from "../page/HccpSearch.module.scss";
+import ReactSpinner from "../../UI/loading/ReactSpinner";
+import styles from "../../page/HccpSearch.module.scss";
 import { useEffect, useRef } from "react";
 
 interface Type {

@@ -101,7 +101,7 @@ const Database = () => {
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-    createDB(nutritions, itemName);
+    createDB(nutritions, itemName||"스파게티");
     setNextIndex(0);
   }, [createDB, itemName]);
 

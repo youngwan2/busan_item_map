@@ -4,10 +4,10 @@
   background-position: center;
   background-size: cover;
   position: fixed;
-  width: 70px;
-  height: 70px;
-  bottom: 7.1rem;
-  right: 2rem;
+  width: 50px;
+  height: 50px;
+  bottom: 6rem;
+  right: 2.2rem;
   color: white;
   transition: 1s;
   padding: 10px;
@@ -42,34 +42,50 @@
 .form {
   padding: 2rem 0;
   position: fixed;
-  transition: 0.5s;
+  transition: 0.9s cubic-bezier(0.265,1.84, 0.44, 1);
   max-width: 1200px;
-  border-radius: 10px;
+  border-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   left: 50%;
-  top: 0;
-  transform: translate(-50%,-10%);
-  width: 100%;
-  height: 100vh;
-  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.349);
+  top: 50%;
+  max-width: 500px;
+  width: 50%;
+  box-shadow: inset -3px -3px rgba(32, 40, 108, 0.884), inset 3px 3px rgb(116, 144, 248), 0 0 200px rgba(0, 0, 0, 0.462);
+  height: 90vh;
   background-color: white;
   z-index: 100000000;
   overflow: hidden scroll;
+  animation: updown 1s infinite alternate ease-in-out;
 }
 
+@keyframes updown {
+  from {transform: translate(-50%,-49%);}
+}
+
+
 .form::-webkit-scrollbar {
-  width: 10px;
-  background-color: rgb(207, 203, 203);
+  width: 0px;
+  background-color: rgb(92, 124, 230);
 }
 
 .form::-webkit-scrollbar-thumb {
-  background-color: rgb(120, 120, 249);
+  background-color: rgb(132, 132, 216);
   border-radius: 10px;
 }
+
 
 /* 사용자 검색창 */
 .form form {
   text-align: center;
   margin: 1.5rem;
+}
+
+.form form input {
+  border-radius: 5px;
+  z-index: 0;
+  
+  border-color: rgb(157, 157, 255);
 }
 
 /* 검색 결과 */
@@ -118,20 +134,21 @@
 }
 
 .user_input:focus {
-  outline-color: rgb(132, 132, 254);
-  border-radius: 2px;
+  outline-color: rgb(162, 162, 245);
   padding: 7px 10px;
-  border: none;
+  color:white;
+  box-shadow: inset 500px 0 0 0 rgb(170, 170, 248);
+  border: 1px solid transparent;
 }
 
 .search_btn {
   min-width: 40px;
-  padding: 6px;
+  padding: 5.5px;
   margin: 0 3px;
   border: none;
-  background-color: rgb(130, 130, 247);
+  background-color: rgb(150, 150, 249);
   border-radius: 4px;
-  box-shadow: inset -1px -1px 1px 1px rgba(9, 15, 106, 0.411);
+  box-shadow: inset -1px -1px 1px 1px rgba(20, 29, 144, 0.411);
   color: white;
 }
 
@@ -146,8 +163,9 @@
   background-color: rgb(133, 133, 255);
   color: white;
   border-radius: 10px;
+  font-size: 14px;
   border: none;
-  padding: 5px 8px;
+  padding: 4px 8px;
   box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.738);
   right: 15px;
 }

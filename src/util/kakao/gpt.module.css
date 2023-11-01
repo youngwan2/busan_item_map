@@ -27,12 +27,12 @@
   background: url("/public/icon/chatIcon.png");
   background-position: center;
   background-size: cover;
-  height: 68px;
+  height: 50px;
   border: none;
   border-radius: 50%;
   box-shadow: 0 0 20px 1px rgb(202, 201, 201);
   background-color: rgb(91, 168, 249);
-  width: 68px;
+  width: 50px;
   z-index: 10000000000;
 }
 

@@ -2,13 +2,13 @@ import styles from "./HccpSearch.module.scss";
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
 import Modal from "../UI/HccpModal/modal";
-import HccpResult from "../module/HccpResult";
+import HccpResult from "../module/haccp/HccpResult";
 import Movement from "../UI/movement/Movement";
 import NavSearch from "../UI/NavSearch";
 import GPT from "../../util/kakao/gpt";
 import { useRecoilState } from "recoil";
 import { HaccpData } from "../../atom/Haccp";
-import HaccpSearchForm from "../module/HaccpSearchForm";
+import HaccpSearchForm from "../module/haccp/HaccpSearchForm";
 
 export type ItemsType = {
   item: {
@@ -82,7 +82,7 @@ function HccpSearch() {
           style={{ textAlign: "center", margin: "6rem 0" }}
           className={styles.haccp_page_title}
         >
-          HACCP제품 정보조회
+          <p>HACCP제품 정보조회</p>
         </h2>
         <div className={styles.haccp_inner_container}>
           {/* 검색창 */}

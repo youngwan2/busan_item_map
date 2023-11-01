@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { ItemsType } from "../page/HccpSearch";
-import styles from "../page/HccpSearch.module.scss";
+import { ItemsType } from "../../page/HccpSearch";
+import styles from "../../page/HccpSearch.module.scss";
 import HccpMeg from "./HccpMeg";
 
 interface Type {
@@ -18,7 +18,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
   // 초기 렌더링 값 지정
   useEffect(() => {
     if (items) {
-      const currentPage = Number(sessionStorage.getItem('currentHccp'))||10
+      const currentPage = Number(sessionStorage.getItem("currentHccp")) || 10;
       const initialItems = items.slice(0, currentPage);
       setVisibleHCCP(initialItems);
     }
@@ -35,7 +35,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
           const nextHccp = items?.slice(length, length + 10);
           if (nextHccp && nextHccp.length > 0)
             setVisibleHCCP((prev) => [...prev, ...nextHccp]);
-          sessionStorage.setItem('currentHccp',`${visibleHCCP.length}`)
+          sessionStorage.setItem("currentHccp", `${visibleHCCP.length}`);
         }
       }
     }
@@ -47,7 +47,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
 
   return (
     <section className={styles.content_container} ref={containerRef}>
-      <HccpMeg currentPage ={visibleHCCP.length} totalPage={totalItemCount}/>
+      <HccpMeg currentPage={visibleHCCP.length} totalPage={totalItemCount} />
       {Array.isArray(items) ? (
         visibleHCCP.map((item, i) => {
           return (

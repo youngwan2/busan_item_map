@@ -1,4 +1,4 @@
-import styles from "./modal.module.css";
+import styles from "./modal.module.scss";
 import { ItemsType } from "../../page/HccpSearch";
 import Layout from "./layout";
 
@@ -29,7 +29,7 @@ function Modal({ filterItems, setModal, modal }: ModalType) {
         </button>
         <section>
           {Array.isArray(filterItems) ? (
-            filterItems.map((item,i) => {
+            filterItems.map((item) => {
               return (
                 <div className={styles.modal_content_con} key={item.item.prdlstReportNo}>
                   <figure className={styles.modal_figure}>

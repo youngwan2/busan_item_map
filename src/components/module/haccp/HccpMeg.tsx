@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from '../page/HccpSearch.module.scss'
+import styles from '../../page/HccpSearch.module.scss'
 
 interface Type {
     currentPage:number

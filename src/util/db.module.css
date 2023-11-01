@@ -160,19 +160,22 @@
   margin: 0.5rem 0;
   display: inline-block;
   position: fixed;
+  box-shadow: inset -3px -3px rgb(14, 16, 130), inset 2px 2px rgb(126, 152, 255);
   max-width: 200px;
-  background-color: rgb(40, 40, 41);
+  background-color: rgb(112, 112, 230);
   color: white;
   min-height: 45px;
   padding: 10px;
-  z-index: 10000;
+  font-size: 14px;
+  z-index: 1000;
   top: 4.6rem;
   right: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .result_msg button {
   margin: 5px;
-  border-radius: 10%;
+  box-shadow: 2px 2px rgb(32, 18, 190);
+  border-radius: 50px;
   border: none;
 }

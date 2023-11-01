@@ -43,7 +43,7 @@ function DbResult({ getNutritions }: ResultType) {
             setIsDisplayMsg(!isDisplayMsg);
           }}
         >
-          {isDisplayMsg ? "닫기" : "현재 위치"}
+          {isDisplayMsg ? "닫기" : "위치"}
         </button>
         <br />
         <span style={!isDisplayMsg?{display:'none'}:{display:'inline-block'}}>
