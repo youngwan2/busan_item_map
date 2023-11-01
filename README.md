@@ -32,17 +32,14 @@
 ### 프론트엔드
 - <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 - <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-- <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
 - <img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 - <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
-- <img src="https://img.shields.io/badge/Kakao Map API-FFCD00?style=for-the-badge&logo=kakao&logoColor=white">
-- <img src="https://img.shields.io/badge/공공데이터포털API-82B816?style=for-the-badge&logo=public&logoColor=white">
+- <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
+
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
-- <img src="https://img.shields.io/badge/KoGPT(KaKao) API-FF4655?style=for-the-badge&logo=&logoColor=white">
-- <img src="https://img.shields.io/badge/Naver Search API-FA4155?style=for-the-badge&logo=&logoColor=white">
   
-### 데이터베이스
+### 데이터베이스(브라우저)
 - <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
 
 ## 향후 계획
