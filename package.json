@@ -35,6 +35,7 @@
     "react-scripts": "^5.0.1",
     "react-speech-recognition": "^3.10.0",
     "recoil": "^0.7.7",
+    "remark-gfm": "^4.0.0",
     "sass": "^1.69.4",
     "styled-components": "^6.0.6",
     "styled-reset": "^4.5.1",

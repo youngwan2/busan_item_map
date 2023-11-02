@@ -1,0 +1,47 @@
+.markdown_container {
+  text-align: start;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(180deg,  rgba(64, 86, 230, 0.799),rgb(96, 104, 245));
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.278),
+    -10px 10px 3px rgba(0, 0, 0, 0.328);
+}
+
+.markdown_container {
+  h2 {
+    text-align: center;
+    background-color: black;
+    padding: 15px 10px;
+    background-color: white;
+    color: rgb(34, 34, 34);
+    box-shadow: inset 5px 5px 2px rgba(0, 0, 0, 0.357);
+    border-radius: 5%;
+  }
+
+  h4 {
+    border-left: 5px solid rgb(33, 32, 32);
+    padding: 6px;
+    margin: 1.5rem 0.5rem 1rem 0.5rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.607);
+    background-color: white;
+    color: rgb(46, 46, 46);
+  }
+}
+
+.markdown {
+  animation: appear 1s 1 ease-in-out;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+.markdown_container li {
+  list-style: square;
+  margin-left: 2rem;
+}

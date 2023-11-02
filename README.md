@@ -32,17 +32,14 @@
 ### 프론트엔드
 - <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 - <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-- <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
 - <img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 - <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
-- <img src="https://img.shields.io/badge/Kakao Map API-FFCD00?style=for-the-badge&logo=kakao&logoColor=white">
-- <img src="https://img.shields.io/badge/공공데이터포털API-82B816?style=for-the-badge&logo=public&logoColor=white">
+- <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
+
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
-- <img src="https://img.shields.io/badge/KoGPT(KaKao) API-FF4655?style=for-the-badge&logo=&logoColor=white">
-- <img src="https://img.shields.io/badge/Naver Search API-FA4155?style=for-the-badge&logo=&logoColor=white">
   
-### 데이터베이스
+### 데이터베이스(브라우저)
 - <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
 
 ## 향후 계획
@@ -52,7 +49,7 @@
 
 ## 개선사항 
 - (문제) 식품 영양정보조회, 음식 레시피 세부 페이지 이동 후 이전 페이지로 이동 시 조회 결과가 초기화 되는 문제수정(23.10.21 - 23.10.23).
-- (개선)레시피 세부 내용 조회 시 이전/다음 게시글을 조회할 수 있는 페이지 이동기능 추가(23.10.21).
-- (개선)레시피 조회 시 무한 스크롤 기능 추가.(23.10.22).
-- (개선)HACCP 제품 정보조회 시 무한 스크롤 기능 추가(23.10.23)
+- (개선) 레시피 세부 내용 조회 시 이전/다음 게시글을 조회할 수 있는 페이지 이동기능 추가(23.10.21).
+- (개선) 레시피 조회 시 무한 스크롤 기능 추가.(23.10.22).
+- (개선) HACCP 제품 정보조회 시 무한 스크롤 기능 추가(23.10.23)
 - (개선) HACCP, 식품 영양정보조회, 레시피 정보 조회 시 무한 스크롤 기능 리팩토링:: 스크롤 이벤트 리스너의 중복 호출로 인한 메모리 누수 문제, 중복된 데이터를 조회하여 대량 데이터 렌더링 시 화면이 버벅이는 문제 등을 개선(23.10.31)
