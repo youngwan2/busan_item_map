@@ -7,6 +7,10 @@ const Introduce = () => {
   const mainRef = useRef<HTMLAreaElement>(null);
   const footerRef = useRef<HTMLAreaElement>(null);
 
+  useEffect(()=>{
+      document.title ="Food Picker"
+  },[])
+
   useEffect(() => {
     if (headerRef.current && mainRef.current && footerRef.current) {
       const callback = (entries: any) => {

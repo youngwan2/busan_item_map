@@ -55,7 +55,28 @@
   padding: 5px 10px 5px 0;
   animation: appear 1s 1 ease-in-out;
   text-align: center;
-  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.contents .left_contents{
+  width: 65%;
+  margin: 10px 15px 0 0;
+}
+
+.contents .right_contents {
+  width: 35%;
+  margin: 2em 0 15px 20px;
+  text-align: start;
+}
+
+.contents .right_contents div {
+  margin-bottom: 2em;
+}
+
+.contents .right_contents strong {
+  font-size: 1.3em;
 }
 
 @keyframes appear {
@@ -67,38 +88,37 @@
 
 /* 지역/음식 이미지 */
 .contents img {
-  margin: 2rem 5px 10px 5px;
-  border-radius: 50%;
-  min-height: 350px;
-  max-height: 350px;
+  margin: 0 10px 10px 10px;
   transition: 1s;
+  max-width: 500px;
+  width: 100%;
+  max-height: 330px;
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.325));
 }
 
 .contents img:hover {
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 .contents .sub_title {
-  margin: 3rem 0 2rem 0;
+  margin: 1em 0 2em 0;
   font-size: 1.5rem;
 }
 
 .contents .foods_sumry {
   margin: 2rem auto 3rem auto;
-  max-width: 1000px;
+  max-width: 900px;
   line-height: 1.8;
   font-size: 17px;
-  padding: 10px;
+  padding: 20px 30px 20px 30px;
+  text-align: justify;
 }
 
-.contents .foods_sumry:hover {
-}
 
 /*음식 세부 내용 사이트 링크*/
 .contents .foods_detail_url {
   background-color: rgb(99, 99, 232);
-  border-radius: 20px;
+  border-radius: 5px;
   color: white;
   margin: 0 auto;
   padding: 8px;
@@ -213,6 +233,7 @@
 .category_con .category {
   background-color: rgb(255, 255, 255);
   max-width: 350px;
+  min-height: 100vh;
   overflow-y: scroll;
   width: 100%;
   box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.394);
@@ -317,4 +338,32 @@
   left: 5px;
   background-color: rgb(42, 84, 238);
   top: 5rem;
+}
+
+
+@media screen and (max-width:671px) {
+  .contents {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+  }
+
+  .contents .foods_sumry {
+    padding: 0;
+  }
+
+  .left_contents {
+    width: 100% !important;
+  }
+
+  .right_contents {
+    margin: 0 !important;
+    max-width: 600px !important;
+    width: 100% !important;
+  }
+
+  .right_contents div {
+    max-width: 100%;
+    width: 100%;
+  }
 }

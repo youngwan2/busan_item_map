@@ -20,6 +20,7 @@ export type localFoodType = {
   sbjt_nm: string;
   signgu_nm: string;
   sumry_cn: string;
+  
   relate_rstrnt_nm: string;
   rstrnt_addr: string;
   rstrnt_tel_no: string;

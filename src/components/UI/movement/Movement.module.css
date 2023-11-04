@@ -1,25 +1,26 @@
 .movement {
   position: fixed;
-  left: 20px;
-  bottom: 20px;
+  left: 10px;
+  bottom: 10px;
+  opacity: 0.7;
   display: flex;
   flex-direction: column;
 }
 
 .movement button {
-  border-radius: 20px;
-  background-color: white;
+  border-radius: 50px;
+  background-color: transparent;
 }
 
 .movement button:hover {
-  background-color: rgb(192, 192, 251);
+  background-color: rgba(192, 192, 251, 0.282);
 }
 
 @media screen and (min-width: 768px) {
   .movement {
     position: fixed;
-    left: 50px;
-    bottom: 50px;
+    left: 40px;
+    bottom: 40px;
     display: flex;
     flex-direction: column;
   }

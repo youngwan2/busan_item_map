@@ -1,5 +1,5 @@
 import { useRef, useEffect,useState, MouseEvent, KeyboardEvent } from "react";
-import { localFoods } from "../../page/localfood(202212)";
+import { localFoods } from "../../page/localfood.mjs";
 import styles from "../../page/LocalFood.module.css";
 import { localFoodType } from "../../page/LocalFood";
 
@@ -35,7 +35,7 @@ function LocalAsideMenu({ setSearchResult,display,setDisplay }: PropsType) {
     const choiceTitle = e.currentTarget.textContent!;
 
     // 제목 리스트에서 유저가 선택한 항목이 포함되어 있는 경우만 필터링
-    const choiceFood = localFoods.filter((food) => {
+    const choiceFood = localFoods.filter((food: { data_title_nm: string | string[]; }) => {
       return food.data_title_nm.includes(choiceTitle);
     });
     setSearchResult(choiceFood);
@@ -56,8 +56,8 @@ function LocalAsideMenu({ setSearchResult,display,setDisplay }: PropsType) {
 
   // 전체 목록에서 중복을 제외한 카테고리 목록을 필터링하는 함수
   const categoryFilter = () => {
-    const filterList: any[] = [];
-    localFoods?.forEach((data) => {
+    const filterList: string[] = [];
+    localFoods?.forEach((data: { data_title_nm: string; }) => {
       filterList.push(data.data_title_nm);
     });
     const filterTitle = [...new Set(filterList)];
@@ -78,6 +78,11 @@ function LocalAsideMenu({ setSearchResult,display,setDisplay }: PropsType) {
 
     return filterTitle;
   }
+
+  useEffect(()=>{
+    setSearchResult(localFoods)
+  },[])
+
   useEffect(() => {
     categoryFilter();
   }, []);
