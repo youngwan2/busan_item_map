@@ -58,11 +58,16 @@ function Header({ isStyle }: HeaderType) {
               </button>
               <ul>
                 <li className={styles.main_menu_con}>
-                  <Link to={"#"}>조회 서비스</Link>
+                  <Link to={"#"}>향토 이야기</Link>
                   <ul className={styles.main_menu_ul}>
                     <li>
                       <Link to={"/localfood"}>향토음식조회</Link>
                     </li>
+                  </ul>
+                </li>
+                <li className={styles.main_menu_con}>
+                  <Link to={"#"}>조회 서비스</Link>
+                  <ul className={styles.main_menu_ul}>
                     <li>
                       <Link to={"/nutrition"}>식품영양정보조회</Link>
                     </li>
