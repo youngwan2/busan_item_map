@@ -1,6 +1,8 @@
 import axios from "axios";
 import styles from "./gpt.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap/gsap-core";
+import { Draggable } from "gsap/Draggable";
 
 type Content = {
   target: string;
@@ -14,7 +16,7 @@ function GPT() {
   const [display, setDisplay] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
-
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const list = [...conversations];
   function reqGPT(prompt: string) {
     setLoading(true);
@@ -58,9 +60,18 @@ function GPT() {
         });
     }
   }
+
+  useEffect(()=>{
+    gsap.registerPlugin(Draggable)
+
+    if(buttonRef.current) {
+      Draggable.create(buttonRef.current)
+    }
+  },[])
   return (
     <>
       <button
+        ref={buttonRef}
         style={
           !display
             ? { visibility: "visible", transform: "scale(1)" }

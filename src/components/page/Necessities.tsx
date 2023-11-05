@@ -60,9 +60,9 @@ function Necessities() {
     getItem(currentPage, gugun);
   }, [getItem, currentPage, gugun]);
 
-  useEffect(()=>{
-    document.title = '부산생필품 정보조회 | foodPicker'
-  },[])
+  useEffect(() => {
+    document.title = "부산생필품 정보조회 | foodPicker";
+  }, []);
 
   return (
     <>
@@ -70,7 +70,7 @@ function Necessities() {
         className={styles.title}
         style={{ textAlign: "center", margin: "6rem 0" }}
       >
-        부산생필품 정보조회
+        <p>부산생필품 정보조회</p>
       </h2>
       <table className={styles.item_table}>
         <thead>

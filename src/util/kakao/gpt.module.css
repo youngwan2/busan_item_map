@@ -21,7 +21,6 @@
 /* 쳇 아이콘 */
 .chat_icon {
   position: fixed;
-  transition: 1s;
   right: 2.15rem;
   bottom: 2.5rem;
   background: url("/public/icon/chatIcon.png");

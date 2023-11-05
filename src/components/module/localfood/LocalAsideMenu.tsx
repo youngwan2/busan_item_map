@@ -1,5 +1,5 @@
 import { useRef, useEffect,useState, MouseEvent, KeyboardEvent } from "react";
-import { localFoods } from "../../page/localfood.mjs";
+import localFoods  from "./localfood.js";
 import styles from "../../page/LocalFood.module.css";
 import { localFoodType } from "../../page/LocalFood";
 

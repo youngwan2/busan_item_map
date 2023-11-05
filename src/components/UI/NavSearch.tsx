@@ -3,6 +3,8 @@ import axios from "axios";
 import DictionaryResult from "../module/DictionaryResult";
 import ReactSpinner from "./loading/ReactSpinner";
 import { useState, useRef, useEffect } from "react";
+import {gsap} from "gsap"
+import { Draggable } from "gsap/Draggable";
 
 export type DictionaryType = {
   title: string;
@@ -18,6 +20,7 @@ function NavSearch() {
   const [items, setItems] = useState<DictionaryType[]>();
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const spanRef = useRef<(HTMLSpanElement)>(null)
 
   function focus() {
     if (display && inputRef.current) {
@@ -30,6 +33,13 @@ function NavSearch() {
   useEffect(() => {
     focus();
   }, [display]);
+
+  useEffect(()=>{
+     gsap.registerPlugin(Draggable)
+     if(spanRef.current) {
+      Draggable.create(spanRef.current)
+     }
+  },[])
 
   const reqNaverSearchAPI = (value: string) => {
     setLoading(true);
@@ -65,6 +75,7 @@ function NavSearch() {
     <>
       {/* 아이콘 */}
       <span
+        ref={spanRef}
         role="button"
         className={styles.nav_search_icon}
         onClick={() => {

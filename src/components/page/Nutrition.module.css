@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
 
 .Nutrition_section {
-  margin: 3.22rem auto 0 auto;
+  margin: 0 auto 0 auto;
   font-family: "Orbit", sans-serif;
   text-align: center;
 }
@@ -10,8 +10,9 @@
   background-color: black;
   text-shadow: 5px 5px 8px black;
   font-size: 2.5rem;
-  margin: 1rem 0 2rem 0 !important;
+  margin: 0 0 2rem 0 !important;
   color: white;
+
   background-size: contain;
   background-position: center !important;
   position: relative;
@@ -20,7 +21,6 @@
 
 .nutrition_title p {
   width: 100%;
-  line-height: 7;
+  padding: 10rem 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0), white);
-  height: 300px;
 }
