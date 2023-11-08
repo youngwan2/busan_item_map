@@ -1,16 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import KaMap from "../components/UI/KaMap";
-import ItemTable from "../components/page/Necessities";
-import HccpSearch from "../components/page/HccpSearch";
-import LocalFood from "../components/page/LocalFood";
-import Nutrition from "../components/page/Nutrition";
-import NutritionDetail from "../components/page/NutritionDetail";
-import NotFound from "../components/error/NotFound";
-import Recipe from "../components/page/recipe/Recipe";
-import RecipeDetail from "../components/page/recipe/RecipeDetail";
-import Header from "../components/UI/Header";
-import Calculator from "../components/page/Calculator";
+import Header from "../components/Common/Header";
+import LocalFoodPage from "../pages/LocalFood/LocalFoodPage";
+import NutritionPage from "../pages/Nutrition/NutritionPage";
+import NecessitiesPage from "../pages/Necessities/NecessitiesPage";
+import HaccpPage from "../pages/Haccp/HaccpPage";
+import RecipePage from "../pages/Recipe/RecipePage";
+import RecipeDetail from "../pages/Recipe/RecipeDetail";
+import BmiPage from "../pages/Bmi/BmiPage";
+import NutritionDetail from "../pages/Nutrition/NutritionDetailPage";
+import NotFound from "../components/Errors/NotFound";
+import Home from "../pages/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -19,36 +18,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App></App>,
-        errorElement: <h2>컴포넌트를 불러오는 중에 문제가 발생하였습니다.</h2>,
+        element: <Home/>,
       },
       {
         path: "/localfood",
-        element: <LocalFood></LocalFood>,
+        element: <LocalFoodPage/> ,
       },
       {
         path: "/nutrition",
-        element: <Nutrition></Nutrition>,
+        element: <NutritionPage/>,
       },
       {
-        path: "/item",
-        element: <ItemTable></ItemTable>,
+        path: "/busan-necessities",
+        element: <NecessitiesPage/>,
       },
       {
         path: "/haccp",
-        element: <HccpSearch></HccpSearch>,
+        element:<HaccpPage/>,
       },
       {
-        path: "/food-recipe",
-        element: <Recipe />,
+        path: "/recipe",
+        element: <RecipePage />,
       },
       {
-        path: "/food-recipe/detail/:id",
+        path: "/recipe/:id",
         element: <RecipeDetail />,
       },
       {
         path:'/calculate',
-        element:<Calculator/>
+        element:<BmiPage/>
       }
     ],
   },

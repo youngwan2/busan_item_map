@@ -1,0 +1,260 @@
+.Recipe {
+  margin: 0 auto 0 auto;
+  min-height: 100vh;
+}
+
+.page_title {
+  text-align: center;
+  background-color: black;
+  text-shadow: 4px 4px 5px black;
+  font-size: 2.5rem;
+  padding: 12rem 0;
+  font-family: "Orbit", sans-serif;
+  margin: 0 0 3rem 0 !important;
+  box-shadow: inset 0 0 15px 1px rgb(69, 69, 69);
+  color: white;
+  filter: opacity(1);
+  background: url("/assets/recipe.png");
+}
+
+.page_title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  filter: opacity(1);
+  background: linear-gradient(-180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255));
+  bottom: 0;
+}
+
+.page_title::after {
+  content: "음식 레시피";
+  position: absolute;
+  min-width: 220px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.search_form {
+  padding: 10px;
+  max-width: 600px;
+  width: 100%;
+  margin: 3rem auto;
+  text-align: center;
+
+  /* 유저 검색창 */
+  .search_input_area {
+    position: relative;
+    input {
+      border-radius: 10px;
+      border: 1px solid rgb(136, 156, 255);
+      padding: 10px 15px;
+      min-width: 150px;
+      width: 100%;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    /* 검색 버튼 */
+    button {
+      position: absolute;
+      right: 0;
+      border-radius: 5px;
+      min-width: 65px;
+      color: white;
+      box-shadow: inset 2px 2px 2px rgb(133, 149, 252),
+        inset -2px -2px 2px rgb(30, 43, 125);
+      padding: 11px 15px;
+      border: none;
+      background-color: rgb(98, 98, 238);
+    }
+    button:hover {
+      background-color: rgb(120, 120, 250);
+    }
+  }
+}
+
+/* 검색- 분류(체크박스)*/
+.search_form .search_sortby_area {
+  margin: 1rem auto;
+  min-width: 200px;
+  max-width: 280px;
+  input {
+    margin: 5px;
+  }
+  .checkbox_item {
+    display: inline-block;
+    margin: 0 4px;
+  }
+}
+
+/* ====RecipeSearchResult.tsx */
+
+/* 검색 결과 컨테이너 */
+.search_result_container {
+  max-width: 1400px;
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  min-height: 50vh;
+  flex-wrap: wrap;
+  margin: 0 auto;
+    a {
+      text-decoration: none;
+      margin: 10px;
+      min-width: 300px;
+      width: 100%;
+      max-width: 320px;
+    }
+}
+
+.search_result_container:nth-last-child(-n+4) {
+  justify-content: start;
+}
+
+.recipe_main_item_con {
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.159),
+    5px 5px 15px 0 rgba(0, 0, 0, 0.165), -5px -5px 15px rgba(0, 0, 0, 0.108);
+  position: relative;
+  border-radius: 2%;
+  min-width: 280px;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  transition: 0.5s;
+  height: 300px;
+  animation: appear 1s 1 ease-in-out;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(-30px);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.recipe_main_item_con:hover > .recipe_main_item {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  cursor: pointer;
+}
+
+.recipe_main_item {
+  width: 100%;
+  border-radius: 2%;
+  letter-spacing: 2px;
+  transform-origin: center top;
+  transform: translateY(-5px) rotateX(10deg) perspective(600px);
+  transition: 0.8s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  height: 300px;
+  text-align: center;
+  padding-top: 4rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.403);
+}
+/* 레시피 요리명 */
+.recipe_main_title {
+  font-weight: 600;
+}
+
+/* 레시피 카테고리 */
+.recipe_main_category {
+  background-color: rgb(54, 75, 231);
+  display: inline-block;
+  margin-top: 1em;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* 데이터 없을 때 메시지 */
+
+.undefined_meg {
+  text-align: center;
+  margin: 2rem;
+}
+
+/* 로딩 스피너 */
+.loading_spinner {
+  position: fixed;
+  left: 50%;
+  box-shadow: 0 0 20px 5px rgba(131, 177, 250, 0.688);
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 안내 메시지 */
+
+.message_container {
+  position: fixed;
+  top: 5rem;
+  transition: 1s;
+  z-index: 10;
+  max-width: 240px;
+  right: 2rem;
+  min-height: 40px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px 5px 10px 35px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.452);
+  display: flex;
+  flex-direction: column;
+
+  button {
+    color: white;
+    padding: 2px 5px;
+    transition: 1s;
+    font-size: 14px;
+    background-color: rgb(26, 78, 133);
+    border-radius: 5px;
+    left: 8px;
+    top: 20%;
+    transform: translate(0, -50%);
+    border: none;
+    position: absolute;
+  }
+  .message {
+    transition: 0.8s;
+    min-width: 180px;
+    font-size: 13px;
+  }
+}
+
+.message_container::before {
+  content: "";
+  position: absolute;
+  right: -13px;
+  top: 5px;
+  filter: drop-shadow(10px 0 10px black);
+  border-left: 15px solid rgb(255, 255, 255);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+// @media screen and (max-width: 1316px) {
+//   .search_result_container {
+//     justify-content: center;
+//   }
+// }
+
+@media screen and (max-width: 1398px) {
+  .search_result_container {
+    a {
+      max-width: 425px;
+    }
+  }
+}
+@media screen and (max-width: 1372px) {
+  .search_result_container {
+    justify-content: center !important;
+    a {
+      margin: 10px;
+    }
+  }
+}

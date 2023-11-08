@@ -3,7 +3,7 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router";
 import reportWebVitals from "./reportWebVitals";
-import store from "./app/store";
+import store from "./store";
 import { Provider } from "react-redux";
 import { RecoilRoot } from "recoil";
 
