@@ -116,7 +116,7 @@
   max-width: 500px;
   width: 80%;
   background-color: rgb(122, 122, 251);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 20px 20px 5px rgba(0, 0, 0, 0.287);
   animation: appear 1s 1 ease-in-out;
 }
@@ -156,23 +156,30 @@
 .result_msg {
   margin: 0.5rem 0;
   display: inline-block;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.334);
   position: fixed;
-  box-shadow: inset -3px -3px rgb(14, 16, 130), inset 2px 2px rgb(126, 152, 255);
   max-width: 200px;
-  background-color: rgb(112, 112, 230);
   color: white;
-  min-height: 45px;
-  padding: 10px;
+  padding: 5px;
+
   font-size: 14px;
   z-index: 1000;
   top: 4.6rem;
   right: 20px;
-  border-radius: 20px;
+  border-radius: 3px;
 
   button {
-    margin: 5px;
-    box-shadow: 2px 2px rgb(32, 18, 190);
-    border-radius: 50px;
     border: none;
   }
+
+  button:hover {
+    box-shadow: 0 0 0 3px rgb(76, 109, 239);
+  }
+
+  span {
+    margin: 5px;
+    text-align: start;
+  }
+
 }

@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { RecipeType } from "./types/Recipe.types";
-import RecipeNutrition from "./RecipeNutrition";
+import RecipeNutrition from "./components/RecipeNutrition";
 import NextRecipe from "./components/RecipeButton";
 
 function RecipeDetail() {
@@ -12,22 +12,21 @@ function RecipeDetail() {
   const [recipe, setRecipe] = useState<RecipeType>();
 
   const state = useAppSelector((state) => {
-    sessionStorage.setItem("recipe", JSON.stringify({recipes:state.recipe.value}));
+    sessionStorage.setItem(
+      "recipe",
+      JSON.stringify({ recipes: state.recipe.value })
+    );
     return state.recipe;
   }).value.filter((recipe) => {
     return recipe.RCP_SEQ === params.id;
   });
 
-
-  
-  useEffect(()=>{
-    document.title ="레시피 상세조회 | FoodPicker"
-  },[])
-
+  useEffect(() => {
+    document.title = "레시피 상세조회 | FoodPicker";
+  }, []);
 
   useEffect(() => {
     setRecipe(state[0]);
-    console.log(recipe);
   }, [params]);
 
   useEffect(() => {

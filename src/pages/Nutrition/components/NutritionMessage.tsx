@@ -16,7 +16,6 @@ const NutritionMessage = ({ getNutritions }: ResultType) => {
   const containerRef = useRef<HTMLBaseElement>(null);
   const [visibleNutritions, setVisibleNutritions] = useState<any[]>([]);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [isDisplayMsg, setIsDisplayMsg] = useState(true);
 
   useEffect(() => {
     if (getNutritions) {
@@ -38,18 +37,7 @@ const NutritionMessage = ({ getNutritions }: ResultType) => {
   return (
     <>
       <aside className={styles.result_msg}>
-        <button
-          onClick={() => {
-            setIsDisplayMsg(!isDisplayMsg);
-          }}
-        >
-          {isDisplayMsg ? "닫기" : "위치"}
-        </button>
-        <br />
         <span
-          style={
-            !isDisplayMsg ? { display: "none" } : { display: "inline-block" }
-          }
         >
           총: {getNutritions.length} <br /> 현재: {visibleNutritions.length}
         </span>

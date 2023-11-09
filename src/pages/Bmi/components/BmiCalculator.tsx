@@ -13,6 +13,9 @@ function BmiCalculator() {
 
   return (
     <section className={styles.calcul_input_area}>
+              <strong style={{background:'rgba(0,0,0,0.8)', padding:'5px 8px', borderRadius:'5px'}}>참고BMI 란? </strong> <br />
+              <p style={{textAlign:'center'}}>체질량 지수(BMI)는 인간의 비만도를 나타내는 지수입니다. 케틀레지수라고도 합니다. 자세한 내용은 백과사전을 이용해보세요.</p>
+              <hr />
       {/* 신장 */}
       <div className={styles.height_input_con}>
         <label htmlFor="height" placeholder="m">

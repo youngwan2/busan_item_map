@@ -1,4 +1,4 @@
-import { RecipeType } from "./types/Recipe.types";
+import { RecipeType } from "../types/Recipe.types";
 import styles from "./RecipeNutrition.module.scss";
 import { useState } from "react";
 function RecipeNutrition({ recipe }: { recipe?: RecipeType }) {

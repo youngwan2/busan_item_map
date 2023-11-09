@@ -51,6 +51,8 @@
         width: 100vw;
         z-index: -1;
         min-height: 100vh;
+        perspective: 600px;
+        animation: appear 1s ease-in-out 1;
       }
     }
 
@@ -87,6 +89,10 @@
       }
     }
   }
+}
+
+@keyframes appear {
+  from { transform:translate(-100px) rotateY(-15deg); transform-origin: left center; visibility: hidden; opacity: 0;}
 }
 
 @media screen and (min-width: 510px) {

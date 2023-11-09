@@ -16,7 +16,7 @@
   /* 페이지 타이틀 */
   .title {
     background-color: black;
-    text-shadow: 5px 5px 10px black;
+    text-shadow: 1px 1px 4px black;
     padding: 11rem 0;
     z-index: -1;
     font-size: 2.5rem;
@@ -53,7 +53,7 @@
 
 /** 콘텐츠(조회된 데이터 보이는 영역) */
 .contents {
-  z-index: -1;
+  z-index: 1;
   padding: 5px 10px 5px 0;
   animation: appear 1s 1 ease-in-out;
   text-align: center;
