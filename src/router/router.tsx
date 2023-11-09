@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <RecipeDetail />,
       },
       {
-        path: "/calculate",
+        path: "/bmi",
         element: <BmiPage />,
       },
     ],

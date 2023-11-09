@@ -88,7 +88,7 @@ function Header({ isStyle }: HeaderType) {
                     <Link to={"/busan-necessities"}>부산생필품정보</Link>
                   </li>
                   <li>
-                    <Link to={"/calculate"}>체질량지수</Link>
+                    <Link to={"/bmi"}>체질량지수</Link>
                   </li>
                 </ul>
               </li>
