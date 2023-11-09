@@ -2,8 +2,6 @@ import { useEffect, useState} from "react";
 import LocalFoodContent from "./components/LocalFoodContent";
 import LocalFoodSidebar from "./components/LocalFoodSidebar";
 import { localFoodType } from "./types/localFood.types";
-import styles from './LocalFood.module.scss'
-
 
 const LocalFoodPage = () => {
   const [searchResult, setSearchResult] = useState<localFoodType[]>();

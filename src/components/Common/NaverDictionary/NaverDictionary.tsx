@@ -15,26 +15,26 @@ export type DictionaryType = {
 function NavSearch() {
   const [display, setDisplay] = useState(false);
 
-  const spanRef = useRef<HTMLSpanElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(Draggable);
-    if (spanRef.current) {
-      Draggable.create(spanRef.current);
+    if (buttonRef.current) {
+      Draggable.create(buttonRef.current);
     }
   }, []);
 
   return (
     <>
       {/* 아이콘 */}
-      <span
-        ref={spanRef}
-        role="button"
+      <button
+      tabIndex={1}
+        ref={buttonRef}
         className={styles.nav_search_icon}
         onClick={() => {
           setDisplay(!display);
         }}
-      ></span>
+      ></button>
       {/* 콘텐츠 뷰 */}
       <NaverDictionaryView display={display} setDisplay={setDisplay} />
       <Overlay display={display} setDisplay={setDisplay}></Overlay>

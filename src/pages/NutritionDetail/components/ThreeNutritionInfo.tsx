@@ -14,7 +14,7 @@ const ThreeNutritionInfo = ({ detailNutritionData }: PropsType) => {
     단백질: detailNutritionData["단백질(g)"],
     지방: detailNutritionData["지방(g)"],
   });
-  
+
   return (
     <section className={styles.three_info}>
       <strong>3대 영양소 </strong>

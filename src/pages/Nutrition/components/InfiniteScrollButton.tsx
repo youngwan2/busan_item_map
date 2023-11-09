@@ -1,7 +1,7 @@
-import styles from "../Nutrition.module.css";
+import styles from "./NutritionDb.module.scss";
 import { useRef } from "react";
 
-function NutritionButton({
+function InfiniteScrollButton({
   onAddPostRenderEvent,
   hasNextPage,
 }: {
@@ -14,7 +14,7 @@ function NutritionButton({
     <button
       style={!hasNextPage ? { visibility: "hidden" } : { visibility: "visible" }}
       ref={buttonRef}
-      className={styles.add_btn}
+      className={styles.scroll_btn}
       onClick={onAddPostRenderEvent}
     >
       더보기
@@ -22,4 +22,4 @@ function NutritionButton({
   );
 }
 
-export default NutritionButton;
+export default InfiniteScrollButton;

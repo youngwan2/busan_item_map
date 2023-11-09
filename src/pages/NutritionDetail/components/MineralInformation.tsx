@@ -7,7 +7,7 @@ interface PropsType {
     [name: string]: number;
   };
 }
-const MineralInfo = ({ detailNutritionData }: PropsType) => {
+const MineralInformation = ({ detailNutritionData }: PropsType) => {
 
   // 무기질 정보
   const [mineral] = useState({
@@ -49,4 +49,4 @@ const MineralInfo = ({ detailNutritionData }: PropsType) => {
   );
 };
 
-export default MineralInfo;
+export default MineralInformation;

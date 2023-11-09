@@ -9,15 +9,17 @@
   bottom: 6rem;
   right: 2.2rem;
   color: white;
+  border:none;
   padding: 10px;
-  z-index: 1000000000000;
+  z-index: 1000;
   filter: drop-shadow(0 0 20px);
 }
 
 .nav_search_icon:hover::before {
   content: "";
   position: absolute;
-  left: -1em;
+  left: -1rem;
+  top: 0.8rem;
   border-left: 15px solid white;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
@@ -32,7 +34,7 @@
   padding: 10px;
   background-color: rgb(255, 255, 255);
   position: absolute;
-  top: -5px;
+  top: -3px;
   left: -9.58rem;
   color: black;
 }

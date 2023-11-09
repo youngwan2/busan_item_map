@@ -1,11 +1,4 @@
-import {
-  useRef,
-  useEffect,
-  useState,
-  MouseEvent,
-  KeyboardEvent,
-  RefObject,
-} from "react";
+import { useEffect, useState, MouseEvent, KeyboardEvent } from "react";
 import localfoods from "../../../data/localfoods";
 import styles from "../LocalFood.module.scss";
 import { localFoodType } from "../types/localFood.types";
@@ -85,7 +78,11 @@ function LocalFoodSidebar({ setSearchResult, display, setDisplay }: PropsType) {
   return (
     <aside
       className={styles.category_con}
-      style={display ? { visibility: "visible", opacity:1 } : { visibility:'hidden', opacity:0, transform:"translate(-50px)" }}
+      style={
+        display
+          ? { visibility: "visible", opacity: 1 }
+          : { visibility: "hidden", opacity: 0, transform: "translate(-50px)" }
+      }
     >
       <SidebarUserInput titleFilter={titleFilter} />
       <SidebarSearchBtn categorySearch={categorySearch} />

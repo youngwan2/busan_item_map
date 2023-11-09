@@ -1,4 +1,4 @@
-import styles from '../Necessities.module.css'
+import styles from '../Necessities.module.scss'
 import { ItemsType, laLoType } from '../types/Necessities.types'
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import styles from "./Necessities.module.css";
+import styles from "./Necessities.module.scss";
 import Pagination from "./components/Pagination";
 import ReactSpinner from "../../components/UI/ReactSpinner";
 import NecessitiesMap from "./components/NecessitiesMap";
@@ -18,8 +18,6 @@ function NecessitiesPage() {
   const [isLoading, setIsLoading] = useState(false);
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
     setIsLoading(true);
-
-    // console.log("지역:", gugun);
     await axios
       .get(
         `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`

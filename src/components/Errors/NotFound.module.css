@@ -1,0 +1,22 @@
+
+.container {
+    text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 8rem;
+}
+
+.container h2 {
+    max-width: 600px;
+    font-size: 1.25rem;
+    margin: 0 auto;
+}
+
+.container button {
+    border: none;
+    text-align: center;
+    background-color: black;
+    color:white;
+    padding: 10px 15px;
+    font-weight: 700;
+}

@@ -1,10 +1,10 @@
 import styles from "./NutritionDb.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getNutritionDataFromDB } from "../../../store/slice/nutritionSearch"
+import { getNutritionDataFromDB } from "../../../store/slice/nutritionSearch";
 import { useAppDispatch } from "../../../app/hooks";
-import NutritionButton from "./NutritionButton";
-import NutritionResult from "./NutritionResult";
+import InfiniteScrollButton from "./InfiniteScrollButton";
+import NutritionResult from "./NutritionList";
 
 interface ResultType {
   getNutritions: any[];
@@ -37,7 +37,7 @@ const NutritionMessage = ({ getNutritions }: ResultType) => {
   }
   return (
     <>
-      <aside  className={styles.result_msg}>
+      <aside className={styles.result_msg}>
         <button
           onClick={() => {
             setIsDisplayMsg(!isDisplayMsg);
@@ -46,7 +46,11 @@ const NutritionMessage = ({ getNutritions }: ResultType) => {
           {isDisplayMsg ? "닫기" : "위치"}
         </button>
         <br />
-        <span style={!isDisplayMsg?{display:'none'}:{display:'inline-block'}}>
+        <span
+          style={
+            !isDisplayMsg ? { display: "none" } : { display: "inline-block" }
+          }
+        >
           총: {getNutritions.length} <br /> 현재: {visibleNutritions.length}
         </span>
       </aside>
@@ -75,12 +79,12 @@ const NutritionMessage = ({ getNutritions }: ResultType) => {
           </div>
         )}
       </section>
-      <NutritionButton
+      <InfiniteScrollButton
         hasNextPage={hasNextPage}
         onAddPostRenderEvent={renderingHandler}
       />
     </>
   );
-}
+};
 
 export default NutritionMessage;

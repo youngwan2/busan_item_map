@@ -34,7 +34,7 @@ function Header({ isStyle }: HeaderType) {
         style={
           isStyle
             ? { backgroundColor: "rgba(61, 61, 255, 0.794)" }
-            : { backgroundColor: " rgba(0, 0, 0, 0.528)" }
+            : { backgroundColor: "transparent", boxShadow:'none' }
         }
       >
         <div className={styles.header_flex}>

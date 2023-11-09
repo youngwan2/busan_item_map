@@ -1,12 +1,15 @@
 import styles from "./NutritionDb.module.scss";
 import { useEffect, useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
-import { NutritionData,NutritionKeyItemData } from "../../../atom/NutritionsAtom";
+import {
+  NutritionData,
+  NutritionKeyItemData,
+} from "../../../atom/NutritionsAtom";
 
-import { nutritions } from "../../../data/Nutrition"
+import { nutritions } from "../../../data/Nutrition";
 import NutritionSidebar from "./NutritionSidebar";
 import ReactSpinner from "../../../components/UI/ReactSpinner";
-import NutritionSearch from "./NutritionSearch";
+import NutritionSearchForm from "./NutritionSearchForm";
 import NutritionMessage from "./NutritionMessage";
 
 const Database = () => {
@@ -71,7 +74,7 @@ const Database = () => {
 
       // 인덱스 기반 조회
       const index = nutritionStore.index("식품명");
-      const itemsList= [];
+      const itemsList = [];
       const itemsK = [];
 
       index.openCursor().onsuccess = (event) => {
@@ -101,7 +104,7 @@ const Database = () => {
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-    createDB(nutritions, itemName||"스파게티");
+    createDB(nutritions, itemName || "스파게티");
     setNextIndex(0);
   }, [createDB, itemName]);
 
@@ -112,8 +115,17 @@ const Database = () => {
         getNutritions={nutritionAtom}
       />
       {/* 아이템 검색창  */}
-      <NutritionSearch setItemName={setItemName} />
-      <h5 style={{ textAlign: "center", margin: "20px" }}>{itemName || ""}</h5>
+      <NutritionSearchForm setItemName={setItemName} />
+      <strong
+        style={{
+          textAlign: "center",
+          margin: "20px 0 10px 0",
+          fontSize: "1.25em",
+          display: "block",
+        }}
+      >
+        {itemName || ""}
+      </strong>
       <br />
       {isLoading ? <ReactSpinner /> : ""}
       <br />
