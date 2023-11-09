@@ -17,13 +17,6 @@ const NotFound = () => {
       <br />
       <button
         onClick={() => {
-          navigate("/");
-        }}
-      >
-        돌아가기
-      </button>
-      <button
-        onClick={() => {
           setCount(oldCount => ++oldCount)
           const path = window.location.pathname;
           console.log(path);

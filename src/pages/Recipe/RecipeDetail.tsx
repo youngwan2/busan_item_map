@@ -160,27 +160,3 @@ function RecipeDetail() {
 }
 
 export default RecipeDetail;
-
-/**
- * 번호	항목	설명
-1	RCP_SEQ	일련번호
-2	RCP_NM	메뉴명
-3	RCP_WAY2	조리방법
-4	RCP_PAT2	요리종류 ex) 후식, 밥, 반찬 국
-5	INFO_WGT	중량(1인분)
-6	INFO_ENG	열량
-7	INFO_CAR	탄수화물
-8	INFO_PRO	단백질
-9	INFO_FAT	지방
-10	INFO_NA	나트륨
-11	HASH_TAG	해쉬태그
-12	ATT_FILE_NO_MAIN	이미지경로(소)
-13	ATT_FILE_NO_MK	이미지경로(대)
-14	RCP_PARTS_DTLS	재료정보
-15	MANUAL01	만드는법_01
-16	MANUAL_IMG01	만드는법_이미지_01
-55	RCP_NA_TIP	저감 조리법 TIP
-
- * 
- * 
- */

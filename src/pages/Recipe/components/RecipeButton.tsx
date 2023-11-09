@@ -72,7 +72,7 @@ function NextRecipe({ param }: PropsType) {
             : { visibility: "visible", opacity:1 }
         }
       >
-        <Link to={`/food-recipe/detail/${nextRecipe?.RCP_SEQ}`}>
+        <Link to={`/recipe/${nextRecipe?.RCP_SEQ}`}>
           <h4 style={{ background: `url(${nextRecipe?.ATT_FILE_NO_MAIN})` }}>
             {nextRecipe?.RCP_NM||"아이템이 존재하지 않습니다."}
           </h4>

@@ -20,15 +20,16 @@ const ulRef =useRef<HTMLUListElement>(null)
             const originIndex = Number(el.dataset.index)
             if(originIndex === page) {
               el.style.cssText = `
-                transform: scale(1.5);
+                transform: scale(1.4, 1.1);
+                border-radius:5px;
                 color:black;
                 background: white;
               `
             } else {
               el.style.cssText = `
-              transform: scale(1.1, 1);
+              transform: scale(1);
               color:white;
-              background: black;
+              background: transparent;
             `
             }
         }

@@ -1,7 +1,7 @@
 /* 모달 */
 .modal {
   transition: 0.5s;
-  z-index: 10000;
+  z-index: 10000000;
   width: 100%;
   max-width: 900px;
   min-width: 300px;
@@ -11,7 +11,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 2px 2px 5px 2px rgba(128, 128, 128, 0.929);
-  border-radius: 5px;
   background-color: rgb(255, 255, 255);
   top: 50%;
   overflow-y: auto;
@@ -37,9 +36,7 @@
 .modal_title {
   background-color: rgba(0, 0, 255, 0.697);
   color: white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 3px;
+  padding: 5px 0 5px 5px;
 }
 
 .modal_content_con {
@@ -57,7 +54,11 @@
     }
 
     strong {
-      padding: 2px;
+      background-color: rgb(97, 97, 254);
+      color:white;
+      display: inline-block;
+      padding: 2px 5px;
+      margin: 3px 0;
       border: 1px solid rgb(207, 204, 204);
       border-radius: 5px;
     }

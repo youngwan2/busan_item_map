@@ -97,10 +97,10 @@
   margin: 0 auto;
   flex-wrap: wrap;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-figure {
+.content_container figure {
   position: relative;
   max-width: 305px;
   min-width: 305px;
@@ -140,7 +140,7 @@ figure {
   }
 }
 
-figure:hover {
+.content_container figure:hover {
   cursor: pointer;
   transform: rotateX(-2deg) scale(1.05);
   z-index: 1000;
@@ -199,4 +199,38 @@ figure:hover {
   border-left: 15px solid rgb(255, 255, 255);
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
+}
+
+
+@media screen and (max-width: 1641px) {
+  .content_container {
+
+    figure {
+      max-width:400px;
+      width: 100%;
+    }
+  }
+
+  
+}
+
+@media screen and (max-width: 1600px) {
+  .content_container {
+    justify-content: center;
+
+    figure {
+      max-width:400px;
+      width: 100%;
+    }
+  }  
+}
+@media screen and (max-width: 1065px) {
+  .content_container {
+    justify-content: center;
+
+    figure {
+      max-width:250px;
+      width: 100%;
+    }
+  }  
 }

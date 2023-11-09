@@ -5,7 +5,7 @@ interface LayoutType {
   modal: boolean;
 }
 
-function HaccpModalLayout({ setModal,modal }: LayoutType) {
+const HaccpModalLayout = ({ setModal,modal }: LayoutType) => {
   return (
     <div
       style={
