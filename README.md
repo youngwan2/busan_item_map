@@ -4,8 +4,10 @@
 
 ## 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>B.I.M</b></mark>
+
+
 <p style="text-aligin:center; margin:0 auto">
-  <img src="https://github.com/youngwan2/busan_item_map/assets/107159871/2e65e166-d690-4724-b11e-518299dea054"  alt="홈페이지 프리뷰"/>
+  <img src="https://github.com/youngwan2/busan_item_map/assets/107159871/ffba0431-985d-427b-be3c-6a8c64bb2fd9"  alt="홈페이지 프리뷰"/>
   </p>
 
 ---
