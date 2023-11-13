@@ -4,14 +4,16 @@ import bmi from "../../../assets/bmi.png";
 import recipe from "../../../assets/recipe.png";
 import haccp from "../../../assets/haccpback.png";
 import nutrition from "../../../assets/nutritionback.png";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 interface PropsType {
   page: number;
+  setPage: (p:number)=> void
 }
 
-const IntroSlide = ({ page = 0 }: PropsType) => {
+const IntroSlide = ({ page = 0, setPage}: PropsType) => {
   const ulRef = useRef<HTMLUListElement>(null);
+  const ItemsTopRef = useRef<number[]>([])
 
   useEffect(() => {
     if (ulRef.current instanceof HTMLUListElement) {
@@ -32,6 +34,19 @@ const IntroSlide = ({ page = 0 }: PropsType) => {
       });
     }
   }, [page]);
+
+  useEffect(()=>{
+    if(ulRef.current instanceof HTMLUListElement) {
+      const lis = [...ulRef.current.childNodes]
+      lis.forEach((li)=>{
+        if(li instanceof HTMLLIElement) {
+          const top=li.getBoundingClientRect().top
+          ItemsTopRef.current.push(top)
+        }
+      })
+    }
+  },[])
+
 
   return (
     <ul className={styles.slide_con} ref={ulRef}>

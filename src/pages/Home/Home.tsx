@@ -1,8 +1,7 @@
 import Introduce from "./components/Introduce";
-function Home() {
+const Home = ()=> {
     return (
         <Introduce/>
     );
 }
-
 export default Home;

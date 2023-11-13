@@ -327,7 +327,7 @@
 /* 슬라이드 버튼(바깥) */
 .slide_btn_outer {
   border: none;
-  z-index: 100000;
+  z-index: 10000;
   box-shadow: inset 2px 2px 1px rgb(154, 164, 216),
     inset -2px -2px 2px rgb(40, 45, 75);
   position: fixed;
