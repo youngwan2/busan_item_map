@@ -23,7 +23,7 @@ const Database = () => {
 
   // 데이터베이스를 연결하고 초기 데이터를 셋팅
   const createDB = useCallback((data, itemName) => {
-    const dbName = "nutritionDB"; // 데이터베이스 이름
+    const dbName = "nutritionDB"; 
     const request = indexedDB.open(dbName, 1); // 데이터베이스를 1버전으로 오픈
 
     // 데이터베이스 연결 요청 실패 시 에러를 띄운다.
@@ -33,7 +33,8 @@ const Database = () => {
 
     // 데이터베이스 수정, 변경, 생성 등 요청 결과가 정상적으로 업데이트 되었다면 트리거
     request.onupgradeneeded = (e) => {
-      const db = e.target?.result; // 데이버베이스를 참조하는 인스턴스가 담긴다.
+      const db = e.target?.result; 
+
       // 관계형으로 따지면 테이블을 생성하는 부분
       const objectStore = db.createObjectStore("nutritions", {
         keyPath: "id", //-- 기본키를 id 로 지정
@@ -100,11 +101,11 @@ const Database = () => {
         }
       };
     };
-  }, []);
+  }, [itemName]);
 
   // 영양 정보 json 데이터를 받아온 후 데이터베이스 생성 함수의 인자로 전달한다.
   useEffect(() => {
-    createDB(nutritions, itemName || "스파게티");
+    createDB(nutritions, itemName);
     setNextIndex(0);
   }, [createDB, itemName]);
 

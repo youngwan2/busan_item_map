@@ -31,7 +31,6 @@
     "react-speech-recognition": "^3.10.0",
     "recoil": "^0.7.7",
     "remark-gfm": "^4.0.0",
-    
     "styled-components": "^6.0.6",
     "styled-reset": "^4.5.1",
     "typescript": "^4.9.5",
@@ -73,6 +72,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-speech-recognition": "^3.9.2",
     "@types/styled-components": "^5.1.26",
+    "cra-bundle-analyzer": "^0.1.1",
     "gh-pages": "^5.0.0",
     "kakao.maps.d.ts": "^0.1.38",
     "sass": "^1.69.4"

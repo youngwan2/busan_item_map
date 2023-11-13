@@ -1,20 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 import Header from "../components/Common/Header";
-import LocalFoodPage from "../pages/LocalFood/LocalFoodPage";
-import NutritionPage from "../pages/Nutrition/NutritionPage";
-import NecessitiesPage from "../pages/Necessities/NecessitiesPage";
-import HaccpPage from "../pages/Haccp/HaccpPage";
-import RecipePage from "../pages/Recipe/RecipePage";
-import RecipeDetail from "../pages/Recipe/RecipeDetail";
-import BmiPage from "../pages/Bmi/BmiPage";
-import NutritionDetail from "../pages/NutritionDetail/NutritionDetailPage";
 import NotFound from "../components/Errors/NotFound";
-import Home from "../pages/Home/Home";
+import PageLoading from "../components/UI/PageLoading";
+import { lazy,Suspense } from "react";
+
+const Home = lazy(()=> import('../pages/Home/Home'))
+const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
+const NutritionPage = lazy(()=> import('../pages/Nutrition/NutritionPage'))
+const NutritionDetail = lazy(()=> import('../pages/NutritionDetail/NutritionDetailPage'))
+const NecessitiesPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
+const HaccpPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
+const RecipePage = lazy(()=> import('../pages/Recipe/RecipePage'))
+const RecipeDetail = lazy(()=> import('../pages/Recipe/RecipeDetail'))
+const BmiPage = lazy(()=> import('../pages/Bmi/BmiPage'))
+
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: 
+     <Suspense fallback={<PageLoading/>}>
+      <Home/>
+    </Suspense>,
   },
   {
     path: "/",
@@ -23,37 +32,62 @@ const router = createBrowserRouter([
 
       {
         path: "/localfood",
-        element: <LocalFoodPage />,
+        element: 
+         <Suspense fallback={<PageLoading/>}>
+          <LocalFoodPage />
+         </Suspense>
+        ,
       },
       {
         path: "/nutrition",
-        element: <NutritionPage />,
+        element:
+        <Suspense fallback={<PageLoading/>}>
+          <NutritionPage/>
+       </Suspense>
       },
       {
         path: "/busan-necessities",
-        element: <NecessitiesPage />,
+        element:
+        <Suspense fallback={<PageLoading/>}>
+         <NecessitiesPage />
+       </Suspense>
       },
       {
         path: "/haccp",
-        element: <HaccpPage />,
+        element: 
+        <Suspense fallback={<PageLoading/>}>
+          <HaccpPage />
+        </Suspense>
       },
       {
         path: "/recipe",
-        element: <RecipePage />,
+        element: 
+        <Suspense fallback={<PageLoading/>}>
+          <RecipePage />
+        </Suspense>
       },
       {
         path: "/recipe/:id",
-        element: <RecipeDetail />,
+        element: 
+        <Suspense fallback={<PageLoading/>}>
+          <RecipeDetail />
+        </Suspense>
       },
       {
         path: "/bmi",
-        element: <BmiPage />,
+        element: 
+        <Suspense fallback={<PageLoading/>}>
+         <BmiPage />
+        </Suspense>
       },
     ],
   },
   {
     path: "/nutrition/:id",
-    element: <NutritionDetail />,
+    element: 
+    <Suspense fallback={<h2>로딩중...</h2>}>
+      <NutritionDetail />
+    </Suspense>
   },
   {
     path: "*",

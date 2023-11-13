@@ -52,7 +52,7 @@ const IntroSlide = ({ page = 0, setPage}: PropsType) => {
     <ul className={styles.slide_con} ref={ulRef}>
       <li className={styles.slide_item}>
         <figure>
-          <img src={localfood} alt="향토음식 소개의 배경이미지" />
+          <img  src={localfood} alt="향토음식 소개의 배경이미지" />
         </figure>
         <article className={styles.contents}>
           <strong>
