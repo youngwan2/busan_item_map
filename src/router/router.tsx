@@ -5,17 +5,15 @@ import PageLoading from "../components/UI/PageLoading";
 import { lazy,Suspense } from "react";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
+const RecommendedDietPage = lazy(()=> import('../pages/RemmendedDiet/RecommendedDietPage'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
 const NutritionPage = lazy(()=> import('../pages/Nutrition/NutritionPage'))
 const NutritionDetail = lazy(()=> import('../pages/NutritionDetail/NutritionDetailPage'))
 const NecessitiesPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
-const HaccpPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
+const HaccpPage = lazy(()=> import('../pages/Haccp/HaccpPage'))
 const RecipePage = lazy(()=> import('../pages/Recipe/RecipePage'))
 const RecipeDetail = lazy(()=> import('../pages/Recipe/RecipeDetail'))
 const BmiPage = lazy(()=> import('../pages/Bmi/BmiPage'))
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -29,7 +27,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <Header isStyle={true} />,
     children: [
-
+      {
+        path:'/recommend-diet',
+        element:
+        <Suspense fallback={<PageLoading/>}>
+          <RecommendedDietPage/>
+        </Suspense>
+      },
       {
         path: "/localfood",
         element: 
