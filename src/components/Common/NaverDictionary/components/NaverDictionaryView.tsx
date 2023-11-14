@@ -22,7 +22,8 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
       axios
         .get(`/search/encyc?query=${value}`)
         .then((result) => {
-          const data = result.data.response.items;
+          if(result.status !== 200) throw new Error('요청에 문제가 있습니다.')
+          const data = result.data.message.items;
           setItems(data);
           setLoading(false);
         })
@@ -35,12 +36,13 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
       axios
         .get(`http://localhost:3000/search/encyc?query=${value}`)
         .then((result) => {
-          const data = result.data.response.items;
+          if(result.status !== 200) throw new Error('요청에 문제가 있습니다.')
+          const data = result.data.message.items;
           setItems(data);
           setLoading(false);
+        
         })
         .catch((error) => {
-          console.error(error);
           setLoading(false);
         });
     }
