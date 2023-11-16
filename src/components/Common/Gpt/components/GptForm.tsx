@@ -45,7 +45,9 @@ const GptForm = forwardRef(({ setLoading, loading, list, setConversations }:Prop
             if (inputRef.current) inputRef.current.value = "";
 
             setLoading(false);
-            if (loading === true && ulRef !==null ) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-expect-error
+            if (loading === true && ulRef.current !==null ) {
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               //@ts-expect-error
               ulRef.current.scrollTo({ top: 1000000 });
