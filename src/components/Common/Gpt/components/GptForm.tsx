@@ -1,4 +1,4 @@
-import { useState, useRef, Dispatch, SetStateAction, forwardRef } from "react";
+import { useState, useRef, forwardRef, ForwardedRef } from "react";
 import styles from "../Gpt.module.scss";
 import axios from "axios";
 
@@ -10,12 +10,11 @@ type Content = {
 interface PropsType {
   setLoading: (p: boolean) => void;
   loading: boolean;
-  setConversations: Dispatch<SetStateAction<Content[]>>;
+  setConversations: (p:Content[])=>void;
   list: Content[];
 }
 
-const GptForm = forwardRef<HTMLUListElement | null, PropsType>(
-  ({ setLoading, loading, list, setConversations }, ulRef) => {
+const GptForm = forwardRef(({ setLoading, loading, list, setConversations }:PropsType, ulRef:ForwardedRef<HTMLUListElement>) => {
     const [prompt, setPrompt] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -29,10 +28,7 @@ const GptForm = forwardRef<HTMLUListElement | null, PropsType>(
           .post("http://localhost:3000/gpt", { prompt })
           .then((result) => {
             list.push({ target: "AI상담사", comment: result.data.text });
-            setConversations((prev: Content[]) => {
-              return (prev = list);
-            });
-            console.log(list);
+            setConversations(list);
             if (inputRef.current) inputRef.current.value = "";
             setLoading(false);
           })
@@ -44,16 +40,14 @@ const GptForm = forwardRef<HTMLUListElement | null, PropsType>(
           .post("/gpt", { prompt })
           .then((result) => {
             list.push({ target: "AI상담사", comment: result.data.text });
-            setConversations((prev) => {
-              return (prev = list);
-            });
+            setConversations(list)
             console.log(list);
             if (inputRef.current) inputRef.current.value = "";
 
             setLoading(false);
-            // @ts-ignore
-            if (loading === true && ulRef.current) {
-              // @ts-ignore
+            if (loading === true && ulRef !==null ) {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-expect-error
               ulRef.current.scrollTo({ top: 1000000 });
             }
           })
