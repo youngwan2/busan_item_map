@@ -9,11 +9,11 @@ export interface ItemsType {
     lo: string;
     unit: string;
     unitprice: number;
-  };
+  }
 
 
 
 export  interface laLoType {
     la: string;
     lo: string;
-  };
+  }

@@ -16,7 +16,7 @@
   background-size: contain;
   background-position: center !important;
   position: relative;
-  background: url("/public/images/nutritionback.png");
+  background: url("/images/nutritionback.png");
 }
 
 .nutrition_title strong {

@@ -1,9 +1,9 @@
 import styles from "./IntroSlide.module.scss";
-import localfood from "../../../assets/localfoodback.png";
-import bmi from "../../../assets/bmi.png";
-import recipe from "../../../assets/recipe.png";
-import haccp from "../../../assets/haccpback.png";
-import nutrition from "../../../assets/nutritionback.png";
+import localfood from "/assets/localfoodback.png";
+import bmi from "/assets/bmi.png";
+import recipe from "/assets/recipe.png";
+import haccp from "/assets/haccpback.png";
+import nutrition from "/assets/nutritionback.png";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 interface PropsType {

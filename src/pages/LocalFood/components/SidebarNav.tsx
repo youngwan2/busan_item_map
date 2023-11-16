@@ -35,7 +35,7 @@ const SidebarNav = ({ setDisplay, title, searchFilter }: PropsType) => {
           className={styles.slide_btn_inner}
         >
           <img
-            src={process.env.PUBLIC_URL + "/icon/close.svg"}
+            src={"/icon/close.svg"}
             width={30}
             height={30}
             alt=""

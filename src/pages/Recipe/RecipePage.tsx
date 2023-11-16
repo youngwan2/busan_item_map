@@ -8,7 +8,7 @@ import RecipeSearchForm from "./components/RecipeSearchForm";
 import RecipeSearchResult from "./components/RecipeSearchResult";
 import ReactSpinner from "../../components/UI/ReactSpinner";
 
-const API_KEY = process.env.REACT_APP_FOOD_KEY;
+const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
 function RecipePage() {
   const [userInputValue, setUserInputValue] = useState("");

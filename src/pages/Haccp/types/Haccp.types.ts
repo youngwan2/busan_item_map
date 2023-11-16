@@ -10,4 +10,4 @@ export interface ItemsType {
       prdlstReportNo: string; // 상품 보고 번호(일련번호)
       rawmtrl: string; // 영양정보
     };
-  };
+  }

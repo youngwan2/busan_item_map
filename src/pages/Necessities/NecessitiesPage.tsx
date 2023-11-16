@@ -11,7 +11,7 @@ function NecessitiesPage() {
   const [items, setItems] = useState<ItemsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [laLo, setLaLo] = useState<laLoType>();
-  const [gugun, setGugun] = useState("금정구");
+  const [gugun] = useState("금정구");
   const [isDisplay, setIsDisplay] = useState(true);
   const [bsshNm, setBsshNm] = useState("");
 
@@ -20,7 +20,7 @@ function NecessitiesPage() {
     setIsLoading(true);
     await axios
       .get(
-        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${process.env.REACT_APP_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
+        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${import.meta.env.VITE_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
       )
       .then((result) => {
         // console.log("검색결과:", result);

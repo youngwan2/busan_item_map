@@ -1,9 +1,8 @@
 import styles from "./Header.module.scss";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Gpt from "./Gpt/Gpt";
+import { HiMenu } from "react-icons/hi";
 import Movement from "./Movement";
 import NavSearch from "./NaverDictionary/NaverDictionary";
 interface HeaderType {
@@ -102,7 +101,7 @@ function Header({ isStyle }: HeaderType) {
               onDisplay ? { visibility: "hidden" } : { visibility: "visible" }
             }
           >
-            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+            <HiMenu/>
           </button>
         </div>
       </header>

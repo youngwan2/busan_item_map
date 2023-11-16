@@ -24,7 +24,7 @@ const GptForm = forwardRef<HTMLUListElement | null, PropsType>(
 
       list.push({ target: "user", comment: prompt });
 
-      if (process.env.NODE_ENV !== "production") {
+      if (import.meta.env.MODE !== "production") {
         axios
           .post("http://localhost:3000/gpt", { prompt })
           .then((result) => {

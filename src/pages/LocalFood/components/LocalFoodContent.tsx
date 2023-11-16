@@ -42,7 +42,7 @@ const SummaryContents = ({ searchResult }: ContentsType) => {
         src={
           searchResult !== undefined && searchResult[0].main_thumb_url !== ""
             ? `${searchResult[0].main_thumb_url}`
-            : process.env.PUBLIC_URL + "/not-image.png"
+            : "/not-image.png"
         }
         alt="thumb"
       ></img>

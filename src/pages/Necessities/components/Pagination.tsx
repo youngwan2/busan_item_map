@@ -12,9 +12,9 @@ function Pagination({ setPage }: PaginationType) {
 
   const render = useCallback(
     (updatePage: number) => {
-      let pageSize = 10;
-      let currentPage = updatePage;
-      let pageGroup = Math.ceil(currentPage / pageSize);
+      const pageSize = 10;
+      const currentPage = updatePage;
+      const pageGroup = Math.ceil(currentPage / pageSize);
 
       const lastPage = pageGroup * pageSize;
       const firstPage = lastPage - pageSize + 1;

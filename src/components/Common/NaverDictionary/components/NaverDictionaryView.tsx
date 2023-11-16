@@ -18,7 +18,7 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
 
   const reqNaverSearchAPI = (value: string) => {
     setLoading(true);
-    if (process.env.NODE_ENV === "production") {
+    if (import.meta.env.MODE  === "production") {
       axios
         .get(`/search/encyc?query=${value}`)
         .then((result) => {

@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 
-const API_KEY = process.env.REACT_APP_FARMING_KEY
+const API_KEY = import.meta.env.VITE_FARMING_KEY
 
 
 

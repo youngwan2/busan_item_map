@@ -1,10 +1,8 @@
 import styles from './Movement.module.scss'
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useEffect } from 'react'
+import {HiOutlineChevronDoubleUp, HiOutlineChevronDoubleDown } from "react-icons/hi";
 
 const Movement = () => {
-
     const [scrollY, setScrollY] = useState(0)
     const scrollYHandler = () => {
         setScrollY(window.scrollY)
@@ -23,12 +21,13 @@ const Movement = () => {
                 style={scrollY < 50 ? { visibility: 'hidden' } : { visibility: 'visible' }}
                 onClick={() => {
                     window.scrollTo({ 'top': 0, behavior: 'smooth' })
-                }}><FontAwesomeIcon icon={faChevronUp} /></button>
+                }}> <HiOutlineChevronDoubleUp/></button>
+
             <button
                 style={scrollY > document.body.offsetHeight - 1000 ? { visibility: 'hidden' } : { visibility: 'visible' }}
                 onClick={() => {
                     window.scrollTo({ 'top': 10000000000, behavior: 'smooth' })
-                }}><FontAwesomeIcon icon={faChevronDown} /></button>
+                }}><HiOutlineChevronDoubleDown/></button>
         </article>
     )
 }

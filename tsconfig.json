@@ -1,23 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2022",
     "downlevelIteration": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "kakao.maps.d.ts"
-    ],
+    "lib": ["DOM", "DOM.Iterable","ES2022"],
+    "types": ["kakao.maps.d.ts"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -25,7 +19,5 @@
     "jsx": "react-jsx",
     
   },
-  "include": [
-    "src"
-  ]
+  "include": [ "src"]
 }

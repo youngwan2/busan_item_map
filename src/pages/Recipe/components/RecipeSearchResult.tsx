@@ -73,7 +73,7 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
               style={{
                 backgroundImage: `url(${
                   recipe.ATT_FILE_NO_MAIN ||
-                  process.env.PUBLIC_URL + "/not-image.png"
+                  "/not-image.png"
                 })`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
