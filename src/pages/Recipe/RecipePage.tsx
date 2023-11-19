@@ -38,7 +38,7 @@ function RecipePage() {
 
   useEffect(() => {
     setRecipes(state.value);
-  }, []);
+  }, [state.value]);
 
   /* axios.then */
   function axiosThen(response: AxiosResponse) {

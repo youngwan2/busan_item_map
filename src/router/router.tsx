@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Header from "../components/Common/Header";
 import NotFound from "../components/Errors/NotFound";
 import PageLoading from "../components/UI/PageLoading";
+import ChildDietPage from "../pages/Diet/ChildDietPage";
 import { lazy,Suspense } from "react";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
@@ -15,6 +16,7 @@ const HaccpPage = lazy(()=> import('../pages/Haccp/HaccpPage'))
 const RecipePage = lazy(()=> import('../pages/Recipe/RecipePage'))
 const RecipeDetail = lazy(()=> import('../pages/Recipe/RecipeDetail'))
 const BmiPage = lazy(()=> import('../pages/Bmi/BmiPage'))
+
 
 const router = createBrowserRouter([
   {
@@ -85,12 +87,17 @@ const router = createBrowserRouter([
          <BmiPage />
         </Suspense>
       },
+      {
+        path:"/child-diet",
+        element:
+          <ChildDietPage/>
+      }
     ],
   },
   {
     path: "/nutrition/:id",
     element: 
-    <Suspense fallback={<h2>로딩중...</h2>}>
+    <Suspense fallback={<PageLoading/>}>
       <NutritionDetail />
     </Suspense>
   },

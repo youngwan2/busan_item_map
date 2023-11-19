@@ -21,7 +21,7 @@ function HaccpPage() {
   const getAxios = async (productName: string) => {
     try {
       setLoading(true);
-      const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${import.meta.env.VITE_BUSAN_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
+      const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
       const response = await axios.get(url);
 
       if(response.status !==200) { throw new Error("Network Error");}

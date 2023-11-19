@@ -20,7 +20,7 @@ function NecessitiesPage() {
     setIsLoading(true);
     await axios
       .get(
-        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${import.meta.env.VITE_BUSAN_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
+        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${import.meta.env.VITE_PUBLIC_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
       )
       .then((result) => {
         // console.log("검색결과:", result);
