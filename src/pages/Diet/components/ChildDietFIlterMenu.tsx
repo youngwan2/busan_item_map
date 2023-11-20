@@ -27,11 +27,11 @@ const ChildDietFilterMenu = ({ setChoiceFoodIngredient, setChoiceKeyword,totalIt
         {keywords.map((keyword) => {
           return (
             <div key={keyword} className={styles.keyword_list_con}>
-              <input id={'childDiet' + keyword} type='radio' value={keyword} name={'diet_keyword'} onClick={() => {
+              <input id={'childDietKey' + keyword} type='radio' value={keyword} name={'diet_keyword'} onClick={() => {
                 if(keyword ==='전체') return setChoiceKeyword('')
                 setChoiceKeyword(keyword)
               }}></input>
-              <label htmlFor={'childDiet' + keyword}>{keyword}</label>
+              <label htmlFor={'childDietKey' + keyword}>{keyword}</label>
             </div>
           )
         })}
@@ -41,11 +41,11 @@ const ChildDietFilterMenu = ({ setChoiceFoodIngredient, setChoiceKeyword,totalIt
         {foodIngredients.map((ingredient) => {
           return (
             <div key={ingredient} className={styles.ingredient_list_con}>
-              <input id={'childDiet' + ingredient} type='radio' value={ingredient} name={'diet_ingredient'} onClick={()=>{
+              <input id={'childDietIngredient' + ingredient} type='radio' value={ingredient} name={'diet_ingredient'} onClick={()=>{
                 if(ingredient ==='전체') return setChoiceFoodIngredient('')
                 setChoiceFoodIngredient(ingredient)
               }}></input>
-              <label htmlFor={'childDiet' + ingredient}>{ingredient}</label>
+              <label htmlFor={'childDietIngredient' + ingredient}>{ingredient}</label>
             </div>
           )
         })}

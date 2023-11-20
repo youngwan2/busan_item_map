@@ -79,10 +79,18 @@ function Header({ isStyle }: HeaderType) {
                   </li>
                 </ul>
               </li>
+              <li className={styles.main_menu_con}>
+                <Link to={"#"}>식단 정보</Link>
+                <ul className={styles.main_menu_ul}>
+                  <li>
+                    <Link to={"/child-diet"}>유아 식단 정보</Link>
+                  </li>
+                </ul>
+              </li>
 
-              <li className={styles.etc_menu_con}>
+              <li className={styles.main_menu_con}>
                 <Link to={"#"}>기타 서비스</Link>
-                <ul className={styles.etc_menu}>
+                <ul className={styles.main_menu_ul}>
                   <li>
                     <Link to={"/busan-necessities"}>부산생필품정보</Link>
                   </li>

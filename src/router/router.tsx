@@ -90,7 +90,9 @@ const router = createBrowserRouter([
       {
         path:"/child-diet",
         element:
-          <ChildDietPage/>
+        <Suspense fallback={<PageLoading/>}>
+        <ChildDietPage />
+       </Suspense>
       }
     ],
   },

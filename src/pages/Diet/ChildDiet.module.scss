@@ -1,7 +1,7 @@
 .Diet_section{
     width: 100%;
     height: 100vh;
-    padding-top: 3.7rem;
+    padding-top: 0;
     text-align: center;
 }
 
@@ -175,3 +175,129 @@
 
 
 
+// 디테일 모달
+.Diet_modal_section {
+  max-width: 1200px;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  padding-top: 30px;
+  border-radius: 20px;
+  width: 98%;
+  text-align: start;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100000000000000000000000000;
+  background-color: rgba(255, 255, 255, 0);
+  height: 100%;
+  max-height: 720px;
+
+  p{
+    margin-left: 10px;
+  }
+  strong{
+    display: inline-block;
+    min-width: 80px;
+    margin: 5px;
+    background-color: rgb(50, 50, 253);
+    color:white;
+    border-radius: 10px;
+    text-align: center;
+  }
+ 
+  .modal_left {
+    width: 50%;
+    position: relative;
+    transform: perspective(600px) rotateY(5deg) translate(0);
+    max-height: 200px;
+    background-color: white;
+    padding: 80px !important;
+    border-right: 3px solid black;
+    min-height: 80vh;
+    max-height: 80vh;
+    transform-origin: 100% 50%;
+    animation: left 1s 1 ease-in-out;
+    li {
+      padding: 8px 0;
+    }
+    p {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+    .modal_id {
+      position: absolute;
+      width: 100%;
+      font-size: 1.25em;
+      text-align: center;
+      left: 50%;
+      top: 1em;
+      font-weight: 700;
+      transform: translate(-50%);
+    }
+  }
+  .modal_right {
+    width: 50%;
+    transform: perspective(600px) rotateY(-5deg) translate(0);
+    background-color: white;
+    min-height: 80vh;
+    max-height: 80vh;
+    padding: 80px !important;
+    animation: right 1s 1 ease-in-out;
+    transform-origin: 0% 50%;
+    p {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+}
+
+@keyframes left  {
+  from {transform: rotateY(180deg) scale(0.7); opacity: 0;};
+}
+@keyframes right  {
+  from {transform: rotateY(0deg) scale(0.7); opacity: 0; };
+}
+
+.modal_overlay {
+  position: fixed;
+  transition: 1s;
+  left: 0;
+  width: 100%;
+  z-index: 100000;
+  min-height: 100vh;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.214);
+  backdrop-filter: blur(5px);
+  bottom: 0;
+}
+
+
+// 미디어 쿼리
+
+@media screen and (max-width : 767px) {
+  .Diet_modal_section {
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+  .modal_left {
+    transform: rotate(0deg) !important;
+    animation: none !important;
+    border-radius: 10px;
+    border: none;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
+  }
+  .modal_right {
+    border-radius: 10px;
+    animation: none !important;
+    transform: rotate(0deg) !important;
+    max-width: 600px;
+    width: 100%;
+    padding-top: 30px !important;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
+  }
+}
+
+}
