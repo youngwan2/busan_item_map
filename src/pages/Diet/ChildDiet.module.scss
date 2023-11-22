@@ -3,6 +3,7 @@
     height: 100vh;
     padding-top: 0;
     text-align: center;
+    font-family: "Orbit", sans-serif;
 }
 
 // 페이지 제목
@@ -172,9 +173,6 @@
   }
 }
 
-
-
-
 // 디테일 모달
 .Diet_modal_section {
   max-width: 1200px;
@@ -194,11 +192,12 @@
 
   p{
     margin-left: 10px;
+    font-size: 16px;
   }
   strong{
     display: inline-block;
     min-width: 80px;
-    margin: 5px;
+    margin: 10px;
     background-color: rgb(50, 50, 253);
     color:white;
     border-radius: 10px;
@@ -211,10 +210,10 @@
     transform: perspective(600px) rotateY(5deg) translate(0);
     max-height: 200px;
     background-color: white;
-    padding: 80px !important;
+    padding:50px 50px !important;
     border-right: 3px solid black;
     min-height: 80vh;
-    max-height: 80vh;
+    max-height: 83vh;
     transform-origin: 100% 50%;
     animation: left 1s 1 ease-in-out;
     li {
@@ -227,6 +226,7 @@
     .modal_id {
       position: absolute;
       width: 100%;
+      padding: 0 50px;
       font-size: 1.25em;
       text-align: center;
       left: 50%;
@@ -240,11 +240,12 @@
     transform: perspective(600px) rotateY(-5deg) translate(0);
     background-color: white;
     min-height: 80vh;
-    max-height: 80vh;
-    padding: 80px !important;
+    max-height: 83vh;
+    padding: 50px !important;
     animation: right 1s 1 ease-in-out;
     transform-origin: 0% 50%;
     p {
+      margin: 5px 0;
       display: inline-block;
       margin-left: 10px;
     }
@@ -270,6 +271,29 @@
   background-color: rgba(0, 0, 0, 0.214);
   backdrop-filter: blur(5px);
   bottom: 0;
+}
+
+// 모달 닫기 버튼
+.modal_close_btn {
+  position: fixed;
+  top: 0.5em;
+  left: 1em;
+
+  border-radius: 20px;
+
+  background-color: white;
+  button {
+    padding: 5px 6px 5px 6px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(110, 110, 240);
+    color:white;
+  
+  }
+}
+
+.modal_close_btn:hover button {
+  box-shadow: inset 300px 0 0 0 rgb(89, 89, 235);
 }
 
 
