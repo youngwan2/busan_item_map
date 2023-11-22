@@ -1,5 +1,5 @@
 import { useEffect, useState, MouseEvent, KeyboardEvent } from "react";
-import localfoods from "../../../data/localfoods";
+import {localfoods} from "../../../data/localfoods";
 import styles from "../LocalFood.module.scss";
 import { localFoodType } from "../types/localFood.types";
 import SidebarNav from "./SidebarNav";
@@ -44,12 +44,11 @@ function LocalFoodSidebar({ setSearchResult, display, setDisplay }: PropsType) {
 
   // 전체 목록에서 중복을 제외한 카테고리 목록을 필터링하는 함수
   const categoryFilter = () => {
-    const filterList: string[] = [];
+    const categories: string[] = [];
     localfoods?.forEach((data: { data_title_nm: string }) => {
-      filterList.push(data.data_title_nm);
+      categories.push(data.data_title_nm);
     });
-    const filterTitle = [...new Set(filterList)];
-    setTitle(filterTitle);
+    setTitle(categories);
   };
 
   // 카테고리 검색 함수

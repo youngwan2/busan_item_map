@@ -15,22 +15,21 @@ const GptOpenIcon = ({ display, setDisplay }: PropsType) => {
     gsap.registerPlugin(Draggable);
 
     if (buttonRef.current) {
-      Draggable.create(buttonRef.current);
+      Draggable.create(buttonRef.current, {
+        bounds: document.documentElement,
+        onClick: function() {
+          console.log(1212)
+          setDisplay(!display);
+          console.log(display)
+        }
+      });
     }
   }, []);
 
   return (
     <button
       ref={buttonRef}
-      style={
-        !display
-          ? { visibility: "visible", transform: "scale(1)" }
-          : { visibility: "hidden", transform: "scale(0)" }
-      }
       className={styles.chat_icon}
-      onClick={() => {
-        setDisplay(!display);
-      }}
     ></button>
   );
 };

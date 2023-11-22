@@ -11,7 +11,7 @@ const HaccpModalLayout = ({ setModal,modal }: LayoutType) => {
       style={
         modal
           ? { visibility: "visible", opacity: 1 }
-          : { visibility: "hidden", opacity: 0,scale:'0.5 0.5' }
+          : { visibility: "hidden", opacity: 0 }
       }
       className={styles.layout}
       onClick={() => {

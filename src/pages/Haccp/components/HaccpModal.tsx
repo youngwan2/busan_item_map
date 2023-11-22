@@ -66,7 +66,7 @@ function HaccpModal({ filterItems, setModal, modal }: ModalType) {
               );
             })
           ) : (
-            <div></div>
+            null
           )}
         </section>
       </article>

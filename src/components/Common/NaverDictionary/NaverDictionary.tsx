@@ -20,7 +20,12 @@ function NavSearch() {
   useEffect(() => {
     gsap.registerPlugin(Draggable);
     if (buttonRef.current) {
-      Draggable.create(buttonRef.current);
+      Draggable.create(buttonRef.current, {
+        bounds: document.documentElement,
+        onClick: function () {
+          setDisplay(!display);
+        }
+      });
     }
   }, []);
 
@@ -28,12 +33,9 @@ function NavSearch() {
     <>
       {/* 아이콘 */}
       <button
-      tabIndex={1}
+        tabIndex={1}
         ref={buttonRef}
         className={styles.nav_search_icon}
-        onClick={() => {
-          setDisplay(!display);
-        }}
       ></button>
       {/* 콘텐츠 뷰 */}
       <NaverDictionaryView display={display} setDisplay={setDisplay} />

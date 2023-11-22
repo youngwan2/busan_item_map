@@ -44,7 +44,7 @@ function Header({ isStyle }: HeaderType) {
                 navigate("/");
               }}
             >
-              FoodPicker
+              Food Picker
             </span>
           </h1>
           <nav className={onDisplay ? styles.onMenu : styles.offMenu}>
@@ -109,7 +109,7 @@ function Header({ isStyle }: HeaderType) {
               onDisplay ? { visibility: "hidden" } : { visibility: "visible" }
             }
           >
-            <HiMenu/>
+            <HiMenu />
           </button>
         </div>
       </header>
