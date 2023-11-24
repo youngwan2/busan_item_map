@@ -4,15 +4,18 @@ import ChildDietDetailModal from './ChildDietDetailModal'
 import { useState } from 'react'
 
 interface PropsType {
-    childDietList: DietType[]
+    childDietList?: DietType[]
 }
 const ChildDietResults = ({ childDietList }: PropsType) => {
 
 const [closeModal, setCloseModal] = useState(false)
 const [choiceItemIndex, setChoiceItemIndex] = useState(0)
+const hasList = childDietList && childDietList.length < 1
+ if(childDietList) {
     return (
         <>
         <section className={styles.diet_item_box_con} id='child-diet-results'>
+            {hasList && <h2 style={{marginTop:'2em'}}>찾고자 하는 데이터가 존재하지 않습니다.</h2>}
             {childDietList.map((diet,index) => {
                 return (
                     <ul key={diet.MEAL_NM||'알 수 없음'} className={styles.diet_item_box} onClick={()=>{
@@ -36,6 +39,7 @@ const [choiceItemIndex, setChoiceItemIndex] = useState(0)
         {closeModal?<ChildDietDetailModal setCloseModal={setCloseModal} dietList ={childDietList[choiceItemIndex]}/>:null}
         </>
     )
+}
 }
 
 

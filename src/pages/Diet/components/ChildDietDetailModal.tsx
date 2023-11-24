@@ -2,12 +2,13 @@ import { DietType } from "../types/Diet.types"
 import styles from '../ChildDiet.module.scss'
 import { FiX } from "react-icons/fi"
 interface PropsType {
-    dietList: DietType
+    dietList?: DietType
     setCloseModal: (p: boolean) => void
 }
 const ChildDietDetailModal = ({ dietList, setCloseModal }: PropsType) => {
-    const split = dietList.COOK_MTH_CONT.split('.')
-    console.log(split)
+    const split = dietList?.COOK_MTH_CONT.split('.')
+
+    if(dietList) {
     return (
         <>
             <section className={styles.Diet_modal_section}>
@@ -19,7 +20,7 @@ const ChildDietDetailModal = ({ dietList, setCloseModal }: PropsType) => {
                     }} ><FiX fontSize={20}/></button></li>
                     <li><strong>음식명</strong> <p>{dietList.MEAL_NM}</p></li>
                     <li><strong>재료명</strong><p>{dietList.MATRL_NM}</p></li>
-                    <li><strong>레시피</strong> <br />{split.map((cook) => { return (<p>{cook.replaceAll('<br>', '')}</p>) })}</li>
+                    <li><strong>레시피</strong> <br />{split?.map((cook) => { return (<p>{cook.replaceAll('<br>', '')}</p>) })}</li>
 
                 </ul>
                 <ul className={styles.modal_right}>
@@ -41,6 +42,9 @@ const ChildDietDetailModal = ({ dietList, setCloseModal }: PropsType) => {
             }}></div>
         </>
     )
+        } else {
+            throw new Error("데이터 로드 중 실패")
+        }
 }
 
 export default ChildDietDetailModal

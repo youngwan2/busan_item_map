@@ -7,7 +7,6 @@ import ChildDietPage from "../pages/Diet/ChildDietPage";
 import { lazy,Suspense } from "react";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
-const RecommendedDietPage = lazy(()=> import('../pages/RemmendedDiet/RecommendedDietPage'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
 const NutritionPage = lazy(()=> import('../pages/Nutrition/NutritionPage'))
 const NutritionDetail = lazy(()=> import('../pages/NutritionDetail/NutritionDetailPage'))
@@ -30,13 +29,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Header isStyle={true} />,
     children: [
-      {
-        path:'/recommend-diet',
-        element:
-        <Suspense fallback={<PageLoading/>}>
-          <RecommendedDietPage/>
-        </Suspense>
-      },
       {
         path: "/localfood",
         element: 

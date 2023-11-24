@@ -7,11 +7,12 @@
     "dev": "vite --port 8080",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix":"eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^5.8.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "chart.js": "^4.4.0",
@@ -29,6 +30,7 @@
     "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.8.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-router-dom": "^5.3.3",
