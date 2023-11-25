@@ -1,23 +1,39 @@
-
+import { useRef } from 'react'
+import styles from '../Nutrition.module.scss'
+import { useRecoilState } from 'recoil'
+import { NutritionPageNumber } from '../../../atom/NutritionsAtom'
 
 interface PropsType {
-    setValue:(p:string)=>void
+    setValue: (p: string) => void
 }
-const SearchForm =({setValue}:PropsType)=>{
+const SearchForm = ({ setValue }: PropsType) => {
+
+    const inputRef = useRef<HTMLInputElement>(null)
+    const [_, setPage] = useRecoilState(NutritionPageNumber)
 
     return (
-        <form onSubmit={(e)=>{
-            e.preventDefault()
-        }}>
-            <label htmlFor="nutrition_search">검색</label>
-            <input type="search" onKeyDown={(e)=>{
+        <form
+            className={styles.nutrtion_search_form}
+            onSubmit={(e) => {
+                e.preventDefault()
+            }}>
+            <label htmlFor="nutrition_search"></label>
+            <input ref={inputRef} id="nutrition_search" type="search" onKeyDown={(e) => {
                 const value = e.currentTarget.value
 
-                if(e.code==="Enter")
-                setValue(value)
+                if (e.code === "Enter") {
+                    setValue(value)
+                    setPage(1)
+                }
 
-            }}/>
-            <button>조회</button>
+            }} />
+            <button onClick={() => {
+                if (inputRef.current) {
+                    const value = inputRef.current.value
+                    setValue(value)
+                    setPage(1)
+                }
+            }}>조회</button>
         </form>
     )
 }
