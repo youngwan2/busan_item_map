@@ -40,6 +40,7 @@
 - <img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 - <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
 - <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
+- <img src="https://img.shields.io/badge/React Query-AF6384?style=for-the-badge&logo=react-query&logoColor=white">
 
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
@@ -51,12 +52,12 @@
 
 ### 할 일 목록(TODO) : 급하게 X 단계적으로
 - [ ] 추천 식단 추가(보류)
-- [ ] 아동 식단 추가
+- [x] 아동 식단 추가
 - [ ] 의약품 관련 정보 추가
 - [X] CRA를 vite 로 마이그레이션 (이후 Next.js 로 마이그레이션 가능성)
 - [ ] 도커 컨테이너 기반 AWS EC2 배포(보류)
-- [ ] 깃허브 액션 배포 자동화
-- [ ] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐)
+- [x] 깃허브 액션 배포 자동화
+- [x] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐)
 
 
 ### 문제사항
