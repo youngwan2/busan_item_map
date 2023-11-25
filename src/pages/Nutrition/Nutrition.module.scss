@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
+
+.Nutrition_section {
+  margin: 0 auto 0 auto;
+  font-family: "Orbit", sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.nutrition_title {
+  background-color: black;
+  text-shadow: 1px 1px 4px black;
+  font-size: 2.5rem;
+  padding-top: 0;
+  margin: 0 0 2rem 0 !important;
+  color: white;
+  background-size: contain;
+  background-position: center !important;
+  position: relative;
+  background: url("/assets/nutritionback.png");
+}
+
+.nutrition_title strong {
+  width: 100%;
+  display: block;
+  font-weight: 500;
+  padding: 12rem 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), white);
+}
+
+
+// 메인 페이지의 프리뷰 아이템 리스트
+.search_result_section {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  justify-content: center;
+  margin: 3rem auto;
+  text-align: justify;
+}
+.item_container {
+  min-width: 280px;
+  margin: 5px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 2px 3px 10px 1px rgb(166, 166, 231);
+  transition: 0.5s;
+  max-width: 330px;
+  padding: 10px !important;
+
+  .item_box{
+    
+    padding: 5px;
+    h3 {
+      transition: 0.5s;
+      text-align: center;
+      width: 100%;
+      padding: 8px;
+    }
+    strong {
+      display: inline-block;
+      min-width: 100px;
+      text-align: center;
+      padding: 0px 2px;
+      border-radius: 5px;
+      background-color: rgb(74, 74, 231);
+      color:white;
+      margin-right: 5px;
+    }
+  }
+  
+}
+.item_container:hover h3 {
+  scale: 1.2;
+  text-decoration:wavy 20px rgba(58, 47, 218, 0.418) underline;
+}
+
+.item_container:hover {
+  box-shadow: 0 0 1px 3px rgb(101, 101, 236);
+}

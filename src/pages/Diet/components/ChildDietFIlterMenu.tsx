@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../ChildDiet.module.scss'
+import ChildDietSearch from './ChildDietSearch';
 
 interface PropsType {
   setChoiceFoodIngredient: (p: string) => void
@@ -22,6 +23,7 @@ const ChildDietFilterMenu = ({ setChoiceFoodIngredient, setChoiceKeyword,totalIt
   )
   return (
     <article className={styles.Menu_article}>
+      <ChildDietSearch  setChoiceKeyword={ setChoiceKeyword}/>
       <fieldset className={styles.keyword_field}>
         <legend>키워드</legend>
         {keywords.map((keyword) => {

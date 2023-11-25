@@ -20,7 +20,7 @@ const ChildDietDetailModal = ({ dietList, setCloseModal }: PropsType) => {
                     }} ><FiX fontSize={20}/></button></li>
                     <li><strong>음식명</strong> <p>{dietList.MEAL_NM}</p></li>
                     <li><strong>재료명</strong><p>{dietList.MATRL_NM}</p></li>
-                    <li><strong>레시피</strong> <br />{split?.map((cook) => { return (<p>{cook.replaceAll('<br>', '')}</p>) })}</li>
+                    <li><strong>레시피</strong> <br />{split?.map((cook) => { return (<p key={cook}>{cook.replaceAll('<br>', '')}</p>) })}</li>
 
                 </ul>
                 <ul className={styles.modal_right}>

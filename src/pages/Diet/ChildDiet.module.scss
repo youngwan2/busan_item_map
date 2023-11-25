@@ -297,6 +297,29 @@
 }
 
 
+// 검색 FORM
+.diet_form {
+  text-align: start;
+    label {
+      display: inline-block;
+      margin-left: 1.25rem;
+      margin-right: 1.8rem;
+    }
+    input {
+      border-radius: 5px;
+      padding: 0 10px;
+      border-color: rgb(97, 97, 236);
+    }
+    input:focus {
+      outline: none;
+      color:white;
+      
+      background-color: rgb(124, 124, 252);
+    }
+  }
+
+
+
 // 미디어 쿼리
 
 @media screen and (max-width : 767px) {
