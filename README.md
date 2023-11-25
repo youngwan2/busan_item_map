@@ -45,8 +45,8 @@
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
   
-### 데이터베이스(브라우저)
-- <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
+### 데이터베이스
+- <img src="https://img.shields.io/badge/SQLite3-003545?style=for-the-badge&logo=sqlite&logoColor=white">
 ---
 ## 기타
 
@@ -57,7 +57,7 @@
 - [X] CRA를 vite 로 마이그레이션 (이후 Next.js 로 마이그레이션 가능성)
 - [ ] 도커 컨테이너 기반 AWS EC2 배포(보류)
 - [x] 깃허브 액션 배포 자동화
-- [x] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐)
+- [x] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐) -> SQLite3 로 변경
 
 
 ### 문제사항
