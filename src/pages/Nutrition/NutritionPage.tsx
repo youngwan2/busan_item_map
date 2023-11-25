@@ -19,7 +19,7 @@ const Nutrition = () => {
   }, []);
 
   async function getNutrtionInfoFromDB(value: string, page: number = 1) {
-    const response = await axios.get(`http://localhost:3000/nutrition?search=${value}&page=${page}`)
+    const response =  import.meta.env.MODE!=="production" ? await axios.get(`http://localhost:3000/nutrition?search=${value}&page=${page}`): await axios.get(`/nutrition?search=${value}&page=${page}`)
     const { result: data, totalCount } = response.data
     setItemTotalCount(totalCount)
     setTotalPage(Math.ceil(totalCount / 20))
