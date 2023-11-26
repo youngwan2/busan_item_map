@@ -10,9 +10,9 @@ interface PropsType {
 }
 const NutritionDetailModal = ({id,itemList,setModalState, modalState}:PropsType) => {
     const hasItemInfo = itemList?.length>0
-    
     const [filterData, setFiterdata] = useState<NutritionType>()
-
+    
+    // 게시글 필터링(선택한 게시글의 아이디와 일치하는 내용만 모달창에 표시하기 위함)
     const itemFilterFunc = useCallback((id:number,itemList:NutritionType[])=>{
         if(hasItemInfo){
        const items = itemList?.filter((item)=> item.id === id)
@@ -88,7 +88,7 @@ const NutritionDetailModal = ({id,itemList,setModalState, modalState}:PropsType)
             </ul>
     )
 } else {
-    return <h3>페이지 로드 불가능</h3>
+    return <></>
 }
 
 }

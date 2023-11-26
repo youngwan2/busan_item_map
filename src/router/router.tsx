@@ -89,13 +89,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/nutrition/:id",
-    element: 
-    <Suspense fallback={<PageLoading/>}>
-      <NutritionDetailModal />
-    </Suspense>
-  },
-  {
     path: "*",
     element: <NotFound />,
   },

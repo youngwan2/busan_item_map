@@ -1,7 +1,9 @@
 import { NutritionType } from "../types/nutrition.types"
+import { Suspense, lazy } from "react"
 import styles from '../Nutrition.module.scss'
-import NutritionDetailModal from "../../NutritionDetail/NutritionDetailModal"
 import {useState} from 'react'
+import ReactSpinner from "../../../components/UI/ReactSpinner"
+const NutritionDetailModal = lazy(() => import('../../NutritionDetail/NutritionDetailModal'))
 
 interface PropsType {
     itemList: NutritionType[]
@@ -29,7 +31,9 @@ const SearchResults = ({ itemList }: PropsType) => {
                 )
             })}
         </section>
+        <Suspense fallback={<ReactSpinner/>}>
         <NutritionDetailModal id={itemId} itemList={itemList} setModalState={setModalState} modalState={modalState}/>
+        </Suspense>
         </>
     )
 }
