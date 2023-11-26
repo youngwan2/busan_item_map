@@ -13,7 +13,7 @@
 ---
 
 ## 프로젝트 목적
-- (목적) 다양한 식품 정보를 적재적소에 검색하여 활용할 수 있는 사이트가 있으면 좋겠다는 개인적인 바람에 의해 개발하였습니다.
+- (목적) 갈수록 비싸지는 식비를 아끼면서도 건강한 식사를 챙길 수 있다면, 얼마나 좋을까 라는 개인적인 바람에 의해 개발하게 되었습니다. 분산된 식품 및 영양정보들을 한 곳에 모아서 필요할 때 적재적소에 검색할 수 있는 사이트를 만드는 것이 목적입니다.
 
 ## 개발기간
 - 2023년 7월 ~ 개발중
@@ -30,8 +30,9 @@
 - 학교 급식, 외식, 가정식 등의 다양한 음식의 영양성분 정보를 제공하며, 더보기 버튼을 활용하여 대량의 데이터를 필요에 따라 추가 조회할 수 있으며, 3대 영양소에 대한 시각화 정보를 제공합니다.
 - AI Chat 을 활용하여 유동적으로 사용자가 원하는 질문에 대한 답변을 제공합니다.
 - 네이버 지식백과 API와 연동하여 사이트 이용 중 모르는 용어에 대한 정보조회를 지원합니다.
-- (추가)음식 레시피 조회 기능을 제공합니다. 사용자는 자신이 원하는 음식의 레시피를 음식타입 및 키워드 검색을 통해 조회할 수 있습니다(23.10.18)
-- (추가) BMI 측정 및 BMI 별 건강관리 팁을 제공하는 기능을 제공합니다(23.10.29 ~ 개발중)
+- (추가)음식 레시피 조회 기능을 제공합니다. 사용자는 자신이 원하는 음식의 레시피를 음식타입 및 키워드 검색을 통해 조회할 수 있습니다
+- (추가) BMI 측정 및 BMI 별 건강관리 팁을 제공하는 기능을 제공합니다.
+- (추가) 유아 식단 정보를 제공합니다(주요 영양소, 간단한 조리법 등의 정보).
 
 ## 사용된 주요 라이브러리 및 프레임워크(기타 API포함)
 ### 프론트엔드
@@ -40,23 +41,25 @@
 - <img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 - <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
 - <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartjs&logoColor=white">
+- <img src="https://img.shields.io/badge/React Query-AF6384?style=for-the-badge&logo=react-query&logoColor=white">
 
 ### 백엔드
 - <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
   
-### 데이터베이스(브라우저)
-- <img src="https://img.shields.io/badge/indexed DB-003545?style=for-the-badge&logo=indexeddb&logoColor=white">
+### 데이터베이스
+- <img src="https://img.shields.io/badge/SQLite3-003545?style=for-the-badge&logo=sqlite&logoColor=white">
 ---
 ## 기타
 
 ### 할 일 목록(TODO) : 급하게 X 단계적으로
 - [ ] 추천 식단 추가(보류)
-- [ ] 아동 식단 추가
+- [ ] 지역 시장 정보 추가
+- [x] 아동 식단 추가
 - [ ] 의약품 관련 정보 추가
 - [X] CRA를 vite 로 마이그레이션 (이후 Next.js 로 마이그레이션 가능성)
 - [ ] 도커 컨테이너 기반 AWS EC2 배포(보류)
-- [ ] 깃허브 액션 배포 자동화
-- [ ] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐)
+- [x] 깃허브 액션 배포 자동화
+- [x] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐) -> SQLite3 로 변경
 
 
 ### 문제사항
