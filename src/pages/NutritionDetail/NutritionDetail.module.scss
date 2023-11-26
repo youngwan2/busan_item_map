@@ -1,0 +1,71 @@
+.nutrition_detail_modal {
+    position: fixed;
+    left: 50%;
+    width: 100%;
+    background-color: rgba(60, 60, 61, 0.521);
+    backdrop-filter: blur(5px);
+    top: 50%;
+    visibility: hidden;
+    opacity: 0;
+    height: 100vh;
+    transition: 0.5s;
+    z-index: 100000;
+    flex-wrap: wrap;
+    overflow: hidden auto;
+    align-items: center;
+    display: flex;
+    transform: translate(-50%,100%);
+    button{
+        border: none;
+        top: 1em;
+        background-color: transparent;
+        font-size: 3rem;
+        color:white;
+        z-index: 10000000000;
+        position: fixed;
+    }
+    button:hover>svg {
+        fill: rgb(255, 217, 0);
+        stroke: black;
+    }
+
+     .item_box {
+        transition: 1s;
+        transform: rotateX(15deg) perspective(600px);
+        margin: 50px auto 15px auto;
+        min-width: 280px;
+        min-height: 400px !important;
+        max-height: 400px;
+        width: 100%;
+        max-width: 350px;
+        background-color: rgb(255, 227, 66);
+        text-align: start;
+        padding: 20px;
+
+        .detail_modal_subtitle {
+            text-align: center;
+            padding: 5px 0;
+            font-weight: 700;
+        }
+
+        strong{
+            text-align: start;
+            display: inline-block;
+            padding: 3px;
+            text-align: center;
+            min-width: 110px;
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 10px;
+        }
+        ul li{
+            margin: 10px 5px;
+        }
+
+     }
+
+     .item_box:hover{
+        transform: scale(1.1) rotateX(-14deg);
+        box-shadow: 10px 30px  5px rgba(37, 37, 37, 0.411);
+     }
+}

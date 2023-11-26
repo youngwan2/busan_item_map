@@ -9,7 +9,7 @@ import { lazy,Suspense } from "react";
 const Home = lazy(()=> import('../pages/Home/Home'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
 const NutritionPage = lazy(()=> import('../pages/Nutrition/NutritionPage'))
-const NutritionDetail = lazy(()=> import('../pages/NutritionDetail/NutritionDetailPage'))
+const NutritionDetailModal = lazy(()=> import('../pages/NutritionDetail/NutritionDetailModal'))
 const NecessitiesPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
 const HaccpPage = lazy(()=> import('../pages/Haccp/HaccpPage'))
 const RecipePage = lazy(()=> import('../pages/Recipe/RecipePage'))
@@ -92,7 +92,7 @@ const router = createBrowserRouter([
     path: "/nutrition/:id",
     element: 
     <Suspense fallback={<PageLoading/>}>
-      <NutritionDetail />
+      <NutritionDetailModal />
     </Suspense>
   },
   {
