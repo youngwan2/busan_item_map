@@ -28,6 +28,7 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
             setLastPage(pageGroup * pageSize.current)
         }
         for (let i = firstPage; i <= lastPage; i++) {
+            if(i>0) {
             lis.push(
                 <li
                     onClick={(e) => {
@@ -39,6 +40,7 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
                     style={page === i ? { boxShadow: 'inset 50px 50px 0 white', color: 'black', border: '1px solid gray' } : { boxShadow: 'inset 50px 50px 0 0 rgb(131, 131, 240)' }}>
                     {i}
                 </li>)
+                }
         }
 
         setLiElements(lis)
@@ -47,8 +49,8 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
 
     // 마지막 페이지가 짝수일 때 보여지는 페이지 버튼 수를 조정하는 이펙트
     useEffect(()=>{
-        if(lastPage === totalPage) {
-            setFirstPage(lastPage - pageSize.current+2)
+        if(lastPage %2 ===0 ) {
+            setFirstPage(lastPage - pageSize.current+1)
         } else {
             setFirstPage(lastPage - pageSize.current + 1)
         }
