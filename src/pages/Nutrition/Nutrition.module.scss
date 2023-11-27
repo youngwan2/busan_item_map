@@ -10,13 +10,11 @@
 }
 
 .nutrition_title {
-  background-color: black;
   text-shadow: 1px 1px 4px black;
   font-size: 2.5rem;
   padding-top: 0;
   margin: 0 0 2rem 0 !important;
   color: white;
-  background-size: contain;
   background-position: center !important;
   position: relative;
   background: url("/assets/nutritionback.png");
@@ -127,17 +125,26 @@
 }
 
 // 검색 폼
+
+
 .nutrtion_search_form {
   width: 100%;
   margin: 8rem auto;
-  max-width: 600px;
+  max-width: 500px;
   background-color:  rgb(137, 137, 248);
   border-radius: 5px;
   padding: 20px 15px;
   box-shadow: 0 0 20px 2px rgba(55, 66, 219, 0.445);
+  label {
+    padding: 5px;
+    svg {
+    font-size: 1.5em;
+  }
+}
   input {
     padding: 5px 10px;
     border: none;
+    max-width: 230px;
     border-radius: 5px;
   }
   input:focus{

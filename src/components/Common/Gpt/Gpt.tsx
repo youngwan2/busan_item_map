@@ -55,6 +55,7 @@ function Gpt() {
 const GptCloseIcon = ({ setDisplay }: { setDisplay: (p: boolean) => void }) => {
   return (
     <button
+      aria-label="모달창 닫는 버튼"
       className={styles.close_btn}
       onClick={() => {
         setDisplay(false);

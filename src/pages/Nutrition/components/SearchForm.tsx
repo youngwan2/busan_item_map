@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import styles from '../Nutrition.module.scss'
 import { useRecoilState } from 'recoil'
 import { NutritionPageNumber } from '../../../atom/NutritionsAtom'
+import { FiSearch } from 'react-icons/fi'
 
 interface PropsType {
     setValue: (p: string) => void
@@ -17,8 +18,8 @@ const SearchForm = ({ setValue }: PropsType) => {
             onSubmit={(e) => {
                 e.preventDefault()
             }}>
-            <label htmlFor="nutrition_search"></label>
-            <input ref={inputRef} id="nutrition_search" type="search" onKeyDown={(e) => {
+            <label className={styles.nutrition_search_label} htmlFor="search"><FiSearch/></label>
+            <input ref={inputRef} id="search" type="search" onKeyDown={(e) => {
                 const value = e.currentTarget.value
 
                 if (e.code === "Enter") {

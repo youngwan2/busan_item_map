@@ -10,6 +10,7 @@ const LocalFoodMenuIcon = ({setDisplay, display}:PropsType) =>  {
   if(!display) {
     return (
       <button
+      aria-label='향토음식 페이지 메뉴 버튼'
       onClick={() => {
         setDisplay(true);
       }}

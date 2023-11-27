@@ -38,6 +38,8 @@ const SummaryContents = ({ searchResult }: ContentsType) => {
 
       {/* 대표 이미지 */}
       <img
+        width={350}
+        height={320}
         style={{ width: "90%" }}
         src={
           searchResult !== undefined && searchResult[0].main_thumb_url !== ""

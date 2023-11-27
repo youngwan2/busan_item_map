@@ -24,7 +24,7 @@ useEffect(()=>{
   const interval = setInterval(()=>{
     setPage(old => ++old)
     if(page>=5) {setPage(1)}
-  },3000)
+  },5000)
   return () =>{
     clearInterval(interval)
   }
@@ -34,7 +34,7 @@ useEffect(()=>{
     <section className={styles.Introduce} ref={sectionRef}>
     <Header isStyle={false}/>
     <IntroSlideButton pageSwitch={pageSwitch} page={page}/>
-    <IntroSlide page={page} setPage={setPage}/>
+    <IntroSlide page={page}/>
     </section>
   );
 };

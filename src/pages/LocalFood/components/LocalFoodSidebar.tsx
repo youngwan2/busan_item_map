@@ -68,7 +68,7 @@ function LocalFoodSidebar({ setSearchResult, display, setDisplay }: PropsType) {
 
   useEffect(() => {
     setSearchResult(localfoods);
-  }, []);
+  }, [setSearchResult]);
 
   useEffect(() => {
     categoryFilter();

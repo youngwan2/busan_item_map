@@ -1,40 +1,53 @@
 import styles from "./IntroSlide.module.scss";
-import localfood from "/assets/localfoodback.png";
+import nutrition from "/assets/nutritionback.png";
 import bmi from "/assets/bmi.png";
 import recipe from "/assets/recipe.png";
 import haccp from "/assets/haccpback.png";
-import nutrition from "/assets/nutritionback.png";
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useRef, useLayoutEffect, useState} from "react";
 import { Link } from "react-router-dom";
 interface PropsType {
   page: number;
-  setPage: (p:number)=> void
 }
 
-const IntroSlide = ({ page = 0, setPage}: PropsType) => {
+const IntroSlide = ({ page = 0}: PropsType) => {
   const ulRef = useRef<HTMLUListElement>(null);
+  const localImageRef = useRef<HTMLImageElement>(null)
   const ItemsTopRef = useRef<number[]>([])
+  const [preload, setPreload] = useState('')
 
+  useLayoutEffect(()=>{
+    const image = new Image()
+    image.src='/assets/localfoodback.png'
+    image.onload=()=>{
+      setPreload(image.src)
+    }
+      
+  },[])
+
+
+
+  // ul의 자식요소를 가져와서 해당 자식 요소에 트렌스레이트 애니메이션 적용
   useEffect(() => {
     if (ulRef.current instanceof HTMLUListElement) {
-      const li = ulRef.current.childNodes;
+      const lis = ulRef.current.childNodes;
 
-      li.forEach((el) => {
-        if (el instanceof HTMLLIElement) {
-          el.style.cssText = `
+      lis.forEach((li) => {
+        if (li instanceof HTMLLIElement) {
+          li.style.cssText = `
           transform : translateY(${-100 * (page - 1)}%);
           z-index: -1;
           padding:0; margin:0;
         `;
-          if (Number(el.dataset.index) === page) {
-            el.style.cssText = `
+          if (Number(li.dataset.index) === page) {
+            li.style.cssText = `
           `;
           }
         }
       });
     }
   }, [page]);
-
+// 각 ul 태그의 자식 요소(li)의 높이를 측정하여 저장
   useEffect(()=>{
     if(ulRef.current instanceof HTMLUListElement) {
       const lis = [...ulRef.current.childNodes]
@@ -47,12 +60,11 @@ const IntroSlide = ({ page = 0, setPage}: PropsType) => {
     }
   },[])
 
-
   return (
     <ul className={styles.slide_con} ref={ulRef}>
       <li className={styles.slide_item}>
         <figure>
-          <img  src={localfood} alt="향토음식 소개의 배경이미지" />
+          <img ref={localImageRef}  src={preload} alt="향토음식 소개의 배경이미지" width={1709} height={598} />
         </figure>
         <article className={styles.contents}>
           <strong>

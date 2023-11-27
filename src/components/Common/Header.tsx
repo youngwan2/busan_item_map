@@ -104,6 +104,7 @@ function Header({ isStyle }: HeaderType) {
           {/* 가로 624 px 이하 부터 적용 */}
           <button
             className={styles.menu_icon}
+            aria-label="웹 사이트 메뉴 버튼"
             onClick={menuDisplayFun}
             style={
               onDisplay ? { visibility: "hidden" } : { visibility: "visible" }
