@@ -19,7 +19,7 @@
 - 2023년 7월 ~ 개발중
 - 간단하게 시작한 만큼 1달 이내로 프로젝트를 종료했으나 더 보완하고자 개발기간을 연장하였고, 지금도 계속 진행중입니다.
 
-##4.  배포 URL(도메인)
+## 4.  배포 URL(도메인)
 - <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
 - <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
 
