@@ -135,7 +135,7 @@ export default router;
   
 #### b. 개선과정
 - CRA 와 VITE 기반의 앱의 초기 프로젝트 환경의 구성을 비교하면서, 그 차이점을 기반으로 마이그레이션을 진행하였습니다.
-- 간략히 거친 과정을 언급하자면 ``` package.json 에서 CRA 기반의 비의존성 및 의존성 패키지 정리 정리 → vite 설치 및 플로그인 설치 → vite.config.ts 설정 → react-app-env.d.ts 설정 → 환경변수 → eslint 설정 → 빌드 과정을 거쳤습니다.```
+- 간략히 거친 과정을 언급하자면 ``` package.json 에서 CRA 기반의 비의존성 및 의존성 패키지 정리 → vite 설치 및 플로그인 설치 → vite.config.ts 설정 → react-app-env.d.ts 설정 → 환경변수 → eslint 설정 → 빌드 과정을 거쳤습니다.```
 
 - vite 의 경우에는 vite.config.ts 파일을 추가하고, 해당 vite 앱이 react 기반임을 vite에 알리고, 빌드 시 해당 파일이 어디에 저장될 것인지를 기본값으로 설정해야 했기에 다음과 같이 플로그인 등록과 경로 설정을 실시하였습니다.
 
