@@ -1,7 +1,4 @@
 import styles from '../LocalFood.module.scss'
-import { useState } from 'react';
-
-
 
 interface setDisplay {
     setDisplay:(p:boolean)=>void

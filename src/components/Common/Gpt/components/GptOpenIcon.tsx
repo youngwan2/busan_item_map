@@ -18,9 +18,7 @@ const GptOpenIcon = ({ display, setDisplay }: PropsType) => {
       Draggable.create(buttonRef.current, {
         bounds: document.documentElement,
         onClick: function() {
-          console.log(1212)
           setDisplay(!display);
-          console.log(display)
         }
       });
     }

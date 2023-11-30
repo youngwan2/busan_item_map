@@ -1,6 +1,12 @@
 import styles from '../Necessities.module.scss'
 import { ItemsType, laLoType } from '../types/Necessities.types'
 
+/**
+ * @param items : 부산 생필품 목록
+ * @param {Function}setLaLo : 지도 위도/경도 설정
+ * @param {Function}setIsDisplay : 지도 디스플레이 지정
+ * @param {Function}setBsshNm : 판매점 설정
+ */
 
 interface PropsType {
     items? : ItemsType[]

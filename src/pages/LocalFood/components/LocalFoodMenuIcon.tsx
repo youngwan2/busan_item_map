@@ -1,12 +1,13 @@
 import styles from '../LocalFood.module.scss'
 import {FiSidebar} from 'react-icons/fi'
-import SideBarLayout from './SideBarLayout';
+import SideBarOverlay from './SideBarOverlay';
 interface PropsType {
     setDisplay: (p: boolean) => void;
     display : boolean
 }
 const LocalFoodMenuIcon = ({setDisplay, display}:PropsType) =>  {
 
+  // 사이드 바가 안 보일 때 메뉴 아이콘이 보임
   if(!display) {
     return (
       <button
@@ -21,10 +22,9 @@ const LocalFoodMenuIcon = ({setDisplay, display}:PropsType) =>  {
     </button>
     )
   } else {
-    return <SideBarLayout setDisplay={setDisplay}/>
+    // 사이드 바가 보일 때 메뉴 아이콘은 사라지고, 사이드바와 함께 오버레이 영역이 활성화
+    return <SideBarOverlay setDisplay={setDisplay}/>
   }
-    
-
 }
 
 export default LocalFoodMenuIcon;

@@ -69,19 +69,17 @@ const GptForm = forwardRef(({ setLoading, loading, list, setConversations }:Prop
         <input
           placeholder="ex) 단백질에 대해 설명해주세요"
           ref={inputRef}
-          type="text"
+          type="search"
           className={styles.user_input}
           onKeyUp={(e) => {
             setPrompt(e.currentTarget.value);
-            if (e.code === "Enter") {
-              reqGPT(e.currentTarget.value);
-            }
           }}
         ></input>
         <button
           className={styles.submit_btn}
           onClick={() => {
             reqGPT(prompt);
+            console.log(111)
           }}
         >
           전송

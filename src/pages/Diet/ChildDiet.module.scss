@@ -1,3 +1,17 @@
+@mixin setButtonStyles($bottom:1.5rem){
+  position: absolute;
+  bottom: $bottom;
+  left: 50%;
+  padding: 7px 10px;
+  box-shadow: inset 0 0 5px 2px rgb(165, 165, 245);
+  color:white;
+  background-color: rgb(69, 69, 248);
+  border-radius: 15px;
+  transform: translate(-50%);
+  cursor: pointer;
+}
+
+
 .Diet_section{
     width: 100%;
     height: 100vh;
@@ -178,7 +192,7 @@
   max-width: 1200px;
   display: flex;
   position: fixed;
-  top: 50%;
+  top: 48%;
   padding-top: 30px;
   border-radius: 20px;
   width: 98%;
@@ -188,7 +202,7 @@
   z-index: 100000000000000000000000000;
   background-color: rgba(255, 255, 255, 0);
   height: 100%;
-  max-height: 720px;
+  max-height: 800px;
 
   p{
     margin-left: 10px;
@@ -206,16 +220,22 @@
  
   .modal_left {
     width: 50%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     position: relative;
     transform: perspective(600px) rotateY(5deg) translate(0);
     max-height: 200px;
     background-color: white;
     padding:50px 50px !important;
-    border-right: 3px solid black;
+    border-right: 1px dsah black;
     min-height: 80vh;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
     max-height: 83vh;
     transform-origin: 100% 50%;
     animation: left 1s 1 ease-in-out;
+    .prev_btn {
+      @include setButtonStyles()
+    }
     li {
       padding: 8px 0;
     }
@@ -237,15 +257,21 @@
   }
   .modal_right {
     width: 50%;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
     transform: perspective(600px) rotateY(-5deg) translate(0);
     background-color: white;
     min-height: 80vh;
     max-height: 83vh;
     padding: 50px !important;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
     animation: right 1s 1 ease-in-out;
     transform-origin: 0% 50%;
+    .next_btn {
+      @include setButtonStyles(1.7rem)
+    }
     p {
-      margin: 5px 0;
+      margin: 2px 0;
       display: inline-block;
       margin-left: 10px;
     }

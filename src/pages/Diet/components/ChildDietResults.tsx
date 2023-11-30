@@ -35,7 +35,7 @@ const ChildDietResults = ({ childDietList }: PropsType) => {
                     })}
                 </section>
 
-                {closeModal ? <ChildDietDetailModal setCloseModal={setCloseModal} dietList={childDietList[choiceItemIndex]} /> : null}
+                {closeModal ? <ChildDietDetailModal setCloseModal={setCloseModal} dietList={childDietList} index={choiceItemIndex} setIndex={setChoiceItemIndex} /> : null}
             </>
         )
     } else {

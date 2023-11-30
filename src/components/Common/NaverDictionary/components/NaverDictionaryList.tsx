@@ -3,12 +3,14 @@ import { DictionaryType } from "../NaverDictionary";
 
 interface Type {
   items?: DictionaryType[];
+  error:string
 }
 
-function NaverDictionaryList({ items }: Type) {
+function NaverDictionaryList({ items,error }: Type) {
+  const isError = error.length>1
   return (
     <section className={styles.result_section}>
-      {Array.isArray(items)
+      {Array.isArray(items) && !isError
         ? items.map((item, i) => {
             return (
               <ol className={styles.item_ul} key={i}>
@@ -33,7 +35,7 @@ function NaverDictionaryList({ items }: Type) {
               </ol>
             );
           })
-        : null}
+        : <h4 style={{margin:'3em auto',textAlign:'center', maxWidth:300}}>{error}</h4> }
     </section>
   );
 }

@@ -2,7 +2,7 @@ import axios from "axios";
 import styles from "./Necessities.module.scss";
 import Pagination from "./components/Pagination";
 import ReactSpinner from "../../components/UI/ReactSpinner";
-import NecessitiesMap from "./components/NecessitiesMap";
+import Map from "./components/Map";
 import { ItemsType, laLoType } from "./types/Necessities.types";
 import { useState, useEffect, useCallback } from "react";
 import Table from "./components/Table";
@@ -10,7 +10,7 @@ import Table from "./components/Table";
 function NecessitiesPage() {
   const [items, setItems] = useState<ItemsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [laLo, setLaLo] = useState<laLoType>();
+  const [laLo, setLaLo] = useState<laLoType>({la:'33', lo:'33'});
   const [gugun] = useState("금정구");
   const [isDisplay, setIsDisplay] = useState(true);
   const [bsshNm, setBsshNm] = useState("");
@@ -59,13 +59,13 @@ function NecessitiesPage() {
       />
       <br /> <br /> <br /> <br /> <br /> <br />
       <Pagination setPage={setCurrentPage}></Pagination>
-      <NecessitiesMap
-        la={laLo?.la}
-        lo={laLo?.lo}
+      <Map
+        la={laLo.la}
+        lo={laLo.lo}
         bss={bsshNm}
         isDisplay={isDisplay}
         setIsDisplay={setIsDisplay}
-      ></NecessitiesMap>
+      ></Map>
       <span
         style={isLoading ? { display: "block" } : { display: "none" }}
         className={styles.loading}

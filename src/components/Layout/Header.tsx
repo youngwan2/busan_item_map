@@ -1,10 +1,10 @@
 import styles from "./Header.module.scss";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Gpt from "./Gpt/Gpt";
+import Gpt from "../Common/Gpt/Gpt";
 import { HiMenu } from "react-icons/hi";
-import Movement from "./Movement";
-import NavSearch from "./NaverDictionary/NaverDictionary";
+import Movement from "../Common/Movement";
+import NavSearch from "../Common/NaverDictionary/NaverDictionary";
 interface HeaderType {
   isStyle: boolean;
 }

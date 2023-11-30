@@ -1,5 +1,4 @@
 import { RefObject, MouseEvent, useRef } from "react";
-import ScrollButtonPanel from "./ScrollButtonPanel";
 import styles from "../LocalFood.module.scss";
 
 interface PropsType {
@@ -26,7 +25,6 @@ const SidebarNav = ({ setDisplay, title, searchFilter }: PropsType) => {
   };
 
   return (
-    <>
       <ol className={styles.category} ref={categoryRef}>
         <button
           onClick={() => {
@@ -49,11 +47,6 @@ const SidebarNav = ({ setDisplay, title, searchFilter }: PropsType) => {
           );
         })}
       </ol>
-      <ScrollButtonPanel
-        categoryBottomShifter={categoryBottomShifter}
-        categoryTopShifter={categoryTopShifter}
-      />
-    </>
   );
 };
 

@@ -45,18 +45,14 @@
   padding: 2rem 0;
   position: fixed;
   transition: 0.9s cubic-bezier(0.265, 1.84, 0.44, 1);
-  border-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 237, 135, 0.521);
   left: 50%;
   top: 50%;
   min-width: 300px;
-  max-width: 800px;
-  width: 80%;
+  max-width: 1600px;
+  width: 90%;
   height: 90vh;
-  box-shadow: inset -3px -3px rgba(32, 40, 108, 0.884),
-    inset 3px 3px rgb(116, 144, 248), 0 0 200px rgba(0, 0, 0, 0.462);
-  background-color: white;
   z-index: 100000000;
   overflow: hidden scroll;
   animation: updown 1s infinite alternate ease-in-out;
@@ -88,7 +84,7 @@ from {
     .user_input {
       border-radius: 5px;
       padding: 5px 10px;
-      min-width: 200px;
+      min-width: 280px;
       border: 2px solid rgb(157, 157, 255);
       z-index: 0;
     }
@@ -96,7 +92,7 @@ from {
   /* 검색 결과 */
   .result_section {
     min-height: 80vh;
-    max-width: 960px;
+    max-width: 800px;
     width: 100%;
     margin: 0 auto;
     border-radius: 5px;
@@ -104,7 +100,7 @@ from {
 }
 
 .user_input:focus {
-  outline-color: rgb(162, 162, 245);
+  outline-color: rgb(255, 255, 255);
   padding: 7px 10px;
   color: white;
   border: none;
