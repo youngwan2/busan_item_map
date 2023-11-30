@@ -73,7 +73,7 @@ const AsideContents = ({ searchResult }: ContentsType) => {
 
   useMap('', '', bss, id, addres)
 
-  if (searchResult === undefined) return
+  if (searchResult === undefined) return <section className={styles.right_contents}><h2>{"페이지 로딩중 오류가 발생하였습니다. 나중에 다시 시도해주세요."}</h2></section>
   else return (
     <section className={styles.right_contents}>
       <div>
