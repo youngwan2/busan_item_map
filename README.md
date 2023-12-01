@@ -177,6 +177,6 @@ export default router;
 - [x] 아동 식단 추가
 - [ ] 의약품 관련 정보 추가
 - [X] CRA를 vite 로 마이그레이션 (이후 Next.js 로 마이그레이션 가능성)
-- [ ] 도커 컨테이너 기반 AWS EC2 배포(보류 : 비용관련 문제)
+- [ ] 도커 컨테이너 기반 AWS EC2 배포(보류 : 비용관련 문제) -> AWS Lightsail 로 대체 예정
 - [x] 깃허브 액션 배포 자동화
 - [x] indexed DB -> 코드 리팩터링(현재 jsx 로 안정성이 매우 떨어짐) -> SQLite3 로 변경
