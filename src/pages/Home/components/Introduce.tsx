@@ -2,7 +2,7 @@ import styles from "./Introduce.module.scss";
 import { useEffect, MouseEvent, useState,useRef } from "react";
 import IntroSlide from "./IntroSlide";
 import IntroSlideButton from "./IntroSlideButton";
-import Header from "../../../components/Layout/Layout";
+import Header from "../../../components/Layout/Header";
 
 const Introduce = () => {
   useEffect(() => {

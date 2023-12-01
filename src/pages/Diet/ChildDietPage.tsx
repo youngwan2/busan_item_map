@@ -22,6 +22,10 @@ const ChildDietPage = () => {
         if(childDietList) setTotalItemCount(childDietList.length)
     },[childDietList])
 
+    useEffect(()=>{
+        document.title = "유아 식단 | FoodPicker"
+    },[])
+
     return (
         <section className={styles.Diet_section}>
             <h2 className={styles.page_title}> <p>유아 식단</p></h2>
