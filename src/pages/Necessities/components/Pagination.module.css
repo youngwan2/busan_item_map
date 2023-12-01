@@ -3,7 +3,7 @@
   display: flex;
   z-index: 100000000000000;
   width: 100%;
-  margin: -5rem auto 20px auto;
+  margin: -5rem auto 5rem auto;
   justify-content: center;
   padding: 5px;
   animation: appear 1s 1 ease-in-out;

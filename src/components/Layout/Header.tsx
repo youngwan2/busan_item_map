@@ -1,34 +1,34 @@
 import styles from "./Header.module.scss";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Gpt from "../Common/Gpt/Gpt";
 import { HiMenu } from "react-icons/hi";
-import Movement from "../Common/Movement";
-import NavSearch from "../Common/NaverDictionary/NaverDictionary";
 interface HeaderType {
-  isStyle: boolean;
-}
-function Header({ isStyle }: HeaderType) {
-  const navigate = useNavigate();
-  const [scroll, setScroll] = useState(0);
-  const [onDisplay, setOnDisplay] = useState(false);
-
-  function menuDisplayFun() {
-    setOnDisplay((result) => (result = !result));
+    isStyle: boolean;
   }
 
-  function scrollTrace() {
-    setScroll(window.scrollY);
-  }
-  useEffect(() => {
-    window.addEventListener("scroll", scrollTrace);
-    return () => {
-      window.removeEventListener("scroll", scrollTrace);
-    };
-  }, [scroll]);
-  return (
-    <>
-      <header
+  function Header({ isStyle }: HeaderType) {
+    const navigate = useNavigate();
+
+
+    const [scroll, setScroll] = useState(0);
+    const [onDisplay, setOnDisplay] = useState(false);
+  
+    function menuDisplayFun() {
+      setOnDisplay((result) => (result = !result));
+    }
+  
+    function scrollTrace() {
+      setScroll(window.scrollY);
+    }
+    useEffect(() => {
+      window.addEventListener("scroll", scrollTrace);
+      return () => {
+        window.removeEventListener("scroll", scrollTrace);
+      };
+    }, [scroll]);
+    
+    return (
+        <header
         className={styles.header}
         style={
           isStyle
@@ -114,12 +114,7 @@ function Header({ isStyle }: HeaderType) {
           </button>
         </div>
       </header>
-      <Outlet />
-      <Gpt />
-      <Movement />
-      <NavSearch />
-    </>
-  );
+    )
 }
 
-export default Header;
+export default Header

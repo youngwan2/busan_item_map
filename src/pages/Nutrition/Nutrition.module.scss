@@ -36,14 +36,15 @@
   max-width: 1600px;
   justify-content: center;
   margin: 3rem auto;
+  min-height: 100vh;
   transform: perspective(600px);
   transform-style: preserve-3d;
   text-align: justify;
 }
+
 .item_container {
   min-width: 280px;
   min-height: 300px;
-
   rotate: 2deg;
   margin: 10px 10px 30px 10px;
   width: 100%;

@@ -1,7 +1,7 @@
 import styles from "./Nutrition.module.scss";
 import { useEffect, useState } from 'react'
 import SearchForm from "./components/SearchForm";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
 import SearchResults from "./components/SearchResults";
 import NutritionPagination from "./components/NutritionPagination";
@@ -14,23 +14,34 @@ const Nutrition = () => {
   const [value, setValue] = useState('')
   const [itemTotalCount, setItemTotalCount] = useState(0)
   const [totalPage, setTotalPage] = useState(0)
+
   useEffect(() => {
     document.title = "식품영양정보조회 | FoodPicker";
   }, []);
 
   async function getNutrtionInfoFromDB(value: string, page: number = 1) {
-    const response =  import.meta.env.MODE!=="production" ? await axios.get(`http://localhost:3000/nutritions?search=${value}&page=${page}`): await axios.get(`/nutritions?search=${value}&page=${page}`)
+    const response = import.meta.env.MODE !== "production"
+      ? await axios.get(`http://localhost:3000/nutritions?search=${value}&page=${page}`)
+      : await axios.get(`/nutritions?search=${value}&page=${page}`)
     const { result: data, totalCount } = response.data
     setItemTotalCount(totalCount)
     setTotalPage(Math.ceil(totalCount / 20))
+
     if (response.status !== 200) { throw new Error(response.statusText) }
     if (data.length === 0) { return ["검색하신 키워드에 해당하는 데이터가 존재하지 않습니다."] }
 
     return data
 
   }
-  const { data: itemList, isFetching } = useQuery({ queryKey: ["nutrition", `${value}`, page], queryFn: () => getNutrtionInfoFromDB(value, page) })
+  const { data: itemList, isFetching, isPlaceholderData,isPending } = useQuery(
+    { 
+      queryKey: ["nutrition", `${value}`, page],
+      queryFn: () => getNutrtionInfoFromDB(value, page),
+      placeholderData:keepPreviousData 
+    })
+    console.log(isPlaceholderData, isFetching,isPending,keepPreviousData(itemList))
   const hasNutrition = Array.isArray(itemList) && itemList.length === 1
+
   return (
     <section className={styles.Nutrition_section}>
       <h2 className={styles.nutrition_title}>

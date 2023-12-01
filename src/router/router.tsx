@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from "react-router-dom";
-import Header from "../components/Layout/Header";
+import Layout from "../components/Layout/Layout";
 import NotFound from "../components/Errors/NotFound";
 import PageLoading from "../components/UI/PageLoading";
 import ChildDietPage from "../pages/Diet/ChildDietPage";
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Header isStyle={true} />,
+    element: <Layout />,
     children: [
       {
         path: "/localfood",
@@ -91,6 +91,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+ 
 ]);
 
 export default router;

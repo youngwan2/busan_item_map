@@ -1,4 +1,4 @@
-const localmarkets =[
+export const localmarkets =[
     {
       data_manage_no: '20230900001',
       data_title_nm: '소고기 느낌을 주는 현풍시장 수구레국밥',
