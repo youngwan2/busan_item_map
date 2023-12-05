@@ -49,18 +49,16 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
           ? {
             visibility: "visible",
             opacity: 1,
-            transform: "translate(-50%,-50%)",
-            transformOrigin: "bottom bottom",
+            transform: "translate(-50%,0)",
           }
           : {
             visibility: "hidden",
             opacity: 0,
-            transform: "translate(-50%,50%))",
-            transformOrigin: "center bottom",
+            transform: "translate(-50%,5%)",
           }
       }
     >
-      <h3 style={{ textAlign: "center", color: "black" }}>네이버 백과사전</h3>
+      <h3 className={styles.title}>네이버 백과사전</h3>
       <NaverCloseIcon setDisplay={setDisplay} />
       <NaverSearchForm
         getNaverSearchData={reqNaverSearchAPI}
