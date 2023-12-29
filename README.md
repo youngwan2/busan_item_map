@@ -70,8 +70,8 @@
  <summary>b. 개선과정</summary>
   
 - 결국 빌드 이후의 번들 파일이 컸기 때문에 발생한 문제로 판단했고, 이를 위해 코드 분할 기법을 적용하기로 하였습니다.
-- 리액트에서는 마침 코드 분할을 위해서 Lazy 함수를 이용한 동적 import 기능을 지원하고 있었고, 이와 함께 Suspense 컴포넌트를 활용하여 fallback 처리도 함께 할 수 있다는 이점을 바탕으로 이를 적용하기로 결정하였습니다. React-router 를 사용하고 있었기에, 페이지 라우팅 처리를 담당하는 router.tsx 파일에 접근하여 다음과 같이 적용하였습니다.
-``` /* eslint-disable react-refresh/only-export-components */
+- 리액트에서는 마침 코드 분할을 위해서 Lazy 함수를 이용한 동적 import 기능을 지원하고 있었고, 이와 함께 Suspense 컴포넌트를 활용하여 fallback 처리도 함께 할 수 있다는 이점을 바탕으로 이를 적용하기로 결정하였습니다. React-router 를 사용하고 있었기에, 라우트 별로 사용자가 해당 페이지에 접속할 때 파일을 다운로드할 수 있도록 다음과 같이 라우트별로 코드 분할을 실시하였습니다.
+```javascript /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from "react-router-dom";
 import Header from "../components/Common/Header";
 import NotFound from "../components/Errors/NotFound";
