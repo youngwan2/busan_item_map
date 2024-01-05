@@ -20,6 +20,7 @@
 - (유지보수) 2023년 8월 13일 ~ 현재
 
 ## 4.  배포 URL(도메인)
+- 무료 플랜이라 24시간 호스팅이 되고 있지 않습니다. 
 - <a href="http://foodpick.site/" target="_blank">http://foodpick.site/</a>
 - <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
 
