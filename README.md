@@ -1,3 +1,6 @@
+※ 전체 코드 리팩터링 및 기능 확장 예정
+
+
 ###### 백엔드 저장소 주소: https://github.com/youngwan2/busan-item-map-server
 ---
 
