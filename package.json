@@ -7,7 +7,7 @@
     "dev": "vite --port 8080",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix":"eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,7 +26,8 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.2",
     "recoil": "^0.7.7",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "text-split-simple-js": "^1.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
