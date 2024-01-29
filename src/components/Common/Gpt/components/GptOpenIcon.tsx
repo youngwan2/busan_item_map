@@ -18,9 +18,7 @@ const GptOpenIcon = ({ display, setDisplay }: PropsType) => {
       Draggable.create(buttonRef.current, {
         bounds: document.documentElement,
         onClick: function() {
-          console.log(1212)
           setDisplay(!display);
-          console.log(display)
         }
       });
     }
@@ -29,6 +27,7 @@ const GptOpenIcon = ({ display, setDisplay }: PropsType) => {
   return (
     <button
       ref={buttonRef}
+      aria-label="인공지능 채팅 상담 서비스 모달창을 띄우는 버튼"
       className={styles.chat_icon}
     ></button>
   );

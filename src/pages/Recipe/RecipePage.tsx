@@ -54,20 +54,20 @@ function RecipePage() {
     setLoading(false);
   }
   // 레시피 데이터 API 요청
-  const getRecipeDataFromApi = (
+  const getRecipeDataFromOpenApi = (
     searchFoodName: string = "",
     foodType: string = ""
   ) => {
     setLoading(true);
-
-    if (searchFoodName.length === 0 && foodType.length >= 0) {
+    const hasFoodName = searchFoodName.length
+    const hasFoodType = foodType.length
+    if (hasFoodName === 0 && hasFoodType >= 0) {
       setLoading(false);
       setUndefinedMessage("검색어를 입력해주세요.");
       return;
     }
     // 음식 카테고리 전체 이면서 검색어가 존재하는 경우
-    if (foodType.length === 0 && searchFoodName.length >= 1) {
-      console.log("카테고리 비선택 및 검색어가 존재");
+    if (hasFoodType === 0 && hasFoodName >= 1) {
       return axios
         .get(
           `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}`
@@ -81,8 +81,7 @@ function RecipePage() {
         });
     }
     // 카테고리가 후식/국/반찬/밥 이면서 검색어가 존재하는 경우
-    if (searchFoodName.length >= 1 && foodType.length > 0) {
-      console.log("카테고리 선택 및 검색어 존재");
+    if (hasFoodName >= 1 && hasFoodType > 0) {
       return axios
         .get(
           `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`
@@ -103,7 +102,7 @@ function RecipePage() {
         <RecipeSearchForm
           setCheckedMenu={setCheckedMenu}
           setUserInputValue={setUserInputValue}
-          getRecipeDataFromApi={getRecipeDataFromApi}
+          getRecipeDataFromApi={getRecipeDataFromOpenApi}
           userInputValue={userInputValue}
           checkedMenu={checkedMenu}
           categories={categories}

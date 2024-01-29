@@ -1,16 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from "react-router-dom";
-import Header from "../components/Common/Header";
+import Layout from "../components/Layout/Layout";
 import NotFound from "../components/Errors/NotFound";
 import PageLoading from "../components/UI/PageLoading";
 import ChildDietPage from "../pages/Diet/ChildDietPage";
 import { lazy,Suspense } from "react";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
-const RecommendedDietPage = lazy(()=> import('../pages/RemmendedDiet/RecommendedDietPage'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
 const NutritionPage = lazy(()=> import('../pages/Nutrition/NutritionPage'))
-const NutritionDetail = lazy(()=> import('../pages/NutritionDetail/NutritionDetailPage'))
 const NecessitiesPage = lazy(()=> import('../pages/Necessities/NecessitiesPage'))
 const HaccpPage = lazy(()=> import('../pages/Haccp/HaccpPage'))
 const RecipePage = lazy(()=> import('../pages/Recipe/RecipePage'))
@@ -28,15 +26,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Header isStyle={true} />,
+    element: <Layout />,
     children: [
-      {
-        path:'/recommend-diet',
-        element:
-        <Suspense fallback={<PageLoading/>}>
-          <RecommendedDietPage/>
-        </Suspense>
-      },
       {
         path: "/localfood",
         element: 
@@ -97,16 +88,10 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/nutrition/:id",
-    element: 
-    <Suspense fallback={<PageLoading/>}>
-      <NutritionDetail />
-    </Suspense>
-  },
-  {
     path: "*",
     element: <NotFound />,
   },
+ 
 ]);
 
 export default router;

@@ -1,27 +1,36 @@
-import { useEffect, useState} from "react";
-import LocalFoodContent from "./components/LocalFoodContent";
-import LocalFoodSidebar from "./components/LocalFoodSidebar";
-import { localFoodType } from "./types/localFood.types";
+import { useEffect, useState } from "react";
+import LocalFoodList from "./components/LocalFoodList";
+import styles from './LocalFood.module.scss'
+import { useQuery } from "@tanstack/react-query";
+import { getLocalFoodListFormDB } from "../../api/get.api";
 
 const LocalFoodPage = () => {
-  const [searchResult, setSearchResult] = useState<localFoodType[]>();
-  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     document.title = "향토음식조회 | FoodPicker";
   }, []);
 
+    const [page, setPage] = useState(0)
+    const {data, isPending, isError, error } = useQuery({queryKey:['localFood'], queryFn:()=> getLocalFoodListFormDB(page)})
+    console.log(data)
+
+  if(isPending) {
+    return <span>로딩중...</span>
+  }
+  if(isError) {
+    return <span>에러발생 : {error.message}</span>
+  }
   return (
     <>
-    {/* 주제별 카테고리 */}
-      <LocalFoodSidebar setSearchResult={setSearchResult} setDisplay={setDisplay} display={display}/>
+      <h2>향토음식 이야기</h2>
+      <LocalFoodList />
 
-      {/* 디테일 내용 영역 */}
-      <LocalFoodContent
-        display={display}
-        setDisplay={setDisplay}
-        searchResult={searchResult}
-      />
+
+
+      <article>
+        <button onClick={()=> setPage((old)=> Math.max(old -1, 0))}>이전</button>
+        <button onClick={()=> setPage((old)=> Math.min(old +1, 5))}>다음</button>
+      </article>
     </>
   );
 };

@@ -2,9 +2,14 @@ import BmiCalculator from "./components/BmiCalculator";
 import BmiInfo from "./components/BmiInfo";
 import styles from "./Bmi.module.scss";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 function BmiPage() {
   const [selectTap, setSelectTap] = useState("");
+
+  useEffect(()=>{
+    document.title = "체질량 지수 | FoodPicker"
+},[])
+
   return (
     <>
       <section className={styles.calculate_section}>

@@ -33,7 +33,7 @@ function NavSearch() {
     <>
       {/* 아이콘 */}
       <button
-        tabIndex={1}
+        aria-label="네이버 백과사전을 이용할 수 있는 모달창을 띄우는 버튼"
         ref={buttonRef}
         className={styles.nav_search_icon}
       ></button>

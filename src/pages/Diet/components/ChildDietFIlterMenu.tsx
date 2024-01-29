@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../ChildDiet.module.scss'
+import ChildDietSearch from './ChildDietSearch';
 
 interface PropsType {
   setChoiceFoodIngredient: (p: string) => void
@@ -22,6 +23,7 @@ const ChildDietFilterMenu = ({ setChoiceFoodIngredient, setChoiceKeyword,totalIt
   )
   return (
     <article className={styles.Menu_article}>
+      <ChildDietSearch  setChoiceKeyword={ setChoiceKeyword}/>
       <fieldset className={styles.keyword_field}>
         <legend>키워드</legend>
         {keywords.map((keyword) => {
@@ -50,7 +52,7 @@ const ChildDietFilterMenu = ({ setChoiceFoodIngredient, setChoiceKeyword,totalIt
           )
         })}
       </fieldset>
-      <span style={{ background:'rgba(0,0,588,0.7)', position:'fixed', top:'5rem',right:'2rem', color:'white',padding:'3px 5px', borderRadius:'5px'}}>검색결과: {totalItemCount||0}개</span>
+      <span className={styles.guide_message}>검색결과: {totalItemCount||0}개</span>
     </article>
   );
 }

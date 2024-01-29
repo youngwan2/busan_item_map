@@ -1,108 +1,71 @@
-
-
-/* 페이지 제목 */
-.detail_page_title {
-  margin: 5rem 0 50px 0;
-  display: inline-block;
-  border-left: 10px solid rgb(90, 151, 232);
-  padding: 0 10px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-}
-
-/* 영양정보 내용 */
-.detail_contents {
-  max-width: 1900px;
-  margin: 2rem auto 0 auto;
-  padding: 10px;
-  display: flex;
-  position: absolute;
-  width: 100%;
-  top: 5%;
-  border-radius: 5px;
-  left: 50%;
-  transform: translate(-50%);
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  section {
-    background-color: white;
-    min-width: 280px;
-    max-width: 428px;
-    width: 100%;
-    margin: 5px;
-    border-radius: 5px;
-    padding: 15px 5px;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.214);
-    section:hover {
-      box-shadow: 0 0 1px 4px rgb(99, 99, 192);
-    }
-    section:nth-of-type(n) {
-      animation: left 1.1s ease-in-out;
-    }
-    section:nth-of-type(n + 2) {
-      animation: right 1.1s ease-in-out;
-    }
-  
-    strong {
-      display: inline-block;
-    }
-  
-    p {
-      margin: 13px;
-      span {
-        background-color: rgb(54, 118, 237);
-        color: white;
-        margin-right: 5px;
-        padding: 5px;
-        border-radius: 5px;
-      }
-    }
-  }
-}
-
-@keyframes left {
-  from {
-    opacity: 0;
-    transform: translate(-300px) rotate(20deg);
-  }
-}
-
-@keyframes right {
-  from {
-    opacity: 0;
-    transform: translate(300px) rotate(-50deg);
-  }
-}
-
-/* 하단 그룹(3대 영양소, 미네랄) */
-.bottom_group {
-  flex-wrap: wrap;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  section {
-    width: 100%;
-  }
-}
-
-/* 뒤로가기 버튼 */
-.back_btn_con {
-    background: linear-gradient(5deg, rgba(29, 79, 196, 0.805), rgb(53, 53, 225));
-    box-shadow: 0 0 3px 1px black;
+.nutrition_detail_modal {
     position: fixed;
-    overflow-y: auto;
-    z-index: 10000000000;
+    left: 50%;
     width: 100%;
-
-    .back_btn {
-        background-color: white;
-        box-shadow: inset 2px 2px 2px 0 rgb(100, 99, 99);
-        padding: 5px;
+    background-color: rgba(60, 60, 61, 0.521);
+    backdrop-filter: blur(5px);
+    top: 50%;
+    visibility: hidden;
+    opacity: 0;
+    height: 100vh;
+    transition: 0.5s;
+    z-index: 100000;
+    flex-wrap: wrap;
+    overflow: hidden auto;
+    align-items: center;
+    display: flex;
+    transform: translate(-50%,100%);
+    button{
         border: none;
-        border-radius: 10px;
-      }
-      
-  }
+        top: 1em;
+        background-color: transparent;
+        font-size: 3rem;
+        color:white;
+        z-index: 10000000000;
+        position: fixed;
+    }
+    button:hover>svg {
+        fill: rgb(255, 217, 0);
+        stroke: black;
+    }
+
+     .item_box {
+        transition: 1s;
+        transform: rotateX(15deg) perspective(600px);
+        margin: 50px auto 15px auto;
+        min-width: 280px;
+        min-height: 400px !important;
+        max-height: 400px;
+        width: 100%;
+        max-width: 350px;
+        background-color: rgb(255, 227, 66);
+        text-align: start;
+        padding: 20px;
+
+        .detail_modal_subtitle {
+            text-align: center;
+            padding: 5px 0;
+            font-weight: 700;
+        }
+
+        strong{
+            text-align: start;
+            display: inline-block;
+            padding: 3px;
+            text-align: center;
+            min-width: 110px;
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 10px;
+        }
+        ul li{
+            margin: 10px 5px;
+        }
+
+     }
+
+     .item_box:hover{
+        transform: scale(1.1) rotateX(-14deg);
+        box-shadow: 10px 30px  5px rgba(37, 37, 37, 0.411);
+     }
+}

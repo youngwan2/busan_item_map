@@ -1,0 +1,174 @@
+// 헤더 공통
+li {
+  list-style: none;
+}
+
+// 헤더
+header {
+  background-color: rgba(0, 0, 0, 0.528);
+  position:fixed;
+  color: white;
+  width: 100%;
+  height: 60px;
+  padding: 0 0 8px 0;
+  font-family: "Orbit", sans-serif;
+  z-index: 100000;
+  box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.286);
+
+  .header_flex {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1400px;
+  }
+
+  /* 로고 */
+  h1 {
+    font-weight: 600;
+    padding: 8px 10px 3px 10px;
+    background-color: transparent;
+    width: 100%;
+    min-width: 40%;
+    color: white;
+    height: 50px;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  /* 메뉴 */
+  nav ul {
+    display: flex;
+    li {
+      font-size: 15px;
+      padding: 18px 10px 16px 10px;
+      width: 150px;
+      text-align: center;
+      display: inline-block;
+      font-weight: 500;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+    li:hover {
+      cursor: pointer;
+        box-shadow: inset 0 -60px 0 rgb(98, 98, 234), inset 0 80px 0 rgb(119, 119, 242);
+    }
+  }
+}
+
+.menu_icon {
+  color: white;
+  font-size: 1.8rem;
+  display: none;
+  border: none;
+  margin-right: 5px;
+  background-color: transparent;
+}
+
+// 닫기 버튼
+.closeBtn {
+  position: absolute;
+  display: none;
+  visibility: hidden;
+}
+
+/* 조회 서비스 */
+
+.main_menu_con {
+  position: relative;
+  .main_menu_ul {
+    display: none;
+  }
+}
+
+.main_menu_con:hover .main_menu_ul {
+  display: flex;
+
+  z-index: 10000;
+  justify-content: center;
+  position: relative;
+  top: 0.95rem;
+  align-items: center;
+  flex-direction: column;
+  li {
+    
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.259);
+    a {
+      color: rgb(0, 0, 0) !important;
+    }
+  }
+  li:first-child {
+    margin-top: 0.6rem;
+  }
+  li:hover {
+    box-shadow: inset 0 2px 0  rgb(83, 83, 208),inset 0 -2px 0  rgb(83, 83, 208);
+  }
+}
+
+/* 미디어 쿼리 설정 */
+
+@media screen and (max-width: 1061px) {
+  header {
+    background-color: rgba(60, 60, 223, 0.612) !important ;
+    backdrop-filter: blur(2px);
+    h1 {
+      font-weight: 800;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      text-align: center;
+      text-shadow: 0 0 1px rgb(255, 255, 255);
+    }
+  }
+  header nav.offMenu {
+    display: none;
+  }
+
+  header nav {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    min-height: 120vh;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.631);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin: 5rem 0 0 0;
+      padding: 0;
+
+      li {
+        width: 100%;
+      }
+    }
+  }
+
+  .menu_icon {
+    display: block;
+    right: 5px;
+    position: absolute;
+  }
+
+  .closeBtn {
+    visibility: visible;
+    border: none;
+    right: 10px;
+    top: 10px;
+    border-radius: 10px;
+    min-width: 40px;
+    min-height: 30px;
+    position: absolute;
+    background-color: rgba(101, 105, 220, 0.921);
+    color: white;
+    padding: 10px;
+  }
+  .main_menu_ul {
+    position: absolute !important;
+    left: 50%;
+    top: -2rem !important;
+    transform: translate(-50%);
+  }
+}

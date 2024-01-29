@@ -1,4 +1,4 @@
-import styles from "./NecessitiesMap.module.css";
+import styles from "./Map.module.css";
 
 interface PropsType {
     setIsDisplay?: (state: boolean) => void
