@@ -6,7 +6,6 @@ import GuideMessage from "../../components/Common/GuideMessage";
 import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
 import useIntersection from "../../hooks/useIntersection";
 
-
 const LocalFoodPage = () => {
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const LocalFoodPage = () => {
   const observerRef = useRef<HTMLButtonElement>(null)
 
   const { isEnd } = useIntersection(observerRef)
-  const { items, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll('localfood', '/localfood?page=')
+  const { items, totalCount ,isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll('localfood', '/localfood?page=')
 
   async function nextPageHanlder() {
     const isNext = new Promise((reslove) => {
@@ -43,7 +42,7 @@ const LocalFoodPage = () => {
       <h2 className={styles.page_title}>
         <p>향토음식이야기</p>
       </h2>
-      <GuideMessage path="/localfood" mainName='향토 이야기' subName='향토 음식이야기' totalCount={0} />
+      <GuideMessage path="/localfood" mainName='향토 이야기' subName='향토 음식이야기' totalCount={totalCount} />
       <LocalFoodList localfoods={items} />
       <button className={styles.scroll_pointer} ref={observerRef} aria-hidden={'true'}></button>
     </section>

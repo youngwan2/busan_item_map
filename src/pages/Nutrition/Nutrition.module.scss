@@ -164,23 +164,3 @@
     box-shadow: 0 0 0 2px black;
   }
 }
-
-// 검색 결과 안내 메시지
-.guide_message {
-  position: fixed;
-  top: 6rem;
-  flex-direction: column;
-    display: flex;
-  right: 0;
-   li {
-  text-align: start;
-
-  background-color: rgb(107, 107, 252);
-    margin: 2px 0;
-  display: inline-block;
-  padding: 5px 10px;
-  color:white;
-  border-radius: 5px;
-  box-shadow: inset 5px 0 rgb(170, 170, 255);
-}
-}

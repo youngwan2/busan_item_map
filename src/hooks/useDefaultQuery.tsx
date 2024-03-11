@@ -8,6 +8,6 @@ import { getDefaultFetcher } from "../api/get.api";
  * @returns 
  */
 export default function useDefaultQuery(key:any[], url:string){
-    const { data, isPending, isError, error } = useQuery({ queryKey: key, queryFn: () => getDefaultFetcher(url) })
-    return {data, isPending,isError, error}
+    const { data, isPending, isError, error, isFetching } = useQuery({ queryKey: key, queryFn: () => getDefaultFetcher(url) })
+    return {data, isPending,isError, error, isFetching}
 }

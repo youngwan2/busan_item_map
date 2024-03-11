@@ -7,6 +7,7 @@ import { lazy,Suspense } from "react";
 import LocalFoodDetailPage from "../pages/LocalFoodDetail/LocalFoodDetailPage";
 import 'react-toastify/dist/ReactToastify.css'
 import ReactSpinner from "../components/UI/ReactSpinner";
+import PageError from "../components/Errors/PageError";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <NotFound message="잘못된 경로로 접속 하셨습니다." />,
   },
  
 ]);

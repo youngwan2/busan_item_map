@@ -14,6 +14,7 @@
 
 .container button {
     border: none;
+    margin: 2em;
     text-align: center;
     background-color: black;
     color:white;
