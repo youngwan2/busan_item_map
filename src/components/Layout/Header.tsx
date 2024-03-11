@@ -76,25 +76,8 @@ function Header({ isStyle }: HeaderType) {
                 <li>
                   <Link to={'/recipe'}>레시피정보조회</Link>
                 </li>
-              </ul>
-            </li>
-            <li className={styles.main_menu_con}>
-              <Link to={'#'}>식단 정보</Link>
-              <ul className={styles.main_menu_ul}>
                 <li>
                   <Link to={'/child-diet'}>유아 식단 정보</Link>
-                </li>
-              </ul>
-            </li>
-
-            <li className={styles.main_menu_con}>
-              <Link to={'#'}>기타 서비스</Link>
-              <ul className={styles.main_menu_ul}>
-                <li>
-                  <Link to={'/busan-necessities'}>부산생필품정보</Link>
-                </li>
-                <li>
-                  <Link to={'/bmi'}>체질량지수</Link>
                 </li>
               </ul>
             </li>
