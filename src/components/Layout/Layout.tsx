@@ -1,23 +1,22 @@
 
 import { Outlet } from "react-router-dom";
-import Gpt from "../Common/Gpt/Gpt";
 import Header from "./Header";
 import Movement from "../Common/Movement";
 import NavSearch from "../Common/NaverDictionary/NaverDictionary";
 import Footer from "./Footer";
+import { ToastContainer } from "react-toastify";
+import styles from './Layout.module.scss'
 
 
 const Layout = () => {
-
-
   return (
     <>
-      <Header isStyle={true}/>
-      <main style={{minHeight:'100vh', height:'100%', width:'100%'}}>
-      <Outlet />
-      <Gpt />
-      <Movement />
-      <NavSearch />
+      <ToastContainer closeButton position="bottom-left" />
+      <Header isStyle={true} />
+      <main className={styles.main}>
+        <Outlet />
+        <Movement />
+        <NavSearch />
       </main>
       <Footer />
     </>

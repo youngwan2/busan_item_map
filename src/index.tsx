@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { RecoilRoot } from "recoil";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Reset } from "styled-reset";
 
 
 const queryClient = new QueryClient()
@@ -18,6 +19,7 @@ root.render(
   <QueryClientProvider client={queryClient}>
   <Provider store={store}>
     <RecoilRoot>
+      <Reset/>
       <RouterProvider router={router} />
     </RecoilRoot>
   </Provider>

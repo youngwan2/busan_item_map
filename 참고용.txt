@@ -1,2 +1,0 @@
-리액트 차트 : https://react-chartjs-2.js.org/examples/radar-chart
-향토 음식 소개 사이트 : https://ncms.nculture.org/food/introduction

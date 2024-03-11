@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-
+const api_key = import.meta.env.VITE_KAKAO
 
 /**
  * @param la : 위도
@@ -11,16 +11,13 @@ import { useEffect } from 'react'
 const useMap = (la = "33", lo = "33", bss: string = "", id: string = "localfood_map", addres: string = "") => {
 
   useEffect(() => {
-    const api_key = import.meta.env.VITE_KAKAO
+
     const script = document.createElement("script");
-    console.log(bss)
     script.type = "text/javascript";
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${api_key}&autoload=false&libraries=services`;
 
 
     document.head.appendChild(script);
-
-
 
     script.onload = () => {
       kakao.maps.load(function () {
@@ -36,10 +33,12 @@ const useMap = (la = "33", lo = "33", bss: string = "", id: string = "localfood_
 
         if (addres) {
           geoconder.addressSearch(`${addres}`, function (results, status) {
-
+            
             const hasResults = status === kakao.maps.services.Status.OK
             const {y : geoLa, x:geoLo,} = results[0]
+
             const position = new kakao.maps.LatLng(hasResults ? Number(geoLa) : Number(la), hasResults ? Number(geoLo) : Number(lo))
+
             const marker = new kakao.maps.Marker({
               map,
               position,
@@ -51,7 +50,7 @@ const useMap = (la = "33", lo = "33", bss: string = "", id: string = "localfood_
               position,
               content: iwContent,
             });
-
+            
             // 마커 위에 인포윈도우를 표시합니다
             infowindow.open(map, marker);
             map.setCenter(position)

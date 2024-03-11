@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import LocalFoodList from "./components/LocalFoodList";
 import styles from './LocalFood.module.scss'
-import { useQuery } from "@tanstack/react-query";
-import { getLocalFoodListFormDB } from "../../api/get.api";
+import ReactSpinner from "../../components/UI/ReactSpinner";
+import GuideMessage from "../../components/Common/GuideMessage";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import useIntersection from "../../hooks/useIntersection";
+
 
 const LocalFoodPage = () => {
 
@@ -10,28 +13,40 @@ const LocalFoodPage = () => {
     document.title = "향토음식조회 | FoodPicker";
   }, []);
 
-    const [page, setPage] = useState(0)
-    const {data, isPending, isError, error } = useQuery({queryKey:['localFood'], queryFn:()=> getLocalFoodListFormDB(page)})
-    console.log(data)
+  const observerRef = useRef<HTMLButtonElement>(null)
 
-  if(isPending) {
-    return <span>로딩중...</span>
+  const { isEnd } = useIntersection(observerRef)
+  const { items, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll('localfood', '/localfood?page=')
+
+  async function nextPageHanlder() {
+    const isNext = new Promise((reslove) => {
+      if (isEnd) {
+        reslove(true)
+      } else {
+        reslove(false)
+      }
+    })
+    await isNext ? hasNextPage && fetchNextPage() : null
   }
-  if(isError) {
-    return <span>에러발생 : {error.message}</span>
+
+  useEffect(() => {
+    if (!hasNextPage) return
+    nextPageHanlder()
+  }, [isEnd])
+
+  if (!items && isFetching) {
+    return <ReactSpinner />
   }
+
   return (
-    <>
-      <h2>향토음식 이야기</h2>
-      <LocalFoodList />
-
-
-
-      <article>
-        <button onClick={()=> setPage((old)=> Math.max(old -1, 0))}>이전</button>
-        <button onClick={()=> setPage((old)=> Math.min(old +1, 5))}>다음</button>
-      </article>
-    </>
+    <section className={styles.Localfood}>
+      <h2 className={styles.page_title}>
+        <p>향토음식이야기</p>
+      </h2>
+      <GuideMessage path="/localfood" mainName='향토 이야기' subName='향토 음식이야기' totalCount={0} />
+      <LocalFoodList localfoods={items} />
+      <button className={styles.scroll_pointer} ref={observerRef} aria-hidden={'true'}></button>
+    </section>
   );
 };
 

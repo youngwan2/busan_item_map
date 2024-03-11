@@ -2,9 +2,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import NotFound from "../components/Errors/NotFound";
-import PageLoading from "../components/UI/PageLoading";
 import ChildDietPage from "../pages/Diet/ChildDietPage";
 import { lazy,Suspense } from "react";
+import LocalFoodDetailPage from "../pages/LocalFoodDetail/LocalFoodDetailPage";
+import 'react-toastify/dist/ReactToastify.css'
+import ReactSpinner from "../components/UI/ReactSpinner";
 
 const Home = lazy(()=> import('../pages/Home/Home'))
 const LocalFoodPage = lazy(()=> import('../pages/LocalFood/LocalFoodPage'))
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: 
-     <Suspense fallback={<PageLoading/>}>
+     <Suspense fallback={<ReactSpinner/>}>
       <Home/>
     </Suspense>,
   },
@@ -31,57 +33,65 @@ const router = createBrowserRouter([
       {
         path: "/localfood",
         element: 
-         <Suspense fallback={<PageLoading/>}>
+         <Suspense fallback={<ReactSpinner/>}>
           <LocalFoodPage />
+         </Suspense>
+        ,
+      },
+      {
+        path: "/localfood/:id",
+        element: 
+         <Suspense fallback={<ReactSpinner/>}>
+          <LocalFoodDetailPage />
          </Suspense>
         ,
       },
       {
         path: "/nutrition",
         element:
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
           <NutritionPage/>
        </Suspense>
       },
       {
         path: "/busan-necessities",
         element:
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
          <NecessitiesPage />
        </Suspense>
       },
       {
         path: "/haccp",
         element: 
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
           <HaccpPage />
         </Suspense>
       },
       {
         path: "/recipe",
         element: 
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
           <RecipePage />
         </Suspense>
       },
       {
         path: "/recipe/:id",
         element: 
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
           <RecipeDetail />
         </Suspense>
       },
       {
         path: "/bmi",
         element: 
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
          <BmiPage />
         </Suspense>
       },
       {
         path:"/child-diet",
         element:
-        <Suspense fallback={<PageLoading/>}>
+        <Suspense fallback={<ReactSpinner/>}>
         <ChildDietPage />
        </Suspense>
       }
