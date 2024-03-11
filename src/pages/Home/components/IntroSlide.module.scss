@@ -92,7 +92,12 @@
 }
 
 @keyframes appear {
-  from { transform:translate(-100px) rotateY(-15deg); transform-origin: left center; visibility: hidden; opacity: 0;}
+  from {
+    transform: translate(-100px) rotateY(-15deg);
+    transform-origin: left center;
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 
 @media screen and (min-width: 510px) {

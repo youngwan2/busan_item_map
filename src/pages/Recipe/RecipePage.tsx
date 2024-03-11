@@ -1,28 +1,20 @@
-import axios, { AxiosResponse } from "axios";
-import styles from "./Recipe.module.scss";
-import { useEffect, useState, useRef } from "react";
-import { RecipeType } from "./types/Recipe.types";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { setRecipe } from "../../store/slice/recipeSearch";
-import RecipeSearchForm from "./components/RecipeSearchForm";
-import RecipeSearchResult from "./components/RecipeSearchResult";
-import ReactSpinner from "../../components/UI/ReactSpinner";
+import axios, { AxiosResponse } from 'axios';
+import styles from './Recipe.module.scss';
+import { useEffect, useState, useRef } from 'react';
+import { RecipeType } from './types/Recipe.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { setRecipe } from '../../store/slice/recipeSearch';
+import RecipeSearchForm from './components/RecipeSearchForm';
+import RecipeSearchResult from './components/RecipeSearchResult';
+import ReactSpinner from '../../components/UI/ReactSpinner';
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
 function RecipePage() {
-  const [userInputValue, setUserInputValue] = useState("");
-  const [categories] = useState([
-    "",
-    "후식",
-    "국",
-    "반찬",
-    "밥",
-    "일품",
-    "기타",
-  ]);
-  const [checkedMenu, setCheckedMenu] = useState("");
-  const [undefinedMessage, setUndefinedMessage] = useState("");
+  const [userInputValue, setUserInputValue] = useState('');
+  const [categories] = useState(['', '후식', '국', '반찬', '밥', '일품', '기타']);
+  const [checkedMenu, setCheckedMenu] = useState('');
+  const [undefinedMessage, setUndefinedMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<RecipeType[]>();
 
@@ -33,7 +25,7 @@ function RecipePage() {
   });
 
   useEffect(() => {
-    document.title = "레시피 정보조회 | FoodPicker";
+    document.title = '레시피 정보조회 | FoodPicker';
   }, []);
 
   useEffect(() => {
@@ -46,7 +38,7 @@ function RecipePage() {
     const result = data.COOKRCP01.row;
     if (result) {
       setRecipes(result);
-      setUndefinedMessage("");
+      setUndefinedMessage('');
       dispatch(setRecipe(result));
     } else {
       setUndefinedMessage(data.COOKRCP01.RESULT.MSG);
@@ -54,23 +46,20 @@ function RecipePage() {
     setLoading(false);
   }
   // 레시피 데이터 API 요청
-  const getRecipeDataFromOpenApi = (
-    searchFoodName: string = "",
-    foodType: string = ""
-  ) => {
+  const getRecipeDataFromOpenApi = (searchFoodName: string = '', foodType: string = '') => {
     setLoading(true);
-    const hasFoodName = searchFoodName.length
-    const hasFoodType = foodType.length
+    const hasFoodName = searchFoodName.length;
+    const hasFoodType = foodType.length;
     if (hasFoodName === 0 && hasFoodType >= 0) {
       setLoading(false);
-      setUndefinedMessage("검색어를 입력해주세요.");
+      setUndefinedMessage('검색어를 입력해주세요.');
       return;
     }
     // 음식 카테고리 전체 이면서 검색어가 존재하는 경우
     if (hasFoodType === 0 && hasFoodName >= 1) {
       return axios
         .get(
-          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}`
+          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}`,
         )
         .then((response) => {
           axiosThen(response);
@@ -84,7 +73,7 @@ function RecipePage() {
     if (hasFoodName >= 1 && hasFoodType > 0) {
       return axios
         .get(
-          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`
+          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`,
         )
         .then((response) => {
           axiosThen(response);
@@ -97,27 +86,24 @@ function RecipePage() {
   };
 
   return (
-      <section className={styles.Recipe} ref={sectionRef}>
-        <h2 className={styles.page_title}>음식 레시피</h2>
-        <RecipeSearchForm
-          setCheckedMenu={setCheckedMenu}
-          setUserInputValue={setUserInputValue}
-          getRecipeDataFromApi={getRecipeDataFromOpenApi}
-          userInputValue={userInputValue}
-          checkedMenu={checkedMenu}
-          categories={categories}
-        />
-        <div
-          className={styles.loading_spinner}
-          style={loading ? { display: "inline-block" } : { display: "none" }}
-        >
-          {loading && <ReactSpinner />}
-        </div>
-        <RecipeSearchResult
-          recipes={recipes}
-          meg={undefinedMessage}
-        ></RecipeSearchResult>
-      </section>
+    <section className={styles.Recipe} ref={sectionRef}>
+      <h2 className={styles.page_title}>음식 레시피</h2>
+      <RecipeSearchForm
+        setCheckedMenu={setCheckedMenu}
+        setUserInputValue={setUserInputValue}
+        getRecipeDataFromApi={getRecipeDataFromOpenApi}
+        userInputValue={userInputValue}
+        checkedMenu={checkedMenu}
+        categories={categories}
+      />
+      <div
+        className={styles.loading_spinner}
+        style={loading ? { display: 'inline-block' } : { display: 'none' }}
+      >
+        {loading && <ReactSpinner />}
+      </div>
+      <RecipeSearchResult recipes={recipes} meg={undefinedMessage}></RecipeSearchResult>
+    </section>
   );
 }
 

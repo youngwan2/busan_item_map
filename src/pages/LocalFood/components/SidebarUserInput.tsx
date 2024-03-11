@@ -1,7 +1,11 @@
-import styles from "../LocalFood.module.scss";
-import { KeyboardEvent } from "react";
+import styles from '../LocalFood.module.scss';
+import { KeyboardEvent } from 'react';
 
-const SidebarUserInput = ({ titleFilter }: { titleFilter: (e: KeyboardEvent<HTMLInputElement>) => void }) => {
+const SidebarUserInput = ({
+  titleFilter,
+}: {
+  titleFilter: (e: KeyboardEvent<HTMLInputElement>) => void;
+}) => {
   return (
     <input
       onKeyUp={titleFilter}

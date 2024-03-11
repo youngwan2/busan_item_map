@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
-import { RecipeType } from "../types/Recipe.types";
-import styles from "../Recipe.module.scss";
-import { Link } from "react-router-dom";
-import RecipeMessage from "./RecipeMessage";
+import { useEffect, useState, useRef } from 'react';
+import { RecipeType } from '../types/Recipe.types';
+import styles from '../Recipe.module.scss';
+import { Link } from 'react-router-dom';
+import RecipeMessage from './RecipeMessage';
 
 interface ResultType {
   recipes?: RecipeType[];
@@ -31,31 +31,23 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
     // 스크롤 처리 함수
     const handleScroll = () => {
       if (container) {
-        if (
-          container.getBoundingClientRect().bottom <=
-          window.innerHeight + 100
-        ) {
+        if (container.getBoundingClientRect().bottom <= window.innerHeight + 100) {
           // 현재 조회 중인 레시피 총 갯수
-          const currentLength = Number(
-            sessionStorage.getItem("currentRecipes")
-          );
+          const currentLength = Number(sessionStorage.getItem('currentRecipes'));
           setCurrentLength(currentLength);
 
           // 다음으로 보여줄 레시피 길이를 설정
           const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
           if (nextRecipes && nextRecipes.length > 0) {
-            setVisibleRecipes((prevRecipes) => [
-              ...prevRecipes,
-              ...nextRecipes,
-            ]);
+            setVisibleRecipes((prevRecipes) => [...prevRecipes, ...nextRecipes]);
           }
         }
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    sessionStorage.setItem("currentRecipes", `${visibleRecipes.length}`);
+    window.addEventListener('scroll', handleScroll);
+    sessionStorage.setItem('currentRecipes', `${visibleRecipes.length}`);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [recipes, visibleRecipes, currentLength]);
 
@@ -64,19 +56,13 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article ref={containerRef} className={styles.search_result_container}>
         {visibleRecipes.map((recipe) => (
-          <Link
-            to={`/recipe/${recipe.RCP_SEQ}`}
-            key={recipe.RCP_SEQ}
-          >
+          <Link to={`/recipe/${recipe.RCP_SEQ}`} key={recipe.RCP_SEQ}>
             <ul
               className={styles.recipe_main_item_con}
               style={{
-                backgroundImage: `url(${
-                  recipe.ATT_FILE_NO_MAIN ||
-                  "/not-image.png"
-                })`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
+                backgroundImage: `url(${recipe.ATT_FILE_NO_MAIN || '/not-image.png'})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
               }}
             >
               <li className={styles.recipe_main_item}>

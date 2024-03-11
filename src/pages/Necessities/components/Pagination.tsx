@@ -1,5 +1,5 @@
-import styles from "./Pagination.module.css";
-import { useState, useEffect, useCallback } from "react";
+import styles from './Pagination.module.css';
+import { useState, useEffect, useCallback } from 'react';
 
 interface PaginationType {
   setPage: (updatePage: number) => void;
@@ -33,59 +33,57 @@ function Pagination({ setPage }: PaginationType) {
 
       renderItem.push(
         <button
-        key={-1}
+          key={-1}
           onClick={() => {
             console.log(updatePage);
             if (currentPage <= 1) return;
             setUpdatePage((updatePage) => (updatePage -= 1));
             setPage(updatePage);
-            window.scrollTo({top:0, behavior:'smooth'})
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           className={styles.prev_btn}
         >
-            {'<'}
-        </button>
+          {'<'}
+        </button>,
       );
       for (let i = firstPage; i <= lastPage; i++) {
         renderItem.push(
           <li
-          key={i}
+            key={i}
             style={
-              i === currentPage
-                ? { backgroundColor: "rgb(24, 58, 170)" }
-                : { backgroundColor: "" }
+              i === currentPage ? { backgroundColor: 'rgb(24, 58, 170)' } : { backgroundColor: '' }
             }
             onClick={() => {
               setUpdatePage(i);
               setPage(i);
-              window.scrollTo({top:0, behavior:'smooth'})
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             className={styles.page_item}
           >
             {i}
-          </li>
+          </li>,
         );
       }
 
       renderItem.push(
         <button
-        key={-2}
+          key={-2}
           onClick={() => {
             console.log(updatePage);
             if (currentPage === totalPage) return;
             setUpdatePage((updatePage) => (updatePage += 1));
             setPage(updatePage);
-            window.scrollTo({top:0, behavior:'smooth'})
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           className={styles.next_btn}
         >
           {'>'}
-        </button>
+        </button>,
       );
 
       setItems(renderItem);
     },
-    [totalPage, setPage]
+    [totalPage, setPage],
   );
 
   useEffect(() => {

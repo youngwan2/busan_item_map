@@ -1,11 +1,5 @@
-const LocalMarketPage =()=>{
+const LocalMarketPage = () => {
+  return <section></section>;
+};
 
-    return (
-        <section>
-            
-        </section>
-    )
-}
-
-
-export default LocalMarketPage
+export default LocalMarketPage;

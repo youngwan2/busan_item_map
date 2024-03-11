@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RecipeType } from "../../pages/Recipe/types/Recipe.types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RecipeType } from '../../pages/Recipe/types/Recipe.types';
 
 interface RecipeStateType {
   value: RecipeType[];
@@ -10,7 +10,7 @@ const initialState: RecipeStateType = {
 };
 
 const recipeSearchSlice = createSlice({
-  name: "recipeSearch",
+  name: 'recipeSearch',
   initialState,
   reducers: {
     setRecipe: (state, action: PayloadAction<RecipeType[]>) => {

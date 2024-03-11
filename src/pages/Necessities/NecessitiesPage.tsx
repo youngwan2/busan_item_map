@@ -1,26 +1,26 @@
-import axios from "axios";
-import styles from "./Necessities.module.scss";
-import Pagination from "./components/Pagination";
-import ReactSpinner from "../../components/UI/ReactSpinner";
-import Map from "./components/Map";
-import { ItemsType, laLoType } from "./types/Necessities.types";
-import { useState, useEffect, useCallback } from "react";
-import Table from "./components/Table";
+import axios from 'axios';
+import styles from './Necessities.module.scss';
+import Pagination from './components/Pagination';
+import ReactSpinner from '../../components/UI/ReactSpinner';
+import Map from './components/Map';
+import { ItemsType, laLoType } from './types/Necessities.types';
+import { useState, useEffect, useCallback } from 'react';
+import Table from './components/Table';
 
 function NecessitiesPage() {
   const [items, setItems] = useState<ItemsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [laLo, setLaLo] = useState<laLoType>({la:'33', lo:'33'});
-  const [gugun] = useState("금정구");
+  const [laLo, setLaLo] = useState<laLoType>({ la: '33', lo: '33' });
+  const [gugun] = useState('금정구');
   const [isDisplay, setIsDisplay] = useState(true);
-  const [bsshNm, setBsshNm] = useState("");
+  const [bsshNm, setBsshNm] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
   const getItem = useCallback(async (currentPage: number, gugun: string) => {
     setIsLoading(true);
     await axios
       .get(
-        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${import.meta.env.VITE_PUBLIC_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`
+        `https://apis.data.go.kr/6260000/BusanLifeInfoService/getLifeInfo?serviceKey=${import.meta.env.VITE_PUBLIC_KEY}&gugunNm=${gugun}&numOfRows=20&pageNo=${currentPage}&resultType=json`,
       )
       .then((result) => {
         // console.log("검색결과:", result);
@@ -39,15 +39,12 @@ function NecessitiesPage() {
   }, [getItem, currentPage, gugun]);
 
   useEffect(() => {
-    document.title = "부산생필품 정보조회 | foodPicker";
+    document.title = '부산생필품 정보조회 | foodPicker';
   }, []);
 
   return (
     <>
-      <h2
-        className={styles.title}
-        style={{ textAlign: "center", margin: "6rem 0" }}
-      >
+      <h2 className={styles.title} style={{ textAlign: 'center', margin: '6rem 0' }}>
         <strong>부산생필품 정보조회</strong>
       </h2>
       <Table
@@ -67,7 +64,7 @@ function NecessitiesPage() {
         setIsDisplay={setIsDisplay}
       ></Map>
       <span
-        style={isLoading ? { display: "block" } : { display: "none" }}
+        style={isLoading ? { display: 'block' } : { display: 'none' }}
         className={styles.loading}
       >
         <ReactSpinner />

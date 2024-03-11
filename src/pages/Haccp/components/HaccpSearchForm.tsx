@@ -1,6 +1,6 @@
-import ReactSpinner from "../../../components/UI/ReactSpinner";
-import styles from "../Haccp.module.scss";
-import { useEffect, useRef } from "react";
+import ReactSpinner from '../../../components/UI/ReactSpinner';
+import styles from '../Haccp.module.scss';
+import { useEffect, useRef } from 'react';
 
 interface Type {
   setProductName: (value: string) => void;
@@ -9,12 +9,7 @@ interface Type {
   productName: string;
 }
 
-function HaccpSearchForm({
-  setProductName,
-  search,
-  loading,
-  productName,
-}: Type) {
+function HaccpSearchForm({ setProductName, search, loading, productName }: Type) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -34,7 +29,7 @@ function HaccpSearchForm({
         placeholder="ex) 치킨"
         onKeyUp={async (e) => {
           setProductName(e.currentTarget.value);
-          if (e.code === "Enter") {
+          if (e.code === 'Enter') {
             search();
           }
         }}
@@ -48,10 +43,7 @@ function HaccpSearchForm({
       >
         조회
       </button>
-      <div
-        className={styles.spinner}
-        style={loading ? { display: "block" } : { display: "none" }}
-      >
+      <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>
         <ReactSpinner />
       </div>
     </div>

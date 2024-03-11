@@ -1,4 +1,4 @@
-import styles from "../Bmi.module.scss";
+import styles from '../Bmi.module.scss';
 
 interface PropsType {
   setResult: (p: number) => void;
@@ -7,13 +7,7 @@ interface PropsType {
   weightElRef: any;
   heightElRef: any;
 }
-const BmiButton = ({
-  setResult,
-  weight,
-  height,
-  weightElRef,
-  heightElRef,
-}: PropsType) => {
+const BmiButton = ({ setResult, weight, height, weightElRef, heightElRef }: PropsType) => {
   return (
     <div className={styles.button_area}>
       <button
@@ -27,8 +21,8 @@ const BmiButton = ({
       <button
         onClick={() => {
           if (weightElRef.current && heightElRef.current) {
-            weightElRef.current.value = "";
-            heightElRef.current.value = "";
+            weightElRef.current.value = '';
+            heightElRef.current.value = '';
           }
         }}
       >

@@ -1,19 +1,18 @@
-import BmiCalculator from "./components/BmiCalculator";
-import BmiInfo from "./components/BmiInfo";
-import styles from "./Bmi.module.scss";
+import BmiCalculator from './components/BmiCalculator';
+import BmiInfo from './components/BmiInfo';
+import styles from './Bmi.module.scss';
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from 'react';
 function BmiPage() {
-  const [selectTap, setSelectTap] = useState("");
+  const [selectTap, setSelectTap] = useState('');
 
-  useEffect(()=>{
-    document.title = "체질량 지수 | FoodPicker"
-},[])
+  useEffect(() => {
+    document.title = '체질량 지수 | FoodPicker';
+  }, []);
 
   return (
     <>
       <section className={styles.calculate_section}>
-
         <h2 className={styles.page_title}>
           <strong>체질량지수</strong>
         </h2>
@@ -34,7 +33,7 @@ function BmiPage() {
         <button data-bmi="과체중">25.0 - 29.9</button>
         <button data-bmi="비만">30.0 이상</button>
       </article>
-   
+
       <BmiInfo selectTap={selectTap} />
     </>
   );

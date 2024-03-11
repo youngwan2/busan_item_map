@@ -1,5 +1,5 @@
-import { MouseEvent, useEffect, useRef } from "react";
-import styles from "./IntroSlide.module.scss";
+import { MouseEvent, useEffect, useRef } from 'react';
+import styles from './IntroSlide.module.scss';
 
 interface PropsType {
   pageSwitch: (e: MouseEvent<HTMLUListElement>) => void;

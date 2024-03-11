@@ -1,10 +1,10 @@
-import styles from "./RecipeDetail.module.scss";
-import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { RecipeType } from "./types/Recipe.types";
-import RecipeNutrition from "./components/RecipeNutrition";
-import NextRecipe from "./components/RecipeButton";
+import styles from './RecipeDetail.module.scss';
+import { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import { RecipeType } from './types/Recipe.types';
+import RecipeNutrition from './components/RecipeNutrition';
+import NextRecipe from './components/RecipeButton';
 
 function RecipeDetail() {
   const detailSectionRef = useRef<HTMLBaseElement>(null);
@@ -12,17 +12,14 @@ function RecipeDetail() {
   const [recipe, setRecipe] = useState<RecipeType>();
 
   const state = useAppSelector((state) => {
-    sessionStorage.setItem(
-      "recipe",
-      JSON.stringify({ recipes: state.recipe.value })
-    );
+    sessionStorage.setItem('recipe', JSON.stringify({ recipes: state.recipe.value }));
     return state.recipe;
   }).value.filter((recipe) => {
     return recipe.RCP_SEQ === params.id;
   });
 
   useEffect(() => {
-    document.title = "레시피 상세조회 | FoodPicker";
+    document.title = '레시피 상세조회 | FoodPicker';
   }, []);
 
   useEffect(() => {
@@ -31,7 +28,7 @@ function RecipeDetail() {
 
   useEffect(() => {
     if (detailSectionRef.current) {
-      detailSectionRef.current.scrollIntoView({ block: "start" });
+      detailSectionRef.current.scrollIntoView({ block: 'start' });
     }
   }, []);
   return (
@@ -39,7 +36,7 @@ function RecipeDetail() {
       <section className={styles.recipe_detail_section} ref={detailSectionRef}>
         <h2 className={styles.page_title}>{recipe?.RCP_NM}</h2>
         <img
-          src={recipe?.ATT_FILE_NO_MAIN || "/images/background.png"}
+          src={recipe?.ATT_FILE_NO_MAIN || '/images/background.png'}
           alt="메인이미지"
           className={styles.recipe_image}
         />
@@ -48,8 +45,8 @@ function RecipeDetail() {
           <section className={styles.etc}>
             <h3>조리방법/요리종류/키워드</h3>
             <div>
-              <p>{recipe?.RCP_WAY2 || "방법"}</p>
-              <p>{recipe?.RCP_PAT2 || "종류"}</p>
+              <p>{recipe?.RCP_WAY2 || '방법'}</p>
+              <p>{recipe?.RCP_PAT2 || '종류'}</p>
               <p>{recipe?.HASH_TAG}</p>
             </div>
           </section>
@@ -67,9 +64,9 @@ function RecipeDetail() {
             <article className={styles.recipe_making_items}>
               <figure
                 style={
-                  recipe?.MANUAL01 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL01 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG01} alt="만드는법1" />
@@ -77,9 +74,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL02 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL02 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG02} alt="만드는법2" />
@@ -87,9 +84,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL03 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL03 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG03} alt="만드는법3" />
@@ -97,9 +94,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL04 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL04 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG04} alt="만드는법4" />
@@ -107,9 +104,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL05 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL05 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG05} alt="만드는법5" />
@@ -117,9 +114,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL06 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL06 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG06} alt="만드는법6" />
@@ -127,9 +124,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL07 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL07 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG07} alt="만드는법7" />
@@ -137,9 +134,9 @@ function RecipeDetail() {
               </figure>
               <figure
                 style={
-                  recipe?.MANUAL08 === "" || recipe === undefined
-                    ? { display: "none" }
-                    : { display: "block" }
+                  recipe?.MANUAL08 === '' || recipe === undefined
+                    ? { display: 'none' }
+                    : { display: 'block' }
                 }
               >
                 <img src={recipe?.MANUAL_IMG08} alt="만드는법8" />

@@ -1,35 +1,33 @@
-
-.Map{
-    position: fixed;
-    width: 100%;
-    z-index: 10000000;
-    top: 0;
-    height: 100vh;
-    backdrop-filter: blur(3px);
-    background-color: rgba(61, 59, 59, 0.379);
+.Map {
+  position: fixed;
+  width: 100%;
+  z-index: 10000000;
+  top: 0;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  background-color: rgba(61, 59, 59, 0.379);
 }
 
-.KaMap{
-    border-radius: 10px;
-    position: fixed;
-    box-shadow: 0 0 20px 2px rgb(158, 157, 157);
-    top: 40%;
-    margin:5rem 5rem 5rem 0;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.KaMap {
+  border-radius: 10px;
+  position: fixed;
+  box-shadow: 0 0 20px 2px rgb(158, 157, 157);
+  top: 40%;
+  margin: 5rem 5rem 5rem 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-
-.close_btn{
-    position: fixed;
-    top: 10px;
-    font-size: 2.3rem;
-    right: 0;
-    border-radius: 10px;
-    margin: 1.5rem;
-    color:white;
+.close_btn {
+  position: fixed;
+  top: 10px;
+  font-size: 2.3rem;
+  right: 0;
+  border-radius: 10px;
+  margin: 1.5rem;
+  color: white;
 }
 
-.close_btn:hover{
-    cursor: pointer;
+.close_btn:hover {
+  cursor: pointer;
 }

@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import styles from "../RecipeDetail.module.scss";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../app/hooks";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { useEffect, useRef } from 'react';
+import styles from '../RecipeDetail.module.scss';
+import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../app/hooks';
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 
 interface PropsType {
   param?: string;
@@ -52,13 +52,13 @@ function NextRecipe({ param }: PropsType) {
       <button
         style={
           currentIndex <= 0
-            ? { visibility: "hidden", opacity:0 }
-            : { visibility: "visible", opacity:1 }
+            ? { visibility: 'hidden', opacity: 0 }
+            : { visibility: 'visible', opacity: 1 }
         }
       >
         <Link to={`/recipe/${prevRecipe?.RCP_SEQ}`}>
           <h4 style={{ background: `url(${prevRecipe?.ATT_FILE_NO_MAIN})` }}>
-            {prevRecipe?.RCP_NM||"아이템이 존재하지 않습니다"}
+            {prevRecipe?.RCP_NM || '아이템이 존재하지 않습니다'}
           </h4>
           <span className={styles.btn_icons_left}>
             <FaArrowAltCircleLeft />
@@ -68,13 +68,13 @@ function NextRecipe({ param }: PropsType) {
       <button
         style={
           currentIndex === lastIndex
-            ? { visibility: "hidden", opacity:0 }
-            : { visibility: "visible", opacity:1 }
+            ? { visibility: 'hidden', opacity: 0 }
+            : { visibility: 'visible', opacity: 1 }
         }
       >
         <Link to={`/recipe/${nextRecipe?.RCP_SEQ}`}>
           <h4 style={{ background: `url(${nextRecipe?.ATT_FILE_NO_MAIN})` }}>
-            {nextRecipe?.RCP_NM||"아이템이 존재하지 않습니다."}
+            {nextRecipe?.RCP_NM || '아이템이 존재하지 않습니다.'}
           </h4>
           <span className={styles.btn_icons_right}>
             <FaArrowAltCircleRight />

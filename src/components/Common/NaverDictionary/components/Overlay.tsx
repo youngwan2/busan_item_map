@@ -1,5 +1,5 @@
-import styles from "./Overlay.module.css";
-import { useRef } from "react";
+import styles from './Overlay.module.css';
+import { useRef } from 'react';
 
 interface PropsType {
   display: boolean;
@@ -13,13 +13,8 @@ function Overlay({ display, setDisplay }: PropsType) {
       onClick={() => {
         setDisplay(!display);
       }}
-      style={
-        display
-          ? { visibility: "visible", opacity: 1 }
-          : { visibility: "hidden", opacity: 0 }
-      }
-    >
-    </div>
+      style={display ? { visibility: 'visible', opacity: 1 } : { visibility: 'hidden', opacity: 0 }}
+    ></div>
   );
 }
 

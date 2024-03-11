@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
 .Haccp {
   min-height: 150vh;
 }
 
 .haccp_inner_container {
-  font-family: "Orbit", sans-serif;
+  font-family: 'Orbit', sans-serif;
 }
 
 @keyframes appear {
@@ -15,7 +15,7 @@
 
 /* 페이지 타이틀 */
 .Haccp .haccp_page_title {
-  font-family: "Orbit", sans-serif;
+  font-family: 'Orbit', sans-serif;
   background-color: black;
   width: 100%;
   text-shadow: 1px 1px 4px black;
@@ -23,12 +23,12 @@
   margin: 0 0 3rem 0 !important;
   padding-top: 5rem;
   color: white;
-  background: url("/assets/haccpback.png");
-    p {
-      height: 300px;
-      line-height: 7;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255));
-    }
+  background: url('/assets/haccpback.png');
+  p {
+    height: 300px;
+    line-height: 7;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255));
+  }
 }
 
 /* 검색창 */
@@ -60,7 +60,8 @@
   border-radius: 5px;
   min-width: 65px;
   color: white;
-  box-shadow: inset 2px 2px 2px rgb(133, 149, 252),
+  box-shadow:
+    inset 2px 2px 2px rgb(133, 149, 252),
     inset -2px -2px 2px rgb(30, 43, 125);
   padding: 11px 15px;
   border: none;
@@ -80,7 +81,8 @@
   margin: 0rem auto;
   span {
     background-color: rgb(82, 82, 255);
-    box-shadow: inset 2px 2px 2px rgb(155, 155, 255),
+    box-shadow:
+      inset 2px 2px 2px rgb(155, 155, 255),
       inset -2px -2px 2px rgb(34, 34, 101);
     margin: 0 0 8px 0;
     display: inline-block;
@@ -137,7 +139,9 @@
 
 @keyframes appear {
   from {
-    transform: perspective(600px) translate(0, -30px) rotateX(80deg) scale(0.8); opacity: 0; visibility: hidden;
+    transform: perspective(600px) translate(0, -30px) rotateX(80deg) scale(0.8);
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -192,7 +196,7 @@
 }
 
 .message_container::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -13px;
   top: 5px;
@@ -202,17 +206,13 @@
   border-bottom: 10px solid transparent;
 }
 
-
 @media screen and (max-width: 1641px) {
   .content_container {
-
     figure {
-      max-width:400px;
+      max-width: 400px;
       width: 100%;
     }
   }
-
-  
 }
 
 @media screen and (max-width: 1600px) {
@@ -220,20 +220,20 @@
     justify-content: center;
 
     figure {
-      max-width:400px;
+      max-width: 400px;
       width: 100%;
     }
-  }  
+  }
 }
 @media screen and (max-width: 1065px) {
   .content_container {
     justify-content: center;
 
     figure {
-      max-width:250px;
+      max-width: 250px;
       width: 100%;
     }
-  }  
+  }
 }
 
 @media screen and (max-width: 344px) {

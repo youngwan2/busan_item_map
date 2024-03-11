@@ -1,10 +1,6 @@
-import styles from "../NaverDictionary.module.scss";
+import styles from '../NaverDictionary.module.scss';
 
-const NaverCloseIcon = ({
-  setDisplay,
-}: {
-  setDisplay: (p: boolean) => void;
-}) => {
+const NaverCloseIcon = ({ setDisplay }: { setDisplay: (p: boolean) => void }) => {
   return (
     <button
       className={styles.close_btn}

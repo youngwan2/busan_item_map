@@ -1,7 +1,7 @@
-import { atom } from "recoil";
-import { ItemsType } from "../pages/Haccp/types/Haccp.types";
+import { atom } from 'recoil';
+import { ItemsType } from '../pages/Haccp/types/Haccp.types';
 
 export const HaccpData = atom<ItemsType[]>({
-  key: "HaccpData",
+  key: 'HaccpData',
   default: [],
 });

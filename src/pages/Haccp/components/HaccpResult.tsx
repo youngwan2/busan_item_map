@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import { ItemsType } from "../types/Haccp.types";
-import styles from '../Haccp.module.scss'
-import HaccpMessage from "./HaccpMessage";
+import { useState, useRef, useEffect } from 'react';
+import { ItemsType } from '../types/Haccp.types';
+import styles from '../Haccp.module.scss';
+import HaccpMessage from './HaccpMessage';
 
 interface Type {
   items: ItemsType[];
@@ -18,7 +18,7 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
   // 초기 렌더링 값 지정
   useEffect(() => {
     if (items) {
-      const currentPage = Number(sessionStorage.getItem("currentHccp")) || 10;
+      const currentPage = Number(sessionStorage.getItem('currentHccp')) || 10;
       const initialItems = items.slice(0, currentPage);
       setVisibleHCCP(initialItems);
     }
@@ -27,21 +27,17 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
   useEffect(() => {
     function handleScroll() {
       if (items && visibleHCCP.length > 0) {
-        if (
-          containerRef.current?.getBoundingClientRect().bottom! <
-          window.innerHeight + 100
-        ) {
+        if (containerRef.current?.getBoundingClientRect().bottom! < window.innerHeight + 100) {
           const length = visibleHCCP.length;
           const nextHccp = items?.slice(length, length + 10);
-          if (nextHccp && nextHccp.length > 0)
-            setVisibleHCCP((prev) => [...prev, ...nextHccp]);
-          sessionStorage.setItem("currentHccp", `${visibleHCCP.length}`);
+          if (nextHccp && nextHccp.length > 0) setVisibleHCCP((prev) => [...prev, ...nextHccp]);
+          sessionStorage.setItem('currentHccp', `${visibleHCCP.length}`);
         }
       }
     }
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [visibleHCCP]);
 

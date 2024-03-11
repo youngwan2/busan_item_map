@@ -1,73 +1,66 @@
-
 .LocalFood_Detail {
-    display: grid;
-    padding-top: 5em;
-    justify-content: center;
-    width: 100%;
-    grid-template-columns: 55% 40%
+  display: grid;
+  padding-top: 5em;
+  justify-content: center;
+  width: 100%;
+  grid-template-columns: 55% 40%;
 }
 
 .left_content {
-    margin: 3em 1em 1em 1em;
-    .title {
-        font-size: 1.5em;
-        font-weight: 600;
-        line-height: 1.25;
-        color:#666
-    }
-    .sub_title {
-        margin: 0.5em 0;
-        color:gray;
-        font-size: 1em;
-    }
-    .thumb {
-        margin: 1.5em 0 0 0;
-        max-width: 768px;
-        width: 100%;
-        height: 100%;
-        max-height: 420px;
-    }
+  margin: 3em 1em 1em 1em;
+  .title {
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #666;
+  }
+  .sub_title {
+    margin: 0.5em 0;
+    color: gray;
+    font-size: 1em;
+  }
+  .thumb {
+    margin: 1.5em 0 0 0;
+    max-width: 768px;
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+  }
 
-    .sumary {
-        max-width: 768px;
-        font-size: 1.1em;
-        line-height: 2;
-        margin: 3em 0;
-    }
+  .sumary {
+    max-width: 768px;
+    font-size: 1.1em;
+    line-height: 2;
+    margin: 3em 0;
+  }
 }
 
 .right_content {
-    margin: 6em 1em;
-    color:#666;
-    h3 {
-        font-size: 1.15em;
-        font-weight: 600;
-        margin: 0 0 0.3em 0;
+  margin: 6em 1em;
+  color: #666;
+  h3 {
+    font-size: 1.15em;
+    font-weight: 600;
+    margin: 0 0 0.3em 0;
+  }
+
+  .rel_rest {
+    min-height: 350px;
+    width: 100%;
+
+    span {
+      display: inline-block;
+      margin: 1em 0;
     }
-
-    .rel_rest {
-        min-height: 350px;
-        width: 100%;
-
-        span {
-            display: inline-block;
-            margin: 1em 0;
-        }
-
-    }
-
-
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .LocalFood_Detail {
+    grid-template-columns: 1fr;
+  }
 
-    .LocalFood_Detail {
-        grid-template-columns: 1fr
-    }
-
-    .right_content {
-        margin: 8em 1em 2em 1em ;
-    }
-
-
+  .right_content {
+    margin: 8em 1em 2em 1em;
+  }
 }

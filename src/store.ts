@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import haccpSearchSlice from "./store/slice/haccpSearch";
-import recipeSearch from "./store/slice/recipeSearch";
-import nutritionSearch from "./store/slice/nutritionSearch";
+import { configureStore } from '@reduxjs/toolkit';
+import haccpSearchSlice from './store/slice/haccpSearch';
+import recipeSearch from './store/slice/recipeSearch';
+import nutritionSearch from './store/slice/nutritionSearch';
 
 /* 스토어 생성 */
 const store = configureStore({

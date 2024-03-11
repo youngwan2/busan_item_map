@@ -1,9 +1,9 @@
-import styles from "./NaverDictionary.module.scss";
-import { useState, useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { Draggable } from "gsap/Draggable";
-import NaverDictionaryView from "./components/NaverDictionaryView";
-import Overlay from "./components/Overlay";
+import styles from './NaverDictionary.module.scss';
+import { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { Draggable } from 'gsap/Draggable';
+import NaverDictionaryView from './components/NaverDictionaryView';
+import Overlay from './components/Overlay';
 
 export type DictionaryType = {
   title: string;
@@ -24,7 +24,7 @@ function NavSearch() {
         bounds: document.documentElement,
         onClick: function () {
           setDisplay(!display);
-        }
+        },
       });
     }
   }, []);

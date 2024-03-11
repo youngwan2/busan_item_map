@@ -1,39 +1,38 @@
-@mixin setButtonStyles($bottom:1.5rem){
+@mixin setButtonStyles($bottom: 1.5rem) {
   position: absolute;
   bottom: $bottom;
   left: 50%;
   padding: 7px 10px;
   box-shadow: inset 0 0 5px 2px rgb(165, 165, 245);
-  color:white;
+  color: white;
   background-color: rgb(69, 69, 248);
   border-radius: 15px;
   transform: translate(-50%);
   cursor: pointer;
 }
 
-
-.Diet_section{
-    width: 100%;
-    padding-top: 0;
-    text-align: center;
-    font-family: "Orbit", sans-serif;
+.Diet_section {
+  width: 100%;
+  padding-top: 0;
+  text-align: center;
+  font-family: 'Orbit', sans-serif;
 }
 
 // 페이지 제목
 .page_title {
-    font-family: "Orbit", sans-serif;
+  font-family: 'Orbit', sans-serif;
   background-color: black;
   text-shadow: 1px 1px 4px black;
   font-size: 2.5rem;
   margin: 0 0 3rem 0 !important;
   padding-top: 5rem;
   color: white;
-  background: url("/assets/haccpback.png");
-    p {
-      height: 300px;
-      line-height: 7;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255));
-    }
+  background: url('/assets/haccpback.png');
+  p {
+    height: 300px;
+    line-height: 7;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255));
+  }
 }
 
 // 페이지 메인
@@ -49,64 +48,64 @@
     width: 100%;
     margin: 0 auto;
     flex-wrap: wrap;
-      .diet_item_box {
-        width: 200px;
-        border-top-right-radius: 15px !important;
-        border-top-left-radius: 15px !important;
-        height: 250px;
-        background-color: white;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        margin: 10px;
-        position: relative;
-          .diet_item_title {
-            h3 {
-              font-size: 1.25em;
-              font-weight: 700;
-              box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.396);
-              color:rgba(0,0,888,0.5);
-              line-height: 1.5;
-              padding: 5px 3px;
-              border-radius: 5px;
-              background-color: white;
-              margin: 0 auto;
-              max-width: 150px;
-              margin-top: 3rem;
-            }
-          }
-          .diet_item_list_con{
-            transition: 1s;
-            position: absolute;
-            border-radius: 5px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            visibility: hidden;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            color:white;
-            background-color: rgba(0,0,666,0.5);
-            padding-top: 2rem !important;
-            .diet_item_list {
-              padding: 5px;
-            }
-          }
-    }
-    .diet_item_box:hover{
-      cursor: pointer;
-        .diet_item_list_con {
-          visibility: visible;
-          opacity: 1;
-          .diet_item_list {
-            padding: 5px;
-          }
+    .diet_item_box {
+      width: 200px;
+      border-top-right-radius: 15px !important;
+      border-top-left-radius: 15px !important;
+      height: 250px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin: 10px;
+      position: relative;
+      .diet_item_title {
+        h3 {
+          font-size: 1.25em;
+          font-weight: 700;
+          box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.396);
+          color: rgba(0, 0, 888, 0.5);
+          line-height: 1.5;
+          padding: 5px 3px;
+          border-radius: 5px;
+          background-color: white;
+          margin: 0 auto;
+          max-width: 150px;
+          margin-top: 3rem;
         }
+      }
+      .diet_item_list_con {
+        transition: 1s;
+        position: absolute;
+        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+        background-color: rgba(0, 0, 666, 0.5);
+        padding-top: 2rem !important;
+        .diet_item_list {
+          padding: 5px;
+        }
+      }
+    }
+    .diet_item_box:hover {
+      cursor: pointer;
+      .diet_item_list_con {
+        visibility: visible;
+        opacity: 1;
+        .diet_item_list {
+          padding: 5px;
+        }
+      }
     }
     .diet_item_box::before {
-      content: "";
+      content: '';
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
       position: absolute;
@@ -114,74 +113,72 @@
       left: 50%;
       width: 100%;
       height: 0;
-      border-bottom: 15px solid rgba(0,0,888,0.5);
+      border-bottom: 15px solid rgba(0, 0, 888, 0.5);
       transform: translateX(-50%);
+    }
+
+    .diet_item_box::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid #ccc;
+      transform: translateX(-50%);
+    }
   }
 
-  .diet_item_box::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 15px solid #ccc;
-    transform: translateX(-50%);
-}
-}
+  // 식단 카테고리
+  .Menu_article::-webkit-scrollbar {
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.285);
+    border-radius: 5px;
+  }
 
-// 식단 카테고리
-.Menu_article::-webkit-scrollbar{
-  height: 15px;
-  background-color: rgba(255, 255, 255, 0.285);
-  border-radius: 5px;
-}
-
-.Menu_article::-webkit-scrollbar-thumb {
-  background-color: rgb(97, 97, 230);
-  border-radius: 5px;
-}
-.Menu_article {
-  
-  width: 90%;
-  display: flex;
-  max-width: 1300px;
-  padding: 30px 15px;
-  margin: 1.5rem auto;
-  flex-direction: column;
-  background-color: white;
-  left: 1rem;
-  border: 2px solid rgb(84, 84, 243);
-  border-radius: 5px;
-  min-width: 200px;
-  overflow: auto;
-  text-wrap: wrap;
-  max-height: 70vh;
-  fieldset {
-    width: 100%;
-    div {
-      max-width: 100px;
-            border-radius: 10px;
-            color:white;
-      background-color: rgb(104, 104, 227);
+  .Menu_article::-webkit-scrollbar-thumb {
+    background-color: rgb(97, 97, 230);
+    border-radius: 5px;
+  }
+  .Menu_article {
+    width: 90%;
+    display: flex;
+    max-width: 1300px;
+    padding: 30px 15px;
+    margin: 1.5rem auto;
+    flex-direction: column;
+    background-color: white;
+    left: 1rem;
+    border: 2px solid rgb(84, 84, 243);
+    border-radius: 5px;
+    min-width: 200px;
+    overflow: auto;
+    text-wrap: wrap;
+    max-height: 70vh;
+    fieldset {
       width: 100%;
-      margin: 5px;
-      max-height: 30px;
-      min-width: 100px;
-      border:1px solid rgb(227, 218, 218);
-
+      div {
+        max-width: 100px;
+        border-radius: 10px;
+        color: white;
+        background-color: rgb(104, 104, 227);
+        width: 100%;
+        margin: 5px;
+        max-height: 30px;
+        min-width: 100px;
+        border: 1px solid rgb(227, 218, 218);
+      }
+      legend {
+        min-width: 70px;
+        max-width: 70px;
+        font-size: 16px;
+        padding-top: 3px;
+        display: inline-block;
+      }
     }
-    legend {
-      min-width: 70px;
-      max-width: 70px;
-      font-size: 16px;
-      padding-top: 3px;
-      display: inline-block;
-    }
-  }
-  .keyword_field {
+    .keyword_field {
       display: flex;
     }
   }
@@ -198,26 +195,26 @@
   width: 98%;
   text-align: start;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 100000000000000000000000000;
   background-color: rgba(255, 255, 255, 0);
   height: 100%;
   max-height: 800px;
 
-  p{
+  p {
     margin-left: 10px;
     font-size: 16px;
   }
-  strong{
+  strong {
     display: inline-block;
     min-width: 80px;
     margin: 10px;
     background-color: rgb(50, 50, 253);
-    color:white;
+    color: white;
     border-radius: 10px;
     text-align: center;
   }
- 
+
   .modal_left {
     width: 50%;
     border-bottom-left-radius: 10px;
@@ -226,7 +223,7 @@
     transform: perspective(600px) rotateY(5deg) translate(0);
     max-height: 200px;
     background-color: white;
-    padding:50px 50px !important;
+    padding: 50px 50px !important;
     border-right: 1px dsah black;
     min-height: 80vh;
     box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
@@ -234,7 +231,7 @@
     transform-origin: 100% 50%;
     animation: left 1s 1 ease-in-out;
     .prev_btn {
-      @include setButtonStyles()
+      @include setButtonStyles();
     }
     li {
       padding: 8px 0;
@@ -268,7 +265,7 @@
     animation: right 1s 1 ease-in-out;
     transform-origin: 0% 50%;
     .next_btn {
-      @include setButtonStyles(1.7rem)
+      @include setButtonStyles(1.7rem);
     }
     p {
       margin: 2px 0;
@@ -278,11 +275,17 @@
   }
 }
 
-@keyframes left  {
-  from {transform: rotateY(180deg) scale(0.7); opacity: 0;};
+@keyframes left {
+  from {
+    transform: rotateY(180deg) scale(0.7);
+    opacity: 0;
+  }
 }
-@keyframes right  {
-  from {transform: rotateY(0deg) scale(0.7); opacity: 0; };
+@keyframes right {
+  from {
+    transform: rotateY(0deg) scale(0.7);
+    opacity: 0;
+  }
 }
 
 .modal_overlay {
@@ -313,8 +316,7 @@
     border: none;
     border-radius: 50%;
     background-color: rgb(110, 110, 240);
-    color:white;
-  
+    color: white;
   }
 }
 
@@ -322,69 +324,64 @@
   box-shadow: inset 300px 0 0 0 rgb(89, 89, 235);
 }
 
-
 // 검색 FORM
 .diet_form {
   margin: 7px 0;
   text-align: start;
-    label {
-      display: inline-block;
-      margin-left: 1.25rem;
-      margin-right: 1.8rem;
-    }
-    input {
-      border-radius: 5px;
-      padding: 2px 10px;
-      border-color: rgb(97, 97, 236);
-    }
-    input:focus {
-      outline: none;
-      color:white;
-      
-      background-color: rgb(124, 124, 252);
-    }
+  label {
+    display: inline-block;
+    margin-left: 1.25rem;
+    margin-right: 1.8rem;
   }
+  input {
+    border-radius: 5px;
+    padding: 2px 10px;
+    border-color: rgb(97, 97, 236);
+  }
+  input:focus {
+    outline: none;
+    color: white;
 
-
+    background-color: rgb(124, 124, 252);
+  }
+}
 
 // 미디어 쿼리
 
-@media screen and (max-width : 767px) {
+@media screen and (max-width: 767px) {
   .Diet_modal_section {
     flex-direction: column;
     overflow-y: auto;
     align-items: center;
-  .modal_left {
-    transform: rotate(0deg) !important;
-    animation: none !important;
-    border-radius: 10px;
-    border: none;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
-  }
-  .modal_right {
-    border-radius: 10px;
-    animation: none !important;
-    transform: rotate(0deg) !important;
-    max-width: 600px;
-    width: 100%;
-    padding-top: 30px !important;
-    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
+    .modal_left {
+      transform: rotate(0deg) !important;
+      animation: none !important;
+      border-radius: 10px;
+      border: none;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
+    }
+    .modal_right {
+      border-radius: 10px;
+      animation: none !important;
+      transform: rotate(0deg) !important;
+      max-width: 600px;
+      width: 100%;
+      padding-top: 30px !important;
+      box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.247);
+    }
   }
 }
 
-}
-
-.guide_message{
+.guide_message {
   position: fixed;
   right: 0;
   background-color: rgb(107, 107, 252);
   top: 6rem;
   display: inline-block;
   padding: 5px 10px;
-  color:white;
+  color: white;
   border-radius: 5px;
   box-shadow: inset 5px 0 rgb(170, 170, 255);
-
 }

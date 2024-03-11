@@ -1,6 +1,6 @@
-import { RecipeType } from "../types/Recipe.types";
-import styles from "./RecipeNutrition.module.scss";
-import { useState } from "react";
+import { RecipeType } from '../types/Recipe.types';
+import styles from './RecipeNutrition.module.scss';
+import { useState } from 'react';
 function RecipeNutrition({ recipe }: { recipe?: RecipeType }) {
   const [modalState, setModalState] = useState(false);
   return (
@@ -11,21 +11,21 @@ function RecipeNutrition({ recipe }: { recipe?: RecipeType }) {
           setModalState(!modalState);
         }}
       >
-        {modalState ? "닫기" : "영양성분표"}
+        {modalState ? '닫기' : '영양성분표'}
       </button>
       <article
         className={styles.modal_con}
         style={
           modalState
-            ? { visibility: "visible", opacity: 1 }
+            ? { visibility: 'visible', opacity: 1 }
             : {
-                visibility: "hidden",
+                visibility: 'hidden',
                 opacity: 0,
-                transform: "translate(500px,-50%)",
+                transform: 'translate(500px,-50%)',
               }
         }
       >
-        <h3 style={{ textAlign: "center" }}>영양성분표</h3>
+        <h3 style={{ textAlign: 'center' }}>영양성분표</h3>
         <hr />
         <ul>
           <li>

@@ -1,30 +1,30 @@
-import styles from "./BmiMarkDown.module.scss";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { highweight2 } from "../../../data/Markdown/highweight2";
-import { lowweight } from "../../../data/Markdown/lowweight";
-import { standard } from "../../../data/Markdown/standard";
-import { obesity } from "../../../data/Markdown/obesity";
+import styles from './BmiMarkDown.module.scss';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { highweight2 } from '../../../data/Markdown/highweight2';
+import { lowweight } from '../../../data/Markdown/lowweight';
+import { standard } from '../../../data/Markdown/standard';
+import { obesity } from '../../../data/Markdown/obesity';
 
 function BmiMarkDown({ choice }: { choice: string }) {
   const markdown = switchMarkdown(choice);
 
   function switchMarkdown(choice: string) {
     switch (choice) {
-      case "저체중": {
+      case '저체중': {
         return lowweight;
       }
-      case "과체중": {
+      case '과체중': {
         return highweight2;
       }
-      case "정상": {
+      case '정상': {
         return standard;
       }
-      case "비만": {
+      case '비만': {
         return obesity;
       }
-      default : {
-        return lowweight
+      default: {
+        return lowweight;
       }
     }
   }

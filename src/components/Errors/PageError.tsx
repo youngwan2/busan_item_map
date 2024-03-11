@@ -1,13 +1,6 @@
-
 interface PropsType {
-    error?: string
+  error?: string;
 }
 export default function PageError({ error }: PropsType) {
-
-
-    return (
-        <strong>
-            {error}
-        </strong>
-    )
+  return <strong>{error}</strong>;
 }

@@ -1,30 +1,27 @@
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import { RouterProvider } from "react-router-dom";
-import router from "./router/router";
-import store from "./store";
-import { Provider } from "react-redux";
-import { RecoilRoot } from "recoil";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { Reset } from "styled-reset";
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './router/router';
+import store from './store';
+import { Provider } from 'react-redux';
+import { RecoilRoot } from 'recoil';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { Reset } from 'styled-reset';
 
-
-const queryClient = new QueryClient()
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const queryClient = new QueryClient();
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
-  <Provider store={store}>
-    <RecoilRoot>
-      <Reset/>
-      <RouterProvider router={router} />
-    </RecoilRoot>
-  </Provider>
-    <ReactQueryDevtools initialIsOpen={false}/>
-  </QueryClientProvider>
+    <Provider store={store}>
+      <RecoilRoot>
+        <Reset />
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </Provider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>,
   // </React.StrictMode>
 );
 

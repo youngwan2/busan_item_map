@@ -1,11 +1,11 @@
-import axios from "axios";
-import styles from "../NaverDictionary.module.scss";
-import { DictionaryType } from "../NaverDictionary";
-import { useState } from "react";
-import ReactSpinner from "../../../UI/ReactSpinner";
-import NaverDictionaryList from "./NaverDictionaryList";
-import NaverCloseIcon from "./NaverCloseIcon";
-import NaverSearchForm from "./NaverSearchForm";
+import axios from 'axios';
+import styles from '../NaverDictionary.module.scss';
+import { DictionaryType } from '../NaverDictionary';
+import { useState } from 'react';
+import ReactSpinner from '../../../UI/ReactSpinner';
+import NaverDictionaryList from './NaverDictionaryList';
+import NaverCloseIcon from './NaverCloseIcon';
+import NaverSearchForm from './NaverSearchForm';
 
 interface PropsType {
   display: boolean;
@@ -15,30 +15,32 @@ interface PropsType {
 const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<DictionaryType[]>();
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string>('');
 
   const reqNaverSearchAPI = (value: string) => {
     setLoading(true);
 
     axios
-      .get(`${import.meta.env.MODE === "production" 
-        ?
-         '/search/encyc?query='+value
-        :'http://localhost:3000/search/encyc?query='+value}`
+      .get(
+        `${
+          import.meta.env.MODE === 'production'
+            ? '/search/encyc?query=' + value
+            : 'http://localhost:3000/search/encyc?query=' + value
+        }`,
       )
       .then((result) => {
-        if (result.status !== 200) throw new Error('요청에 문제가 있습니다.')
-        const { items } = result.data.message
+        if (result.status !== 200) throw new Error('요청에 문제가 있습니다.');
+        const { items } = result.data.message;
         if (items !== undefined) setItems(items);
-        else { setError("데이터가 존재하지 않거나, 서버에서 데이터를 받아올 수 없습니다.") }
+        else {
+          setError('데이터가 존재하지 않거나, 서버에서 데이터를 받아올 수 없습니다.');
+        }
         setLoading(false);
-
       })
       .catch((error) => {
-        setError(error)
+        setError(error);
         setLoading(false);
       });
-
   };
 
   return (
@@ -47,29 +49,26 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
       style={
         display
           ? {
-            visibility: "visible",
-            opacity: 1,
-            transform: "translate(-50%,0)",
-          }
+              visibility: 'visible',
+              opacity: 1,
+              transform: 'translate(-50%,0)',
+            }
           : {
-            visibility: "hidden",
-            opacity: 0,
-            transform: "translate(-50%,5%)",
-          }
+              visibility: 'hidden',
+              opacity: 0,
+              transform: 'translate(-50%,5%)',
+            }
       }
     >
       <h3 className={styles.title}>네이버 백과사전</h3>
       <NaverCloseIcon setDisplay={setDisplay} />
-      <NaverSearchForm
-        getNaverSearchData={reqNaverSearchAPI}
-        display={display}
-      />
+      <NaverSearchForm getNaverSearchData={reqNaverSearchAPI} display={display} />
       {loading ? (
         <span
           style={{
-            position: "relative",
-            transform: "translate(-50%)",
-            left: "40%",
+            position: 'relative',
+            transform: 'translate(-50%)',
+            left: '40%',
           }}
         >
           <ReactSpinner />

@@ -1,6 +1,6 @@
-import { RecipeType } from "../types/Recipe.types";
-import styles from "../Recipe.module.scss";
-import { useState } from "react";
+import { RecipeType } from '../types/Recipe.types';
+import styles from '../Recipe.module.scss';
+import { useState } from 'react';
 interface Type {
   recipes?: RecipeType[];
   visibleRecipes?: RecipeType[];
@@ -14,35 +14,31 @@ function RecipeMessage({ recipes, visibleRecipes }: Type) {
       className={styles.message_container}
       style={
         !messageSpanDisplay
-          ? { maxWidth: "30px", maxHeight: "40px" }
-          : { maxWidth: "240px", maxHeight: "40px" }
+          ? { maxWidth: '30px', maxHeight: '40px' }
+          : { maxWidth: '240px', maxHeight: '40px' }
       }
     >
       <button
-        style={
-          !messageSpanDisplay
-            ? { transform: "rotate(0)" }
-            : { transform: "rotate(-180deg)" }
-        }
+        style={!messageSpanDisplay ? { transform: 'rotate(0)' } : { transform: 'rotate(-180deg)' }}
         onClick={() => {
           setMessageSpanDisplay(!messageSpanDisplay);
         }}
       >
-        {"←"}
+        {'←'}
       </button>
       <span
         className={styles.message}
         style={
           !messageSpanDisplay
             ? {
-                visibility: "hidden",
+                visibility: 'hidden',
                 opacity: 0,
-                transform: "translateX(5px)",
+                transform: 'translateX(5px)',
               }
             : {
-                visibility: "visible",
+                visibility: 'visible',
                 opacity: 1,
-                transform: "translateX(0)",
+                transform: 'translateX(0)',
               }
         }
       >

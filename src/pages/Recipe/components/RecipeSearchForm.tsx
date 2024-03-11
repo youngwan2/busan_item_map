@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import styles from "../Recipe.module.scss";
+import { useEffect, useRef } from 'react';
+import styles from '../Recipe.module.scss';
 
 interface RecipeSearchFormType {
   setCheckedMenu: (p: string) => void;
@@ -29,7 +29,7 @@ function RecipeSearchForm({
   // 레시피 검색 함수
   function search(value: string) {
     getRecipeDataFromApi(value, checkedMenu);
-    sessionStorage.setItem("currentRecipes", `${0}`);
+    sessionStorage.setItem('currentRecipes', `${0}`);
   }
 
   return (
@@ -37,14 +37,14 @@ function RecipeSearchForm({
       <div className={styles.search_input_area}>
         <label htmlFor="recipe_search"></label>
         <input
-        placeholder="ex) 스파게티"
+          placeholder="ex) 스파게티"
           ref={inputRef}
           id="recipe_search"
           type="search"
           onKeyDown={(e) => {
             const value = e.currentTarget.value;
             setUserInputValue(value);
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               search(userInputValue);
             }
           }}
@@ -72,7 +72,7 @@ function RecipeSearchForm({
                 type="radio"
                 value={`${category}`}
               ></input>
-              {category === "" ? "전체" : category}
+              {category === '' ? '전체' : category}
             </p>
           );
         })}

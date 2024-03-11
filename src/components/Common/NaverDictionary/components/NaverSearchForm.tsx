@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "../NaverDictionary.module.scss";
+import { useEffect, useRef, useState } from 'react';
+import styles from '../NaverDictionary.module.scss';
 
 interface PropsType {
   display: boolean;
   getNaverSearchData: (value: string) => void;
 }
 const NaverSearchForm = ({ display, getNaverSearchData }: PropsType) => {
-  const [userInputValue, setUserInputValue] = useState("");
+  const [userInputValue, setUserInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   function focus() {
@@ -33,7 +33,7 @@ const NaverSearchForm = ({ display, getNaverSearchData }: PropsType) => {
         type="search"
         onKeyUp={(e) => {
           setUserInputValue(e.currentTarget.value);
-          if (e.code === "Enter") getNaverSearchData(e.currentTarget.value);
+          if (e.code === 'Enter') getNaverSearchData(e.currentTarget.value);
         }}
       />
       <button

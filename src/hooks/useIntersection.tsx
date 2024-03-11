@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-
+import { useEffect, useState } from 'react';
 
 /**
  * * 참조하는 요소의 경계가 끝 지점에 도달하였는지 체크하는 커스텀 훅
@@ -7,31 +6,28 @@ import { useEffect, useState } from "react"
  * @returns true or false
  */
 export default function useIntersection(ref: React.RefObject<any>) {
+  const [isEnd, setIsEnd] = useState(false);
 
-    const [isEnd, setIsEnd] = useState(false)
+  const options = {
+    threshold: 0.7,
+    root: null,
+  };
+  const obsever = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) return setIsEnd(true);
+      else setIsEnd(false);
+    });
+  }, options);
 
-    const options = {
-        threshold: 0.7,
-        root:null,
-    }
-    const obsever = new IntersectionObserver((entries) => {
+  useEffect(() => {
+    if (!ref.current) return;
+    const viewTarget = ref.current;
+    obsever.observe(viewTarget);
 
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) return setIsEnd(true)
-            else setIsEnd(false)
-        })
-    }, options)
+    return () => {
+      obsever.disconnect();
+    };
+  });
 
-    useEffect(() => {
-        if (!ref.current) return
-        const viewTarget = ref.current
-        obsever.observe(viewTarget)
-
-        return () => {
-            obsever.disconnect()
-        }
-    })
-
-    return { isEnd }
+  return { isEnd };
 }
-
