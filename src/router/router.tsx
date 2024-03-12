@@ -7,16 +7,13 @@ import { lazy, Suspense } from 'react';
 import LocalFoodDetailPage from '../pages/LocalFoodDetail/LocalFoodDetailPage';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactSpinner from '../components/UI/ReactSpinner';
-import PageError from '../components/Errors/PageError';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const LocalFoodPage = lazy(() => import('../pages/LocalFood/LocalFoodPage'));
 const NutritionPage = lazy(() => import('../pages/Nutrition/NutritionPage'));
-const NecessitiesPage = lazy(() => import('../pages/Necessities/NecessitiesPage'));
 const HaccpPage = lazy(() => import('../pages/Haccp/HaccpPage'));
 const RecipePage = lazy(() => import('../pages/Recipe/RecipePage'));
 const RecipeDetail = lazy(() => import('../pages/Recipe/RecipeDetail'));
-const BmiPage = lazy(() => import('../pages/Bmi/BmiPage'));
 
 const router = createBrowserRouter([
   {
@@ -56,14 +53,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/busan-necessities',
-        element: (
-          <Suspense fallback={<ReactSpinner />}>
-            <NecessitiesPage />
-          </Suspense>
-        ),
-      },
-      {
         path: '/haccp',
         element: (
           <Suspense fallback={<ReactSpinner />}>
@@ -84,14 +73,6 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<ReactSpinner />}>
             <RecipeDetail />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/bmi',
-        element: (
-          <Suspense fallback={<ReactSpinner />}>
-            <BmiPage />
           </Suspense>
         ),
       },

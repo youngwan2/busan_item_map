@@ -14,3 +14,11 @@ code {
 ul {
   padding: 0 !important;
 }
+
+li {
+  list-style: none !important;
+}
+
+a {
+  text-decoration: none !important;
+}

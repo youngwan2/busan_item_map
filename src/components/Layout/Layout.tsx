@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <ToastContainer closeButton position="bottom-left" />
-      <Header isStyle={true} />
+      <Header isStyle={false} />
       <main className={styles.main}>
         <Outlet />
         <Movement />
