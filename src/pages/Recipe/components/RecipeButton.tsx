@@ -3,6 +3,7 @@ import styles from '../RecipeDetail.module.scss';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
+import useIntersection from '../../../hooks/useIntersection';
 
 interface PropsType {
   param?: string;
@@ -20,32 +21,31 @@ function NextRecipe({ param }: PropsType) {
 
   const articleRef = useRef<HTMLAreaElement>(null);
 
-  function intersectionOI() {
-    const options = {
-      threshold: 1,
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          articleRef.current &&
-            (articleRef.current.style.cssText = `
-                opacity:1;
-                visibility: visible;
-                transform:translate(0,0);
-             `);
-          articleRef.current && observer.unobserve(articleRef.current);
-        }
-      });
-    }, options);
+  const { isEnd } = useIntersection(articleRef)
 
-    if (articleRef.current) {
-      observer.observe(articleRef.current);
+  function showNext(isShow: boolean) {
+    if (!articleRef.current) return
+
+    if (isShow) {
+      articleRef.current.style.cssText = `
+    opacity:1;
+    visibility: visible;
+    transform:translate(0,0);
+ `;
+    } else {
+      articleRef.current.style.cssText = `
+      opacity:0;
+      visibility: hidden;
+      transform:translate(0,-50px);
+   `;
     }
+
   }
 
   useEffect(() => {
-    intersectionOI();
-  }, []);
+
+    isEnd && showNext(true);
+  }, [isEnd]);
 
   return (
     <article className={styles.pagination_article} ref={articleRef}>

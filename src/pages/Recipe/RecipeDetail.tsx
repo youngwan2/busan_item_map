@@ -5,6 +5,8 @@ import { useAppSelector } from '../../app/hooks';
 import { RecipeType } from './types/Recipe.types';
 import RecipeNutrition from './components/RecipeNutrition';
 import NextRecipe from './components/RecipeButton';
+import BackMove from '../../components/Common/BackMove';
+import GuideMessage from '../../components/Common/GuideMessage';
 
 function RecipeDetail() {
   const detailSectionRef = useRef<HTMLBaseElement>(null);
@@ -34,7 +36,10 @@ function RecipeDetail() {
   return (
     <>
       <section className={styles.recipe_detail_section} ref={detailSectionRef}>
+        <BackMove />
+        <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' finalPathName={recipe?.RCP_NM} />
         <h2 className={styles.page_title}>{recipe?.RCP_NM}</h2>
+
         <img
           src={recipe?.ATT_FILE_NO_MAIN || '/images/background.png'}
           alt="메인이미지"
@@ -147,9 +152,6 @@ function RecipeDetail() {
         </article>
       </section>
       <RecipeNutrition recipe={recipe} />
-      <br />
-      <hr />
-      <br />
       <NextRecipe param={params.id} />
     </>
   );

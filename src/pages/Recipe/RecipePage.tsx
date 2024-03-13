@@ -4,11 +4,11 @@ import { RecipeType } from './types/Recipe.types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setRecipe } from '../../store/slice/recipeSearch';
 import RecipeSearchForm from './components/RecipeSearchForm';
-import RecipeSearchResult from './components/RecipeSearchResult';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+import RecipeList from './components/RecipeList';
 import { ApiType, getDefaultFetcher } from '../../api/get.api';
 import { toast } from 'react-toastify';
 import RecipeSpinner from './components/RecipeSpinner';
+import GuideMessage from '../../components/Common/GuideMessage';
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
@@ -67,9 +67,11 @@ export default function RecipePage() {
     return axiosThen(data)
   };
 
+  const recipeCount  = recipes?.length || 0
   return (
     <section className={styles.Recipe} ref={sectionRef}>
       <h2 className={styles.page_title}>음식 레시피</h2>
+      <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' totalCount={recipeCount}/>
       <RecipeSearchForm
         setCheckedMenu={setCheckedMenu}
         setUserInputValue={setUserInputValue}
@@ -79,7 +81,7 @@ export default function RecipePage() {
         categories={categories}
       />
       <RecipeSpinner loading={loading}/>
-      <RecipeSearchResult recipes={recipes} meg={undefinedMessage}></RecipeSearchResult>
+      <RecipeList recipes={recipes} meg={undefinedMessage}/>
     </section>
   );
 }

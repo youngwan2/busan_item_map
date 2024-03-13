@@ -4,16 +4,26 @@
   padding: 5rem 10px;
   border-radius: 5px;
   max-width: 1200px;
+  font-family: sans-serif;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.32);
   min-height: 120vh !important;
 }
 
 .page_title {
-  margin: 2rem;
+  margin: 2.5rem;
+  color:rgba(0,0,0,0.7);
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.6em;
+  margin: 10px;
 }
 
 .recipe_content_con {
-  margin: 2rem 0;
+  margin: 2rem auto;
+  max-width: 900px;
   section {
     margin-top: 3rem;
   }
@@ -38,7 +48,7 @@
   p {
     margin: 10px 10px;
     max-width: 100px;
-    background-color: goldenrod;
+    background-color: rgb(255, 213, 105);
     padding: 3px 8px;
     min-width: 60px;
     border-radius: 10px;
@@ -47,13 +57,13 @@
 
 /* 만드는법 */
 .recipe_making_items {
-  display: flex;
+  display: grid;
   justify-content: center;
-  flex-wrap: wrap;
   figure {
     max-height: 700px;
     min-height: 400px;
     width: 100%;
+    transition: 0.5s;
     max-width: 500px;
     text-align: center;
     border-radius: 5px;
@@ -68,13 +78,13 @@
     }
   }
   figure:hover {
-    box-shadow: 0 0 1px 3px rgb(139, 139, 253);
+    box-shadow: 0 0 1px 3px rgb(250, 231, 60);
   }
 }
 
 /* 이전/다음 페이지 */
 .pagination_article {
-  margin: 0 auto;
+  margin: 3.5em auto 0 auto;
   min-width: 280px;
   transition: 0.5s;
   position: relative;

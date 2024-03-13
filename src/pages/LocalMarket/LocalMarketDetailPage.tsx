@@ -5,6 +5,7 @@ import PageLoading from '../../components/UI/PageLoading';
 import PageError from '../../components/Errors/PageError';
 import useMap from '../../hooks/useMap';
 import GuideMessage from '../../components/Common/GuideMessage';
+import BackMove from '../../components/Common/BackMove';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
@@ -58,6 +59,7 @@ export default function LocalMarketDetailPage() {
 
   return (
     <section className={styles.LocalMarket_Detail}>
+      <BackMove/>
       <GuideMessage path="/localmarket" mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
       {/* 좌측 컨텐츠 */}
       <article className={styles.left_content}>

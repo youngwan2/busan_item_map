@@ -1,0 +1,18 @@
+
+
+.backmove_btn {
+    background: none;
+    border: none;
+    display:flex;
+    border-radius: 50%;
+    position: fixed;
+    top: 5em;
+    padding: 5px;
+    left: 3em;
+    font-size: 1.15em;
+
+}
+
+.backmove_btn:hover {
+    box-shadow: 0 0 0 1px black;
+}
