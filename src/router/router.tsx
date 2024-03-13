@@ -2,7 +2,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import NotFound from '../components/Errors/NotFound';
-import ChildDietPage from '../pages/Diet/ChildDietPage';
 import { lazy, Suspense } from 'react';
 import LocalFoodDetailPage from '../pages/LocalFood/LocalFoodDetailPage';
 import 'react-toastify/dist/ReactToastify.css';
@@ -91,14 +90,6 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<ReactSpinner />}>
             <RecipeDetail />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/child-diet',
-        element: (
-          <Suspense fallback={<ReactSpinner />}>
-            <ChildDietPage />
           </Suspense>
         ),
       },

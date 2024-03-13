@@ -24,9 +24,5 @@ export const routes = [
             name: '간단 레시피',
             route: '/recipe'
         },
-        {
-            name: '유아 식단',
-            route: '/child-diet'
-        }
     ]
 ]
