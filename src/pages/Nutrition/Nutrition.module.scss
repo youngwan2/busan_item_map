@@ -126,13 +126,14 @@
   width: 100%;
   margin: 8rem auto;
   max-width: 500px;
-  background-color: rgb(137, 137, 248);
+  background-color: gold;
   border-radius: 5px;
   padding: 20px 15px;
-  box-shadow: 0 0 20px 2px rgba(55, 66, 219, 0.445);
+  box-shadow: 0 0 20px 2px rgba(55, 66, 219, 0.245);
   label {
     padding: 5px;
     svg {
+      fill:white;
       font-size: 1.5em;
     }
   }
@@ -144,9 +145,11 @@
   }
   input:focus {
     outline: none;
-    box-shadow: inset 0 0 0 300px rgba(127, 127, 187, 0.411);
+    box-shadow: inset 0 0 0 300px rgba(0,0,0,0.1)
   }
+
   button {
+    background:white;
     border-radius: 5px;
     border: none;
     padding: 5px;

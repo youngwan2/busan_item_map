@@ -47,6 +47,8 @@ export default function LocalFoodDetailPage() {
     title: '',
   };
   useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
+
+  console.log(localFood)
   if (isPending) return <PageLoading />;
   if (isError) return <PageError error={error?.message} />;
 

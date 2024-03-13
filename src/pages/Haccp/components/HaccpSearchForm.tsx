@@ -1,52 +1,39 @@
 import ReactSpinner from '../../../components/UI/ReactSpinner';
+import useFoucs from '../../../hooks/useFocus';
 import styles from '../Haccp.module.scss';
-import { useEffect, useRef } from 'react';
+import { FormEventHandler, useEffect, useRef } from 'react';
+import HaccpInput from './HaccpInput';
+import SearchButton from './SearchButton';
 
 interface Type {
-  setProductName: (value: string) => void;
-  search: () => void;
   loading: boolean;
   productName: string;
+  search: () => void;
+  searchAction:FormEventHandler<HTMLFormElement>
 }
 
-function HaccpSearchForm({ setProductName, search, loading, productName }: Type) {
+function HaccpSearchForm({ search, loading, productName, searchAction }: Type) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
-  }, []);
 
+
+  function onClickSearch() {
+    search();
+  }
+  useFoucs(inputRef)
   useEffect(() => {
     if (inputRef.current) inputRef.current.value = productName;
   }, [productName]);
+
   return (
-    <div className={styles.search_container}>
-      <input
-        ref={inputRef}
-        className={styles.search_input}
-        type="text"
-        id={styles.search}
-        placeholder="ex) 치킨"
-        onKeyUp={async (e) => {
-          setProductName(e.currentTarget.value);
-          if (e.code === 'Enter') {
-            search();
-          }
-        }}
-      />
+    <form className={styles.search_container} onSubmit={searchAction}>
+      <HaccpInput />
       {/* 조회 버튼 */}
-      <button
-        className={styles.search_btn}
-        onClick={async () => {
-          search();
-        }}
-      >
-        조회
-      </button>
+      <SearchButton onClickSearch={onClickSearch} />
       <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>
         <ReactSpinner />
       </div>
-    </div>
+    </form>
   );
 }
 

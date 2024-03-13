@@ -1,19 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
 import { ItemsType } from '../types/Haccp.types';
 import styles from '../Haccp.module.scss';
-import HaccpMessage from './HaccpMessage';
+import HaccpGuide from './HaccpGuide';
+import HaccpProductList from './HaccpProductList';
 
 interface Type {
-  items: ItemsType[];
+  items?: ItemsType[];
   setModal: (a: boolean) => void;
   setProductId: (a: string) => void;
-  modal: boolean;
 }
 
-function HccpResult({ items, setModal, setProductId, modal }: Type) {
+function HccpResult({ items, setModal, setProductId }: Type) {
   const containerRef = useRef<HTMLBaseElement>(null);
-  const totalItemCount = items.length;
+  const totalItemCount = Array.isArray(items) ? items.length : 0
   const [visibleHCCP, setVisibleHCCP] = useState<ItemsType[]>([]);
+
+
+  function onClickOpenModal(id: string) {
+    setModal(true); // 모달 활성화
+    setProductId(id); // 선택한 아이템 id 상태 관리
+  }
 
   // 초기 렌더링 값 지정
   useEffect(() => {
@@ -43,28 +49,8 @@ function HccpResult({ items, setModal, setProductId, modal }: Type) {
 
   return (
     <section className={styles.content_container} ref={containerRef}>
-      <HaccpMessage currentPage={visibleHCCP.length} totalPage={totalItemCount} />
-      {Array.isArray(items) ? (
-        visibleHCCP.map((item, i) => {
-          return (
-            // 조회된 각 아이템
-            <figure
-              key={i}
-              onClick={() => {
-                setModal(true); // 모달 활성화
-                setProductId(item.item.prdlstReportNo); // 선택한 아이템 id 상태 관리
-              }}
-            >
-              <div id="item_box" role="listitem">
-                <img src={`${item.item.imgurl1}`} alt="상품이미지"></img>
-                <p>{item.item.prdlstNm}</p>
-              </div>
-            </figure>
-          );
-        })
-      ) : (
-        <div>{modal}</div>
-      )}
+      <HaccpGuide currentPage={visibleHCCP.length} totalPage={totalItemCount} />
+      <HaccpProductList products={visibleHCCP} onClickOpenModal={onClickOpenModal} />
     </section>
   );
 }

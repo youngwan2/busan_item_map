@@ -1,14 +1,17 @@
-import styles from './HaccpModal.module.scss';
-import { ItemsType } from '../types/Haccp.types';
+import styles from '../Haccp.module.scss';
+import { FilterItemType } from '../types/Haccp.types';
 import Layout from './HaccpModalLayout';
+import HaccpContents from './HaccpContents';
 
 interface ModalType {
-  filterItems: ItemsType[];
+  filterItem?: FilterItemType;
   setModal: (modal: boolean) => void;
   modal: boolean;
 }
 
-function HaccpModal({ filterItems, setModal, modal }: ModalType) {
+function HaccpModal({ filterItem, setModal, modal }: ModalType) {
+
+  if (!filterItem) return <></>
   return (
     <>
       <article
@@ -27,46 +30,7 @@ function HaccpModal({ filterItems, setModal, modal }: ModalType) {
         >
           X
         </button>
-        <section>
-          {Array.isArray(filterItems)
-            ? filterItems.map((item) => {
-                return (
-                  <div className={styles.modal_content_con} key={item.item.prdlstReportNo}>
-                    <figure className={styles.modal_figure}>
-                      <img src={`${item.item.imgurl1}`} alt="상품이미지" />
-                    </figure>
-                    <div>
-                      <p>
-                        <strong>상품명</strong>
-                        <br />
-                        <span>{item.item.prdlstNm ?? '알수없음'}</span>
-                      </p>
-                      <p>
-                        <strong>제조사</strong>
-                        <br />
-                        <span>{item.item.manufacture ?? '알수없음'}</span>
-                      </p>
-                      <p>
-                        <strong>성분</strong>
-                        <br />
-                        <span>{item.item.rawmtrl ?? '알수없음'}</span>
-                      </p>
-                      <p>
-                        <strong>알러지</strong>
-                        <br />
-                        <span>{item.item.allergy ?? '알수없음'}</span>
-                      </p>
-                      <p>
-                        <strong>바코드</strong>
-                        <br />
-                        <span>{item.item.barcode ?? '알수없음'}</span>
-                      </p>
-                    </div>
-                  </div>
-                );
-              })
-            : null}
-        </section>
+        <HaccpContents filterItem={filterItem} />
       </article>
       <Layout setModal={setModal} modal={modal} />
     </>

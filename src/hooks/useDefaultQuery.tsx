@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getDefaultFetcher } from '../api/get.api';
+import { ApiType, getDefaultFetcher } from '../api/get.api';
 
 /**
  *
@@ -10,7 +10,7 @@ import { getDefaultFetcher } from '../api/get.api';
 export default function useDefaultQuery(key: any[], url: string) {
   const { data, isPending, isError, error, isFetching } = useQuery({
     queryKey: key,
-    queryFn: () => getDefaultFetcher(url),
+    queryFn: () => getDefaultFetcher(url,ApiType.INTERNAL),
   });
   return { data, isPending, isError, error, isFetching };
 }
