@@ -16,7 +16,7 @@ const LocalFoodPage = () => {
   const { isEnd } = useIntersection(observerRef);
   const { items, totalCount, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll(
     'localfood',
-    '/localfood?page=',
+    '/localfoods?page=',
   );
 
   async function nextPageHanlder() {

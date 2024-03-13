@@ -4,9 +4,11 @@ import Layout from '../components/Layout/Layout';
 import NotFound from '../components/Errors/NotFound';
 import ChildDietPage from '../pages/Diet/ChildDietPage';
 import { lazy, Suspense } from 'react';
-import LocalFoodDetailPage from '../pages/LocalFoodDetail/LocalFoodDetailPage';
+import LocalFoodDetailPage from '../pages/LocalFood/LocalFoodDetailPage';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactSpinner from '../components/UI/ReactSpinner';
+import LocalMarketPage from '../pages/LocalMarket/LocalMarketPage';
+import LocalMarketDetailPage from '../pages/LocalMarket/LocalMarketDetailPage';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const LocalFoodPage = lazy(() => import('../pages/LocalFood/LocalFoodPage'));
@@ -41,6 +43,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<ReactSpinner />}>
             <LocalFoodDetailPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/localmarket',
+        element: (
+          <Suspense fallback={<ReactSpinner />}>
+            <LocalMarketPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/localmarket/:id',
+        element: (
+          <Suspense fallback={<ReactSpinner />}>
+            <LocalMarketDetailPage />
           </Suspense>
         ),
       },

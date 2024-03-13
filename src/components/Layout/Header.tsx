@@ -3,11 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Nav from '../UI/Nav';
 import { HiMenu, HiXCircle } from 'react-icons/hi';
-interface HeaderType {
-  isStyle: boolean;
-}
 
-function Header({ isStyle }: HeaderType) {
+
+function Header() {
   const navigate = useNavigate();
 
   const [isShow, setIsShow] = useState(true);
@@ -17,7 +15,6 @@ function Header({ isStyle }: HeaderType) {
   }
 
   function resize() {
-
     const viewWidth = window.innerWidth
     if (viewWidth > 768) {
       setIsShow(true)
@@ -31,8 +28,7 @@ function Header({ isStyle }: HeaderType) {
     return () => {
       window.removeEventListener('resize', resize)
     }
-
-  })
+  },[])
 
   return (
     <header

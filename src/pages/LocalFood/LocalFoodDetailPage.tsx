@@ -14,7 +14,7 @@ export default function LocalFoodDetailPage() {
     isError,
     isPending,
     error,
-  } = useDefaultQuery(['localfood', id], '/localfood/' + id) as {
+  } = useDefaultQuery(['localfood', id], '/localfoods/' + id) as {
     data: localFoodType;
     isError: boolean;
     isPending: boolean;
@@ -30,7 +30,6 @@ export default function LocalFoodDetailPage() {
     main_thumb_url,
     rel_rest_address,
     rel_rest_name,
-    rel_rest_tel,
     sub_title,
     title,
   } = localFood || {
@@ -47,14 +46,13 @@ export default function LocalFoodDetailPage() {
     sub_title: '',
     title: '',
   };
-  useMap('', '', rel_rest_name, 'localfood_map', rel_rest_address);
-
+  useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
   if (isPending) return <PageLoading />;
   if (isError) return <PageError error={error?.message} />;
 
   return (
     <section className={styles.LocalFood_Detail}>
-      <GuideMessage path="/localfood" mainName="향토 이야기" subName={title} />
+      <GuideMessage path="/localfood" mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
       {/* 좌측 컨텐츠 */}
       <article className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}</h3>
@@ -91,9 +89,9 @@ export default function LocalFoodDetailPage() {
           <hr />
           <h3>연관식당</h3>
           <span>
-            {rel_rest_name}({rel_rest_address})
+            {rel_rest_name?rel_rest_name+`(${rel_rest_address})`:'조회된 데이터가 없습니다.'}
           </span>
-          <canvas width={420} height={350} id="localfood_map"></canvas>
+          <div id="localfood_map" style={{width:'100%', height:'350px'}}></div>
         </div>
         <div>
           <hr />
