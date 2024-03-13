@@ -28,6 +28,5 @@ export default function useIntersection(ref: React.RefObject<any>) {
       obsever.disconnect();
     };
   });
-
   return { isEnd };
 }

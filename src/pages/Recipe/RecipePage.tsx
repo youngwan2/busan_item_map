@@ -1,4 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
 import styles from './Recipe.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { RecipeType } from './types/Recipe.types';
@@ -7,10 +6,13 @@ import { setRecipe } from '../../store/slice/recipeSearch';
 import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeSearchResult from './components/RecipeSearchResult';
 import ReactSpinner from '../../components/UI/ReactSpinner';
+import { ApiType, getDefaultFetcher } from '../../api/get.api';
+import { toast } from 'react-toastify';
+import RecipeSpinner from './components/RecipeSpinner';
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
-function RecipePage() {
+export default function RecipePage() {
   const [userInputValue, setUserInputValue] = useState('');
   const [categories] = useState(['', '후식', '국', '반찬', '밥', '일품', '기타']);
   const [checkedMenu, setCheckedMenu] = useState('');
@@ -33,8 +35,7 @@ function RecipePage() {
   }, [state.value]);
 
   /* axios.then */
-  function axiosThen(response: AxiosResponse) {
-    const data = response.data;
+  function axiosThen(data: any) {
     const result = data.COOKRCP01.row;
     if (result) {
       setRecipes(result);
@@ -46,43 +47,24 @@ function RecipePage() {
     setLoading(false);
   }
   // 레시피 데이터 API 요청
-  const getRecipeDataFromOpenApi = (searchFoodName: string = '', foodType: string = '') => {
+  const getRecipeDataFromOpenApi = async (searchFoodName: string = '', foodType: string = '') => {
     setLoading(true);
     const hasFoodName = searchFoodName.length;
     const hasFoodType = foodType.length;
-    if (hasFoodName === 0 && hasFoodType >= 0) {
+    const isEmptyReq = hasFoodName === 0 && hasFoodType >= 0
+    const isAllMenu = hasFoodType === 0 && hasFoodName >= 1
+    const isChoiceMenu = hasFoodName >= 1 && hasFoodType > 0
+
+    if (isEmptyReq) {
       setLoading(false);
       setUndefinedMessage('검색어를 입력해주세요.');
+      toast.warn('검색어를 입력해주세요.')
       return;
     }
-    // 음식 카테고리 전체 이면서 검색어가 존재하는 경우
-    if (hasFoodType === 0 && hasFoodName >= 1) {
-      return axios
-        .get(
-          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}`,
-        )
-        .then((response) => {
-          axiosThen(response);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-    }
-    // 카테고리가 후식/국/반찬/밥 이면서 검색어가 존재하는 경우
-    if (hasFoodName >= 1 && hasFoodType > 0) {
-      return axios
-        .get(
-          `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}`,
-        )
-        .then((response) => {
-          axiosThen(response);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-    }
+    const url = isAllMenu ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}` : isChoiceMenu ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}` : null
+    const data = await getDefaultFetcher(url,ApiType.EXTERNAL)
+    if(!data) return toast.error('데이터 요청에 실패하였습니다.')
+    return axiosThen(data)
   };
 
   return (
@@ -96,15 +78,9 @@ function RecipePage() {
         checkedMenu={checkedMenu}
         categories={categories}
       />
-      <div
-        className={styles.loading_spinner}
-        style={loading ? { display: 'inline-block' } : { display: 'none' }}
-      >
-        {loading && <ReactSpinner />}
-      </div>
+      <RecipeSpinner loading={loading}/>
       <RecipeSearchResult recipes={recipes} meg={undefinedMessage}></RecipeSearchResult>
     </section>
   );
 }
 
-export default RecipePage;

@@ -3,6 +3,7 @@ import { RecipeType } from '../types/Recipe.types';
 import styles from '../Recipe.module.scss';
 import { Link } from 'react-router-dom';
 import RecipeMessage from './RecipeMessage';
+import useIntersection from '../../../hooks/useIntersection';
 
 interface ResultType {
   recipes?: RecipeType[];
@@ -32,13 +33,14 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
     const handleScroll = () => {
       if (container) {
         if (container.getBoundingClientRect().bottom <= window.innerHeight + 100) {
-          // 현재 조회 중인 레시피 총 갯수
+          // 현재 조회 중인 레시피 
           const currentLength = Number(sessionStorage.getItem('currentRecipes'));
           setCurrentLength(currentLength);
 
-          // 다음으로 보여줄 레시피 길이를 설정
+          // 다음으로 보여줄 레시피 
           const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
-          if (nextRecipes && nextRecipes.length > 0) {
+          const hasNextRecipe = nextRecipes && nextRecipes.length > 0
+          if (hasNextRecipe) {
             setVisibleRecipes((prevRecipes) => [...prevRecipes, ...nextRecipes]);
           }
         }
@@ -56,7 +58,7 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article ref={containerRef} className={styles.search_result_container}>
         {visibleRecipes.map((recipe) => (
-          <Link to={`/recipe/${recipe.RCP_SEQ}`} key={recipe.RCP_SEQ}>
+          <Link to={`/recipe/${recipe.RCP_SEQ}`} key={recipe.RCP_NA_TIP}>
             <ul
               className={styles.recipe_main_item_con}
               style={{
@@ -74,6 +76,7 @@ function RecipeSearchResult({ recipes, meg }: ResultType) {
           </Link>
         ))}
         <br />
+        
       </article>
       <aside>
         <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes} />
