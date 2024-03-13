@@ -6,9 +6,14 @@ import PageError from '../../components/Errors/PageError';
 import useMap from '../../hooks/useMap';
 import GuideMessage from '../../components/Common/GuideMessage';
 import BackMove from '../../components/Common/BackMove';
+import useHeaderTheme from '../../hooks/useHeaderTheme';
+
+
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
+
+  
   const {
     data: localMarket,
     isError,
@@ -35,25 +40,11 @@ export default function LocalMarketDetailPage() {
     middle_title,
     sub_title,
     title,
-  } = localMarket || {
-    content: '',
-    content_url: '',
-    create_at: '',
-    update_at: '',
-    keyword: '',
-    era: '',
-    la: '',
-    lo: '',
-    lcc_address: '',
-    main_thumb_url: '',
-    rel_rest_address: '',
-    rel_rest_name: '',
-    rel_rest_tel: '',
-    sub_title: '',
-    title: '',
-  };
+  } = localMarket || REPLACE_VALUE
   useMap(la, lo, '', 'localmarket_map', '');
 
+  useHeaderTheme()
+  
   if (isPending) return <PageLoading />;
   if (isError) return <PageError error={error?.message} />;
 
@@ -108,3 +99,22 @@ export default function LocalMarketDetailPage() {
     </section>
   );
 }
+
+
+const REPLACE_VALUE =  {
+  content: '',
+  content_url: '',
+  create_at: '',
+  update_at: '',
+  keyword: '',
+  era: '',
+  la: '',
+  lo: '',
+  lcc_address: '',
+  main_thumb_url: '',
+  rel_rest_address: '',
+  rel_rest_name: '',
+  rel_rest_tel: '',
+  sub_title: '',
+  title: '',
+};

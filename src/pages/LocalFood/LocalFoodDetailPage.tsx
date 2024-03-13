@@ -7,6 +7,7 @@ import { localFoodType } from '../LocalFood/types/localFood.types';
 import useMap from '../../hooks/useMap';
 import GuideMessage from '../../components/Common/GuideMessage';
 import BackMove from '../../components/Common/BackMove';
+import useHeaderTheme from '../../hooks/useHeaderTheme';
 
 export default function LocalFoodDetailPage() {
   const { id } = useParams();
@@ -49,12 +50,14 @@ export default function LocalFoodDetailPage() {
   };
   useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
 
+  useHeaderTheme()
+  
   if (isPending) return <PageLoading />;
   if (isError) return <PageError error={error?.message} />;
 
   return (
     <section className={styles.LocalFood_Detail}>
-      <BackMove/>
+      <BackMove />
       <GuideMessage path="/localfood" mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
       {/* 좌측 컨텐츠 */}
       <article className={styles.left_content}>
@@ -92,9 +95,9 @@ export default function LocalFoodDetailPage() {
           <hr />
           <h3>연관식당</h3>
           <span>
-            {rel_rest_name?rel_rest_name+`(${rel_rest_address})`:'조회된 데이터가 없습니다.'}
+            {rel_rest_name ? rel_rest_name + `(${rel_rest_address})` : '조회된 데이터가 없습니다.'}
           </span>
-          <div id="localfood_map" style={{width:'100%', height:'350px'}}></div>
+          <div id="localfood_map" style={{ width: '100%', height: '350px' }}></div>
         </div>
         <div>
           <hr />

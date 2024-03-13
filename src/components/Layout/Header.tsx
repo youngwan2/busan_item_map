@@ -3,16 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Nav from '../UI/Nav';
 import { HiMenu, HiXCircle } from 'react-icons/hi';
+import { useAppSelector } from '../../app/hooks';
 
 
 function Header() {
   const navigate = useNavigate();
-
   const [isShow, setIsShow] = useState(true);
 
-  function onClickDropDown() {
-    setIsShow((result) => (result = !result));
-  }
+
+  const headerTheme =  useAppSelector(state => state.headerTheme)
+
+  function onClickHomeMove() { navigate('/') }
+  function onClickDropDown() { setIsShow((result) => (result = !result)); }
 
   function resize() {
     const viewWidth = window.innerWidth
@@ -28,19 +30,17 @@ function Header() {
     return () => {
       window.removeEventListener('resize', resize)
     }
-  },[])
+  }, [])
 
   return (
     <header
-      className={styles.Header}
+      className={`${styles.Header} ${headerTheme.isChange? styles.theme:null}`}
     >
-      <h1 className={styles.home_log} onClick={() => {
-        navigate('/');
-      }}>
+      <h1 className={styles.home_log} onClick={onClickHomeMove}>
         Food Picker
       </h1>
       {/* 메뉴 */}
-      <button onClick={onClickDropDown} className={`${styles.menu_icon} ${isShow ? styles.open_menu : ''}`}>{ !isShow ? <HiMenu /> : <HiXCircle />}</button>
+      <button onClick={onClickDropDown} className={`${styles.menu_icon} ${isShow ? styles.open_menu : ''}`}>{!isShow ? <HiMenu /> : <HiXCircle />}</button>
       <Nav isShowMenu={isShow} onClickDropDown={onClickDropDown} />
 
       {/* 가로 624 px 이하 부터 적용 */}

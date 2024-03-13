@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import haccpSearchSlice from './store/slice/haccpSearch';
-import recipeSearch from './store/slice/recipeSearch';
-import nutritionSearch from './store/slice/nutritionSearch';
+import haccpSearchSlice from '../features/searchSlice/haccpSearch';
+import recipeSearch from '../features/searchSlice/recipeSearch';
+import nutritionSearch from '../features/searchSlice/nutritionSearch';
+import headerTheme from '../features/theme/headerTheme';
 
 /* 스토어 생성 */
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     haccp: haccpSearchSlice,
     nutrition: nutritionSearch,
     recipe: recipeSearch,
+    headerTheme
   },
 });
 

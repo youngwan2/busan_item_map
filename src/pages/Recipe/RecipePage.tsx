@@ -2,7 +2,7 @@ import styles from './Recipe.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { RecipeType } from './types/Recipe.types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setRecipe } from '../../store/slice/recipeSearch';
+import { setRecipe } from '../../features/searchSlice/recipeSearch';
 import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeList from './components/RecipeList';
 import { ApiType, getDefaultFetcher } from '../../api/get.api';
