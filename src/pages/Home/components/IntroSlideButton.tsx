@@ -48,9 +48,6 @@ const IntroSlideButton = ({ pageSwitch, page }: PropsType) => {
       <li className={styles.list} data-index="4">
         4
       </li>
-      <li className={styles.list} data-index="5">
-        5
-      </li>
     </ul>
   );
 };

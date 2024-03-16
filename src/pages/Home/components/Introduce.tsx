@@ -4,6 +4,8 @@ import IntroSlide from './IntroSlide';
 import IntroSlideButton from './IntroSlideButton';
 import Header from '../../../components/Layout/Header';
 
+const MAX_SIZE = 4
+const delay = 5000
 const Introduce = () => {
   useEffect(() => {
     document.title = 'Food Picker';
@@ -22,10 +24,10 @@ const Introduce = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setPage((old) => ++old);
-      if (page >= 5) {
+      if (page >= MAX_SIZE) {
         setPage(1);
       }
-    }, 5000);
+    }, delay);
     return () => {
       clearInterval(interval);
     };
@@ -33,7 +35,7 @@ const Introduce = () => {
 
   return (
     <section className={styles.Introduce} ref={sectionRef}>
-      <Header isStyle={false} />
+      <Header />
       <IntroSlideButton pageSwitch={pageSwitch} page={page} />
       <IntroSlide page={page} />
     </section>

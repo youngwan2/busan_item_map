@@ -1,6 +1,5 @@
 import styles from './IntroSlide.module.scss';
 import nutrition from '/assets/nutritionback.png';
-import bmi from '/assets/bmi.png';
 import recipe from '/assets/recipe.png';
 import haccp from '/assets/haccpback.png';
 
@@ -118,20 +117,6 @@ const IntroSlide = ({ page = 0 }: PropsType) => {
             </p>
           </strong>
           <Link to={'/recipe'}>콘텐츠 바로가기</Link>
-        </article>
-      </li>
-      <li className={styles.slide_item}>
-        <figure>
-          <img src={bmi} alt="체질량지수 페이지 소개의 배경이미지" />
-        </figure>
-        <article className={styles.contents}>
-          <strong>
-            <p>
-              먹는 것도 중요하지만, 스스로 건강을 챙기는 것도 중요하겠죠? 간단하지만 참고하실 수
-              있는 <mark> BMI 계산기</mark>를 활용해보세요!
-            </p>
-          </strong>
-          <Link to={'/bmi'}>콘텐츠 바로가기</Link>
         </article>
       </li>
     </ul>

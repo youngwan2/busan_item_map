@@ -7,9 +7,12 @@ import RecipeNutrition from './components/RecipeNutrition';
 import NextRecipe from './components/RecipeButton';
 import BackMove from '../../components/Common/BackMove';
 import GuideMessage from '../../components/Common/GuideMessage';
+import ReactSpinner from '../../components/UI/ReactSpinner';
+import useHeaderTheme from '../../hooks/useHeaderTheme';
+import RecipeContents from './components/RecipeContents';
 
 function RecipeDetail() {
-  const detailSectionRef = useRef<HTMLBaseElement>(null);
+  const detaildivRef = useRef<HTMLBaseElement>(null);
   const params = useParams();
   const [recipe, setRecipe] = useState<RecipeType>();
 
@@ -20,6 +23,8 @@ function RecipeDetail() {
     return recipe.RCP_SEQ === params.id;
   });
 
+  useHeaderTheme()
+
   useEffect(() => {
     document.title = '레시피 상세조회 | FoodPicker';
   }, []);
@@ -29,131 +34,22 @@ function RecipeDetail() {
   }, [params]);
 
   useEffect(() => {
-    if (detailSectionRef.current) {
-      detailSectionRef.current.scrollIntoView({ block: 'start' });
+    if (detaildivRef.current) {
+      detaildivRef.current.scrollIntoView({ block: 'start' });
     }
   }, []);
+
+  if (!recipe) return <ReactSpinner />
+
   return (
-    <>
-      <section className={styles.recipe_detail_section} ref={detailSectionRef}>
-        <BackMove />
-        <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' finalPathName={recipe?.RCP_NM} />
-        <h2 className={styles.page_title}>{recipe?.RCP_NM}</h2>
-
-        <img
-          src={recipe?.ATT_FILE_NO_MAIN || '/images/background.png'}
-          alt="메인이미지"
-          className={styles.recipe_image}
-        />
-
-        <article className={styles.recipe_content_con}>
-          <section className={styles.etc}>
-            <h3>조리방법/요리종류/키워드</h3>
-            <div>
-              <p>{recipe?.RCP_WAY2 || '방법'}</p>
-              <p>{recipe?.RCP_PAT2 || '종류'}</p>
-              <p>{recipe?.HASH_TAG}</p>
-            </div>
-          </section>
-          <section>
-            <h3>재료</h3>
-            <p>{recipe?.RCP_PARTS_DTLS}</p>
-          </section>
-          <section>
-            <h3>저감 조리법 TIP</h3>
-            <p>{recipe?.RCP_NA_TIP}</p>
-          </section>
-
-          <section>
-            <h3>만드는 법</h3>
-            <article className={styles.recipe_making_items}>
-              <figure
-                style={
-                  recipe?.MANUAL01 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG01} alt="만드는법1" />
-                <p>{recipe?.MANUAL01}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL02 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG02} alt="만드는법2" />
-                <p>{recipe?.MANUAL02}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL03 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG03} alt="만드는법3" />
-                <p>{recipe?.MANUAL03}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL04 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG04} alt="만드는법4" />
-                <p>{recipe?.MANUAL04}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL05 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG05} alt="만드는법5" />
-                <p>{recipe?.MANUAL05}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL06 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG06} alt="만드는법6" />
-                <p>{recipe?.MANUAL06}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL07 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG07} alt="만드는법7" />
-                <p>{recipe?.MANUAL07}</p>
-              </figure>
-              <figure
-                style={
-                  recipe?.MANUAL08 === '' || recipe === undefined
-                    ? { display: 'none' }
-                    : { display: 'block' }
-                }
-              >
-                <img src={recipe?.MANUAL_IMG08} alt="만드는법8" />
-                <p>{recipe?.MANUAL08}</p>
-              </figure>
-            </article>
-          </section>
-        </article>
-      </section>
+    <section className={styles.recipe_detail} ref={detaildivRef}>
+      <BackMove />
+      <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' finalPathName={recipe.RCP_NM} />
+      <h2 className={styles.page_title}>{recipe.RCP_NM}</h2>
+      <RecipeContents recipe={recipe} />
       <RecipeNutrition recipe={recipe} />
       <NextRecipe param={params.id} />
-    </>
+    </section>
   );
 }
 

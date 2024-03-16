@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import styles from './LocalFoodDetail.module.scss';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
-import PageLoading from '../../components/UI/PageLoading';
 import PageError from '../../components/Errors/PageError';
 import { localFoodType } from '../LocalFood/types/localFood.types';
 import useMap from '../../hooks/useMap';
 import GuideMessage from '../../components/Common/GuideMessage';
 import BackMove from '../../components/Common/BackMove';
 import useHeaderTheme from '../../hooks/useHeaderTheme';
+import ReactSpinner from '../../components/UI/ReactSpinner';
 
 export default function LocalFoodDetailPage() {
   const { id } = useParams();
@@ -51,10 +51,9 @@ export default function LocalFoodDetailPage() {
   useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
 
   useHeaderTheme()
-  
-  if (isPending) return <PageLoading />;
-  if (isError) return <PageError error={error?.message} />;
 
+  if (isPending) return <ReactSpinner />;
+  if (isError) return <PageError error={error?.message} />;
   return (
     <section className={styles.LocalFood_Detail}>
       <BackMove />

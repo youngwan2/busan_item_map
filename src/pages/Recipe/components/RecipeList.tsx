@@ -61,7 +61,7 @@ export default function RecipeList({ recipes, meg }: ResultType) {
       <h3 className={styles.undefined_meg}>{meg}</h3>
       <article ref={containerRef} className={styles.search_result_container}>
         {visibleRecipes.map((recipe) => (
-          <RecipeCard recipe={recipe} />
+          <RecipeCard key={recipe.RCP_NM} recipe={recipe} />
         ))}
         <br />
       </article>

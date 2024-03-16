@@ -65,6 +65,7 @@ function NextRecipe({ param }: PropsType) {
           </span>
         </Link>
       </button>
+      
       <button
         style={
           currentIndex === lastIndex

@@ -1,18 +1,15 @@
 import { useParams } from 'react-router-dom';
 import styles from './LocalMarketDetail.module.scss';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
-import PageLoading from '../../components/UI/PageLoading';
 import PageError from '../../components/Errors/PageError';
 import useMap from '../../hooks/useMap';
 import GuideMessage from '../../components/Common/GuideMessage';
 import BackMove from '../../components/Common/BackMove';
 import useHeaderTheme from '../../hooks/useHeaderTheme';
-
-
+import ReactSpinner from '../../components/UI/ReactSpinner';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
-
   
   const {
     data: localMarket,
@@ -45,7 +42,7 @@ export default function LocalMarketDetailPage() {
 
   useHeaderTheme()
   
-  if (isPending) return <PageLoading />;
+  if (isPending) return <ReactSpinner />;
   if (isError) return <PageError error={error?.message} />;
 
   return (

@@ -1,90 +1,104 @@
-.recipe_detail_section {
+.recipe_detail {
+  padding-top: 4em;
+  max-width: 1400px;
   margin: 0 auto;
-  text-align: center;
-  padding: 5rem 10px;
-  border-radius: 5px;
-  max-width: 1200px;
-  font-family: sans-serif;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.32);
-  min-height: 120vh !important;
 }
 
-.page_title {
-  margin: 2.5rem;
-  color:rgba(0,0,0,0.7);
-  font-size: 1.8em;
-  font-weight: bold;
-}
-
-h3 {
-  font-size: 1.6em;
-  margin: 10px;
-}
-
-.recipe_content_con {
-  margin: 2rem auto;
-  max-width: 900px;
-  section {
-    margin-top: 3rem;
-  }
-}
-
-.recipe_image {
-  max-width: 600px;
-  width: 100%;
-  height: 500px;
-  border-radius: 10px;
-}
-
-.etc {
+.recipe_contents {
+  margin-top: 5em;
+  padding: 0 0.5em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  div {
-    display: flex;
-  }
 
-  p {
-    margin: 10px 10px;
-    max-width: 100px;
-    background-color: rgb(255, 213, 105);
-    padding: 3px 8px;
-    min-width: 60px;
-    border-radius: 10px;
-  }
-}
+  // 상단
+  .recipe_top_contents {
+    display: grid;
+    margin: 1em;
+    grid-template-columns: 40% 60%;
+    place-content: center;
+    
 
-/* 만드는법 */
-.recipe_making_items {
-  display: grid;
-  justify-content: center;
-  figure {
-    max-height: 700px;
-    min-height: 400px;
-    width: 100%;
-    transition: 0.5s;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 5px;
-    img {
+    .recipe_main_image {
       width: 100%;
-      padding: 10px 5px;
+      box-shadow: 0 0 20px 2px rgb(234, 234, 237);
       border-radius: 10px;
+      max-height: 600px;
     }
-    p {
-      font-weight: 500;
-      font-size: 16px;
+
+    .recipe_meta {
+      margin:0.5em 0 0 2em;
+      
+      h3 {
+        margin: 1.5em 0 0.5em 0;
+        border-left: 0.5em solid rgb(77, 77, 77);
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1.25em;
+        font-weight: bold;
+      }
+
+      .recipe_tags {
+        h3 {
+          margin-top: 0;
+        }
+        span {
+          border-radius: 20px;
+          background-color: rgb(102, 102, 255);
+          color: white;
+          padding: 1px 5px;
+          margin: 0 0.5em;
+          font-size: 1.15em;
+        }
+      }
+
+      span {
+        padding: 10px;
+      }
     }
   }
-  figure:hover {
-    box-shadow: 0 0 1px 3px rgb(53, 106, 241);
+
+  // 중간 라인
+  .middle_line {
+    margin-top: 2em;
+    box-shadow: 2px 10px 5px 0 rgba(117, 115, 115, 0.285);
+    width: 100%;
+    height: 20px;
+  }
+
+  // 하단
+  .recipe_bottom_contents {
+    margin: 2em auto;
+    text-align: center;
+    h3 {
+      text-align: center;
+      margin: 1em auto 0 auto;
+      display: inline-block;
+      padding: 10px 0;
+      font-size: 2.25em;
+    }
+    figure {
+      margin-top: 3em;
+      box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.145);
+      max-width: 500px;
+      img {
+        width: 100%;
+        max-width: 500px;
+      }
+      p {
+        padding: 0.5em 5px;
+        font-size: 1.05em;
+      }
+    }
+    figure:hover {
+      background-color: rgb(222, 227, 249);
+    }
   }
 }
 
+// 하단 메뉴바
 /* 이전/다음 페이지 */
 .pagination_article {
-  margin: 3.5em auto 0 auto;
+  margin: 5em auto 0 auto;
   min-width: 280px;
   transition: 0.5s;
   position: relative;
@@ -101,8 +115,8 @@ h3 {
     margin: 0 5px;
     filter: brightness(80%);
     padding: 0;
+    transition: 0.5s;
     position: relative;
-    transition: 0.5s ease-in-out;
     border-radius: 5px;
     border: 3px solid rgb(125, 125, 255);
     height: 200px;
@@ -115,7 +129,13 @@ h3 {
 
   button:hover {
     filter: brightness(100%);
-    box-shadow: 0 0 50px 0 rgb(93, 93, 255);
+    box-shadow: 0 0 50px 20px rgb(219, 219, 255);
+    animation: light 0.5s infinite alternate linear;
+  }
+
+  @keyframes light {
+    from {box-shadow: none}
+    
   }
 
   h4 {

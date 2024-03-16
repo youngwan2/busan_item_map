@@ -14,6 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@tanstack/react-query": "^5.25.0",
     "axios": "^1.6.7",
