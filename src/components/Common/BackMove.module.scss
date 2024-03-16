@@ -6,13 +6,21 @@
     display:flex;
     border-radius: 50%;
     position: fixed;
-    top: 5em;
+    top: 4em;
     padding: 5px;
-    left: 3em;
+    left: 1em;
     font-size: 1.15em;
-
 }
 
 .backmove_btn:hover {
     box-shadow: 0 0 0 1px black;
+}
+
+@media screen and (max-width: 768px) {
+
+    .backmove_btn {
+        top: 3em;
+    }
+    
+    
 }

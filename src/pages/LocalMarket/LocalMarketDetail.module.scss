@@ -1,10 +1,22 @@
+@keyframes appear {
+  from {
+    transform: translateY(-30px);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+
+
 .LocalMarket_Detail {
   display: grid;
   padding-top: 5em;
   justify-content: center;
   width: 100%;
   grid-template-columns: 55% 40%;
+  animation: appear 1s 1;
 }
+
 
 .left_content {
   margin: 3em 1em 1em 1em;
@@ -56,9 +68,11 @@
 @media screen and (max-width: 768px) {
   .LocalMarket_Detail {
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 50px;
   }
 
   .right_content {
-    margin: 3em 1em 2em 1em;
+    margin: 0 1em 2em 1em;
   }
 }
