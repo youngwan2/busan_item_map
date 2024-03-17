@@ -8,6 +8,7 @@ export default function RecipeContents({ recipe }: PropsType) {
 
     return (
         <article className={styles.recipe_contents}>
+            <h2 className={styles.page_title}>{recipe.RCP_NM}</h2>
             <article className={styles.recipe_top_contents}>
                 <img
                     src={recipe.ATT_FILE_NO_MAIN || '/images/background.png'}
@@ -19,7 +20,7 @@ export default function RecipeContents({ recipe }: PropsType) {
                         <h3>조리방법/요리종류/키워드</h3>
                         <span>{recipe.RCP_WAY2 || '방법'}</span>
                         <span>{recipe.RCP_PAT2 || '종류'}</span>
-                        {recipe.HASH_TAG?<span>{recipe.HASH_TAG}</span>:null}
+                        {recipe.HASH_TAG ? <span>{recipe.HASH_TAG}</span> : null}
                     </li>
                     <li>
                         <h3>재료</h3>

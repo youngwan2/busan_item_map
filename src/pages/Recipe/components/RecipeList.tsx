@@ -53,7 +53,6 @@ export default function RecipeList({ recipes, meg }: ResultType) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [recipes, visibleRecipes, currentLength]);
-  console.log(recipes)
 
   return (
     <>

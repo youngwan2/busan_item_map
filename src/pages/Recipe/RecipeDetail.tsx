@@ -45,7 +45,7 @@ function RecipeDetail() {
     <section className={styles.recipe_detail} ref={detaildivRef}>
       <BackMove />
       <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' finalPathName={recipe.RCP_NM} />
-      <h2 className={styles.page_title}>{recipe.RCP_NM}</h2>
+      
       <RecipeContents recipe={recipe} />
       <RecipeNutrition recipe={recipe} />
       <NextRecipe param={params.id} />

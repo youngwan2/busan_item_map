@@ -12,7 +12,6 @@ export const headerThemeSlice = createSlice({
     initialState,
     reducers : {
         setHeaderTheme: (state, action:PayloadAction<boolean>) => {
-            console.log(action.type)
             state.isChange = action.payload
         }
     }
