@@ -1,6 +1,3 @@
-※ 전체 코드 리팩터링 및 기능 확장 예정(현재 진행중)
-
-
 ###### 백엔드 저장소 주소: https://github.com/youngwan2/busan-item-map-server
 ---
 
@@ -9,7 +6,8 @@
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
 
 <p style="text-aligin:center; margin:0 auto">
-  <img src="https://github.com/youngwan2/busan_item_map/assets/107159871/ffba0431-985d-427b-be3c-6a8c64bb2fd9"  alt="홈페이지 프리뷰"/>
+
+  <img src="https://github.com/youngwan2/food-picker/assets/107159871/028faaea-40b2-4cb4-9ebb-eb7464ff7538"  alt="홈페이지 프리뷰"/>
   </p>
 
 ---
@@ -58,6 +56,7 @@
 
 
 ## 프로젝트 구조(참고용)
+```
 src
  ┣ 📂api ------→  서버 요청(= service)
  ┣ 📂app ------→ Redux 스토어 / 타입
@@ -96,3 +95,4 @@ src
  ┣ 📜index.css
  ┣ 📜index.tsx
  ┣ 📜routes.ts -----→ 재사용 네비게이션
+```
