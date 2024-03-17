@@ -10,7 +10,6 @@ function Header() {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(true);
 
-
   const headerTheme =  useAppSelector(state => state.headerTheme)
 
   function onClickHomeMove() { navigate('/') }
@@ -25,6 +24,13 @@ function Header() {
     }
 
   }
+
+  useEffect(()=>{
+    window.addEventListener('load',resize)
+    return ()=>{
+      window.removeEventListener('load', resize)
+    }
+  },[])
   useEffect(() => {
     window.addEventListener('resize', resize)
     return () => {
@@ -42,16 +48,6 @@ function Header() {
       {/* 메뉴 */}
       <button onClick={onClickDropDown} className={`${styles.menu_icon} ${isShow ? styles.open_menu : ''}`}>{!isShow ? <HiMenu /> : <HiXCircle />}</button>
       <Nav isShowMenu={isShow} onClickDropDown={onClickDropDown} />
-
-      {/* 가로 624 px 이하 부터 적용 */}
-      {/* <button
-        className={styles.menu_icon}
-        aria-label="모바일 메뉴 버튼"
-        onClick={onClickDropDown}
-        style={isShow ? { visibility: 'hidden' } : { visibility: 'visible' }}
-      >
-        <HiMenu />
-      </button> */}
     </header>
   );
 }

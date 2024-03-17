@@ -1,47 +1,42 @@
-import { useEffect, useRef, useState } from 'react';
+import { FormEventHandler, useEffect, useRef } from 'react';
 import styles from '../NaverDictionary.module.scss';
 
 interface PropsType {
   display: boolean;
-  getNaverSearchData: (value: string) => void;
+  action: FormEventHandler<HTMLFormElement>
 }
-const NaverSearchForm = ({ display, getNaverSearchData }: PropsType) => {
-  const [userInputValue, setUserInputValue] = useState('');
+const NaverSearchForm = ({ display, action }: PropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function focus() {
-    if (display && inputRef.current) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
-    }
+    let timerId: NodeJS.Timeout
+    if (!display && !inputRef.current) return
+    timerId = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+    return timerId
   }
 
   useEffect(() => {
-    focus();
+    const timerId = focus();
+    return () => {
+      clearTimeout(timerId)
+    }
+
   }, [display]);
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
+      onSubmit={action}
     >
       <input
         ref={inputRef}
         className={styles.user_input}
         type="search"
-        onKeyUp={(e) => {
-          setUserInputValue(e.currentTarget.value);
-          if (e.code === 'Enter') getNaverSearchData(e.currentTarget.value);
-        }}
       />
       <button
         className={styles.search_btn}
-        type="button"
-        onClick={() => {
-          getNaverSearchData(userInputValue);
-        }}
+        type="submit"
       >
         찾기
       </button>
