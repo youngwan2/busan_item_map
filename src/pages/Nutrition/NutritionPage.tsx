@@ -28,6 +28,7 @@ const Nutrition = () => {
   const { items, totalCount } = data || { items: [], totalCount: 0 };
   const hasItems = Array.isArray(items) && items.length < 1;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT);
+  
   return (
     <section className={styles.Nutrition_section}>
       <h2 className={styles.nutrition_title}>

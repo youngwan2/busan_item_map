@@ -25,9 +25,9 @@ function HaccpPage() {
     const { items } = data.body;
     console.log(items)
 
-    if (!items) { toast.error(productName + '으로 조회된 제품이 존재하지 않습니다.'); return setProductName(''); }
+    if (!items) { toast.error('조회된 제품이 존재하지 않습니다.'); return setProductName(''); }
     setProducts(items);
-    toast.success(productName + '으로 조회된 제품을 조회 하였습니다.')
+    toast.success('제품조회에 성공 하였습니다.')
     setLoading(false);
     setProductName('');
   };

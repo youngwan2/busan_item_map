@@ -2,6 +2,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { config } from '../config/config';
 
+
+const isDev = import.meta.env.DEV
 /**
  * 무한 스크롤 커스텀 훅
  * @param key 쿼리 식별키 ex 'localfood'
@@ -9,7 +11,10 @@ import { config } from '../config/config';
  * @returns
  */
 export const useInfiniteScroll = (key: string, url: string) => {
-  const baseUrl = config.prefix + config.host + url + 0;
+  const DEV_URL = config.prefix + config.host + url + 0;
+  const PROD_URL = process.env.PROD_URL + url + 0
+  const baseUrl = !isDev ? PROD_URL : DEV_URL
+
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: [key],
     queryFn: async ({ pageParam = baseUrl }) => {

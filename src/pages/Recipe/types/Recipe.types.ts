@@ -1,4 +1,5 @@
 export interface RecipeType {
+  [key:string] : string
   RCP_PARTS_DTLS: string;
   RCP_WAY2: string;
   MANUAL_IMG20: string;
@@ -7,15 +8,15 @@ export interface RecipeType {
   INFO_NA: string;
   INFO_WGT: string;
   INFO_PRO: string;
-  MANUAL_IMG13: string|number;
-  MANUAL_IMG14: string|number;
-  MANUAL_IMG15: string|number;
-  MANUAL_IMG16: string|number;
-  MANUAL_IMG10: string|number;
-  MANUAL_IMG12: string|number;
-  MANUAL_IMG17: string|number;
-  MANUAL_IMG18: string|number;
-  MANUAL_IMG19: string|number;
+  MANUAL_IMG13: string
+  MANUAL_IMG14: string
+  MANUAL_IMG15: string
+  MANUAL_IMG16: string
+  MANUAL_IMG10: string
+  MANUAL_IMG12: string
+  MANUAL_IMG17: string
+  MANUAL_IMG18: string
+  MANUAL_IMG19: string
   INFO_FAT: string;
   HASH_TAG: string;
   MANUAL_IMG02: string;
@@ -30,6 +31,16 @@ export interface RecipeType {
   MANUAL_IMG07: string;
   MANUAL_IMG08: string;
   MANUAL_IMG09: string;
+  MANUAL19: string;
+  MANUAL17: string;
+  MANUAL18: string;
+  MANUAL15: string;
+  MANUAL16: string;
+  MANUAL13: string;
+  MANUAL14: string;
+  MANUAL11: string;
+  MANUAL12: string;
+  MANUAL10: string;
   MANUAL08: string;
   MANUAL09: string;
   MANUAL06: string;
@@ -39,18 +50,12 @@ export interface RecipeType {
   MANUAL02: string;
   MANUAL03: string;
   ATT_FILE_NO_MAIN: string;
-  MANUAL11: string;
-  MANUAL12: string;
-  MANUAL10: string;
+  
   INFO_CAR: string;
-  MANUAL19: string;
+  
   RCP_NA_TIP: string;
   INFO_ENG: string;
-  MANUAL17: string;
-  MANUAL18: string;
+  
   RCP_NM: string;
-  MANUAL15: string;
-  MANUAL16: string;
-  MANUAL13: string;
-  MANUAL14: string;
+
 }

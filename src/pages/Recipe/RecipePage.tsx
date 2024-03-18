@@ -41,8 +41,10 @@ export default function RecipePage() {
       setRecipes(result);
       setUndefinedMessage('');
       dispatch(setRecipe(result));
+      toast.success('상품조회에 성공하였습니다.')
     } else {
       setUndefinedMessage(data.COOKRCP01.RESULT.MSG);
+      toast.error('조회된 상품이 존재하지 않습니다.')
     }
     setLoading(false);
   }
