@@ -14,7 +14,6 @@ interface PropsType {
   setDisplay: (p: boolean) => void;
 }
 
-const isDev = import.meta.env.DEV
 const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('')
@@ -36,13 +35,10 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
   async function searchNaverDictionary(value: string) {
     if (value.length < 2) return toast.error('2자 이상 입력해주세요.')
     setLoading(true);
-    const url = '/naver-search?search=' + value
-    const DEV_URL = config.prefix + config.host + url;
-    const PROD_URL = process.env.PROD_URL + url
-    const baseUrl = !isDev ? PROD_URL : DEV_URL
+    const url = config.prefix + config.host + '/naver-search?search=' + value
 
     try {
-      const { data } = await axios.get(baseUrl)
+      const { data } = await axios.get(url)
       const { status, meg, result } = data
       const { items } = result
       if (status === 200) { toast.success(meg); return setItems(items) }
