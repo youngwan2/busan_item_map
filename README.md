@@ -1,16 +1,13 @@
-###### 백엔드 저장소 주소: https://github.com/youngwan2/busan-item-map-server
+###### 백엔드 저장소 주소: [https://github.com/youngwan2/foodpicker-server](https://github.com/youngwan2/foodpicker-server)
 ---
-
 
 ## 📓 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
 
 <p style="text-aligin:center; margin:0 auto">
-
   <img src="https://github.com/youngwan2/food-picker/assets/107159871/028faaea-40b2-4cb4-9ebb-eb7464ff7538"  alt="홈페이지 프리뷰"/>
   </p>
 
----
 
 ## 🎫 프로젝트 요약
 - 중구난방으로 퍼져 있는 음식 관련 정보(식품영양, 향토 음식 등)을 한 곳에서 찾아볼 수 있는 가벼운 정보조회 웹 사이트
@@ -29,7 +26,6 @@
 - (무한 스크롤 )집에서 간단하게 먹을 수 있는 레시피 정보조회 서비스 제공
 - (페이지네이션) 1만 개 이상의 식품영양정보 조회 서비스 제공
 - (Naver API) 백과사전 검색 조회 서비스 제공
-
 
 ## 🧰 프레임워크 / 라이브러리 / 그 외 도구
 ### 프론트엔드/백엔드
