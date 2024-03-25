@@ -18,7 +18,7 @@
 
 ## 🔥 배포
 - 무료 플랜이라 24시간 호스팅이 되고 있지 않습니다. 
-- <a href="https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-busan-item-map-server-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
+- <a href="https://port-0-foodpicker-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">푸드피커 사이트 접속</a>
 
 ## ⚙ 구현된 기능
 - (무한 스크롤, Kakao Map API )지역별 향토 음식과 향토 시장의 유래 및 지도 API 를 활용한 관련 유명 음식점 정보 제공
