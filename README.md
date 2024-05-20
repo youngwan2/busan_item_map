@@ -1,31 +1,21 @@
-###### 백엔드 저장소 주소: [https://github.com/youngwan2/foodpicker-server](https://github.com/youngwan2/foodpicker-server)
----
-
 ## 📓 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
+![제목을-입력해주세요_-002](https://github.com/youngwan2/food-picker/assets/107159871/947b9886-c3a7-440b-92cd-412b688aa1cb)
 
-<p style="text-aligin:center; margin:0 auto">
-  <img src="https://github.com/youngwan2/food-picker/assets/107159871/028faaea-40b2-4cb4-9ebb-eb7464ff7538"  alt="홈페이지 프리뷰"/>
-  </p>
-
-
-## 🎫 프로젝트 요약
-- 중구난방으로 퍼져 있는 음식 관련 정보(식품영양, 향토 음식 등)을 한 곳에서 찾아볼 수 있는 가벼운 정보조회 웹 사이트
+## 🎫 프로젝트 목적
+- 우리 지역의 음식, 다양한 음식의 영양정보, 간단한 레시피 등 음식과 관련한 다양한 정보를 쉽게 찾아서 활용할 수 있으면 좋지 않을까 라는 생각에 개발하게 되었습니다.
 
 ## 📅 개발기간/유지보수
 - (개발기간) 2023년 7월 16일 ~ 2023년 8월 13일
 - (유지보수) 2023년 8월 13일 ~ 
 
 ## 🔥 배포
-- 무료 플랜이라 24시간 호스팅이 되고 있지 않습니다. 
-- <a href="https://port-0-foodpicker-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">푸드피커 사이트 접속</a>
+- ※ 현재 프로젝트는 클라우드 타입이라는 클라우드 플랫폼의 프리티어 멤버쉽으로 배포되었으며, 하루에 1번 서버를 자동으로 닫기 때문에, 24시간 호스팅이 되고 있지 않습니다. 매번 확인 후 재빌드하여 서버를 오픈하고 있습니다.
+- <a href="https://port-0-foodpicker-12fhqa2blnl2zdg4.sel5.cloudtype.app/" target="_blank">https://port-0-foodpicker-12fhqa2blnl2zdg4.sel5.cloudtype.app/</a>
 
-## ⚙ 구현된 기능
-- (무한 스크롤, Kakao Map API )지역별 향토 음식과 향토 시장의 유래 및 지도 API 를 활용한 관련 유명 음식점 정보 제공
-- (무한 스크롤) 안심하고 먹을 수 있는 HACCP 등록 제품 정보조회 서비스 제공
-- (무한 스크롤 )집에서 간단하게 먹을 수 있는 레시피 정보조회 서비스 제공
-- (페이지네이션) 1만 개 이상의 식품영양정보 조회 서비스 제공
-- (Naver API) 백과사전 검색 조회 서비스 제공
+## 🚬 트러블 슈팅
+- 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
+- [트러블 슈팅 1 ~ 3](https://duklook.tistory.com/444)
 
 ## 🧰 프레임워크 / 라이브러리 / 그 외 도구
 ### 프론트엔드/백엔드
@@ -45,9 +35,6 @@
 |      사용 스텍       | 선택 이유  |
 | :------------------ | :---------------------- |
 |    SQLite(^5.1.1)    | 복잡한 관계없이 대량의 데이터를 조회하고 빠른 쿼리를 생각한다면 NoSQL이 최적이겠으나, 개인적으로 관계형 데이터베이스의 학습 목적 및 별도의 서버없이 데이터베이스 구축과 적용이 가능하다는 이점, 향후 타 RDBS 이전 시 용이성이 돋보여서 선택 |
-
-## 🚬 트러블 슈팅
-[트러블 슈팅 모음집](https://duklook.tistory.com/444)
 
 
 ## 프로젝트 구조(참고용)
