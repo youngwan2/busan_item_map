@@ -28,6 +28,7 @@ const LocalFoodList = ({ localfoods }: PropsType) => {
   }
 
   if (!localfoods) return <></>;
+
   return (
     <ul className={styles.localfood_ul} id="localfood-ul">
       {localfoods.map((localfood) => {

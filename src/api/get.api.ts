@@ -14,7 +14,7 @@ export enum ApiType {
 
 export const getDefaultFetcher = async (url: string | null, type: ApiType) => {
   if (!url) return;
-  const baseUrl = ApiType.INTERNAL === type ? config.prefix + config.host + url : url
+  const baseUrl = ApiType.INTERNAL === type ? config.protocol + config.host + url : url
   try {
     const response = await axios.get(baseUrl);
     const data = response.data;

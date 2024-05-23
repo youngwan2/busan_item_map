@@ -9,7 +9,8 @@ import { config } from '../config/config';
  * @returns
  */
 export const useInfiniteScroll = (key: string, url: string) => {
-  const baseUrl = config.prefix + config.host + url + 0;
+  const baseUrl = config.protocol + config.host + url + 0;
+
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: [key],
     queryFn: async ({ pageParam = baseUrl }) => {
@@ -21,6 +22,7 @@ export const useInfiniteScroll = (key: string, url: string) => {
       return lastPage.next || undefined;
     },
   });
+
 
   const items = data?.pages.map((pageData) => {
     return pageData.items;
