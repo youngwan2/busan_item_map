@@ -1,56 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
-import { ItemsType } from '../types/Haccp.types';
 import styles from '../Haccp.module.scss';
+
+import { useRef, useState } from 'react';
+
 import HaccpGuide from './HaccpGuide';
 import HaccpProductList from './HaccpProductList';
 
-interface Type {
-  items?: ItemsType[];
-  setModal: (a: boolean) => void;
-  setProductId: (a: string) => void;
+import { HaccpProductItemType, HaccpProductPropertyType } from '../../../types/Haccp.types';
+import HaccpModal from './HaccpModal';
+
+interface PropsType {
+  totalCount:number
+  products?: HaccpProductItemType[];
 }
 
-function HccpResult({ items, setModal, setProductId }: Type) {
+function HccpResult({ products, totalCount}: PropsType) {
   const containerRef = useRef<HTMLBaseElement>(null);
-  const totalItemCount = Array.isArray(items) ? items.length : 0
-  const [visibleHCCP, setVisibleHCCP] = useState<ItemsType[]>([]);
 
+  const [pickProductInfo, setPickProductInfo] = useState<HaccpProductPropertyType>(); // 사용자가 선택한 아이템
+  const [isOpen, setIsOpen] = useState(false);
 
-  function onClickOpenModal(id: string) {
-    setModal(true); // 모달 활성화
-    setProductId(id); // 선택한 아이템 id 상태 관리
+  
+  const currentProductCount = Array.isArray(products) ? products.length : 0
+
+  function onToggleOpenModal() {
+    setIsOpen(old=>!old); // 모달 활성화
   }
 
-  // 초기 렌더링 값 지정
-  useEffect(() => {
-    if (items) {
-      const currentPage = Number(sessionStorage.getItem('currentHccp')) || 10;
-      const initialItems = items.slice(0, currentPage);
-      setVisibleHCCP(initialItems);
-    }
-  }, [items]);
+  // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
+  const onPickProduct = (productId: string) => {
+    const result = products?.find((product) => {
+      return product.item.prdlstReportNo === productId;
+    });
 
-  useEffect(() => {
-    function handleScroll() {
-      if (items && visibleHCCP.length > 0) {
-        if (containerRef.current?.getBoundingClientRect().bottom! < window.innerHeight + 100) {
-          const length = visibleHCCP.length;
-          const nextHccp = items?.slice(length, length + 10);
-          if (nextHccp && nextHccp.length > 0) setVisibleHCCP((prev) => [...prev, ...nextHccp]);
-          sessionStorage.setItem('currentHccp', `${visibleHCCP.length}`);
-        }
-      }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [visibleHCCP]);
+    if (!result) return
+    const product = result.item
+    setPickProductInfo(product);
+  }
 
+
+  if (!products) return <p>현재 아이템이 존재하지 않습니다.</p>
   return (
     <section className={styles.content_container} ref={containerRef}>
-      <HaccpGuide currentPage={visibleHCCP.length} totalPage={totalItemCount} />
-      <HaccpProductList products={visibleHCCP} onClickOpenModal={onClickOpenModal} />
+      <HaccpGuide totalProductCount={totalCount} currentProductCount={currentProductCount} />
+      <HaccpProductList products={products} onToggleOpenModal={onToggleOpenModal} onPickProduct={onPickProduct} />
+      <HaccpModal product={pickProductInfo}  onToggleOpenModal={onToggleOpenModal} isOpen={isOpen} />
     </section>
   );
 }

@@ -21,6 +21,7 @@
   width: 100%;
   text-shadow: 1px 1px 4px black;
   font-size: 2.5rem;
+  text-align: 'center';
   margin: 0 0 3rem 0 !important;
   padding-top: 5rem;
   color: white;
@@ -33,47 +34,47 @@
   }
 }
 
-/* 검색창 */
-.search_container {
-  left: 50%;
-  width: 80%;
-  max-width: 600px;
-  margin: 8rem auto 3rem auto;
-  display: flex;
-  justify-content: space-between;
-  filter: drop-shadow(10px 10px 2px rgba(68, 111, 254, 0.265));
-}
+// /* 검색창 */
+// .search_container {
+//   left: 50%;
+//   width: 80%;
+//   max-width: 600px;
+//   margin: 8rem auto 3rem auto;
+//   display: flex;
+//   justify-content: space-between;
+//   filter: drop-shadow(10px 10px 2px rgba(68, 111, 254, 0.265));
+// }
 
-.search_input {
-  border-radius: 10px;
-  border: 1px solid rgb(136, 156, 255);
-  padding: 10px 15px;
-  min-width: 150px;
-  width: 100%;
-}
+// .search_input {
+//   border-radius: 10px;
+//   border: 1px solid rgb(136, 156, 255);
+//   padding: 10px 15px;
+//   min-width: 150px;
+//   width: 100%;
+// }
 
-.search_input:focus {
-  outline: none;
-}
+// .search_input:focus {
+//   outline: none;
+// }
 
-/* 검색 버튼 */
-.search_btn {
-  position: absolute;
-  right: 0;
-  border-radius: 5px;
-  min-width: 65px;
-  color: white;
-  box-shadow:
-    inset 2px 2px 2px rgb(133, 149, 252),
-    inset -2px -2px 2px rgb(30, 43, 125);
-  padding: 11px 15px;
-  border: none;
-  background-color: rgb(98, 98, 238);
-}
+// /* 검색 버튼 */
+// .search_btn {
+//   position: absolute;
+//   right: 0;
+//   border-radius: 5px;
+//   min-width: 65px;
+//   color: white;
+//   box-shadow:
+//     inset 2px 2px 2px rgb(133, 149, 252),
+//     inset -2px -2px 2px rgb(30, 43, 125);
+//   padding: 11px 15px;
+//   border: none;
+//   background-color: rgb(98, 98, 238);
+// }
 
-.search_btn:hover {
-  background-color: rgb(120, 120, 250);
-}
+// .search_btn:hover {
+//   background-color: rgb(120, 120, 250);
+// }
 
 /* 잠깐 알고가기! */
 .message {
@@ -300,6 +301,18 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // 미디어 쿼리

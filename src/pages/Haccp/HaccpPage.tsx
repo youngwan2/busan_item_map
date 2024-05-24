@@ -1,54 +1,61 @@
 import styles from './Haccp.module.scss';
-import { useEffect, useState, useCallback, useRef, Suspense, SyntheticEvent } from 'react';
-import HaccpModal from './components/HaccpModal';
+
+import { useEffect, useState, useRef, Suspense, SyntheticEvent } from 'react';
+
 import HaccpResult from './components/HaccpResult';
 import HaccpSearchForm from './components/HaccpSearchForm';
-import { FilterItemType, ItemsType } from './types/Haccp.types';
+
 import HaccpMessage from './components/HaccpMessage';
-import { ApiType, getDefaultFetcher } from '../../api/get.api';
-import { toast } from 'react-toastify';
 import GuideMessage from '../../components/Common/GuideMessage';
+import { HaccpProductItemType } from '../../types/Haccp.types';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import useIntersection from '../../hooks/useIntersection';
+import { ClipLoader } from 'react-spinners';
+import ObserverSpinner from '../../components/Common/Spinner/ObserverSpinner';
+
 
 function HaccpPage() {
+  const [pageNo, setPageNo] = useState(1)
   const [productName, setProductName] = useState(''); // 상품 이름
-  const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<ItemsType[]>()
-  const [filterItem, setFilterItem] = useState<FilterItemType>(); // 사용자가 선택한 아이템
-  const [modal, setModal] = useState(false);
-  const [productId, setProductId] = useState('');
+
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
+  const endPointSpanRef = useRef<HTMLSpanElement>(null)
 
-  const getHaccpItemListFromOpanApi = async (productName: string) => {
-    setLoading(true);
-    const url = `https://apis.data.go.kr/B553748/CertImgListServiceV2/getCertImgListServiceV2?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
-    const data = await getDefaultFetcher(url, ApiType.EXTERNAL)
-    const { items } = data.body;
-    console.log(items)
+  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=50`;
+  const queryKey = ['haccp', productName]
 
-    if (!items) { toast.error('조회된 제품이 존재하지 않습니다.'); return setProductName(''); }
-    setProducts(items);
-    toast.success('제품조회에 성공 하였습니다.')
-    setLoading(false);
-    setProductName('');
-  };
 
-  // 사용자가 선택한 상품의 일련번호와 일치하는 상품만 필터링한다.
-  const filter = useCallback(
-    (productId: string) => {
-      const result = products?.find((item) => {
-        return item.item.prdlstReportNo === productId;
-      });
-
-      if (!result) return
-      const item = result.item
-      setFilterItem(item);
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isPending,
+    isError,
+    error,
+    isFetchingNextPage,
+    isFetching
+  } = useInfiniteQuery({
+    queryKey: queryKey,
+    queryFn: async ({ pageParam = pageNo }) => {
+      console.log(pageParam)
+      const res = await axios.get(url + `&pageNo=${pageParam}`)
+      return res.data
     },
-    [products],
-  );
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return Number(lastPage.body.pageNo) + 1 ?? undefined
+    },
+  })
 
-  function search() {
-    getHaccpItemListFromOpanApi(productName);
-    sessionStorage.setItem('currentHccp', `${0}`);
+  const totalCount = data?.pages[0].body.totalCount || 0
+  const productInfo = data?.pages.map((page) => page.body.items) || []
+  const products = productInfo?.flat(Infinity) // 중첩 배열 평탄화
+
+
+  function updateProductState(items: HaccpProductItemType[]) {
+    setProductName('');
+
   }
 
   function searchAction(e: SyntheticEvent<HTMLFormElement>) {
@@ -57,16 +64,21 @@ function HaccpPage() {
     if (!(input instanceof HTMLInputElement)) return
     const searchProduct = input.value
     setProductName(searchProduct)
-    search()
   }
+
+  const { isEnd } = useIntersection(endPointSpanRef) // 스크롤의 끝지점에 도착했는지 관찰
 
   useEffect(() => {
     document.title = 'HACCP 제품 정보조회 | FoodPicker';
   }, []);
 
   useEffect(() => {
-    if (productId) filter(productId);
-  }, [productId, filter]);
+    if (isEnd && hasNextPage) {
+      setPageNo(old => old + 1)
+      fetchNextPage()
+    }
+  }, [isEnd])
+
 
   return (
     <section className={styles.Haccp} ref={haccpContainerRef}>
@@ -76,26 +88,35 @@ function HaccpPage() {
       <GuideMessage path='/haccp' mainName='조회서비스' subName='HACCP제품조회' />
       <div className={styles.haccp_inner_container}>
         {/* 검색창 */}
-        <HaccpSearchForm
+        {/* <HaccpSearchForm
           loading={loading}
           search={search}
           searchAction={searchAction}
           productName={productName}
-        />
+        /> */}
         {/* 잠깐 알고가기 */}
         <HaccpMessage />
         <br />
       </div>
 
       {/* 검색 결과 보이는 곳 */}
-      <Suspense fallback={<h2>결과를 가져오는 중입니다.</h2>}>
+      <Suspense fallback={<span ref={endPointSpanRef}><ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' /></span>}>
         <HaccpResult
-          items={products}
-          setModal={setModal}
-          setProductId={setProductId}
+          totalCount={totalCount}
+          products={products}
         />
-        <HaccpModal filterItem={filterItem} setModal={setModal} modal={modal}></HaccpModal>
       </Suspense>
+
+      {/* 스크롤 끝 지점 관찰 겸용 로딩 스피너 */}
+      <ObserverSpinner ref={endPointSpanRef}>
+        {
+          isError
+            ? error.message
+            : isFetching || isPending || isFetchingNextPage
+              ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
+              : null
+        }
+      </ObserverSpinner>
     </section>
   );
 }

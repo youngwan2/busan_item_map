@@ -1,11 +1,17 @@
+import { HaccpProductItemType } from '../../../types/Haccp.types';
 import '../Haccp.module.scss'
-import { ItemsType } from "../types/Haccp.types";
 
 interface PropsType {
-    products: ItemsType[]
-    onClickOpenModal: (id: string) => void
+    products: HaccpProductItemType[]
+    onPickProduct:(id:string)=>void
+    onToggleOpenModal: ()=>void
 }
-export default function HaccpProductList({ products, onClickOpenModal }: PropsType) {
+export default function HaccpProductList({ products, onPickProduct, onToggleOpenModal }: PropsType) {
+
+    function handleClick(id:string){
+        onPickProduct(id)
+        onToggleOpenModal()          
+    }
 
     return (
         <>
@@ -15,10 +21,7 @@ export default function HaccpProductList({ products, onClickOpenModal }: PropsTy
                         // 조회된 각 아이템
                         <figure
                             key={product.item.prdlstReportNo}
-                            onClick={() => {
-                                const id = product.item.prdlstReportNo
-                                onClickOpenModal(id)
-                            }}
+                            onClick={()=>handleClick(product.item.prdlstReportNo)}
                         >
                             <div id="item_box" role="listitem">
                                 <img src={`${product.item.imgurl1}`} alt="상품이미지"></img>

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styles from '../Haccp.module.scss';
 
 interface Type {
-  currentPage: number;
-  totalPage: number;
+  totalProductCount:number,
+  currentProductCount: number;
 }
 
-export default function HaccpGuide({ currentPage, totalPage }: Type) {
+export default function HaccpGuide({ totalProductCount =0, currentProductCount }: Type) {
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   return (
     <aside
@@ -41,7 +41,7 @@ export default function HaccpGuide({ currentPage, totalPage }: Type) {
               }
         }
       >
-        {totalPage||0}개 중 {currentPage} 포스트 조회..
+        {totalProductCount}개 중 {currentProductCount} 개 상품 조회..
       </span>
     </aside>
   );
