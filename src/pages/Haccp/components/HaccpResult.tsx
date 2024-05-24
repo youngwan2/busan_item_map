@@ -6,7 +6,6 @@ import HaccpGuide from './HaccpGuide';
 import HaccpProductList from './HaccpProductList';
 
 import { HaccpProductItemType, HaccpProductPropertyType } from '../../../types/Haccp.types';
-import HaccpModal from './HaccpModal';
 
 interface PropsType {
   totalCount:number
@@ -40,12 +39,14 @@ function HccpResult({ products, totalCount}: PropsType) {
 
   if (!products) return <p>현재 아이템이 존재하지 않습니다.</p>
   return (
+    <>
     <section className={styles.content_container} ref={containerRef}>
       <HaccpGuide totalProductCount={totalCount} currentProductCount={currentProductCount} />
       <HaccpProductList products={products} onToggleOpenModal={onToggleOpenModal} onPickProduct={onPickProduct} />
-      <HaccpModal product={pickProductInfo}  onToggleOpenModal={onToggleOpenModal} isOpen={isOpen} />
+      
     </section>
-  );
+  </>
+  )
 }
 
 export default HccpResult;
