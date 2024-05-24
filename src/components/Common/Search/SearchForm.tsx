@@ -1,12 +1,12 @@
 import styles from './Search.module.scss'
 
-import { FormEventHandler } from 'react'
+import {type FormEventHandler, type MouseEventHandler } from 'react'
 import SearchButton from "./SearchButton";
 // import ReactSpinner from "../../UI/ReactSpinner";
 import SearchInput from "./SearchInput";
 
 interface PropsType {
-    onSearch: () => void;
+    onSearch: MouseEventHandler<HTMLButtonElement> ;
     action: FormEventHandler<HTMLFormElement>
     inputOptions: {
         defaultValue?:string

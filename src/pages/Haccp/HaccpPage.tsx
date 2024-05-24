@@ -1,13 +1,12 @@
 import styles from './Haccp.module.scss';
 
-import { useEffect, useState, useRef, Suspense, SyntheticEvent } from 'react';
+import { useEffect, useState, useRef, Suspense, type SyntheticEvent, type MouseEvent } from 'react';
 
 import HaccpResult from './components/HaccpResult';
 import HaccpSearchForm from './components/HaccpSearchForm';
 
 import HaccpMessage from './components/HaccpMessage';
 import GuideMessage from '../../components/Common/GuideMessage';
-import { HaccpProductItemType } from '../../types/Haccp.types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import useIntersection from '../../hooks/useIntersection';
@@ -22,7 +21,7 @@ function HaccpPage() {
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
   const endPointSpanRef = useRef<HTMLSpanElement>(null)
 
-  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=50`;
+  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
   const queryKey = ['haccp', productName]
 
 
@@ -38,7 +37,6 @@ function HaccpPage() {
   } = useInfiniteQuery({
     queryKey: queryKey,
     queryFn: async ({ pageParam = pageNo }) => {
-      console.log(pageParam)
       const res = await axios.get(url + `&pageNo=${pageParam}`)
       return res.data
     },
@@ -52,11 +50,7 @@ function HaccpPage() {
   const productInfo = data?.pages.map((page) => page.body.items) || []
   const products = productInfo?.flat(Infinity) // 중첩 배열 평탄화
 
-
-  function updateProductState(items: HaccpProductItemType[]) {
-    setProductName('');
-
-  }
+  const { isEnd } = useIntersection(endPointSpanRef) // 스크롤의 끝지점에 도착했는지 관찰
 
   function searchAction(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -66,7 +60,14 @@ function HaccpPage() {
     setProductName(searchProduct)
   }
 
-  const { isEnd } = useIntersection(endPointSpanRef) // 스크롤의 끝지점에 도착했는지 관찰
+  function onSearch(e:MouseEvent<HTMLButtonElement>){
+    const input = e.currentTarget.previousElementSibling
+    if (!(input instanceof HTMLInputElement)) return
+    const searchProduct = input.value
+    setProductName(searchProduct)
+
+  }
+
 
   useEffect(() => {
     document.title = 'HACCP 제품 정보조회 | FoodPicker';
@@ -82,18 +83,17 @@ function HaccpPage() {
 
   return (
     <section className={styles.Haccp} ref={haccpContainerRef}>
-      <h2 style={{ textAlign: 'center', margin: '6rem 0' }} className={styles.haccp_page_title}>
+      <h2 className={styles.haccp_page_title}>
         <p>HACCP제품 정보조회</p>
       </h2>
       <GuideMessage path='/haccp' mainName='조회서비스' subName='HACCP제품조회' />
       <div className={styles.haccp_inner_container}>
         {/* 검색창 */}
-        {/* <HaccpSearchForm
-          loading={loading}
-          search={search}
+        <HaccpSearchForm
+          onSearch={onSearch}
           searchAction={searchAction}
           productName={productName}
-        /> */}
+        />
         {/* 잠깐 알고가기 */}
         <HaccpMessage />
         <br />

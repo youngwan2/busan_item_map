@@ -1,17 +1,16 @@
-import { FormEventHandler, useEffect, useRef } from 'react';
+import { type FormEventHandler, type MouseEventHandler, useEffect, useRef } from 'react';
 
 import useFoucs from '../../../hooks/useFocus';
 
 import SearchForm from '../../../components/Common/Search/SearchForm';
 
 interface Type {
-  loading: boolean;
   productName: string;
-  search: () => void;
+  onSearch: MouseEventHandler<HTMLButtonElement> ;
   searchAction:FormEventHandler<HTMLFormElement>
 }
 
-function HaccpSearchForm({ search, productName, searchAction }: Type) {
+function HaccpSearchForm({ onSearch, productName, searchAction }: Type) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const inputOptions ={
@@ -36,7 +35,7 @@ function HaccpSearchForm({ search, productName, searchAction }: Type) {
   }, [productName]);
 
   return (
-    <SearchForm action={searchAction} onSearch={search} inputOptions={inputOptions} buttonOptions={buttonOptions}/>
+    <SearchForm action={searchAction} onSearch={onSearch} inputOptions={inputOptions} buttonOptions={buttonOptions}/>
   );
 }
 
