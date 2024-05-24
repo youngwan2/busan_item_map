@@ -1,38 +1,37 @@
 import styles from '../Haccp.module.scss';
-import { FilterItemType } from '../types/Haccp.types';
+
 import Layout from './HaccpModalLayout';
 import HaccpContents from './HaccpContents';
+import { HaccpProductPropertyType } from '../../../types/Haccp.types';
 
 interface ModalType {
-  filterItem?: FilterItemType;
-  setModal: (modal: boolean) => void;
-  modal: boolean;
+  product?: HaccpProductPropertyType
+  onToggleOpenModal: () => void
+  isOpen: boolean;
 }
 
-function HaccpModal({ filterItem, setModal, modal }: ModalType) {
+function HaccpModal({ product,isOpen, onToggleOpenModal }: ModalType) {
 
-  if (!filterItem) return <></>
+  if (!product) return <></>
   return (
     <>
       <article
         className={styles.modal}
         style={
-          modal
+          isOpen
             ? { visibility: 'visible', opacity: 1 }
             : { visibility: 'hidden', opacity: 0, scale: '0.5 0.5', transformOrigin: 'left top' }
         }
       >
         <h2 className={styles.modal_title}>상품상세</h2>
         <button
-          onClick={() => {
-            setModal(false);
-          }}
+          onClick={onToggleOpenModal}
         >
           X
         </button>
-        <HaccpContents filterItem={filterItem} />
+        <HaccpContents product={product} />
       </article>
-      <Layout setModal={setModal} modal={modal} />
+      <Layout onToggleOpenModal={onToggleOpenModal} isOpen={isOpen} />
     </>
   );
 }

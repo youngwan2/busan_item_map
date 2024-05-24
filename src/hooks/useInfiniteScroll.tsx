@@ -8,11 +8,11 @@ import { config } from '../config/config';
  * @param url api 경로 ex /localfood?page=
  * @returns
  */
-export const useInfiniteScroll = (key: string, url: string) => {
+export const useInfiniteScroll = (url: string, ...key: string[]) => {
   const baseUrl = config.protocol + config.host + url + 0;
 
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: [key],
+    queryKey: key,
     queryFn: async ({ pageParam = baseUrl }) => {
       const res = await axios.get(pageParam);
       return res.data;

@@ -1,14 +1,17 @@
 import styles from './Nutrition.module.scss';
+
 import { useEffect, useState } from 'react';
-import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 import { useRecoilState } from 'recoil';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
+
+import ReactSpinner from '../../components/UI/ReactSpinner';
 import SearchForm from './components/SearchForm';
 import NutritionPagination from './components/NutritionPagination';
 import SearchResults from './components/SearchResults';
 import GuideMessage from '../../components/Common/GuideMessage';
 import NotFound from '../../components/Errors/NotFound';
+
 
 const MIN_VIEW_COUNT = 20;
 const Nutrition = () => {
@@ -25,7 +28,7 @@ const Nutrition = () => {
   const { data, isPending, isFetching } = useDefaultQuery(key, url);
 
   if (!data && isPending) return <ReactSpinner />;
-  const { items, totalCount } = data || { items: [], totalCount: 0 };
+  const { items=[], totalCount=0 } = data 
   const hasItems = Array.isArray(items) && items.length < 1;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT);
   

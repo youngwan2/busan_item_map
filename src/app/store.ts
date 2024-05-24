@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import haccpSearchSlice from '../features/searchSlice/haccpSearch';
 import recipeSearch from '../features/searchSlice/recipeSearch';
 import nutritionSearch from '../features/searchSlice/nutritionSearch';
-import headerTheme from '../features/theme/headerTheme';
+import headerTheme from '../features/themeSlice/headerTheme';
 
 /* 스토어 생성 */
 const store = configureStore({

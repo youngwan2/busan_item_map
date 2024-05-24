@@ -1,18 +1,16 @@
 import styles from './HaccpModalLayout.module.css';
 
 interface LayoutType {
-  setModal: (modal: boolean) => void;
-  modal: boolean;
+  onToggleOpenModal:()=>void
+  isOpen :boolean
 }
 
-const HaccpModalLayout = ({ setModal, modal }: LayoutType) => {
+const HaccpModalLayout = ({ onToggleOpenModal, isOpen }: LayoutType) => {
   return (
     <div
-      style={modal ? { visibility: 'visible', opacity: 1 } : { visibility: 'hidden', opacity: 0 }}
+      style={isOpen ? { visibility: 'visible', opacity: 1 } : { visibility: 'hidden', opacity: 0 }}
       className={styles.layout}
-      onClick={() => {
-        setModal(false);
-      }}
+      onClick={onToggleOpenModal}
     ></div>
   );
 };
