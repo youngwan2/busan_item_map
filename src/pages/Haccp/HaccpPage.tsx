@@ -80,7 +80,7 @@ function HaccpPage() {
   }, []);
 
   useEffect(() => {
-    if (isEnd && hasNextPage) {
+    if (isEnd && hasNextPage && totalCount>99) {
       setPageNo(old => old + 1)
       fetchNextPage()
     }
@@ -103,7 +103,7 @@ function HaccpPage() {
         {/* 잠깐 알고가기 */}
         <HaccpMessage />
         {/* 품목 유형 카테고리 */}
-        <HaccpCategoryGrid onSetPrdkind={onSetPrdkind}/>
+        <HaccpCategoryGrid categoryName={prdkind} onSetPrdkind={onSetPrdkind}/>
         <br />
       </div>
 

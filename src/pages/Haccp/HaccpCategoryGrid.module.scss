@@ -25,8 +25,13 @@
 
 
   .haccp_category_grid_cell {
-    width: 103px;
-    height: 140px;
+    transition: 0.5s;
+    width: 114px;
+    height: 145px;
+    padding-top: 5px;
+    border-radius: 2;
+    background: none;
+    position: relative;
     border: 1px solid #ddd;
     text-align: center;
     .img_boundary {
@@ -233,14 +238,33 @@
   .haccp_category_grid_cell:nth-of-type(28) {
     .haccp_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -0.01);
-      top: calc(var(--default-interval-top) * -2.965);
+      top: calc(var(--default-interval-top) * -2.969);
     }
   }
   // 참기름
   .haccp_category_grid_cell:nth-of-type(29) {
     .haccp_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -1);
-      top: calc(var(--default-interval-top) * -2.965);
+      top: calc(var(--default-interval-top) * -2.969);
     }
   }
+}
+
+
+// 카테고리 활성화 체크
+.haccp_category_grid_cell.active::before {
+  content: 'Pick';
+  position: absolute;
+  padding: 1px 5px;
+  z-index: 1;
+  font-size: 0.85em;
+  border-radius: 10px;
+  background-color: gold;
+  color:black;
+  top: -8px;
+  right: -10px;
+}
+
+.haccp_category_grid_cell.active {
+  background-color: rgb(231, 228, 228);
 }
