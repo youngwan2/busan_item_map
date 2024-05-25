@@ -1,29 +1,30 @@
 import styles from './Haccp.module.scss';
 
 import { useEffect, useState, useRef, Suspense, type SyntheticEvent, type MouseEvent } from 'react';
+import useIntersection from '../../hooks/useIntersection';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import HaccpResult from './components/HaccpResult';
 import HaccpSearchForm from './components/HaccpSearchForm';
-
 import HaccpMessage from './components/HaccpMessage';
 import GuideMessage from '../../components/Common/GuideMessage';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import useIntersection from '../../hooks/useIntersection';
-import { ClipLoader } from 'react-spinners';
 import ObserverSpinner from '../../components/Common/Spinner/ObserverSpinner';
+import HaccpCategoryGrid from './components/HaccpCategoryGrid';
+import { ClipLoader } from 'react-spinners';
+
+import axios from 'axios';
 
 
 function HaccpPage() {
   const [pageNo, setPageNo] = useState(1)
   const [productName, setProductName] = useState(''); // 상품 이름
+  const [prdkind, setPrdkind] = useState('')
 
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
   const endPointSpanRef = useRef<HTMLSpanElement>(null)
 
-  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&numOfRows=100`;
-  const queryKey = ['haccp', productName]
-
+  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&prdkind=${prdkind} &numOfRows=100`;
+  const queryKey = ['haccp', productName, prdkind]
 
   const {
     data,
@@ -51,6 +52,11 @@ function HaccpPage() {
   const products = productInfo?.flat(Infinity) // 중첩 배열 평탄화
 
   const { isEnd } = useIntersection(endPointSpanRef) // 스크롤의 끝지점에 도착했는지 관찰
+
+
+  function onSetPrdkind(name: string) {
+    setPrdkind(name)
+  }
 
   function searchAction(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -96,6 +102,8 @@ function HaccpPage() {
         />
         {/* 잠깐 알고가기 */}
         <HaccpMessage />
+        {/* 품목 유형 카테고리 */}
+        <HaccpCategoryGrid onSetPrdkind={onSetPrdkind}/>
         <br />
       </div>
 
