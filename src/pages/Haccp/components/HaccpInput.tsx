@@ -1,5 +1,7 @@
-import {  forwardRef } from "react";
 import styles from '../Haccp.module.scss'
+
+import {  forwardRef } from "react";
+
 
 const HaccpInput = forwardRef<HTMLInputElement>((_,ref) => {
     

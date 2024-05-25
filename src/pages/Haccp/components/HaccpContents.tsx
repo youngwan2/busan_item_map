@@ -1,5 +1,6 @@
-import { HaccpProductItemType, HaccpProductPropertyType } from '../../../types/Haccp.types'
 import styles from '../Haccp.module.scss'
+
+import { HaccpProductPropertyType } from '@/types/Haccp.types'
 
 interface PropsType {
     product:  HaccpProductPropertyType
