@@ -1,13 +1,17 @@
-import { useParams } from 'react-router-dom';
 import styles from './LocalFoodDetail.module.scss';
-import useDefaultQuery from '../../hooks/useDefaultQuery';
-import PageError from '../../components/Errors/PageError';
+
+import { useParams } from 'react-router-dom';
+import useDefaultQuery from '@/hooks/useDefaultQuery';
+import useHeaderTheme from '@/hooks/useHeaderTheme';
+
+import PageError from '@/components/Errors/PageError';
+import GuideMessage from '@/components/Common/GuideMessage';
+import BackMove from '@/components/Common/BackMove';
+import Maps from '@/components/Common/Map/Maps';
+import ReactSpinner from '@/components/UI/ReactSpinner';
+
 import { localFoodType } from '../LocalFood/types/localFood.types';
-import useMap from '../../hooks/useMap';
-import GuideMessage from '../../components/Common/GuideMessage';
-import BackMove from '../../components/Common/BackMove';
-import useHeaderTheme from '../../hooks/useHeaderTheme';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+
 
 export default function LocalFoodDetailPage() {
   const { id } = useParams();
@@ -34,26 +38,13 @@ export default function LocalFoodDetailPage() {
     rel_rest_name,
     sub_title,
     title,
-  } = localFood || {
-    content: '',
-    content_url: '',
-    create_at: '',
-    update_at: '',
-    keyword: '',
-    lcc_address: '',
-    main_thumb_url: '',
-    rel_rest_address: '',
-    rel_rest_name: '',
-    rel_rest_tel: '',
-    sub_title: '',
-    title: '',
-  };
-  useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
+  } = localFood || replaceInfo
 
   useHeaderTheme()
 
   if (isPending) return <ReactSpinner />;
   if (isError) return <PageError error={error?.message} />;
+
   return (
     <section className={styles.LocalFood_Detail}>
       <BackMove />
@@ -96,7 +87,7 @@ export default function LocalFoodDetailPage() {
           <span>
             {rel_rest_name ? rel_rest_name + `(${rel_rest_address})` : '조회된 데이터가 없습니다.'}
           </span>
-          <div id="localfood_map" style={{ width: '100%', height: '350px' }}></div>
+          <Maps defaultCenter={{ lat: 37.566826, lng: 126.9786567 }} address={rel_rest_address} name={rel_rest_name || '조회된 이름이 없습니다.'} />
         </div>
         <div>
           <hr />
@@ -106,4 +97,20 @@ export default function LocalFoodDetailPage() {
       </article>
     </section>
   );
+}
+
+
+const replaceInfo = {
+  content: '',
+  content_url: '',
+  create_at: '',
+  update_at: '',
+  keyword: '',
+  lcc_address: '',
+  main_thumb_url: '',
+  rel_rest_address: '',
+  rel_rest_name: '',
+  rel_rest_tel: '',
+  sub_title: '',
+  title: '',
 }

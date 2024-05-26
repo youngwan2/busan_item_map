@@ -1,6 +1,7 @@
 import { HiSearchCircle } from 'react-icons/hi';
 import styles from '../LocalFood.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 interface PropsType {
   localfoods: {
@@ -19,8 +20,9 @@ interface PropsType {
     update_at: string;
     view_count: number;
   }[];
+  children:ReactNode
 }
-const LocalFoodList = ({ localfoods }: PropsType) => {
+const LocalFoodList = ({ localfoods, children }: PropsType) => {
   const navigate = useNavigate();
 
   function onClickPageChange(id: number) {
@@ -30,6 +32,7 @@ const LocalFoodList = ({ localfoods }: PropsType) => {
   if (!localfoods) return <></>;
 
   return (
+    <>
     <ul className={styles.localfood_ul} id="localfood-ul">
       {localfoods.map((localfood) => {
         const { local_food_id, main_thumb_url, title } = localfood;
@@ -54,7 +57,10 @@ const LocalFoodList = ({ localfoods }: PropsType) => {
           </li>
         );
       })}
+  
     </ul>
+    {children}
+    </>
   );
 };
 

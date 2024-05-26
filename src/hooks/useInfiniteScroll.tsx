@@ -11,7 +11,7 @@ import { config } from '../config/config';
 export const useInfiniteScroll = (url: string, ...key: string[]) => {
   const baseUrl = config.protocol + config.host + url + 0;
 
-  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, ...props } = useInfiniteQuery({
     queryKey: key,
     queryFn: async ({ pageParam = baseUrl }) => {
       const res = await axios.get(pageParam);
@@ -30,5 +30,5 @@ export const useInfiniteScroll = (url: string, ...key: string[]) => {
   const totalCount = data?.pages[0].totalCount || 0;
   const concatItems = items ? [].concat(...items) : [];
 
-  return { items: concatItems, totalCount, isFetching, hasNextPage, fetchNextPage };
+  return { items: concatItems, totalCount, ...props };
 };
