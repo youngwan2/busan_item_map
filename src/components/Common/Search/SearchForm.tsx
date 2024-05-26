@@ -2,7 +2,6 @@ import styles from './Search.module.scss'
 
 import {type FormEventHandler, type MouseEventHandler } from 'react'
 import SearchButton from "./SearchButton";
-// import ReactSpinner from "../../UI/ReactSpinner";
 import SearchInput from "./SearchInput";
 
 interface PropsType {
@@ -26,6 +25,7 @@ interface PropsType {
 export default function SearchForm({ action, onSearch, inputOptions, buttonOptions }: PropsType) {
     return (
         <form className={styles.search_container} onSubmit={action}>
+            <h2 className={styles.search_form_title}>검색</h2>
             <SearchInput
                 inputOptions={inputOptions}
             />
