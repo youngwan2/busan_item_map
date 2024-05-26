@@ -25,6 +25,7 @@ function HccpResult({ products, totalCount}: PropsType) {
   return (
     <>
     <section className={styles.content_container} ref={containerRef}>
+      <h2 className={styles.haccp_product_list_title}>상품목록</h2>
       <HaccpGuide totalProductCount={totalCount} currentProductCount={currentProductCount} />
       <HaccpProductList products={products} />
       

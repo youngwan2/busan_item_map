@@ -2,7 +2,7 @@ import { type FormEventHandler, type MouseEventHandler, useEffect, useRef } from
 
 import useFoucs from '../../../hooks/useFocus';
 
-import SearchForm from '../../../components/Common/Search/SearchForm';
+import SearchForm from '@components/Common/Search/SearchForm';
 
 interface Type {
   productName: string;

@@ -43,7 +43,7 @@ function HaccpPage() {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return Number(lastPage.body.pageNo) + 1 ?? undefined
+      return Number(lastPage.body.pageNo) + 1 || undefined
     },
   })
 
@@ -58,20 +58,27 @@ function HaccpPage() {
     setPrdkind(name)
   }
 
-  function searchAction(e: SyntheticEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const input = e.currentTarget.firstChild
+  function getSearchValue(input: HTMLInputElement) {
+
     if (!(input instanceof HTMLInputElement)) return
     const searchProduct = input.value
-    setProductName(searchProduct)
+
+    return searchProduct
+
   }
 
-  function onSearch(e:MouseEvent<HTMLButtonElement>){
-    const input = e.currentTarget.previousElementSibling
-    if (!(input instanceof HTMLInputElement)) return
-    const searchProduct = input.value
-    setProductName(searchProduct)
+  function searchAction(e: SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const input = e.currentTarget.childNodes[1] as HTMLInputElement
+    const productName = getSearchValue(input)
+    setProductName(productName || '')
 
+  }
+
+  function onSearch(e: MouseEvent<HTMLButtonElement>) {
+    const input = e.currentTarget.previousElementSibling as HTMLInputElement
+    const productName = getSearchValue(input)
+    setProductName(productName || '')
   }
 
 
@@ -80,13 +87,13 @@ function HaccpPage() {
   }, []);
 
   useEffect(() => {
-    if (isEnd && hasNextPage && totalCount>99) {
+    if (isEnd && hasNextPage && totalCount > 99) {
       setPageNo(old => old + 1)
       fetchNextPage()
     }
   }, [isEnd])
 
-
+  
   return (
     <section className={styles.Haccp} ref={haccpContainerRef}>
       <h2 className={styles.haccp_page_title}>
@@ -103,7 +110,7 @@ function HaccpPage() {
         {/* 잠깐 알고가기 */}
         <HaccpMessage />
         {/* 품목 유형 카테고리 */}
-        <HaccpCategoryGrid categoryName={prdkind} onSetPrdkind={onSetPrdkind}/>
+        <HaccpCategoryGrid categoryName={prdkind} onSetPrdkind={onSetPrdkind} />
         <br />
       </div>
 

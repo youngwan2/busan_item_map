@@ -1,28 +1,32 @@
 .haccp_category_container {
-  max-width: 768px;
+  max-width: 1240px;
   margin: 0 auto;
+  position: relative;
 
   .haccp_category_title {
     margin: 0 0 2% 0;
-    font-size: 1.05em;
     display: inline-block;
-    font-weight: 600;
+    background-color: #1a4e85;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    top: -1em;
+    left: 0.5em;
     padding: 5px;
-    border-bottom: 2px solid gray;
-
   }
 }
 
 .haccp_category_grid {
   --default-interval-left: 100px;
   --default-interval-top: 100px;
-
+  border-radius: 5px;
+  border: 1px solid rgb(195, 193, 193);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(105px, 105px));
+  grid-template-columns: repeat(auto-fit, minmax(112.72px, 112.72px));
   justify-content: center;
-  margin: 0 auto;
+  margin: 1em auto;
+  padding: 2.3em 0 1em;
   gap: 5px;
-
 
   .haccp_category_grid_cell {
     transition: 0.5s;
@@ -40,7 +44,7 @@
       overflow: hidden;
       position: relative;
       border: 1px solid #ddd;
-      
+
       border-radius: 5px;
       .haccp_category_grid_cell_img {
         width: 894px;
@@ -54,11 +58,11 @@
       }
     }
   }
-  .haccp_category_grid_cell:hover{
-    box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
+  .haccp_category_grid_cell:hover {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
   }
 
-/** 이미지 스프라이트 처리 */
+  /** 이미지 스프라이트 처리 */
   //   양념육
   .haccp_category_grid_cell:nth-of-type(2) {
     .haccp_category_grid_cell_img {
@@ -250,7 +254,6 @@
   }
 }
 
-
 // 카테고리 활성화 체크
 .haccp_category_grid_cell.active::before {
   content: 'Pick';
@@ -260,7 +263,7 @@
   font-size: 0.85em;
   border-radius: 10px;
   background-color: gold;
-  color:black;
+  color: black;
   top: -8px;
   right: -10px;
 }
