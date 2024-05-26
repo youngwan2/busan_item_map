@@ -1,10 +1,14 @@
-import { useEffect, useRef } from 'react';
-import LocalFoodList from './components/LocalFoodList';
 import styles from './LocalFood.module.scss';
-import ReactSpinner from '../../components/UI/ReactSpinner';
-import GuideMessage from '../../components/Common/GuideMessage';
+
+import { useEffect, useRef } from 'react';
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import useIntersection from '../../hooks/useIntersection';
+
+import LocalFoodList from './components/LocalFoodList';
+import GuideMessage from '../../components/Common/GuideMessage';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
+import { ClipLoader } from 'react-spinners';
 
 const LocalFoodPage = () => {
   useEffect(() => {
@@ -14,9 +18,10 @@ const LocalFoodPage = () => {
   const observerRef = useRef<HTMLButtonElement>(null);
 
   const { isEnd } = useIntersection(observerRef);
-  const { items, totalCount, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll(
-    'localfood',
+  const { items, totalCount, isPending, isError, error, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteScroll(
     '/localfoods?page=',
+    'localfood',
+
   );
 
   async function nextPageHanlder() {
@@ -35,10 +40,6 @@ const LocalFoodPage = () => {
     nextPageHanlder();
   }, [isEnd]);
 
-  if (!items && isFetching) {
-    return <ReactSpinner />;
-  }
-
   return (
     <section className={styles.Localfood}>
       <h2 className={styles.page_title}>
@@ -50,8 +51,20 @@ const LocalFoodPage = () => {
         subName="향토 음식이야기"
         totalCount={totalCount}
       />
-      <LocalFoodList localfoods={items} />
-      <button className={styles.scroll_pointer} ref={observerRef} aria-hidden={'true'}></button>
+      <LocalFoodList localfoods={items}>
+
+
+      </LocalFoodList>
+      {/* 로딩 스피너 겸 스크롤 위치 체크 */}
+      <ObserverSpinner ref={observerRef}>
+        {
+          isError
+            ? error.message
+            : isFetching || isPending || isFetchingNextPage
+              ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
+              : null
+        }
+      </ObserverSpinner>
     </section>
   );
 };

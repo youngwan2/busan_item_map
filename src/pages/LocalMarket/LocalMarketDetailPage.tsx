@@ -1,12 +1,16 @@
-import { useParams } from 'react-router-dom';
+
 import styles from './LocalMarketDetail.module.scss';
-import useDefaultQuery from '../../hooks/useDefaultQuery';
-import PageError from '../../components/Errors/PageError';
-import useMap from '../../hooks/useMap';
-import GuideMessage from '../../components/Common/GuideMessage';
-import BackMove from '../../components/Common/BackMove';
-import useHeaderTheme from '../../hooks/useHeaderTheme';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+
+import { useParams } from 'react-router-dom';
+import useDefaultQuery from '@/hooks/useDefaultQuery';
+import useHeaderTheme from '@/hooks/useHeaderTheme';
+
+import PageError from '@/components/Errors/PageError';
+import GuideMessage from '@/components/Common/GuideMessage';
+import BackMove from '@/components/Common/BackMove';
+import ReactSpinner from '@/components/UI/ReactSpinner';
+
+import Maps from '@/components/Common/Map/Maps';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
@@ -38,7 +42,7 @@ export default function LocalMarketDetailPage() {
     sub_title,
     title,
   } = localMarket || REPLACE_VALUE
-  useMap(la, lo, '', 'localmarket_map', '');
+
 
   useHeaderTheme()
   
@@ -90,7 +94,7 @@ export default function LocalMarketDetailPage() {
           <hr />
           <h3>위치정보/지방문화원</h3>
           <span>{lcc_address || '조회된 데이터가 없습니다.'}</span>
-          <div id="localmarket_map" style={{width:'100%', height:'350px'}}></div>
+          <Maps defaultCenter={{lat:la, lng:lo}} address={lcc_address} />
         </div>
       </article>
     </section>
@@ -105,8 +109,8 @@ const REPLACE_VALUE =  {
   update_at: '',
   keyword: '',
   era: '',
-  la: '',
-  lo: '',
+  la: 37.566826,
+  lo: 126.9786567,
   lcc_address: '',
   main_thumb_url: '',
   rel_rest_address: '',

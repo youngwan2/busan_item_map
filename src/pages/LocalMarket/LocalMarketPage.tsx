@@ -15,8 +15,9 @@ const LocalMarketPage = () => {
 
   const { isEnd } = useIntersection(observerRef);
   const { items, totalCount, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll(
-    'localmarket',
     '/localmarkets?page=',
+    'localmarket',
+ 
   );
 
   async function nextPageHanlder() {

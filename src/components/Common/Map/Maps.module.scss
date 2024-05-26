@@ -1,0 +1,140 @@
+@mixin map-control-button-design {
+  width: 40px;
+  z-index: 100;
+  border-radius: 5px;
+  color:#6697D6;
+  background-color: white;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 1.5em;
+  border:2px solid #69a9ef;
+}
+
+@mixin map-loadview-control-button-design {
+  border-radius: 2px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 2em;
+  position: absolute;
+  background-color: #69a9ef;
+  left: 0;
+  top: 0;
+
+}
+
+// Maps 컨테이너
+.maps_container {
+  width: 100%;
+  height: 360px;
+  border-radius: 5px;
+  position: relative;
+  border: 2px solid #89b9ed;
+  z-index: 1001;
+}
+
+// 인포윈도우
+.info_window {
+  width: 180px;
+  position: absolute;
+  top: -0.35em;
+  left: -0.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  color: black;
+  background-color: white;
+  border: 2px dashed #69a9ef;
+  border-radius: 2px;
+  h2 {
+    font-size: 0.9em;
+    text-shadow: 1px 1px 3px rgb(201, 201, 255);
+  }
+}
+
+// 로드 뷰 오픈 버튼
+.map_roadview_button {
+  position: absolute;
+  left: -0.1em;
+  top: -0.1em;
+  @include map-control-button-design()
+}
+
+.map_roadview_button.active {
+  color:white;
+  
+  box-shadow: inset 0 0 0 500px #8cb6ed;
+}
+
+.map_roadview_button:hover {
+  background: #d4e5fc;
+}
+
+.map_roadview_button:active {
+  background-color: rgb(210, 207, 207);
+}
+
+// 맵 위치 초기화 버튼
+.map_position_reset_button {
+  left: 1.501em;
+  top: -0.1em;
+  position: absolute;
+  @include map-control-button-design()
+}
+.map_position_reset_button:hover {
+  background: #d4e5fc;
+}
+
+
+// 로드 뷰 컨테이너
+.map_roadview_container {
+  transition: 0.25s;
+  position: fixed;
+  display: none;
+  max-width: 768px;
+  left: 50%;
+  top: 5%;
+  transform-origin: 100% center;
+  width: 100%;
+  border-radius: 3px;
+  z-index: -1;
+  border: 3px solid #69a9ef;
+  box-shadow: 0 0 0 500000px rgba(0, 0, 0, 0.3);
+}
+
+.map_roadview_container.active {
+  z-index: 2500;
+  display: block;
+  transform: translate(-50%, 0) scaleY(1);
+}
+
+.map_roadview_container.full {
+  top: 0;
+  left: 0;
+  transform: translate(0, 0) scaleY(1);
+}
+
+// 로드 뷰 닫기 버튼
+.map_loadview_close_button {
+  @include map-loadview-control-button-design()
+
+}
+
+.map_loadview_close_button:hover {
+  background-color: #89b9ed;
+}
+
+// 로드 뷰 사이즈 컨트롤 버튼
+.map_loadview_size_control_btn{
+  @include map-loadview-control-button-design();
+  left: 2.5em;
+  width: 50px;
+  padding: 5.55px;
+  font-size: 1.15em;
+}
+
+.map_loadview_size_control_btn:hover {
+  background-color: #89b9ed;
+}
