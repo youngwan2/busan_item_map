@@ -1,70 +1,81 @@
-import { useEffect, useState, useRef } from 'react';
-import { RecipeType } from '../types/Recipe.types';
 import styles from '../Recipe.module.scss';
+
+import { useEffect, useState, useRef } from 'react';
+import useIntersection from '@/hooks/useIntersection';
+
 import RecipeMessage from './RecipeMessage';
 import RecipeCard from './RecipeCard';
+import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
+
+import type { RecipeType } from '@/types/Recipe.types';
+
+import { toast } from 'react-toastify';
+
 
 interface ResultType {
-  recipes?: RecipeType[];
-  meg: string;
+  recipes: RecipeType[];
+  totalCount: number
+  category: string
+  searchValue: string
 }
-
-export default function RecipeList({ recipes, meg }: ResultType) {
+// const SPLIT_ITEM_COUNT = 10
+export default function RecipeList({ recipes = [], totalCount, searchValue, category }: ResultType) {
   const [visibleRecipes, setVisibleRecipes] = useState<RecipeType[]>([]);
-  const [currentLength, setCurrentLength] = useState(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const recipeCount = recipes ? recipes.length : 0;
+  const observerRef = useRef<HTMLSpanElement>(null)
 
-  // 레시피 조회 초깃값 지정
-  useEffect(() => {
-    if (recipes) {
-      setVisibleRecipes(recipes.slice(0, 10));
-    }
-  }, [recipes]);
+  const { isEnd } = useIntersection(observerRef)
 
-  useEffect(() => {
-    setCurrentLength(currentLength);
-  }, [currentLength]);
+  const hasMoreRecipe = (totalCount>0 && totalCount === visibleRecipes.length)
 
-  useEffect(() => {
-    const container = containerRef.current;
+  // 스크롤 처리 함수
+  const handleScroll = (currentLength: number) => {
+    if (isEnd && hasMoreRecipe) return toast.info('모든 데이터를 조회하였습니다.')
 
-    // 스크롤 처리 함수
-    const handleScroll = () => {
-      if (container) {
-        if (container.getBoundingClientRect().bottom <= window.innerHeight + 100) {
-          // 현재 조회 중인 레시피 
-          const currentLength = Number(sessionStorage.getItem('currentRecipes'));
-          setCurrentLength(currentLength);
+    if (isEnd && (totalCount > visibleRecipes.length)) {
 
-          // 다음으로 보여줄 레시피 
-          const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
-          const hasNextRecipe = nextRecipes && nextRecipes.length > 0
-          if (hasNextRecipe) {
-            setVisibleRecipes((prevRecipes) => [...prevRecipes, ...nextRecipes]);
-          }
-        }
+      // 다음으로 보여줄 레시피가 있는가? 
+      console.log("정상처리 관찰용:",currentLength, currentLength+10)
+      const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
+      const hasNextRecipe = nextRecipes && nextRecipes.length > 0
+
+      // 있다면 기존 레시피에서 추가된 10개의 레시피를 추가하고, 총 갯수 캐시 갱신
+      if (hasNextRecipe) {
+        setVisibleRecipes((prevRecipes) => [...prevRecipes, ...nextRecipes]);
+
       }
-    };
-    window.addEventListener('scroll', handleScroll);
+    }
+  };
+
+
+  useEffect(() => {
+    const currentLength = Number(sessionStorage.getItem('currentRecipes'));
+    handleScroll(currentLength)
+
+  }, [isEnd]);
+
+  // 초기화
+  useEffect(() => {
+    setVisibleRecipes([])
+    sessionStorage.setItem('currentRecipes', `0`)
+
+  }, [searchValue, category])
+
+  useEffect(() => {
     sessionStorage.setItem('currentRecipes', `${visibleRecipes.length}`);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [recipes, visibleRecipes, currentLength]);
+  }, [visibleRecipes.length, isEnd])
 
   return (
     <>
-      {recipeCount < 1 && <div className={styles.recipe_replace_back}></div>}
-      <h3 className={styles.undefined_meg}>{meg}</h3>
-      <article ref={containerRef} className={styles.search_result_container}>
+      <div className={styles.recipe_list_container}>
+        <h2 className={styles.recipe_list_title}>레시피 목록</h2>
+
         {visibleRecipes.map((recipe) => (
-          <RecipeCard key={recipe.RCP_NM} recipe={recipe} />
+          <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />
         ))}
-        <br />
-      </article>
+      </div>
       <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes} />
+      <ObserverSpinner ref={observerRef}>  </ObserverSpinner>
     </>
   );
 }
