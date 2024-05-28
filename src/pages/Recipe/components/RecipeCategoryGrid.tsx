@@ -1,6 +1,8 @@
-import { HiXCircle } from 'react-icons/hi2';
 import styles from '../RecipeCategoryGrid.module.scss'
+
 import { recipeCategories as categories } from '@/data';
+
+import { HiXCircle } from 'react-icons/hi2';
 
 interface PropsType {
     categoryName: string;

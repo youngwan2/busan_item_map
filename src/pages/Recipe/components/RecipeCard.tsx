@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
 import styles from '../Recipe.module.scss'
-import { RecipeType } from "@/types/Recipe.types";
+
+import { Link } from "react-router-dom";
+
+import { type RecipeType } from "@/types/Recipe.types";
 
 
 
