@@ -35,7 +35,7 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
     if (isEnd && (totalCount > visibleRecipes.length)) {
 
       // 다음으로 보여줄 레시피가 있는가? 
-      console.log("정상처리 관찰용:",currentLength, currentLength+10)
+      // console.log("정상처리 관찰용:",currentLength, currentLength+10)
       const nextRecipes = recipes?.slice(currentLength, currentLength + 10);
       const hasNextRecipe = nextRecipes && nextRecipes.length > 0
 

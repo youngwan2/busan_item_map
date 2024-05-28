@@ -3,14 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Nav from '../UI/Nav';
 import { HiMenu, HiXCircle } from 'react-icons/hi';
-import { useAppSelector } from '../../app/hooks';
-
 
 function Header() {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(true);
 
-  const headerTheme =  useAppSelector(state => state.headerTheme)
 
   function onClickHomeMove() { navigate('/') }
   function onClickDropDown() { setIsShow((result) => (result = !result)); }
@@ -40,7 +37,7 @@ function Header() {
 
   return (
     <header
-      className={`${styles.Header} ${headerTheme.isChange? styles.theme:null}`}
+      className={`${styles.Header}`}
     >
       <h1 className={styles.home_log} onClick={onClickHomeMove}>
         Food Picker

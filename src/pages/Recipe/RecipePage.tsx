@@ -13,6 +13,8 @@ import { ApiType, getDefaultFetcher } from '../../api/get.api';
 import { type RecipeInfoType } from '@/types/Recipe.types';
 
 import { HiInformationCircle } from "react-icons/hi2";
+import { StorageType, setStoreage } from '@/utils/storage';
+import { useSearchParams } from 'react-router-dom';
 
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
@@ -27,6 +29,7 @@ export default function RecipePage() {
   const [pickedCategory, setPickedCategory] = useState('')
   const [productName, setProductName] = useState('')
   const [recipeInfo, setRecipeInfo] = useState<RecipeInfoType>(INITIAL_RECIPE_INFO);
+  
 
   const sectionRef = useRef<HTMLBaseElement>(null);
 
@@ -68,6 +71,7 @@ export default function RecipePage() {
 
     setPickedCategory(pickedName)
     setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
 
   }
 
@@ -80,6 +84,7 @@ export default function RecipePage() {
 
     setProductName(productName)
     setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } }) 
   }
 
   /** 버튼 검색 액션 */
@@ -90,6 +95,7 @@ export default function RecipePage() {
 
     setProductName(productName)
     setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
   }
 
   const recipeCount = Number(recipeInfo.totalCount)

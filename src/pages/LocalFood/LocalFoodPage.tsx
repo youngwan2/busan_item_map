@@ -6,7 +6,6 @@ import useIntersection from '../../hooks/useIntersection';
 
 import LocalFoodList from './components/LocalFoodList';
 import GuideMessage from '../../components/Common/GuideMessage';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
 import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
 import { ClipLoader } from 'react-spinners';
 

@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from '../Recipe.module.scss'
-import { RecipeType } from "../types/Recipe.types";
+import { RecipeType } from "@/types/Recipe.types";
+
+
+
 
 interface PropsType {
     recipe: RecipeType
 }
 export default function RecipeCard({recipe}:PropsType){
     const {RCP_SEQ, RCP_NA_TIP, ATT_FILE_NO_MAIN, RCP_NM, RCP_PAT2} = recipe
+
+    
     return (
         <Link to={`/recipe/${RCP_SEQ}`} key={RCP_NA_TIP}>
         <ul

@@ -3,7 +3,6 @@ import styles from './LocalMarketDetail.module.scss';
 
 import { useParams } from 'react-router-dom';
 import useDefaultQuery from '@/hooks/useDefaultQuery';
-import useHeaderTheme from '@/hooks/useHeaderTheme';
 
 import PageError from '@/components/Errors/PageError';
 import GuideMessage from '@/components/Common/GuideMessage';
@@ -43,8 +42,6 @@ export default function LocalMarketDetailPage() {
     title,
   } = localMarket || REPLACE_VALUE
 
-
-  useHeaderTheme()
   
   if (isPending) return <ReactSpinner />;
   if (isError) return <PageError error={error?.message} />;
