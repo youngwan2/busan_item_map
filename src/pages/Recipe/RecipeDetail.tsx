@@ -4,19 +4,21 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import RecipeNutrition from './components/RecipeNutrition';
-import NextRecipe from './components/RecipeButton';
-import BackMove from '../../components/Common/BackMove';
-import GuideMessage from '../../components/Common/GuideMessage';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+import RecipeDetailNavigation from './components/RecipeDetailNavigation';
+import BackMove from '@components/Common/BackMove';
+import GuideMessage from '@components/Common/GuideMessage';
 import RecipeContents from './components/RecipeContents';
 
 import { RecipeInfoType, RecipeType } from '@/types/Recipe.types';
 import { StorageType, getStoreage } from '@/utils/storage';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+
 
 function RecipeDetail() {
   const detaildivRef = useRef<HTMLBaseElement>(null);
   const params = useParams();
   const [recipe, setRecipe] = useState<RecipeType>();
+  const [recipes, setRecipes] = useState<RecipeType[]>([])
 
 
   useEffect(() => {
@@ -34,6 +36,7 @@ function RecipeDetail() {
     const recipeInfo: RecipeInfoType = getStoreage(StorageType.SESSION, 'recipes')
     const recipe = extractRecipe(recipeInfo.recipes, recipe_id)
     setRecipe(recipe)
+    setRecipes(recipeInfo.recipes)
 
   }
   useEffect(() => {
@@ -47,16 +50,19 @@ function RecipeDetail() {
     }
   }, []);
 
-  if (!recipe) return <ReactSpinner />
+  if (!recipe) return <LoadingSpinner />
 
   return (
-    <section className={styles.recipe_detail} ref={detaildivRef}>
+    <section className={styles.recipe_detail_container} ref={detaildivRef}>
+      <GuideMessage path='/recipe' subPath={`/recipe`} mainName='조회서비스' subName='음식레시피' finalPathName={recipe.RCP_NM} />
+      <h2 className={styles.recipe_detail_title}>레시피 디테일</h2>
       <BackMove />
-      <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' finalPathName={recipe.RCP_NM} />
 
-      <RecipeContents recipe={recipe} />
-      <RecipeNutrition recipe={recipe} />
-      <NextRecipe param={params.id} />
+      <div className={styles.recipe_detail_content_container}>
+        <RecipeContents recipe={recipe} />
+        <RecipeNutrition recipe={recipe} />
+      </div>
+      <RecipeDetailNavigation param={params.id} recipes={recipes} />
     </section>
   );
 }

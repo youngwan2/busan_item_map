@@ -48,19 +48,21 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
   };
 
 
+
   useEffect(() => {
     const currentLength = Number(sessionStorage.getItem('currentRecipes'));
     handleScroll(currentLength)
 
   }, [isEnd]);
 
-  // 초기화
+  // 사용자가 추가 검색을 시도하면 이전 내역을 모두 초기화
   useEffect(() => {
     setVisibleRecipes([])
     sessionStorage.setItem('currentRecipes', `0`)
 
   }, [searchValue, category])
 
+// 스크롤의 끝지점에 도달하는 순간 현재 조회된 레시피 개수를 기억(memo: 이 값은 다음 레시피 목록을 불러오는 기준으로 처리)
   useEffect(() => {
     sessionStorage.setItem('currentRecipes', `${visibleRecipes.length}`);
   }, [visibleRecipes.length, isEnd])

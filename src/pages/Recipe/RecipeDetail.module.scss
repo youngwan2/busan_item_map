@@ -1,209 +1,441 @@
-
-.recipe_detail {
-  padding-top: 4em;
+.recipe_detail_container {
   max-width: 1240px;
-  margin: 0 auto;
+  margin: 5em auto;
+  height: 100%;
+
+  width: 100%;
+  padding: 0 5px;
+
+  .recipe_detail_title {
+    font-size: 1.5em;
+    margin: 5em 0 2em 0;
+    padding: 4px 0;
+    position: relative;
+  }
+
+  .recipe_detail_title::before {
+    content: '';
+    position: absolute;
+    bottom: -0.5em;
+    left: 0;
+    width: 85px;
+    border-radius: 10px;
+    height: 5px;
+    background: #6697d6;
+  }
+
+  // 레시피 내용 외부 컨테이너
+  .recipe_detail_content_container {
+    border-radius: 1px;
+    background: rgba(156, 155, 155, 0.03);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+    padding: 40px;
+
+    // 레시피 내용 내부 컨테이너
+    .recipe_contents_inner_container {
+      display: flex;
+      flex-direction: column;
+
+      // 레시피 내용 개요
+      .recipe_contents_summary {
+        display: flex;
+        // 레시피 메인 이미지
+        .recipe_main_image {
+          border-radius: 3px;
+          max-width: 500px;
+          max-height: 550px;
+          min-height: 500px;
+          width: 100%;
+          border: 5px solid #6697d6;
+        }
+
+        // 개요
+        .recipe_summary {
+          padding: 0 20px 20px 20px;
+          box-sizing: border-box;
+
+          .recipe_menu_title {
+            color: #4b93e0;
+            font-size: 1.5em;
+            padding: 0 0 0.75em;
+            margin-bottom: 0.75em;
+            border-bottom: 2px solid #69a9ef;
+          }
+          .recipe_meta {
+            // 메타 데이터 제목 공통
+            h3 {
+              font-size: 1.05em;
+              font-weight: bold;
+            }
+            // 조리방법/분류/태그
+            .recipe_keywords {
+              display: flex;
+              align-items: center;
+              h3 {
+                padding: 5px;
+                width: 100px;
+              }
+            }
+            // 태그
+            .recipe_tags {
+              span {
+                border: 1px solid #6697d6;
+                padding: 1px 3px;
+                border-radius: 3px;
+                color: #5391d4;
+              }
+            }
+
+            // 재료
+            .recipe_ingredient {
+              display: flex;
+              flex-direction: column;
+              padding: 5px;
+              width: 100%;
+              h3 {
+                width: 100px;
+                padding: 8px 0;
+              }
+              // 전체 재료 목록 컨테이너
+              p {
+                background-color: #5198e3;
+                padding: 5px 5px;
+                display: flex;
+                flex-wrap: wrap;
+                // 각 재료 항목 컨테이너
+                .split_container {
+                  min-width: 285.47px;
+                  padding: 0 3px;
+                  display: inline-block;
+                  //  재료 식별자
+                  mark {
+                    border-radius: 50%;
+                    padding: 1px 7px;
+                  }
+                  .split_text {
+                    color: white;
+                    margin: 3px;
+                    border-radius: 20px;
+                    padding: 3px;
+                    display: inline-block;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 저감 조리법 팁
+  .recipe_tip {
+    display: flex;
+    flex-direction: column;
+    margin: 5em 0;
+    position: relative;
+    h3 {
+      background: #3b7cc2;
+      color: white;
+      position: absolute;
+      width: 140px;
+      top: -1.25em;
+      left: 0.5em;
+      padding: 8px 10px;
+    }
+    p {
+      border: 1px dashed #6697d6;
+      border-radius: 5px;
+      padding: 2em 8px 1em;
+      background-color: white;
+    }
+  }
+
+  // 하단 조리법
+  .recipe_contents_detail {
+    position: relative;
+    h3 {
+      background: #3b7cc2;
+      color: white;
+      position: absolute;
+      width: 140px;
+      top: -1.25em;
+      left: 0.5em;
+      padding: 8px 10px;
+    }
+    .recipe_figure_container {
+      border: 1px dashed #6697d6;
+      border-radius: 5px;
+      padding-top: 2em;
+      figure {
+        padding: 8px;
+
+        img {
+          border-radius: 2px;
+          width: 200px;
+          border: 1px dotted #6697d6;
+          height: 150px;
+        }
+        p {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
 }
 
-.recipe_contents {
-  margin-top: 5em;
-  padding: 0 0.5em;
+// 네비게이션
+
+.recipe_navigation_title {
+  font-size: 1.5em;
+  margin: 2em 0 2em 0;
+  padding: 4px 0;
+  position: relative;
+}
+
+.recipe_navigation_title::before {
+  content: '';
+  position: absolute;
+  bottom: -0.5em;
+  left: 0;
+  width: 85px;
+  border-radius: 10px;
+  height: 5px;
+  background: #6697d6;
+}
+
+.recipe_navigation_container.active {
+  opacity: 1;
+  visibility: visible;
+}
+.recipe_navigation_container {
+  transition: 1s opacity;
+  margin-top: 3em;
+  opacity: 0;
+  visibility: hidden;
+  height: 200px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 
-  h2 {
-    font-size: 2em;
-    text-align: center;
-    margin: 1em 0 1em 1em;
-    font-weight: bold;
+  // 버튼 활성화 시
+  .recipe_detail_prev_btn.active,
+  .recipe_detail_next_btn.active {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
   }
 
-  // 상단
-  .recipe_top_contents {
-    display: grid;
-    margin: 1em;
-    grid-template-columns: 40% 60%;
-    place-content: center;
+  // 버튼 비활성화
+  .recipe_detail_prev_btn,
+  .recipe_detail_next_btn {
+    border: none;
+    margin: 0 1em;
+    border-radius: 2px;
+    transition: 0.5s;
 
+    position: relative;
+    padding: 0;
+    visibility: hidden;
+    opacity: 0;
+    max-width: 330px;
+    width: 45%;
+    box-shadow: 0 0 0 7px rgb(215, 212, 212);
 
-    .recipe_main_image {
+    // 이미지 영역
+    .link {
+      transition: 1s;
+      position: relative;
+      filter: grayscale(55%) brightness(60%);
       width: 100%;
-      min-height: 400px;
-      box-shadow: 0 0 20px 2px rgb(234, 234, 237);
-      border-radius: 10px;
-      max-height: 500px;
-    }
-
-    .recipe_meta {
-      margin: 0.5em 0 0 5em;
-
-      h3 {
-        margin: 1.0em 0 0.5em 0;
-        box-shadow: -5px 0 0 0 gray;
-        padding: 0px 5px;
-        font-size: 1.25em;
-        font-weight: bold;
-      }
-
-      .recipe_tags {
-        h3 {
-          margin-top: 0;
-        }
-
-        span {
-          border-radius: 20px;
-          background-color: rgb(102, 102, 255);
-          color: white;
-          padding: 1px 5px;
-          margin: 0 0.5em;
-          font-size: 0.95em;
-        }
-      }
-
-      span {
-        padding: 10px;
-      }
-    }
-  }
-
-  // 중간 라인
-  .middle_line {
-    margin-top: 2em;
-    box-shadow: 2px 10px 5px 0 rgba(117, 115, 115, 0.285);
-    width: 100%;
-    height: 20px;
-  }
-
-  // 하단
-  .recipe_bottom_contents {
-    margin: 2em auto;
-    text-align: center;
-
-    h3 {
-      text-align: center;
-      margin: 1em auto 0 auto;
-      display: inline-block;
-      padding: 10px 0;
-      font-size: 2.25em;
-    }
-
-    figure {
-      margin-top: 3em;
-      box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.145);
-      max-width: 500px;
+      height: 100%;
 
       img {
         width: 100%;
-        max-width: 500px;
       }
 
-      p {
-        padding: 0.5em 5px;
-        font-size: 1.05em;
+      .link_title {
+        text-align: start;
+        position: absolute;
+        padding: 5px;
+        font-size: 1.25em;
+        font-weight: bold;
+        left: 0;
+        color: rgb(227, 226, 226);
+        text-shadow: 1px 1px 0 rgb(71, 71, 71);
+        width: 100%;
+        width: 180px;
+        min-width: 170px;
       }
     }
-
-    figure:hover {
-      background-color: rgb(222, 227, 249);
+  }
+  :is(.recipe_detail_prev_btn, .recipe_detail_next_btn):hover {
+    .link {
+      animation: glitter 1s infinite alternate linear;
     }
   }
 }
 
-// 하단 메뉴바
-/* 이전/다음 페이지 */
-.pagination_article {
-  margin: 5em auto 0 auto;
-  min-width: 280px;
-  transition: 0.5s;
-  position: relative;
-  bottom: 0;
-  transform: translate(0, -30px);
+@keyframes glitter {
+  0% {
+    filter: grayscale(55%) brightness(60%);
+  }
+  100% {
+    filter: grayscale(0) brightness(100%);
+  }
+}
+
+// 영양 성분 모달
+/* 모달 아이콘 */
+.modal_btn {
+  border-radius: 5px;
+  padding: 3px 5px 8px;
+  border: none;
+  background-color: #4b93e0;
+  color: white;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+  font-size: 1.15em;
+  position: fixed;
+  right: 10px;
+  top: 10rem;
+}
+
+.modal_btn:hover {
+  background-color: #60a3eb;
+}
+
+.modal_btn:active {
+  background-color: gray;
+}
+
+.modal_btn::after {
+  content: '영양성분 →';
+  position: absolute;
+  right: 0.5em;
+  top: -0.5em;
+  width: 130px;
+  font-size: 0.75em;
+  color: black;
+  border-radius: 5px;
+  height: 30px;
+}
+
+// 모달창
+.modal_con {
+  transition: 1s;
+  transform: translate(370px, -50%);
+  position: fixed;
+  top: 50%;
+  right: 5%;
+  z-index: 1000;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+  box-shadow:
+    inset -2px -2px 5px 1px rgba(0, 0, 0, 0.359),
+    0 0 30px 0 rgba(0, 0, 0, 0.359);
+  max-width: 330px;
+  min-width: 260px;
+  width: 100%;
+  min-height: 350px;
+  background: rgb(91, 139, 242);
   visibility: hidden;
   opacity: 0;
-  max-width: 800px;
-  width: 100%;
-  height: 40vh;
-  text-align: center;
 
-  button {
-    width: 48%;
-    margin: 0 5px;
-    filter: brightness(80%);
-    padding: 0;
-    transition: 0.5s;
-    position: relative;
+  h3 {
+    background-color: white;
+    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.203);
+    padding: 8px;
+    color: black;
     border-radius: 5px;
-    border: 3px solid rgb(125, 125, 255);
-    height: 200px;
+  }
+  ul {
+    background-color: white;
+    border-radius: 5px;
+    padding: 17px 5px !important;
+    min-height: 280px;
+    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.183);
+  }
 
-    a {
-      text-decoration: none;
-      color: rgb(241, 242, 255);
-      text-shadow: 1px 1px 2px rgb(6, 21, 86);
+  li {
+    margin: 10px 5px;
+    padding: 3px 0;
+    border-bottom: 1px dashed black;
+
+    strong {
+      min-width: 95px;
+      display: inline-block;
+      margin-right: 3rem;
+      font-weight: bold;
     }
-  }
-
-  button:hover {
-    filter: brightness(100%);
-    box-shadow: 0 0 50px 20px rgb(219, 219, 255);
-    animation: light 0.5s infinite alternate linear;
-  }
-
-  @keyframes light {
-    from {
-      box-shadow: none
-    }
-
-  }
-
-  h4 {
-    background-position: center !important;
-    width: 100%;
-    height: 100%;
-    padding-top: 3rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-
-    background-size: cover !important;
   }
 }
 
-/* 페이지 버튼 아이콘 */
-
-.btn_icons_left {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  color: rgb(96, 96, 248);
-  font-size: 3rem;
+.modal_con.active {
+  visibility: visible;
   transform: translate(0, -50%);
+  opacity: 0.9;
 }
 
-.btn_icons_right {
-  position: absolute;
-  color: rgb(96, 96, 248);
-  right: 1rem;
-  font-size: 3rem;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-
-// 미디어 쿼리 768px
-@media screen and (max-width: 768px) {
-  .recipe_contents {
-    h2 {
-      font-size: 1.5em;
-      margin: 0.5em;
+// 미디어 쿼리
+@media screen and (max-width: 860px) and (min-width: 500px) {
+  .recipe_detail_container {
+    // 레시피 개요
+    .recipe_detail_content_container {
+      .recipe_contents_inner_container {
+        .recipe_contents_summary {
+          flex-direction: column;
+          .recipe_main_image {
+            margin: 0 auto;
+            border: 2px solid gary;
+            border-radius: 2px;
+            min-width: 100%;
+          }
+          .recipe_summary {
+            padding: 0;
+            .recipe_menu_title {
+              padding-top: 1.8em;
+            }
+          }
+        }
+      }
     }
   }
+}
 
-  .recipe_top_contents {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: 430px;
+@media screen and (max-width: 500px) {
+  .recipe_detail_container {
+    .recipe_detail_content_container {
+      padding: 15px;
 
-    .recipe_meta {
-      margin: 4em 10px 1em 10px !important;
+      // 하단 조리법
+      .recipe_contents_detail {
+        .recipe_figure_container {
+          figure {
+            padding: 8px;
+
+            flex-direction: column;
+
+            img {
+              border-radius: 2px;
+              max-width: 500px;
+              object-fit: contain;
+              width: 100%;
+              background-color: #b5b3b3;
+              border-radius: 5px;
+              height: 180px;
+              margin: 0 auto;
+            }
+            p {
+              padding: 0.5em 10px;
+              border-radius: 5px;
+              margin-top: 0.5em;
+              background: #4587cd;
+              color: white;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -13,8 +13,7 @@ import { ApiType, getDefaultFetcher } from '../../api/get.api';
 import { type RecipeInfoType } from '@/types/Recipe.types';
 
 import { HiInformationCircle } from "react-icons/hi2";
-import { StorageType, setStoreage } from '@/utils/storage';
-import { useSearchParams } from 'react-router-dom';
+import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
 
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
@@ -29,7 +28,7 @@ export default function RecipePage() {
   const [pickedCategory, setPickedCategory] = useState('')
   const [productName, setProductName] = useState('')
   const [recipeInfo, setRecipeInfo] = useState<RecipeInfoType>(INITIAL_RECIPE_INFO);
-  
+
 
   const sectionRef = useRef<HTMLBaseElement>(null);
 
@@ -84,7 +83,7 @@ export default function RecipePage() {
 
     setProductName(productName)
     setRecipeInfo({ totalCount, recipes })
-    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } }) 
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
   }
 
   /** 버튼 검색 액션 */
@@ -98,12 +97,27 @@ export default function RecipePage() {
     setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
   }
 
+  /** 조회된 레시피가 없는 경우 캐시처리 된 레시피로 업데이트 */
+  function updateRecipeData() {
+    const recipeInfo: RecipeInfoType = getStoreage(StorageType.SESSION, 'recipes')
+    setRecipeInfo(recipeInfo)
+
+  }
+  useEffect(() => {
+    if(recipeInfo.recipes.length<1) updateRecipeData()
+  }, [])
+
+
+  useEffect(() => {
+    getStoreage(StorageType.SESSION, 'recipes')
+
+  }, [])
+
   const recipeCount = Number(recipeInfo.totalCount)
   return (
     <section className={styles.recipe_page_container} ref={sectionRef}>
       <h2 className={styles.page_title}>음식 레시피</h2>
-      <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' totalCount={recipeCount} />
-
+      <GuideMessage path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
       <RecipeSearchForm action={searchAction} onSearch={onSearch} />
       <Message>
         {
