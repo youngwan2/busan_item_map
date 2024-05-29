@@ -99,7 +99,7 @@ function HaccpPage() {
       <h2 className={styles.haccp_page_title}>
         <p>HACCP제품 정보조회</p>
       </h2>
-      <GuideMessage path='/haccp' mainName='조회서비스' subName='HACCP제품조회' />
+      <GuideMessage stylesClassName={styles.page_path_guide_message} path='/haccp' subPath='' mainName='조회서비스' subName='HACCP제품조회' />
       <div className={styles.haccp_inner_container}>
         {/* 검색창 */}
         <HaccpSearchForm

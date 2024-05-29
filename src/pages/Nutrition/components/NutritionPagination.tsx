@@ -1,22 +1,45 @@
-import { useState, useRef, useEffect, Fragment, useCallback } from 'react';
-import styles from './NutritionPagination.module.scss';
-import { NutritionPageNumber } from '../../../atom/NutritionsAtom';
+import styles from '@pages/Nutrition/Nutrition.module.scss';
+
+import { useState, useRef, useEffect, Fragment, useCallback, type MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
+
+import { NutritionPageNumber } from '../../../atom/NutritionsAtom';
+
 
 interface PropsType {
   totalPage: number;
 }
 const NutritionPagination = ({ totalPage }: PropsType) => {
-  // eslint-disable-next-line prefer-const
-  let [page, setPage] = useRecoilState(NutritionPageNumber);
+  const [page, setPage] = useRecoilState(NutritionPageNumber);
   const pageSize = useRef<number>(5);
   const [liElements, setLiElements] = useState<JSX.Element[]>();
   const [pageGroup, setPageGroup] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [firstPage, setFirstPage] = useState(0);
 
-  const isLastPageGreaterThanTotal = lastPage >= totalPage;
-  const isFirstPageGreaterThanCurrentPage = firstPage > page;
+  const isLastPageGreaterThanTotal = lastPage >= totalPage; // 현재 끝 페이지 인가
+  const isFirstPageGreaterThanCurrentPage = firstPage > page; // 현재 첫 페이지인가
+
+
+  /** 이전 페이지 이동 */
+  function handlePrevPage() {
+    setPage(old => Math.max(--old, 0));
+  }
+
+  /** 다음 페이지 이동 */
+  function handleNextPage() {
+    setPage(old => Math.min(++old, totalPage));
+  }
+
+  /** 선택 페이지 이동 */
+  function handlePageChange(e: MouseEvent<HTMLLIElement>) {
+    const pageNumber = Number(e.currentTarget.textContent);
+    setPage(pageNumber);
+    setPageGroup(page / pageSize.current);
+
+  }
+
+  /** 페이지네이션 렌더러 */
   const elementRendererFun = useCallback(
     (page: number, pageGroup: number) => {
       setPageGroup(Math.ceil(page / pageSize.current));
@@ -33,20 +56,9 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
         if (i > 0) {
           lis.push(
             <li
-              onClick={(e) => {
-                const pageNumber = Number(e.currentTarget.textContent);
-                setPage(pageNumber);
-                setPageGroup(page / pageSize.current);
-              }}
-              style={
-                page === i
-                  ? {
-                      boxShadow: 'inset 50px 50px 0 white',
-                      color: 'black',
-                      border: '1px solid gray',
-                    }
-                  : { boxShadow: 'inset 50px 50px 0 0 rgb(131, 131, 240)' }
-              }
+              aria-label={`${page} 페이지 이동 버튼`}
+              className={`${styles.page_link} ${page === i ? styles.active : ''}`}
+              onClick={handlePageChange}
             >
               {i}
             </li>,
@@ -86,12 +98,10 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
       style={totalPage === 0 ? { display: 'none' } : { display: 'flex' }}
     >
       <li
-        style={
-          page <= 1 ? { visibility: 'hidden', opacity: 0 } : { visibility: 'visible', opacity: 1 }
-        }
-        onClick={() => {
-          setPage(Math.max(--page, 0));
-        }}
+        aria-label={`이전 페이지 이동 버튼`}
+        aria-hidden={`${page <= 1 ? 'true' : 'false'}`}
+        className={`${styles.page_link} ${page <= 1 ? styles.hidden : ''}`}
+        onClick={handlePrevPage}
       >
         prev
       </li>
@@ -100,14 +110,10 @@ const NutritionPagination = ({ totalPage }: PropsType) => {
         return <Fragment key={id}>{li}</Fragment>;
       })}
       <li
-        style={
-          totalPage === page
-            ? { visibility: 'hidden', opacity: 0 }
-            : { visibility: 'visible', opacity: 1 }
-        }
-        onClick={() => {
-          setPage(Math.min(++page, totalPage));
-        }}
+        aria-label='다음 페이지 이동 버튼'
+        aria-hidden={`${totalPage === page ? 'true' : 'false'}`}
+        className={`${styles.page_link} ${totalPage === page ? styles.hidden : ''}`}
+        onClick={handleNextPage}
       >
         next
       </li>

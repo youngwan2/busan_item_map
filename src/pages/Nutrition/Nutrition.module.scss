@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
-
-.Nutrition_section {
+.nutrition_page_container {
   margin: 0 auto 0 auto;
-  font-family: 'Orbit', sans-serif;
   text-align: center;
   overflow-x: hidden;
+  max-width: 1240px;
+  position: relative;
   width: 100%;
   min-height: 100vh;
 }
 
-.nutrition_title {
+.nutrition_page_title {
   text-shadow: 1px 1px 4px black;
   font-size: 2.5rem;
   padding-top: 0;
@@ -20,7 +19,7 @@
   background: url('/assets/nutritionback.png');
 }
 
-.nutrition_title strong {
+.nutrition_page_title strong {
   width: 100%;
   display: block;
   font-weight: 500;
@@ -29,96 +28,119 @@
 }
 
 // 메인 페이지의 프리뷰 아이템 리스트
-.search_result_section {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1800px;
+.product_list_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 310px));
+
+  padding-top: 5em;
+  gap: 5px;
+  position: relative;
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 5px;
   justify-content: center;
   margin: 3rem auto;
   min-height: 100vh;
-  transform: perspective(600px);
-  transform-style: preserve-3d;
   text-align: justify;
-}
 
-.item_container {
-  min-width: 280px;
-  max-height: 320px;
-  rotate: 2deg;
-  margin: 10px 10px 30px 10px;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(255, 234, 117);
-  border-radius: 5px;
-  transition: 0.5s;
-  max-width: 330px;
-  padding: 10px !important;
+  .product_list_title {
+    position: absolute;
+    background-color: #1a4e85;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0 0 8px 0;
+    display: inline-block;
+    top: -1.05em;
+    left: 0.5em;
+  }
 
-  .item_box {
-    padding: 6px 5px;
-    h3 {
-      text-align: center;
+
+  // 카드 컨테이너
+  .product_card_container {
+    min-width: 280px;
+    height: 350px;
+    border: none;
+    margin: 10px 10px 30px 10px;
+    width: 100%;
+    text-align: start;
+    border-radius: 5px;
+    transition: 0.5s;
+    max-width: 290px;
+    padding: 10px !important;
+    position: relative;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: perspective(3000px) rotateY(90deg) rotateX(0);
+
+    .product_card {
+      border: 2px solid #2d65a1;
+      border-radius: 2px;
+      height: 100%;
+      max-height: 350px;
+      max-width: 330px;
+      padding: 6px 0.5em;
       width: 100%;
-      padding: 2px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: white;
+      transform-origin: center;
+
+      .product_card_content:nth-of-type(1) {
+        border: none;
+        h3 {
+          background-color: #3d78b8;
+          border-radius: 2px;
+          color:white;
+          padding: 5px;
+          margin-bottom: 0.5em;
+        }
+      }
+      .product_card_content {
+        transform: rotateY(180deg);
+        padding: 2px 0;
+        margin: 0.25em;
+        color: black;
+
+        h3 {
+          text-align: start;
+          width: 100%;
+          font-size: 1.05em;
+          padding: 2px;
+        }
+        strong {
+          display: inline-block;
+          min-width: 60px;
+          font-size: 0.95em;
+          padding:
+            1,
+            5px 2px;
+          border-radius: 5px;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        p {
+          display: inline-block;
+        }
+      }
     }
-    strong {
-      display: inline-block;
-      min-width: 100px;
-      text-align: center;
-      padding: 0px 2px;
-      border-radius: 5px;
-      background-color: rgb(255, 255, 255);
-      color: rgb(67, 67, 71);
-      margin-right: 10px;
+    .product_card:nth-of-type(1) {
+      transform: rotateY(calc(360deg / 4 * 1)) translateZ(-145px);
+    }
+    .product_card:nth-of-type(2) {
+      transform: rotateY(calc(360deg / 4 * 2)) translateZ(-145px);
+    }
+    .product_card:nth-of-type(3) {
+      transform: rotateY(calc(360deg / 4 * 3)) translateZ(-145px);
+    }
+    .product_card:nth-of-type(4) {
+      transform: rotateY(calc(360deg / 4 * 4)) translateZ(-145px);
+    }
+    :has(.product_card) {
+      background-color: black;
     }
   }
-}
-.item_container:hover h3 {
-  scale: 1.1;
-}
-
-.item_container:hover {
-  cursor: pointer;
-  box-shadow: 0 0 0 2px rgb(87, 85, 85);
-  border-radius: 0;
-  rotate: 0deg;
-  transform: translate(0, -30px);
-}
-
-.item_container:hover::after {
-  content: '';
-  box-shadow: inset 0 0 5px 2px black;
-}
-
-.item_container::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  rotate: 45deg;
-
-  border-left: 30px solid rgba(0, 0, 0, 0.288);
-  border-right: 30px solid rgba(0, 0, 0, 0.288);
-  border-bottom: 20px solid rgba(0, 0, 0, 0.288);
-}
-
-.item_container:nth-of-type(2n) {
-  rotate: -2deg;
-}
-
-.item_container:nth-of-type(2n)::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  right: 0;
-  rotate: -45deg;
-
-  border-left: 30px solid rgba(0, 0, 0, 0.288);
-  border-right: 30px solid rgba(0, 0, 0, 0.288);
-  border-bottom: 20px solid rgba(0, 0, 0, 0.288);
-}
-
-.item_container:hover:nth-of-type(2n) {
-  rotate: 0deg;
 }
 
 // 검색 폼
@@ -134,7 +156,7 @@
   .nutrition_search_label {
     padding: 5px;
     svg {
-      fill:rgb(229, 210, 105);;
+      fill: rgb(229, 210, 105);
       font-size: 1.5em;
     }
   }
@@ -146,11 +168,11 @@
   }
   input:focus {
     outline: none;
-    box-shadow: inset 0 0 0 300px rgba(0,0,0,0.1)
+    box-shadow: inset 0 0 0 300px rgba(0, 0, 0, 0.1);
   }
 
   button {
-    background:white;
+    background: white;
     border-radius: 5px;
     border: none;
     padding: 5px;
@@ -159,5 +181,50 @@
 
   button:focus {
     box-shadow: 0 0 0 2px black;
+  }
+}
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: 28em;
+  right: 9px;
+}
+
+// 페이지네이션
+.pagination_container {
+  display: flex;
+  justify-content: center;
+  z-index: 10000;
+  width: 100%;
+  position: relative;
+  bottom: 2rem;
+  backdrop-filter: blur(5px);
+  padding: 10px 0 !important;
+  background-color: rgba(247, 247, 237, 0.473);
+  .page_link {
+    margin: 5px;
+    min-width: 30px;
+    box-shadow: inset 50px 50px 0 white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 3px 3px;
+    color: black;
+  }
+  .page_link:hover {
+    cursor: pointer;
+    color: white;
+    border: 1px solid rgb(234, 230, 230);
+    box-shadow: inset 50px 50px 0 0 #3f83cb;
+  }
+  .page_link.active {
+    
+    box-shadow: inset 50px 50px 0 0 #2968ac;
+    color: white;
+    
+  }
+
+  .page_link.hidden {
+    visibility: hidden;
+    opacity: 0;
   }
 }

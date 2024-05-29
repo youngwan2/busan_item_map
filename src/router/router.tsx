@@ -1,13 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import NotFound from '../components/Errors/NotFound';
 import { lazy, Suspense } from 'react';
 import LocalFoodDetailPage from '../pages/LocalFood/LocalFoodDetailPage';
 import 'react-toastify/dist/ReactToastify.css';
-import ReactSpinner from '../components/UI/ReactSpinner';
 import LocalMarketPage from '../pages/LocalMarket/LocalMarketPage';
 import LocalMarketDetailPage from '../pages/LocalMarket/LocalMarketDetailPage';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const LocalFoodPage = lazy(() => import('../pages/LocalFood/LocalFoodPage'));
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Suspense fallback={<ReactSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
         <Home />
       </Suspense>
     ),
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: '/localfood',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <LocalFoodPage />
           </Suspense>
         ),
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: '/localfood/:id',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <LocalFoodDetailPage />
           </Suspense>
         ),
@@ -48,7 +47,7 @@ const router = createBrowserRouter([
       {
         path: '/localmarket',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <LocalMarketPage />
           </Suspense>
         ),
@@ -56,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: '/localmarket/:id',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <LocalMarketDetailPage />
           </Suspense>
         ),
@@ -64,7 +63,7 @@ const router = createBrowserRouter([
       {
         path: '/nutrition',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <NutritionPage />
           </Suspense>
         ),
@@ -72,7 +71,7 @@ const router = createBrowserRouter([
       {
         path: '/haccp',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <HaccpPage />
           </Suspense>
         ),
@@ -80,7 +79,7 @@ const router = createBrowserRouter([
       {
         path: '/recipe',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <RecipePage />
           </Suspense>
         ),
@@ -88,7 +87,7 @@ const router = createBrowserRouter([
       {
         path: '/recipe/:id',
         element: (
-          <Suspense fallback={<ReactSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
             <RecipeDetail />
           </Suspense>
         ),

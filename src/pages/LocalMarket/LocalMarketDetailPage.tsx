@@ -49,7 +49,7 @@ export default function LocalMarketDetailPage() {
   return (
     <section className={styles.LocalMarket_Detail}>
       <BackMove/>
-      <GuideMessage path="/localmarket" mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
+      <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localmarket" subPath='' mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
       {/* 좌측 컨텐츠 */}
       <article className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}{'>' + middle_title}</h3>

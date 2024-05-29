@@ -1,55 +1,80 @@
 import styles from './Nutrition.module.scss';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, SyntheticEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
 
-import ReactSpinner from '../../components/UI/ReactSpinner';
-import SearchForm from './components/SearchForm';
+import NutritionSearchForm from './components/NutritionSearchForm';
 import NutritionPagination from './components/NutritionPagination';
-import SearchResults from './components/SearchResults';
+import NutritionProductList from './components/NutritionProductList';
 import GuideMessage from '../../components/Common/GuideMessage';
-import NotFound from '../../components/Errors/NotFound';
+
+import { NutritionPageNumber } from '../../atom/NutritionsAtom';
+
+import { toast } from 'react-toastify';
 
 
 const MIN_VIEW_COUNT = 20;
 const Nutrition = () => {
-  const [page] = useRecoilState(NutritionPageNumber);
-  const [value, setValue] = useState('');
+  const [page, setPage] = useRecoilState(NutritionPageNumber);
+  const [productName, setProductName] = useState('');
 
   useEffect(() => {
     document.title = '식품영양정보조회 | FoodPicker';
   }, []);
 
-  const url = `/nutritions?search=${value}&page=${page}`;
-  const key = ['nutrition', value, page];
+  const url = `/nutritions?search=${productName}&page=${page}`;
+  const queryKey = ['nutrition', productName, page];
 
-  const { data, isPending, isFetching } = useDefaultQuery(key, url);
+  const { data=[], error, isError } = useDefaultQuery(queryKey, url);
 
-  if (!data && isPending) return <ReactSpinner />;
-  const { items=[], totalCount=0 } = data 
-  const hasItems = Array.isArray(items) && items.length < 1;
+  const { items:products, totalCount = 0 } = data
+  const hasProducts = Array.isArray(products) && products.length < 1;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT);
-  
+
+  /** 검색어 반환 */
+  function getSearchValue(input: HTMLInputElement) {
+    if (!(input instanceof HTMLInputElement)) return
+    if (input.value.length <= 1) return false
+    const searchProduct = input.value
+    return searchProduct
+  }
+
+  /** action: 검색 Form 액션 */
+  function searchAction(e: SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const input = e.currentTarget.childNodes[1] as HTMLInputElement
+    const searchProductName = getSearchValue(input) || ''
+    if (!searchProductName) return toast.error('2자 이상은 입력해주세요.')
+    setProductName(searchProductName)
+    setPage(1)
+  }
+
+  /** 버튼 검색 액션 */
+  async function onSearch(e: MouseEvent<HTMLButtonElement>) {
+    const input = e.currentTarget.previousElementSibling as HTMLInputElement
+    const searchProductName = getSearchValue(input) || ''
+    if (!searchProductName) return toast.error('2자 이상은 입력해주세요.')
+    setProductName(searchProductName)
+    setPage(1)
+  }
+
+  if(isError) return <p>{error?.message}</p>
   return (
-    <section className={styles.Nutrition_section}>
-      <h2 className={styles.nutrition_title}>
+    <section className={styles.nutrition_page_container}>
+      <h2 className={styles.nutrition_page_title}>
         <strong>식품영양정보조회</strong>
       </h2>
       <GuideMessage
+        stylesClassName={styles.page_path_guide_message}
         path="/nutrition"
+        subPath=''
         mainName="조회 서비스"
         subName={`식품영양정보조회`}
         totalCount={totalCount}
       />
-      <SearchForm setValue={setValue} />
-      {isFetching ? <h2>데이터를 불러오고 있습니다. </h2> : null}
-      {hasItems ? (
-        <NotFound message="요청하신 데이터가 존재하지 않습니다." />
-      ) : (
-        <SearchResults itemList={items} />
-      )}
+      <NutritionSearchForm action={searchAction} onSearch={onSearch} />
+      {!hasProducts? <NutritionProductList products={products} />: <p>조회된 목록이 없습니다.</p>}
       <NutritionPagination totalPage={totalPage} />
     </section>
   );

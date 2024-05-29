@@ -45,7 +45,9 @@ const LocalFoodPage = () => {
         <p>향토음식이야기</p>
       </h2>
       <GuideMessage
+        stylesClassName={styles.page_path_guide_message}
         path="/localfood"
+        subPath=''
         mainName="향토 이야기"
         subName="향토 음식이야기"
         totalCount={totalCount}

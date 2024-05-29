@@ -66,6 +66,14 @@
   }
 }
 
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: 5em;
+  right: 9px;
+}
+
+
 @media screen and (max-width: 768px) {
   .LocalFood_Detail {
     grid-template-columns: 1fr;

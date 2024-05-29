@@ -46,7 +46,7 @@ export default function LocalFoodDetailPage() {
   return (
     <section className={styles.LocalFood_Detail}>
       <BackMove />
-      <GuideMessage path="/localfood" mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
+      <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localfood" subPath='' mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
       {/* 좌측 컨텐츠 */}
       <article className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}</h3>
