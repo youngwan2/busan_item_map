@@ -4,6 +4,7 @@
   min-height: 150vh;
   max-width: 1240px;
   width: 100%;
+  position: relative;
   margin: 0 auto;
 }
 
@@ -160,6 +161,13 @@
     }
   }
 }
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: 25em;
+  right: 9px;
+}
+
 
 /* 안내 메시지 */
 

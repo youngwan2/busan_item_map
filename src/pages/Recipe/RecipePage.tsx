@@ -14,6 +14,7 @@ import { type RecipeInfoType } from '@/types/Recipe.types';
 
 import { HiInformationCircle } from "react-icons/hi2";
 import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
+import { toast } from 'react-toastify';
 
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
@@ -38,12 +39,6 @@ export default function RecipePage() {
 
 
 
-  /** 검색어 반환 */
-  function getSearchValue(input: HTMLInputElement) {
-    if (!(input instanceof HTMLInputElement)) return
-    const searchProduct = input.value
-    return searchProduct
-  }
 
   /** GET | 레시피 api 요청 
    * @param productName  요리명
@@ -74,11 +69,21 @@ export default function RecipePage() {
 
   }
 
+  
+  /** 검색어 반환 */
+  function getSearchValue(input: HTMLInputElement) {
+    if (!(input instanceof HTMLInputElement)) return
+    if(input.value.length<=1) return false
+    const searchProduct = input.value
+    return searchProduct
+  }
+
   /** Form Action | 폼 검색 액션  */
   async function searchAction(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     const input = e.currentTarget.childNodes[1] as HTMLInputElement
     const productName = getSearchValue(input) || ''
+    if(!productName) return toast.error('2자 이상은 입력해주세요.')
     const { totalCount, recipes } = await getFetchRecipeData(productName)
 
     setProductName(productName)
@@ -90,6 +95,7 @@ export default function RecipePage() {
   async function onSearch(e: MouseEvent<HTMLButtonElement>) {
     const input = e.currentTarget.previousElementSibling as HTMLInputElement
     const productName = getSearchValue(input) || ''
+    if(!productName) return toast.error('2자 이상은 입력해주세요.')
     const { totalCount, recipes } = await getFetchRecipeData(productName)
 
     setProductName(productName)
@@ -108,16 +114,11 @@ export default function RecipePage() {
   }, [])
 
 
-  useEffect(() => {
-    getStoreage(StorageType.SESSION, 'recipes')
-
-  }, [])
-
   const recipeCount = Number(recipeInfo.totalCount)
   return (
     <section className={styles.recipe_page_container} ref={sectionRef}>
       <h2 className={styles.page_title}>음식 레시피</h2>
-      <GuideMessage path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
+      <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
       <RecipeSearchForm action={searchAction} onSearch={onSearch} />
       <Message>
         {

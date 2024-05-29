@@ -48,7 +48,6 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
   };
 
 
-
   useEffect(() => {
     const currentLength = Number(sessionStorage.getItem('currentRecipes'));
     handleScroll(currentLength)
@@ -72,9 +71,11 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
       <div className={styles.recipe_list_container}>
         <h2 className={styles.recipe_list_title}>레시피 목록</h2>
 
-        {visibleRecipes.map((recipe) => (
+        { visibleRecipes.length>0
+        ? visibleRecipes.map((recipe) => (
           <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />
-        ))}
+        ))
+        : <p>현재 조회된 목록이 없습니다.</p>}
       </div>
       <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes} />
       <ObserverSpinner ref={observerRef}>  </ObserverSpinner>

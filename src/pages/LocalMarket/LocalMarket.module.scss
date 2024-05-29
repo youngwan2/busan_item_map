@@ -138,6 +138,23 @@
   visibility: hidden;
 }
 
+
+
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: 23em;
+  right: 9px;
+}
+
+
+
+
+
+
+
+
+
 @keyframes appear {
   from {
     transform: translateY(-30px);
@@ -175,3 +192,6 @@
     }
   }
 }
+
+
+

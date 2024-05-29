@@ -45,7 +45,9 @@ const LocalMarketPage = () => {
         <p>향토시장이야기</p>
       </h2>
       <GuideMessage
+      stylesClassName={styles.page_path_guide_message}
         path="/localmarket"
+        subPath=''
         mainName="향토 이야기"
         subName="향토시장이야기"
         totalCount={totalCount}

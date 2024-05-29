@@ -4,6 +4,7 @@
 .Localfood {
   margin: 0 auto;
   min-height: 150vh;
+  
 }
 
 .page_title {
@@ -174,4 +175,10 @@
       top: 30%;
     }
   }
+}
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: 23em;
+  right: 9px;
 }
