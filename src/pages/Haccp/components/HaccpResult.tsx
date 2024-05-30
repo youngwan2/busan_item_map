@@ -2,10 +2,10 @@ import styles from '../Haccp.module.scss';
 
 import { useRef } from 'react';
 
-import HaccpGuide from './HaccpGuide';
 import HaccpProductList from './HaccpProductList';
 
 import { HaccpProductItemType} from '../../../types/Haccp.types';
+import LoadViewCountModal from '@/components/LoadViewCountModal';
 
 interface PropsType {
   totalCount:number
@@ -26,7 +26,7 @@ function HccpResult({ products, totalCount}: PropsType) {
     <>
     <section className={styles.content_container} ref={containerRef}>
       <h2 className={styles.haccp_product_list_title}>상품목록</h2>
-      <HaccpGuide totalProductCount={totalCount} currentProductCount={currentProductCount} />
+      <LoadViewCountModal totalProductCount={totalCount} currentProductCount={currentProductCount} />
       <HaccpProductList products={products} />
       
     </section>

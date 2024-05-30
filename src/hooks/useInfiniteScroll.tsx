@@ -27,6 +27,7 @@ export const useInfiniteScroll = (url: string, ...key: string[]) => {
   const items = data?.pages.map((pageData) => {
     return pageData.items;
   });
+
   const totalCount = data?.pages[0].totalCount || 0;
   const concatItems = items ? [].concat(...items) : [];
 

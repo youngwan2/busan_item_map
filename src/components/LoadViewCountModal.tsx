@@ -1,12 +1,15 @@
+import styles from './LoadViewCountModal.module.scss';
+
 import { useState } from 'react';
-import styles from '../Haccp.module.scss';
+
 
 interface Type {
+  type?:boolean
   totalProductCount:number,
   currentProductCount: number;
 }
 
-export default function HaccpGuide({ totalProductCount =0, currentProductCount }: Type) {
+export default function LoadViewCountModal({type, totalProductCount =0, currentProductCount }: Type) {
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   return (
     <aside
@@ -41,7 +44,9 @@ export default function HaccpGuide({ totalProductCount =0, currentProductCount }
               }
         }
       >
-        {totalProductCount}개 중 {currentProductCount} 개 상품 조회..
+        {type && Math.ceil(totalProductCount)+' 페이지 중 '+ currentProductCount+' 페이지 조회..' }
+        {!type && totalProductCount +'개 중 '+currentProductCount+'개 상품 조회..' }
+        
       </span>
     </aside>
   );

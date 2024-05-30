@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, SyntheticEvent, MouseEvent } from 'react';
 
 import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeList from './components/RecipeList';
-import GuideMessage from '../../components/Common/GuideMessage';
+import GuideMessage from '../../components/GuideMessage';
 import RecipeCategoryGrid from './components/RecipeCategoryGrid';
 import Message from '@/components/Message';
 

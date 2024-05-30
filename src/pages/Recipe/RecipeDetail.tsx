@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import RecipeNutrition from './components/RecipeNutrition';
 import RecipeDetailNavigation from './components/RecipeDetailNavigation';
-import BackMove from '@components/Common/BackMove';
-import GuideMessage from '@components/Common/GuideMessage';
+import BackMove from '@/components/BackMove';
+import GuideMessage from '@/components/GuideMessage';
 import RecipeContents from './components/RecipeContents';
 
 import { RecipeInfoType, RecipeType } from '@/types/Recipe.types';

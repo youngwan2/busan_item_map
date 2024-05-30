@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import useDefaultQuery from '@/hooks/useDefaultQuery';
 
 import PageError from '@/components/Errors/PageError';
-import GuideMessage from '@/components/Common/GuideMessage';
-import BackMove from '@/components/Common/BackMove';
-import Maps from '@/components/Common/Map/Maps';
+import GuideMessage from '@/components/GuideMessage';
+import BackMove from '@/components/BackMove';
+import Maps from '@/components/Map/Maps';
 
 import { localFoodType } from '../LocalFood/types/localFood.types';
 import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';

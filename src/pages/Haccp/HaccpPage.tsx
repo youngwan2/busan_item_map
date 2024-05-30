@@ -7,7 +7,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import HaccpResult from './components/HaccpResult';
 import HaccpSearchForm from './components/HaccpSearchForm';
 import HaccpMessage from './components/HaccpMessage';
-import GuideMessage from '../../components/Common/GuideMessage';
+import GuideMessage from '../../components/GuideMessage';
 import ObserverSpinner from '../../components/Common/Spinner/ObserverSpinner';
 import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import { ClipLoader } from 'react-spinners';
