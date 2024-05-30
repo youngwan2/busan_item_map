@@ -7,9 +7,9 @@ import PageError from '@/components/Errors/PageError';
 import GuideMessage from '@/components/Common/GuideMessage';
 import BackMove from '@/components/Common/BackMove';
 import Maps from '@/components/Common/Map/Maps';
-import ReactSpinner from '@/components/UI/ReactSpinner';
 
 import { localFoodType } from '../LocalFood/types/localFood.types';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
 
 
 export default function LocalFoodDetailPage() {
@@ -18,11 +18,13 @@ export default function LocalFoodDetailPage() {
     data: localFood,
     isError,
     isPending,
+    isFetching,
     error,
   } = useDefaultQuery(['localfood', id], '/localfoods/' + id) as {
     data: localFoodType;
     isError: boolean;
     isPending: boolean;
+    isFetching:boolean;
     error: Error | null;
   };
   const {
@@ -40,7 +42,7 @@ export default function LocalFoodDetailPage() {
   } = localFood || replaceInfo
 
 
-  if (isPending) return <ReactSpinner />;
+  if (isPending || isFetching) return <LoadingSpinner />;
   if (isError) return <PageError error={error?.message} />;
 
   return (

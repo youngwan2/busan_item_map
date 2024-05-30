@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
 body {
-  margin: 0;
   padding: 0;
   line-height: 25px !important;
   -webkit-font-smoothing: antialiased;
@@ -13,6 +12,10 @@ code {
 }
 ul {
   padding: 0 !important;
+}
+
+main {
+  background-color: rgba(242, 242, 242, 0.16);
 }
 
 li {

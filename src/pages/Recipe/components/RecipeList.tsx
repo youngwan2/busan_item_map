@@ -75,7 +75,7 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
         ? visibleRecipes.map((recipe) => (
           <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />
         ))
-        : <p>현재 조회된 목록이 없습니다.</p>}
+        : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.</p>}
       </div>
       <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes} />
       <ObserverSpinner ref={observerRef}>  </ObserverSpinner>
