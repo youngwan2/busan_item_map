@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
 
 .Localmarket {
   margin: 0 auto;
   min-height: 150vh;
+  max-width: 1240px;
+  position: relative;
 }
 
 .page_title {
@@ -26,111 +26,32 @@
   }
 }
 
-.localmarket_ul {
-  max-width: 1300px;
+.localmarket_list_container {
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid rgb(190, 187, 187);
   display: grid;
-  margin: 15em auto 1em auto;
-  place-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-auto-rows: minmax(250px, 330px);
+  margin-top: 10em ;
+  min-height: 10vh;
+  padding: 5em 0.5em !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 290px));
   flex-wrap: wrap;
-  gap: 12px;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
+  transform-style: preserve-3d;
 
-  .localmarket_li:nth-of-type(2n) {
-    height: 500px;
-    button {
-      top: 30%;
-    }
-  }
-
-  .localmarket_li {
-    max-width: 450px;
-    transition: 1s;
-    height: 300px;
-    padding-bottom: 10px;
-    position: relative;
-    border-radius: 10px;
-    width: 100%;
-    text-align: center;
-
-    .main_thumb {
-      transition: 0.51s all;
-      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.175);
-      max-width: 300px;
-      margin-top: 10px;
-      max-height: 300px;
-      border-radius: 10px;
-      height: 100%;
-      width: 100%;
-    }
-
-    .main_thumb_title {
-      transition: 0.5s all;
-      position: absolute;
-      top: 1.5em;
-      max-width: 230px;
-
-      visibility: hidden;
-      opacity: 0;
-      color: white;
-      font-size: 1.1em;
-      padding: 8px;
-      left: 50%;
-      transform: translate(-50%);
-      width: 100%;
-      text-shadow: 1px 1px 2px black;
-    }
-
-    .main_thumb_title:hover {
-      color: gold;
-    }
-
-    button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: 0.5s all;
-      border: none;
-      transform: translate(-50%, -50%) scale(0);
-      left: 50%;
-      top: 50%;
-      font-size: 1.25em;
-      position: absolute;
-      visibility: hidden;
-      font-weight: bold;
-      opacity: 0;
-      color: white;
-      background: none;
-      transform-origin: 50% 50%;
-
-      span {
-        display: inline-block;
-        padding: 5px 0;
-        font-size: 2em;
-      }
-    }
-
-    button:hover {
-      color: gold;
-    }
-
-    animation: appear 1s 1 ease-in-out;
-  }
-
-  .localmarket_li:hover>.main_thumb {
-    filter: grayscale(5) brightness(60%);
-  }
-
-  .localmarket_li:hover>button {
-    visibility: visible;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  .localmarket_li:hover>.main_thumb_title {
-    visibility: visible;
-    opacity: 1;
+  
+  .localmarket_list_title {
+    position: absolute;
+    background-color: #1a4e85;
+    color: white;
+    font-size: 1.15em;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0 0 8px 0;
+    display: inline-block;
+    top: -1.05em;
+    left: 0.5em;
   }
 }
 
@@ -139,20 +60,11 @@
 }
 
 
-
-
 /* 페이지 경로 가이드 메시지 */
 .page_path_guide_message {
   top: 23em;
   right: 9px;
 }
-
-
-
-
-
-
-
 
 
 @keyframes appear {
@@ -163,35 +75,7 @@
   }
 }
 
-// 미디어 쿼리
-@media screen and (max-width:1135px) {
-  .localmarket_li:nth-of-type(2n+1) {
-    height: 500px;
-    button {
-      top: 30%;
-    }
-  }
 
-}
-
-@media screen and (max-width:845px) {
-  .localmarket_li:nth-of-type(2n-1) {
-    height: 300px;
-    button {
-      top: 50%;
-    }
-  }
-
-}
-
-@media screen and (max-width:600px) {
-  .localmarket_li:nth-of-type(2n+1) {
-    height: 500px;
-    button {
-      top: 30%;
-    }
-  }
-}
 
 
 

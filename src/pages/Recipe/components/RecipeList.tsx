@@ -10,6 +10,7 @@ import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
 import type { RecipeType } from '@/types/Recipe.types';
 
 import { toast } from 'react-toastify';
+import LoadViewCountModal from '@/components/LoadViewCountModal';
 
 
 interface ResultType {
@@ -77,7 +78,7 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
         ))
         : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.</p>}
       </div>
-      <RecipeMessage recipes={recipes} visibleRecipes={visibleRecipes} />
+      <LoadViewCountModal currentProductCount={visibleRecipes.length} totalProductCount={recipes.length}/>
       <ObserverSpinner ref={observerRef}>  </ObserverSpinner>
     </>
   );

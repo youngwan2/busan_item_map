@@ -1,6 +1,7 @@
 import { HiSearchCircle } from 'react-icons/hi';
 import styles from '../LocalMarket.module.scss';
 import { useNavigate } from 'react-router-dom';
+import LocalCard from '@/components/LocalCard';
 
 interface PropsType {
   localmarkets: {
@@ -28,30 +29,17 @@ const LocalMarketList = ({ localmarkets }: PropsType) => {
     navigate('/localmarket/' + id);
   }
 
-  if (!localmarkets) return <></>;
+  if (localmarkets.length < 1)
+    return     <ul className={styles.localmarket_list_container} id="localmarket-ul">
+    <h2 className={styles.localmarket_list_title}>향토시장 목록</h2>
+      <li>조회된 목록이 존재하지 않습니다.</li></ul>
   return (
-    <ul className={styles.localmarket_ul} id="localmarket-ul">
+    <ul className={styles.localmarket_list_container} id="localmarket-ul">
+      <h2 className={styles.localmarket_list_title}>향토시장 목록</h2>
       {localmarkets.map((localmarket) => {
         const { local_market_id, main_thumb_url, title } = localmarket;
         return (
-          <li className={styles.localmarket_li} key={local_market_id}>
-            <img
-              className={styles.main_thumb}
-              src={main_thumb_url || '/not-image.png'}
-              width={250}
-              height={250}
-            ></img>
-            <p className={styles.main_thumb_title}>{title}</p>
-            <button
-              onClick={() => onClickPageChange(local_market_id)}
-              aria-label="세부 페이지 이동 버튼"
-            >
-              <span>
-                <HiSearchCircle />
-              </span>
-              더보기
-            </button>
-          </li>
+          <LocalCard onClick={()=> onClickPageChange(local_market_id)} id={local_market_id} thnumUrl={main_thumb_url} title={title}/>
         );
       })}
     </ul>

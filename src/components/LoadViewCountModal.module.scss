@@ -1,0 +1,53 @@
+
+/* 안내 메시지 */
+
+.message_container {
+    position: fixed;
+    top: 5rem;
+    transition: 1s;
+    z-index: 10;
+    max-width: 240px;
+    right: 2rem;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px 5px 10px 35px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.452);
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    flex-direction: column;
+  
+    button {
+      color: white;
+      padding: 2px 5px;
+      transition: 1s;
+      font-size: 14px;
+      background-color: rgb(26, 78, 133);
+      border-radius: 5px;
+      left: 8px;
+      top: 26%;
+      transform: translate(0, -50%);
+      border: none;
+      position: absolute;
+    }
+  
+    .message {
+      transition: 0.8s;
+      padding: 0 ; 
+      min-width: 180px;
+      font-size: 13px;
+    }
+  }
+  
+  .message_container::before {
+    content: '';
+    position: absolute;
+    right: -13px;
+    top: 5px;
+    filter: drop-shadow(10px 0 10px black);
+    border-left: 15px solid rgb(255, 255, 255);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }

@@ -1,3 +1,5 @@
+import { KoreanProvincesType } from "./types/Local.types";
+
 export interface HaccpProductCategoryType {
   name: string;
 }
@@ -50,3 +52,27 @@ export const recipeCategories:RecipeCategoryType[] = [
   { id: 6, name: '기타' },
   { id: 7, name:''}
 ]
+
+// 지역 카테고리
+export const koreanProvinces:KoreanProvincesType[] = [
+  { id: 0, name: ''},
+  { id: 1, name: '서울' },
+  { id: 2, name: '부산' },
+  { id: 3, name: '대구' },
+  { id: 4, name: '인천' },
+  { id: 5, name: '광주' },
+  { id: 6, name: '대전' },
+  { id: 7, name: '울산' },
+  { id: 8, name: '세종' },
+  { id: 9, name: '경기도' },
+  { id: 10, name: '강원도' },
+  { id: 11, name: '충북,충청북도' },
+  { id: 12, name: '충남,충청남도' },
+  { id: 13, name: '전북,전라북도' },
+  { id: 14, name: '전남,전라남도' },
+  { id: 15, name: '경북,경상북도' },
+  { id: 16, name: '경남,경상남도' },
+  { id: 17, name: '제주' },
+
+];
+

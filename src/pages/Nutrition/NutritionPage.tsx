@@ -7,11 +7,12 @@ import useDefaultQuery from '../../hooks/useDefaultQuery';
 import NutritionSearchForm from './components/NutritionSearchForm';
 import NutritionPagination from './components/NutritionPagination';
 import NutritionProductList from './components/NutritionProductList';
-import GuideMessage from '../../components/Common/GuideMessage';
+import GuideMessage from '../../components/GuideMessage';
 
 import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 
 import { toast } from 'react-toastify';
+import LoadViewCountModal from '@/components/LoadViewCountModal';
 
 
 const MIN_VIEW_COUNT = 20;
@@ -74,6 +75,7 @@ const Nutrition = () => {
         totalCount={totalCount}
       />
       <NutritionSearchForm action={searchAction} onSearch={onSearch} />
+      <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
       {!hasProducts? <NutritionProductList products={products} />: <p>조회된 목록이 없습니다.</p>}
       <NutritionPagination totalPage={totalPage} />
     </section>

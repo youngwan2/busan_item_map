@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Orbit', sans-serif !important;
+  overflow-x: hidden;
 }
 
 code {
@@ -16,6 +17,7 @@ ul {
 
 main {
   background-color: rgba(242, 242, 242, 0.16);
+  
 }
 
 li {
