@@ -7,9 +7,9 @@ import useDefaultQuery from '@/hooks/useDefaultQuery';
 import PageError from '@/components/Errors/PageError';
 import GuideMessage from '@/components/Common/GuideMessage';
 import BackMove from '@/components/Common/BackMove';
-import ReactSpinner from '@/components/UI/ReactSpinner';
 
 import Maps from '@/components/Common/Map/Maps';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
@@ -18,10 +18,12 @@ export default function LocalMarketDetailPage() {
     data: localMarket,
     isError,
     isPending,
+    isFetching,
     error,
   } = useDefaultQuery(['localmarket', id], '/localmarkets/' + id) as {
     data: any;
     isError: boolean;
+    isFetching:boolean;
     isPending: boolean;
     error: Error | null;
   };
@@ -43,7 +45,7 @@ export default function LocalMarketDetailPage() {
   } = localMarket || REPLACE_VALUE
 
   
-  if (isPending) return <ReactSpinner />;
+  if (isPending || isFetching) return <LoadingSpinner/>;
   if (isError) return <PageError error={error?.message} />;
 
   return (

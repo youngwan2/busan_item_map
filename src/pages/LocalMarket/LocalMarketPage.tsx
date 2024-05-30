@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import styles from './LocalMarket.module.scss';
-import ReactSpinner from '../../components/UI/ReactSpinner';
 import GuideMessage from '../../components/Common/GuideMessage';
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import useIntersection from '../../hooks/useIntersection';
 import LocalMarketList from './components/LocalMarketList';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
 
 const LocalMarketPage = () => {
   useEffect(() => {
@@ -37,7 +37,7 @@ const LocalMarketPage = () => {
   }, [isEnd]);
 
   if (!items && isFetching) {
-    return <ReactSpinner />;
+    return <LoadingSpinner />;
   }
   return (
     <section className={styles.Localmarket}>

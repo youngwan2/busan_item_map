@@ -1,12 +1,13 @@
 // 헤더 전용 테마
-.theme.Header:is(h1, .menu_wrapper span) {
-  color: black !important
+.active.Header:is(h1, .menu_wrapper span) {
+  color: black !important;
 }
 
-.theme.Header{
-  background-color: rgb(83, 83, 255);
+.active.Header {
+  background-color: #1a4e85bc;
+  padding: 5px;
+  align-items: center;
 }
-
 
 .Header {
   display: flex;
@@ -15,33 +16,31 @@
   backdrop-filter: blur(3px);
   background-color: transparent;
   position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   top: 0;
   width: 100%;
   z-index: 1000000000;
-  padding: 0 10px;
 
   // 로고
   h1 {
     font-size: 1.35em;
-    margin-left: 1em;
+    margin: 0 0 0 0.5em;
     color: white;
     cursor: pointer;
   }
-
 }
-
 
 .menu_icon {
   display: none;
   z-index: 1000000;
-
 }
 
 // 메뉴
 .nav {
   .menu_wrapper_con {
     display: flex;
-    
+    margin: 0;
 
     .menu_wrapper {
       padding: 0 3em 0 1em;
@@ -50,10 +49,9 @@
       // 네비 이름
       span {
         display: inline-block;
+        padding: 5px 0;
         position: relative;
-        transition: 0.5;
         color: white;
-        padding: 15px 0 7px 0;
 
         font-size: 1.15em;
       }
@@ -69,10 +67,9 @@
         transform: scaleX(0);
       }
 
-      // 드롭다운 전 
+      // 드롭다운 전
       .menu_ul {
         transition: 0.2s;
-        top: 3.4em;
         position: absolute;
         visibility: hidden;
         opacity: 0;
@@ -116,19 +113,19 @@
         transform-origin: right center;
         transform: scaleX(1);
         width: 100%;
-
       }
 
       .menu_ul {
         visibility: visible;
         opacity: 1;
+        margin-top: 0.55em;
         transform: scaleY(1);
 
         li:hover {
-          box-shadow: inset 700px 0 0 0 rgb(70, 70, 245);
+          box-shadow: inset 700px 0 0 0 #164f8b;
 
           a {
-            color: white
+            color: white;
           }
         }
       }
@@ -136,111 +133,78 @@
   }
 }
 
-
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 1240px) {
   .Header {
     padding: 5px 0;
     h1 {
       font-size: 1.25em;
     }
-  }
-
-  .menu_icon {
-    display: block;
-    position: absolute;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5em;
-    bottom: 9.5px;
-    right: 5px;
-  }
-
-  .open_menu.menu_icon {
-    color: black
-  }
-
-  .open_menu.menu_icon:hover {
-    color: blue
-  }
-
-  .nav::before {
-    content: "메뉴";
-    font-size: 1.25em;
-  }
-
-  .nav {
-    padding: 5px;
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100vh;
-
-    :is(li, a) {
-      font-size: 0.95em;
+    .menu_icon {
+      display: block;
+      position: absolute;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      top: 5px;
+      right: 0.4em;
     }
 
-    .menu_wrapper_con {
-      display: flex;
-      margin-top: 2em;
+    .open_menu.menu_icon {
+      color: black;
+    }
+
+    .open_menu.menu_icon:hover {
+      color: blue;
+    }
+
+// 활성화된 메뉴
+    .nav {
+      background: #1A4E85;
+      max-width: 400px;
       text-align: center;
-      flex-direction: column;
-      justify-content: center;
-      border-radius: 5px;
-      background-color: rgb(66, 79, 250);
+      width: 100%;
+      border-radius: 2px;
+      right: 9%;
+      padding:3px;
+      top: 5em;
+      position: fixed;
+      transition: 1s;
+      transform: translateX(300px);
+      visibility: hidden;
+      opacity: 0;
+           
+      .menu_wrapper_con {
+        flex-direction: column;
+        box-shadow: 0 0 0 5000px #1d467246 ;
 
-      .menu_wrapper {
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 auto;
-        width: 60%;
+        .menu_wrapper {
+          padding: 0;
 
-        .menu_ul {
-          width: 100%;
-          margin-top: 2em;
-
-          li {
-
-            background-color: rgb(255, 255, 255);
-            border-radius: 0 !important;
-          }
-        }
-      }
-
-      .menu_wrapper:hover {
-        border-radius: 10px;
-
-        .menu_ul {
-          position: relative;
-          top: -1.5em;
-        }
-
-        .menu_ul:hover {
-          li {
-            box-shadow: none;
-
-            a {
-              color: black;
+          .menu_ul{
+            position: relative;
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+            li {
+              transition: 0.5s;
+              
+              border-radius: 0;
+              background: white;
             }
-
-            a:hover {
-              font-weight: 700;
-              color: black;
+            li:hover{
+              box-shadow:inset 0 -100px 0 0 #6697D6;
             }
           }
+
         }
       }
     }
-  }
+    .active.nav {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
 
-  .menu_wrapper {
-    padding: 0 !important;
-    position: relative;
+    }
   }
-
 }

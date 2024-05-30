@@ -108,7 +108,7 @@
   margin: 0 auto;
   padding-top: 4em;
   border-radius: 5px;
-  min-height: 50vh;
+  min-height: 80vh;
   column-gap: 10px;
   gap: 5px;
   grid-template-columns: repeat(auto-fill, minmax(295px, 302px));
@@ -118,6 +118,7 @@
     position: absolute;
     background-color: #1a4e85;
     color: white;
+    font-size: 1.15em;
     border-radius: 5px;
     padding: 5px;
     margin: 0 0 8px 0;
@@ -246,11 +247,20 @@
   border-bottom: 10px solid transparent;
 }
 
-// @media screen and (max-width: 1316px) {
-//   .recipe_list_container {
-//     justify-content: center;
-//   }
-// }
+
+.replace_message{
+  position: absolute;
+  left: 50%;
+  padding-top: 2em;
+  transform: translate(-50%);
+}
+
+
+
+
+
+
+
 
 @media screen and (max-width: 1398px) {
   .recipe_list_container {
