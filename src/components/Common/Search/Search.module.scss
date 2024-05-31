@@ -1,7 +1,9 @@
 /* 검색창 */
 .search_container {
   width: 100%;
-  margin: 8rem 0 1rem 0;
+  max-width: 1240px;
+  box-sizing: border-box;
+  margin: 15rem 0 1rem 0;
   padding: 30px 15px 25px;
   border-radius: 5px;
   border: 1px solid rgb(195, 193, 193);
@@ -50,7 +52,7 @@
   color: white;
   padding: 11px 15px;
   border: none;
-  background-color: rgb(68, 124, 184);
+  background-color: rgb(53, 106, 162);
 }
 
 .search_btn:hover {

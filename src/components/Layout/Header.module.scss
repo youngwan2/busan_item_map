@@ -1,38 +1,56 @@
 // 헤더 전용 테마
 .active.Header:is(h1, .menu_wrapper span) {
-  color: black !important;
+  color: black;
 }
 
 .active.Header {
-  background-color: #1a4e85bc;
-  padding: 5px;
+  padding: 5px 1em;
   align-items: center;
 }
 
 .Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(3px);
-  background-color: transparent;
+  backdrop-filter: blur(8px);
   position: absolute;
   left: 50%;
+  background:#164f8bdc;
   transform: translate(-50%);
   top: 0;
+  border-bottom: 5px solid rgba(255, 255, 255, 0.096);
   width: 100%;
   z-index: 1000000000;
+  padding: 5px;
+
+  .header_inner_bondary {
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
 
   // 로고
   h1 {
-    font-size: 1.35em;
     margin: 0 0 0 0.5em;
-    color: white;
+  
+    
     cursor: pointer;
+    a {
+      font-size: 1.45em;
+      letter-spacing: 2px;
+      text-decoration: none;
+      font-family: sans-serif;
+      color:white;
+      text-shadow: 1px 1px 1px black;
+      background-clip: text;
+    -webkit-background-clip: text;
+    }
   }
 }
 
 .menu_icon {
   display: none;
+  color: white !important;
   z-index: 1000000;
 }
 
@@ -43,7 +61,7 @@
     margin: 0;
 
     .menu_wrapper {
-      padding: 0 3em 0 1em;
+      padding: 0 1em 0 1em;
       position: relative;
 
       // 네비 이름
@@ -118,6 +136,7 @@
       .menu_ul {
         visibility: visible;
         opacity: 1;
+        width: 160px;
         margin-top: 0.55em;
         transform: scaleY(1);
 
@@ -135,68 +154,66 @@
 
 @media screen and (max-width: 1240px) {
   .Header {
-    padding: 5px 0;
-    h1 {
-      font-size: 1.25em;
-    }
+    padding: 5px;
     .menu_icon {
+      cursor: pointer;
       display: block;
       position: absolute;
       background: none;
       border: none;
-      color: white;
       font-size: 1.5em;
       top: 5px;
       right: 0.4em;
+    }
+
+    .menu_icon:hover {
+      color: rgb(234, 232, 232) !important;
     }
 
     .open_menu.menu_icon {
       color: black;
     }
 
-    .open_menu.menu_icon:hover {
-      color: blue;
-    }
-
-// 활성화된 메뉴
+    // 활성화된 메뉴
     .nav {
-      background: #1A4E85;
+      background: #1a4e85;
       max-width: 400px;
       text-align: center;
       width: 100%;
       border-radius: 2px;
       right: 9%;
-      padding:3px;
+      padding: 3px;
       top: 5em;
       position: fixed;
-      transition: 1s;
-      transform: translateX(500px);
+      transition: 0.5s;
+      transform-origin: 100% 0%;
+      transform: translate(40px, -60px) scale(0);
       visibility: hidden;
       opacity: 0;
-           
+
       .menu_wrapper_con {
         flex-direction: column;
-        box-shadow: 0 0 0 5000px #1d467246 ;
+        box-shadow: 0 0 0 5000px #1d467246;
 
         .menu_wrapper {
           padding: 0;
 
-          .menu_ul{
+          .menu_ul {
             position: relative;
             visibility: visible;
+            width: 100%;
             opacity: 1;
             transform: scale(1);
             li {
               transition: 0.5s;
-              
+
               border-radius: 0;
               background: white;
             }
-            li:hover{
-              box-shadow:inset 0 -100px 0 0 #6697D6;
+            li:hover {
+              box-shadow: inset 0 -100px 0 0 #6697d6;
             }
           }
-
         }
       }
     }
@@ -204,7 +221,6 @@
       visibility: visible;
       opacity: 1;
       transform: translateX(0);
-
     }
   }
 }

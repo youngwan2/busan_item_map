@@ -69,11 +69,11 @@ export default function RecipePage() {
 
   }
 
-  
+
   /** 검색어 반환 */
   function getSearchValue(input: HTMLInputElement) {
     if (!(input instanceof HTMLInputElement)) return
-    if(input.value.length<=1) return false
+    if (input.value.length <= 1) return false
     const searchProduct = input.value
     return searchProduct
   }
@@ -83,7 +83,7 @@ export default function RecipePage() {
     e.preventDefault()
     const input = e.currentTarget.childNodes[1] as HTMLInputElement
     const productName = getSearchValue(input) || ''
-    if(!productName) return toast.error('2자 이상은 입력해주세요.')
+    if (!productName) return toast.error('2자 이상은 입력해주세요.')
     const { totalCount, recipes } = await getFetchRecipeData(productName)
 
     setProductName(productName)
@@ -95,7 +95,7 @@ export default function RecipePage() {
   async function onSearch(e: MouseEvent<HTMLButtonElement>) {
     const input = e.currentTarget.previousElementSibling as HTMLInputElement
     const productName = getSearchValue(input) || ''
-    if(!productName) return toast.error('2자 이상은 입력해주세요.')
+    if (!productName) return toast.error('2자 이상은 입력해주세요.')
     const { totalCount, recipes } = await getFetchRecipeData(productName)
 
     setProductName(productName)
@@ -110,7 +110,7 @@ export default function RecipePage() {
 
   }
   useEffect(() => {
-    if(recipeInfo.recipes.length<1) updateRecipeData()
+    if (recipeInfo.recipes.length < 1) updateRecipeData()
   }, [])
 
 
@@ -118,20 +118,22 @@ export default function RecipePage() {
   return (
     <section className={styles.recipe_page_container} ref={sectionRef}>
       <h2 className={styles.page_title}>음식 레시피</h2>
-      <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
-      <RecipeSearchForm action={searchAction} onSearch={onSearch} />
-      <Message>
-        {
-          <>
-            <HiInformationCircle />
-            <p><mark>검색</mark>과 <mark>분류</mark>는 따로 동작 합니다.</p>
-          </>
-        }
-      </Message>
+      <div className={styles.recipe_page_inner_boundary}>
+        <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
+        <RecipeSearchForm action={searchAction} onSearch={onSearch} />
+        <Message>
+          {
+            <>
+              <HiInformationCircle />
+              <p><mark>검색</mark>과 <mark>분류</mark>는 따로 동작 합니다.</p>
+            </>
+          }
+        </Message>
 
-      <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
+        <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
 
-      <RecipeList recipes={recipeInfo.recipes} totalCount={Number(recipeInfo?.totalCount) || 0} category={pickedCategory} searchValue={productName} />
+        <RecipeList recipes={recipeInfo.recipes} totalCount={Number(recipeInfo?.totalCount) || 0} category={pickedCategory} searchValue={productName} />
+      </div>
     </section>
   );
 }

@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Orbit&display=swap');
 
-.Haccp {
+.haccp_page_container {
   min-height: 150vh;
-  max-width: 1240px;
   width: 100%;
-  position: relative;
-  margin: 0 auto;
+
+  .haccp_page_inner_bounday {
+    max-width: 1240px;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 .haccp_inner_container {
@@ -19,7 +23,7 @@
 }
 
 /* 페이지 타이틀 */
-.Haccp .haccp_page_title {
+.haccp_page_container .haccp_page_title {
   text-align: center;
   font-family: 'Orbit', sans-serif;
   background-color: black;
@@ -30,7 +34,8 @@
   margin: 0 0 3rem 0 !important;
   padding-top: 5rem;
   color: white;
-  background-position: right;
+  background-size: cover;
+  background-position: center;
   background: url('/assets/haccpback.png');
 
   p {
@@ -42,9 +47,8 @@
 
 /* 잠깐 알고가기! */
 .message {
-  line-height: 1.7;
+  
   padding: 1.5em 0;
-  font-size: calc(15px);
   margin: 0rem auto;
   position: relative;
 
@@ -58,12 +62,12 @@
     margin: 0 0 8px 0;
     display: inline-block;
     left: 0.5em;
-
   }
   p {
     border-radius: 5px;
+    line-height: 1.7;
     border: 1px solid rgb(195, 193, 193);
-    padding: 1em;
+    padding: 1.25em 1em 1em 1em;
   }
 }
 
@@ -92,12 +96,12 @@
     display: inline-block;
     left: 0.5em;
     top: -1em;
-
   }
 
   // 상품 카드
   .haccp_card_container {
     position: relative;
+    border: none;
     transition: 0.5s;
     background-color: rgb(202, 197, 197);
     height: 280px;
@@ -109,8 +113,9 @@
     .haccp_card_img {
       z-index: 2;
       border-radius: 1px;
+      transition: 0.5s;
       position: relative;
-      transform: translateY(-50px);
+      transform: translateY(-50px) perspective(600px);
       width: 85%;
       box-shadow:
         0 0 0 15px rgba(255, 255, 255, 1),
@@ -122,7 +127,7 @@
     .haccp_card_content {
       transition: 0.5s;
       position: absolute;
-      top: 0;
+      display: none;
       opacity: 0;
       z-index: -1;
       width: 96.5%;
@@ -134,12 +139,13 @@
       vertical-align: middle;
       padding-top: 10px;
       text-align: start;
+      animation: opencard 0.8s 1 ease-in-out forwards;
       span {
         width: 70px;
         display: inline-block;
         background-color: #cac5c5;
         border-radius: 5px;
-        margin: 3px 5px;
+        margin: 5px 5px;
         padding: 0 10px;
       }
       .product_name {
@@ -151,24 +157,61 @@
     }
   }
   // 카드 호버
-  .haccp_card_container:hover {
+  .haccp_card_container:focus {
     z-index: 100;
-    height: 570px;
-    transform: translateY(-80px);
+    transform: scale(1.05);
+
+    .haccp_card_img {
+      transform: translateY(0) translateX(-20px) translateZ(-100px) perspective(600px) rotateY(-20deg) scale(0.85) ;
+      opacity: 085;
+    }
     .haccp_card_content {
+      display: block;
       background-color: white;
       opacity: 1;
-      z-index: 1;
-      top: 40%;
+      z-index: 1000;
+      top: 50%;
     }
   }
 }
 
 /* 페이지 경로 가이드 메시지 */
 .page_path_guide_message {
-  top: 25em;
-  right: 9px;
+  top: -7em;
+  right: 0;
+  a {
+    color: black;
+  }
 }
+
+
+
+@keyframes opencard {
+  0% {
+    scale: 0.7;
+    opacity: 0;
+    top: 0%;
+    left: 0;
+    z-index: -1;
+  }
+  50%, 80% {
+    opacity: 1;
+    left: 90%;
+    z-index: 1;
+  }
+  100% {
+    top: 0%;
+    left: -5%;
+    z-index: 100;
+  }
+}
+
+
+
+
+
+
+
 
 
 // 미디어 쿼리

@@ -55,10 +55,12 @@ const LocalFoodPage = () => {
   }, []);
 
   return (
-    <section className={styles.Localfood}>
+    <section className={styles.localfood_page_container}>
       <h2 className={styles.page_title}>
         <p>향토음식이야기</p>
       </h2>
+
+      <div className={styles.localfood_page_inner_bundary}>
       <GuideMessage
         stylesClassName={styles.page_path_guide_message}
         path="/localfood"
@@ -80,6 +82,7 @@ const LocalFoodPage = () => {
               : null
         }
       </ObserverSpinner>
+      </div>
     </section>
   );
 };
