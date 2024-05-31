@@ -39,8 +39,11 @@ const LocalMarketPage = () => {
     toast.info('모든 목록을 조회하였습니다.')
   }
 
+  console.log(totalCount, items.length)
+
   useEffect(() => {
-    if (!hasNextPage && VIEW_COUNT < totalCount && isEnd && totalCount === items.length) return loadAlert()
+    if(VIEW_COUNT> totalCount) return 
+    if (!hasNextPage && VIEW_COUNT > totalCount && isEnd && totalCount === items.length) return loadAlert()
     else nextPageHanlder(isEnd);
 
   }, [isEnd]);

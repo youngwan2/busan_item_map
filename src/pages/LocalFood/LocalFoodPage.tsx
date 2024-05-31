@@ -44,7 +44,8 @@ const LocalFoodPage = () => {
   }
 
   useEffect(() => {
-    if (!hasNextPage && VIEW_COUNT<totalCount&& isEnd && totalCount === items.length) return loadAlert()
+    if(VIEW_COUNT>totalCount) return 
+    if (!hasNextPage && isEnd && totalCount === items.length) return loadAlert()
     else nextPageHanlder(isEnd);
 
   }, [isEnd]);
