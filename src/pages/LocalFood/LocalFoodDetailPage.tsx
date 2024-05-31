@@ -46,11 +46,11 @@ export default function LocalFoodDetailPage() {
   if (isError) return <PageError error={error?.message} />;
 
   return (
-    <section className={styles.LocalFood_Detail}>
+    <section className={styles.localfood_detail_page_container}>
       <BackMove />
       <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localfood" subPath='' mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
       {/* 좌측 컨텐츠 */}
-      <article className={styles.left_content}>
+      <div className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}</h3>
         <h2 className={styles.title}>{title}</h2>
         <img
@@ -59,9 +59,9 @@ export default function LocalFoodDetailPage() {
           alt="썸네일 이미지"
         />
         <p className={styles.sumary}>{content}</p>
-      </article>
+      </div>
       {/* 우측 컨텐츠 */}
-      <article className={styles.right_content}>
+      <div className={styles.right_content}>
         <div>
           <h3>콘텐츠 바로가기</h3>
           <a href={content_url}>{content_url}</a>
@@ -94,7 +94,7 @@ export default function LocalFoodDetailPage() {
           <h3>지방문화원</h3>
           <span>{lcc_address || '조회된 데이터가 없습니다.'}</span>
         </div>
-      </article>
+      </div>
     </section>
   );
 }
