@@ -49,11 +49,11 @@ export default function LocalMarketDetailPage() {
   if (isError) return <PageError error={error?.message} />;
 
   return (
-    <section className={styles.LocalMarket_Detail}>
+    <section className={styles.localmarket_detail_page_container}>
       <BackMove/>
       <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localmarket" subPath='' mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
       {/* 좌측 컨텐츠 */}
-      <article className={styles.left_content}>
+      <div className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}{'>' + middle_title}</h3>
         <h2 className={styles.title}>{title}</h2>
         <img
@@ -61,10 +61,10 @@ export default function LocalMarketDetailPage() {
           src={main_thumb_url || '/not-image.png'}
           alt="썸네일 이미지"
         />
-        <p className={styles.sumary}>{content}</p>
-      </article>
+        <p className={styles.sumary}>{content.replaceAll(/&nbsp;/g,'').replaceAll('?','')}</p>
+      </div>
       {/* 우측 컨텐츠 */}
-      <article className={styles.right_content}>
+      <div className={styles.right_content}>
         <div>
           <h3>콘텐츠 바로가기</h3>
           <a target='_blank' href={content_url}>{content_url}</a>
@@ -95,7 +95,7 @@ export default function LocalMarketDetailPage() {
           <span>{lcc_address || '조회된 데이터가 없습니다.'}</span>
           <Maps defaultCenter={{lat:la, lng:lo}} address={lcc_address} />
         </div>
-      </article>
+      </div>
     </section>
   );
 }

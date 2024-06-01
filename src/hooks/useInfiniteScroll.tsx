@@ -23,7 +23,6 @@ export const useInfiniteScroll = (url: string, ...key: string[]) => {
     },
   });
 
-
   const items = data?.pages.map((pageData) => {
     return pageData.items;
   });

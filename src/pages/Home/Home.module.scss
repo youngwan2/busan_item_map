@@ -1,3 +1,300 @@
-.home {
+@font-face {
+  font-family: 'TTHakgyoansimJiugaeR';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimJiugaeR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container {
   width: 100%;
+  overflow-y: hidden;
+}
+.section {
+  font-family: sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  background: #222;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+// 기능 카드
+
+.feature_list_container {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.feature_card {
+  --y: -9.5%;
+  transition: 1s;
+  border-radius: 20px;
+  padding: 30px;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  max-height: 560px;
+  max-width: 768px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
+
+  h2 {
+    padding-top: 1em;
+    color: #303030;
+    letter-spacing: 2px;
+    font-size: 1.35em;
+    font-family: 'TTHakgyoansimJiugaeR';
+  }
+  p {
+    padding: 0.5em 0 1em 0;
+    border-bottom: 1px solid rgb(194, 193, 193);
+  }
+
+  a {
+    margin-top: 1em;
+    display: inline-block;
+    color: black;
+    border: 1px solid rgb(93, 91, 91);
+    padding: 3px;
+  }
+
+  a:hover {
+    background: rgb(246, 246, 246);
+  }
+
+  .img_wrapper {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    img {
+      box-shadow: 0 0 0 1px rgb(235, 232, 232);
+      max-width: 768px;
+      height: 400px;
+      width: 100%;
+      animation: sizeupdown 5s infinite linear alternate;
+    }
+  }
+
+  .img_wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    z-index: 100;
+    height: 100%;
+    animation: sizeupdown 5s infinite linear alternate;
+    background: rgba(36, 36, 36, 0.223);
+  }
+
+
+}
+
+.feature_card:nth-of-type(1),.feature_card:nth-of-type(2) {
+  z-index: 2;
+  box-shadow: inset -3px -3px 5px rgb(178, 176, 176), inset 1px 1px 5px gray;
+}
+
+.feature_card:nth-of-type(3) {
+  top: -9em;
+  z-index: 3;
+  opacity: 0.95;
+  transform: translate(-79%, var(--y)) scale(0.22) scaleY(0.7);
+}
+
+.feature_card:nth-of-type(4) {
+  top: -9em;
+  z-index: 1;
+  opacity: 0.7;
+  transform: translate(-50.5%, var(--y)) scale(0.2)  scaleY(0.7);
+}
+.feature_card:nth-of-type(5) {
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 0;
+}
+
+// .feature_card:nth-of-type(5) {
+//   z-index: 0;
+//   opacity: 0.3;
+//   top: -9em;
+//   transform: translate(-18%, var(--y)) scale(0.15);
+// }
+
+.home_feature_card_control_button_container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%);
+  bottom: 4%;
+  .home_feature_card_control_button {
+    font-size: 1.5em;
+    cursor: pointer;
+    display: flex;
+    width: 25px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    padding: 1px;
+    margin: 0 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  .home_feature_card_control_button:active{
+    background: rgb(218, 216, 216);
+    
+  }
+}
+
+
+// 배경 비디오
+
+.background_video {
+  position: absolute;
+  top:0;
+  z-index: 0;
+  left:0;
+  width: 100%;
+  object-fit: cover;
+  min-height: 100%;
+  height:500px;
+
+}
+
+.video_overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter:  grayscale(10%) brightness(40%); 
+}
+
+
+// 키 프레임
+@keyframes sizeupdown 
+{
+ 0%{
+  transform: scale(1.05);
+  backdrop-filter: blur(5px);
+ }  
+}
+
+// 미디어 쿼리
+@media screen and (max-width:768px) {
+
+  .feature_card {
+    h2 {
+      padding-top: 1em;
+      color: #303030;
+      letter-spacing: 2px;
+      font-size: 1.15em;
+      font-family: 'TTHakgyoansimJiugaeR';
+    }
+    p {
+      padding: 0.20em 0 1em 0;
+      border-bottom: 1px solid rgb(194, 193, 193);
+    }
+  
+    a {
+      margin-top: 1em;
+      display: inline-block;
+      color: black;
+      border: 1px solid rgb(93, 91, 91);
+      padding: 3px;
+    }
+  
+    a:hover {
+      background: rgb(246, 246, 246);
+    }
+  
+    .img_wrapper {
+      width: 100%;
+      text-align: center;
+    }
+  
+    img {
+      box-shadow: 0 0 0 1px rgb(235, 232, 232);
+      max-width: 768px;
+      height: 400px;
+      width: 100%;
+    }
+  }
+  
+  .feature_card:nth-of-type(1),.feature_card:nth-of-type(2) {
+    z-index: 2;
+    box-shadow: inset -3px -3px 5px rgb(178, 176, 176), inset 1px 1px 5px gray;
+  }
+  
+  .feature_card:nth-of-type(3) {
+    top: -9em;
+    z-index: 3;
+    opacity: 0.95;
+    transform: translate(-79%, var(--y)) scale(0.22) scaleY(0.7);
+  }
+  
+  .feature_card:nth-of-type(4) {
+    top: -9em;
+    z-index: 1;
+    opacity: 0.7;
+    transform: translate(-50.5%, var(--y)) scale(0.2)  scaleY(0.7);
+  }
+  .feature_card:nth-of-type(5) {
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 0;
+  }
+  
+  // .feature_card:nth-of-type(5) {
+  //   z-index: 0;
+  //   opacity: 0.3;
+  //   top: -9em;
+  //   transform: translate(-18%, var(--y)) scale(0.15);
+  // }
+  
+  .home_feature_card_control_button_container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%);
+    bottom: 4%;
+    .home_feature_card_control_button {
+      font-size: 1.5em;
+      cursor: pointer;
+      display: flex;
+      width: 25px;
+      height: 30px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: none;
+      margin: 0 5px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+    .home_feature_card_control_button:active{
+      background: rgb(218, 216, 216);
+    }
+  }
+  
+
+  
 }

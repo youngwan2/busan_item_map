@@ -8,7 +8,7 @@ interface PropsType {
 
 export default function HaccpProductCard({product}:PropsType) {
   return (
-    <figure
+    <button
       className={styles.haccp_card_container}
       key={product.item.prdlstReportNo}
     >
@@ -24,6 +24,6 @@ export default function HaccpProductCard({product}:PropsType) {
           <p><span>판매자</span> {product.item.seller || '알수없음'}</p>
         </div>
       </div>
-    </figure>
+    </button>
   )
 }

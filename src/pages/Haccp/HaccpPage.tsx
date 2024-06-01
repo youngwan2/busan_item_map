@@ -93,45 +93,49 @@ function HaccpPage() {
     }
   }, [isEnd])
 
-  
+
   return (
-    <section className={styles.Haccp} ref={haccpContainerRef}>
+    <section className={styles.haccp_page_container} ref={haccpContainerRef}>
       <h2 className={styles.haccp_page_title}>
         <p>HACCP제품 정보조회</p>
       </h2>
-      <GuideMessage stylesClassName={styles.page_path_guide_message} path='/haccp' subPath='' mainName='조회서비스' subName='HACCP제품조회' />
-      <div className={styles.haccp_inner_container}>
-        {/* 검색창 */}
-        <HaccpSearchForm
-          onSearch={onSearch}
-          searchAction={searchAction}
-          productName={productName}
-        />
-        {/* 잠깐 알고가기 */}
-        <HaccpMessage />
-        {/* 품목 유형 카테고리 */}
-        <HaccpCategoryGrid categoryName={prdkind} onSetPrdkind={onSetPrdkind} />
-        <br />
+      <div className={styles.haccp_page_inner_bounday}>
+        <GuideMessage totalCount={totalCount} stylesClassName={styles.page_path_guide_message} path='/haccp' subPath='' mainName='조회서비스' subName='HACCP제품조회' />
+        
+        <div className={styles.haccp_inner_container}>
+          {/* 검색창 */}
+          <HaccpSearchForm
+            onSearch={onSearch}
+            searchAction={searchAction}
+            productName={productName}
+          />
+          {/* 잠깐 알고가기 */}
+          <HaccpMessage />
+          {/* 품목 유형 카테고리 */}
+          <HaccpCategoryGrid categoryName={prdkind} onSetPrdkind={onSetPrdkind} />
+          <br />
+        </div>
+
+        {/* 검색 결과 보이는 곳 */}
+        <Suspense fallback={<span ref={endPointSpanRef}><ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' /></span>}>
+          <HaccpResult
+            totalCount={totalCount}
+            products={products}
+          />
+        </Suspense>
+
+
+        {/* 스크롤 끝 지점 관찰 겸용 로딩 스피너 */}
+        <ObserverSpinner ref={endPointSpanRef}>
+          {
+            isError
+              ? error.message
+              : isFetching || isPending || isFetchingNextPage
+                ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
+                : null
+          }
+        </ObserverSpinner>
       </div>
-
-      {/* 검색 결과 보이는 곳 */}
-      <Suspense fallback={<span ref={endPointSpanRef}><ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' /></span>}>
-        <HaccpResult
-          totalCount={totalCount}
-          products={products}
-        />
-      </Suspense>
-
-      {/* 스크롤 끝 지점 관찰 겸용 로딩 스피너 */}
-      <ObserverSpinner ref={endPointSpanRef}>
-        {
-          isError
-            ? error.message
-            : isFetching || isPending || isFetchingNextPage
-              ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
-              : null
-        }
-      </ObserverSpinner>
     </section>
   );
 }

@@ -10,7 +10,7 @@ export default function SummaryCard({product}:PropsType) {
 return (
     <div className={styles.product_card}>
     <div className={styles.product_card_content}>
-        <h3> {product.PRODUCT_NAME}</h3>
+        <h3 className={styles.product_card_name}> {product.PRODUCT_NAME}</h3>
     </div>
     <div className={styles.product_card_content}>
         <strong>식별번호</strong>

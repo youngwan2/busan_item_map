@@ -3,7 +3,6 @@ import styles from '../Recipe.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import useIntersection from '@/hooks/useIntersection';
 
-import RecipeMessage from './RecipeMessage';
 import RecipeCard from './RecipeCard';
 import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
 
@@ -76,7 +75,7 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
         ? visibleRecipes.map((recipe) => (
           <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />
         ))
-        : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.</p>}
+        : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.  <br /><br />우측 상단에 검색된 레시피 개수가 보이는 경우에는 아래로 스크롤 하시면 목록이 표시됩니다.</p>}
       </div>
       <LoadViewCountModal currentProductCount={visibleRecipes.length} totalProductCount={recipes.length}/>
       <ObserverSpinner ref={observerRef}>  </ObserverSpinner>

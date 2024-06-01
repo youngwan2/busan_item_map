@@ -76,3 +76,46 @@ export const koreanProvinces:KoreanProvincesType[] = [
 
 ];
 
+//  홈 네비게이션 기능
+export const features = [
+  {  
+      index:0,
+      id: 'local-food',
+      title: '우리 고향 음식과 그 이야기',
+      description: '한국 각 지역의 다양한 향토음식을 소개합니다. 각 지역의 특색 있는 음식에 대한 역사를 확인하세요.',
+      link: '/localfood',
+      imageUrl: '/assets/localfoodback.png'
+  },
+  {
+      index:1,
+      id: 'local-market',
+      title: '지역 역사와 함께 숨쉬는 시장과 그 이야기',
+      description: '전통 시장의 다양한 이야기와 시장에서 만날 수 있는 특별한 음식과 물건들을 소개합니다.',
+      link: '/localmarket',
+      imageUrl: '/assets/slide/market-back.jpg'
+  },
+  {
+      index:2,
+      id: 'haccp',
+      title: 'Haccp가 붙은 제품은 안전합니다.',
+      description: 'Haccp 인증을 받은 제품과 업체를 조회할 수 있습니다. 안전한 먹거리를 확인하세요.',
+      link: '/haccp',
+      imageUrl: '/assets/slide/haccp-back.jpg'
+  },
+  {
+      index:3,
+      id: 'nutrition',
+      title: '우리가 먹은(먹는) 음식의 영양성분를 살펴볼까요?',
+      description: '방대한 식품 영양 데이터베이스를 통해 우리가 먹은 음식의 칼로리 정보를 확인하세요.',
+      link: '/nutrition',
+      imageUrl: '/assets/slide/nutrition-back.jpg'
+  },
+  {
+      index:4,
+      id: 'recipe',
+      title: '간단하게 만들어 먹을 수 있는 요리 없을까?',
+      description: '화려해 보이는 음식부터 단순한 음식까지 간단한 조리법으로 쉽고 편하게 조리해 보세요.',
+      link: '/recipe',
+      imageUrl: '/assets/slide/recipe-back.jpg'
+  }
+];

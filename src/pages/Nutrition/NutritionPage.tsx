@@ -27,9 +27,9 @@ const Nutrition = () => {
   const url = `/nutritions?search=${productName}&page=${page}`;
   const queryKey = ['nutrition', productName, page];
 
-  const { data=[], error, isError } = useDefaultQuery(queryKey, url);
+  const { data = [], error, isError } = useDefaultQuery(queryKey, url);
 
-  const { items:products, totalCount = 0 } = data
+  const { items: products, totalCount = 0 } = data
   const hasProducts = Array.isArray(products) && products.length < 1;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT);
 
@@ -60,24 +60,26 @@ const Nutrition = () => {
     setPage(1)
   }
 
-  if(isError) return <p>{error?.message}</p>
+  if (isError) return <p>{error?.message}</p>
   return (
     <section className={styles.nutrition_page_container}>
       <h2 className={styles.nutrition_page_title}>
         <strong>식품영양정보조회</strong>
       </h2>
-      <GuideMessage
-        stylesClassName={styles.page_path_guide_message}
-        path="/nutrition"
-        subPath=''
-        mainName="조회 서비스"
-        subName={`식품영양정보조회`}
-        totalCount={totalCount}
-      />
-      <NutritionSearchForm action={searchAction} onSearch={onSearch} />
-      <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
-      {!hasProducts? <NutritionProductList products={products} />: <p>조회된 목록이 없습니다.</p>}
-      <NutritionPagination totalPage={totalPage} />
+      <div className={styles.nutrition_page_inner_boundary}>
+        <GuideMessage
+          stylesClassName={styles.page_path_guide_message}
+          path="/nutrition"
+          subPath=''
+          mainName="조회 서비스"
+          subName={`식품영양정보조회`}
+          totalCount={totalCount}
+        />
+        <NutritionSearchForm action={searchAction} onSearch={onSearch} />
+        <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
+        {!hasProducts ? <NutritionProductList products={products} /> : <p>조회된 목록이 없습니다.</p>}
+        <NutritionPagination totalPage={totalPage} />
+      </div>
     </section>
   );
 };
