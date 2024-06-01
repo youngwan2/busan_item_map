@@ -10,7 +10,6 @@ export default function FeatureList() {
         <div className={styles.feature_list_container} id='feature_list_container'>
             {features.map(feature => (
                 <FeatureCard key={feature.id} feature={feature} />
-
             ))}
             <FeatureButton />
         </div>

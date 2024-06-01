@@ -3,6 +3,7 @@ import styles from './Home.module.scss'
 
 import FeatureList from './components/FeatureList';
 import Section from "./components/Section";
+import BackgroundVideo from './components/BackgroundVideo';
 
 
 export default function Home() {
@@ -10,11 +11,10 @@ export default function Home() {
   return (
     <section className={styles.container} id='container'>
       <Header />
-      <div className='wrapper'>
-        <Section className={`${styles.section} section`}>
-          <FeatureList />
-        </Section>
-      </div>
+      <Section className={`${styles.section} section`}>
+        <FeatureList />
+      </Section>
+      <BackgroundVideo/>
     </section>
   );
 };

@@ -66,6 +66,7 @@
       // 네비 이름
       span {
         display: inline-block;
+        text-shadow: 1px 1px 0 0 black;
         padding: 5px 0;
         position: relative;
         color: white;
@@ -89,6 +90,7 @@
         transition: 0.2s;
         position: absolute;
         visibility: hidden;
+        width: 160px;
         opacity: 0;
         transform-origin: center top;
         transform: scaleY(0);
@@ -108,7 +110,6 @@
         li {
           background-color: rgba(255, 255, 255, 0.699);
           transition: 1s;
-          text-shadow: 1px 1px 5px gray;
 
           a {
             margin: 0.5em 0;
@@ -136,8 +137,8 @@
       .menu_ul {
         visibility: visible;
         opacity: 1;
-        width: 160px;
-        margin-top: 0.55em;
+   
+        margin-top: 0em;
         transform: scaleY(1);
 
         li:hover {
