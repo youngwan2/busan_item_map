@@ -1,13 +1,21 @@
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
-import Introduce from './components/Introduce';
-import { Suspense } from 'react';
-const Home = () => {
+import Header from '@/components/Layout/Header';
+import styles from './Home.module.scss'
+
+import FeatureList from './components/FeatureList';
+import Section from "./components/Section";
+
+
+export default function Home() {
+
   return (
-    <Suspense
-      fallback={<LoadingSpinner />}
-    >
-      <Introduce />
-    </Suspense>
+    <section className={styles.container} id='container'>
+      <Header />
+      <div className='wrapper'>
+        <Section className={`${styles.section} section`}>
+          <FeatureList />
+        </Section>
+      </div>
+    </section>
   );
 };
-export default Home;
+

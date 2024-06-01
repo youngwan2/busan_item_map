@@ -1,10 +1,10 @@
 import styles from './Header.module.scss';
 
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Nav from '../UI/Nav';
 
+import { Link } from 'react-router-dom';
 import { HiMenu, HiXCircle } from 'react-icons/hi';
 
 function Header() {
@@ -45,12 +45,12 @@ function Header() {
       className={`${isShow ? styles.active : ''} ${styles.Header}`}
     >
       <div className={styles.header_inner_bondary}>
-        <h1 className={styles.home_log} >
+        <h1 title='사이트 로고' aria-label="클릭 시 홈으로 이동" className={styles.home_log} >
           <Link to='/'>FoodPicker</Link>
           
         </h1>
         {/* 메뉴 */}
-        <button onClick={onClickDropDown} className={`${styles.menu_icon} ${isShow ? styles.open_menu : ''}`}>{!isOpenModal ? <HiMenu /> : <HiXCircle />}</button>
+        <button title='메뉴 버튼' aria-label='메뉴 버튼' onClick={onClickDropDown} className={`${styles.menu_icon} ${isShow ? styles.open_menu : ''}`}>{!isOpenModal ? <HiMenu /> : <HiXCircle />}</button>
         <Nav isOpen={isOpenModal} />
       </div>
     </header>

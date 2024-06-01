@@ -46,7 +46,8 @@
           max-height: 550px;
           min-height: 500px;
           width: 100%;
-          border: 5px solid #6697d6;
+          box-shadow: 0 0 0 1px rgb(228, 228, 228);
+          border: 10px solid white;
         }
 
         // 개요
@@ -55,7 +56,7 @@
           box-sizing: border-box;
 
           .recipe_menu_title {
-            color: #4b93e0;
+            color: #2968AC;
             font-size: 1.5em;
             padding: 0 0 0.75em;
             margin-bottom: 0.75em;
@@ -98,7 +99,8 @@
               }
               // 전체 재료 목록 컨테이너
               p {
-                background-color: #5198e3;
+                border-radius: 3px;
+                background-color: #3775b7;
                 padding: 5px 5px;
                 display: flex;
                 flex-wrap: wrap;
@@ -110,6 +112,7 @@
                   //  재료 식별자
                   mark {
                     border-radius: 50%;
+                    background-color: white;
                     padding: 1px 7px;
                   }
                   .split_text {
@@ -135,7 +138,7 @@
     margin: 5em 0;
     position: relative;
     h3 {
-      background: #3b7cc2;
+      background:#2968AC;
       color: white;
       position: absolute;
       width: 140px;
@@ -155,7 +158,7 @@
   .recipe_contents_detail {
     position: relative;
     h3 {
-      background: #3b7cc2;
+      background: #2968AC;
       color: white;
       position: absolute;
       width: 140px;
