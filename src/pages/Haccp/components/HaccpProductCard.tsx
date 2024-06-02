@@ -12,7 +12,7 @@ export default function HaccpProductCard({product}:PropsType) {
       className={styles.haccp_card_container}
       key={product.item.prdlstReportNo}
     >
-      <div id="item_box">
+      <div id="item_box" title={product.item.prdlstNm}>
         <img className={styles.haccp_card_img} src={`${product.item.imgurl1}`} alt="상품이미지"></img>
         <div className={styles.haccp_card_content}>
           <h3 className={styles.product_name}> {product.item.prdlstNm || '알수없음'}</h3>

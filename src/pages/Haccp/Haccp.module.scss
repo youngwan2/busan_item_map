@@ -157,6 +157,14 @@
     }
   }
   // 카드 호버
+  .haccp_card_container:hover{
+    .haccp_card_img {
+      transform: translateY(-70px)  perspective(600px) ;
+      opacity: 085;
+      cursor: pointer;
+    }
+
+  }
   .haccp_card_container:focus {
     z-index: 100;
     transform: scale(1.05);
