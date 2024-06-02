@@ -8,11 +8,12 @@ import NutritionSearchForm from './components/NutritionSearchForm';
 import NutritionPagination from './components/NutritionPagination';
 import NutritionProductList from './components/NutritionProductList';
 import GuideMessage from '../../components/GuideMessage';
+import LoadViewCountModal from '@/components/LoadViewCountModal';
 
 import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 
 import { toast } from 'react-toastify';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+
 
 
 const MIN_VIEW_COUNT = 20;
@@ -47,8 +48,7 @@ const Nutrition = () => {
     const input = e.currentTarget.childNodes[1] as HTMLInputElement
     const searchProductName = getSearchValue(input) || ''
     if (!searchProductName) return toast.error('2자 이상은 입력해주세요.')
-    setProductName(searchProductName)
-    setPage(1)
+    updateState(searchProductName, 1)
   }
 
   /** 버튼 검색 액션 */
@@ -56,8 +56,13 @@ const Nutrition = () => {
     const input = e.currentTarget.previousElementSibling as HTMLInputElement
     const searchProductName = getSearchValue(input) || ''
     if (!searchProductName) return toast.error('2자 이상은 입력해주세요.')
-    setProductName(searchProductName)
+    updateState(searchProductName, 1)
+  }
+
+  function updateState(productName:string, initialPage:number){
+    setProductName(productName)
     setPage(1)
+
   }
 
   if (isError) return <p>{error?.message}</p>

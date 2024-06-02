@@ -11,7 +11,7 @@ export default function FiberInfoCard({ product }: PropsType) {
 
         <div className={styles.product_card}>
             <div className={styles.product_card_content}>
-                <h3>식이섬유</h3>
+                <h3>식이섬유(단위:mg)</h3>
             </div>
             <div className={styles.product_card_content}>
                 <strong>칼륨</strong>
