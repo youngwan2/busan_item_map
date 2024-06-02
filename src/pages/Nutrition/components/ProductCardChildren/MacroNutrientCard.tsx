@@ -9,7 +9,7 @@ export default function MacroNutrientCard({ product }: PropsType) {
     return (
         <div className={styles.product_card}>
             <div className={styles.product_card_content}>
-                <h3>3대 영양소</h3>
+                <h3>3대 영양소(단위:g)</h3>
             </div>
             <div className={styles.product_card_content}>
                 <strong>탄수화물</strong>

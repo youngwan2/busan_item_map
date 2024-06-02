@@ -34,7 +34,7 @@
 .feature_card {
   --y: -9.5%;
   transition: 1s;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 30px;
   background: #fff;
   width: 100%;
@@ -77,7 +77,6 @@
     position: relative;
     overflow: hidden;
     img {
-      box-shadow: 0 0 0 1px rgb(235, 232, 232);
       max-width: 768px;
       height: 400px;
       width: 100%;

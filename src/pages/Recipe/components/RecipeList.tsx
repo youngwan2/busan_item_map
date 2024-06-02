@@ -18,7 +18,7 @@ interface ResultType {
   category: string
   searchValue: string
 }
-// const SPLIT_ITEM_COUNT = 10
+
 export default function RecipeList({ recipes = [], totalCount, searchValue, category }: ResultType) {
   const [visibleRecipes, setVisibleRecipes] = useState<RecipeType[]>([]);
 
