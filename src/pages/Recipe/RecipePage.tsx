@@ -129,9 +129,7 @@ export default function RecipePage() {
             </>
           }
         </Message>
-
         <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
-
         <RecipeList recipes={recipeInfo.recipes} totalCount={Number(recipeInfo?.totalCount) || 0} category={pickedCategory} searchValue={productName} />
       </div>
     </section>

@@ -7,17 +7,19 @@ import useIntersection from '@/hooks/useIntersection';
 
 import LocalFoodList from './components/LocalFoodList';
 import GuideMessage from '@components/GuideMessage';
-
 import ObserverSpinner from '@components/Common/Spinner/ObserverSpinner';
-import { ClipLoader } from 'react-spinners';
+
 import LoadViewCountModal from '@components/LoadViewCountModal';
 import LocalCategoryGrid from './components/LocalCategoryGrid';
-import { toast } from 'react-toastify';
+import ListContainer from '@/components/Common/Container';
 
 import { localFoodRegionState } from '@/atom/LocalAtom';
 
+import { ClipLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
-const VIEW_COUNT=15
+
+const VIEW_COUNT = 15
 const LocalFoodPage = () => {
 
 
@@ -44,7 +46,7 @@ const LocalFoodPage = () => {
   }
 
   useEffect(() => {
-    if(VIEW_COUNT>totalCount) return 
+    if (VIEW_COUNT > totalCount) return
     if (!hasNextPage && isEnd && totalCount === items.length) return loadAlert()
     else nextPageHanlder(isEnd);
 
@@ -62,27 +64,34 @@ const LocalFoodPage = () => {
       </h2>
 
       <div className={styles.localfood_page_inner_bundary}>
-      <GuideMessage
-        stylesClassName={styles.page_path_guide_message}
-        path="/localfood"
-        subPath=''
-        mainName="향토 이야기"
-        subName="향토 음식이야기"
-        totalCount={totalCount}
-      />
-      <LoadViewCountModal currentProductCount={items?.length || 0} totalProductCount={totalCount} />
-      <LocalCategoryGrid categoryName={region} onSetPrdkind={onSetRegion} />
-      <LocalFoodList localfoods={items} />
-      {/* 로딩 스피너 겸 스크롤 위치 체크 */}
-      <ObserverSpinner ref={observerRef}>
-        {
-          isError
-            ? error.message
-            : isFetching || isPending || isFetchingNextPage
-              ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
-              : null
-        }
-      </ObserverSpinner>
+        <GuideMessage
+          stylesClassName={styles.page_path_guide_message}
+          path="/localfood"
+          subPath=''
+          mainName="향토 이야기"
+          subName="향토 음식이야기"
+          totalCount={totalCount}
+        />
+        <LoadViewCountModal currentProductCount={items?.length || 0} totalProductCount={totalCount} />
+        <LocalCategoryGrid categoryName={region} onSetPrdkind={onSetRegion} />
+        <ListContainer container={'ul'} className={styles.localfood_list_container} id="localfood-ul">
+          <h2 className={styles.localfood_list_title}>향토음식 목록</h2>
+          {isPending
+            ? <p className={styles.localmarket_list_loading_message}>데이터를 조회중 입니다.</p>
+            : items.length > 0 ? <LocalFoodList localfoods={items} />
+              : <p className={styles.localmarket_list_loading_message}> 조회된 목록이 없습니다.</p>}
+        </ListContainer>
+
+        {/* 로딩 스피너 겸 스크롤 위치 체크 */}
+        <ObserverSpinner ref={observerRef}>
+          {
+            isError
+              ? error.message
+              : isFetching || isFetchingNextPage
+                ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
+                : null
+          }
+        </ObserverSpinner>
       </div>
     </section>
   );

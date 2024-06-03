@@ -36,7 +36,6 @@ export default function Maps({ defaultCenter, name, address = '' }: PropsType) {
 
     const loadViewSize = isFull ? { width: '100vw', height: '100vh' } : { width: '100%', height: '400px' }
 
-
     function onClickMapPositionReset() {
         setPickCenter({ lat: marker?.position.lat || defaultCenter.lat, lng: marker?.position.lng || defaultCenter.lng })
     }
@@ -74,6 +73,12 @@ export default function Maps({ defaultCenter, name, address = '' }: PropsType) {
         })
     }, [address])
 
+    useEffect(()=>{
+        if(roadviewRef.current){
+            roadviewRef.current.relayout()
+        }
+    },[isFull])
+
     if (!marker) return <></>
     return (
         <>
@@ -102,37 +107,38 @@ export default function Maps({ defaultCenter, name, address = '' }: PropsType) {
                     <MapResetButton isAtive={isAtive} onClick={onClickMapPositionReset} />
 
                     {/* 로드뷰 활성 유무 따른 지도 렌더 */}
-                    {isAtive ? (
-                        // 로드뷰 활성화 시 보여줄 마커
-                        <>
-                            <MapTypeId type={kakao.maps.MapTypeId.ROADVIEW} />
-                            <MapMarker
-                                key={`marker-${marker?.content}-${marker?.position.lat},${marker?.position.lng}`}
-                                position={{ lat: pickCenter.lat, lng: pickCenter.lng }}
-                                draggable={true}
-                                onDragEnd={(marker) => { handlePositionChange(marker) }}
-                                image={{
-                                    src: "https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png",
-                                    size: { width: 26, height: 46 },
-                                    options: {
-                                        spriteSize: { width: 1666, height: 168 },
-                                        spriteOrigin: { x: 705, y: 114 },
-                                        offset: { x: 13, y: 46 },
-                                    }
-                                }}
-                            />
-                        </>
-                        // 로드뷰 비활성화 시 보여줄 마커
-                    ) : <><MapMarker
-                        key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-                        position={{ lat: pickCenter.lat, lng: pickCenter.lng }}   >
-                        <MapInfoWindow name={name} />
-                    </MapMarker>
-
-                    </>
-
+                    {isAtive
+                        ? (
+                            // 로드뷰 활성화 시 보여줄 마커
+                            <>
+                                <MapTypeId type={kakao.maps.MapTypeId.ROADVIEW} />
+                                <MapMarker
+                                    key={`marker-${marker?.content}-${marker?.position.lat},${marker?.position.lng}`}
+                                    position={{ lat: pickCenter.lat, lng: pickCenter.lng }}
+                                    draggable={true}
+                                    onDragEnd={(marker) => { handlePositionChange(marker) }}
+                                    image={{
+                                        src: "https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png",
+                                        size: { width: 26, height: 46 },
+                                        options: {
+                                            spriteSize: { width: 1666, height: 168 },
+                                            spriteOrigin: { x: 705, y: 114 },
+                                            offset: { x: 13, y: 46 },
+                                        }
+                                    }}
+                                ><MapInfoWindow name={name} /></MapMarker>
+                            </>
+                            // 로드뷰 비활성화 시 보여줄 마커
+                        )
+                        :
+                        <MapMarker
+                            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+                            position={{ lat: pickCenter.lat, lng: pickCenter.lng }}   >
+                            <MapInfoWindow name={name} />
+                        </MapMarker>
                     }
                     <MapRoadViewContainer isAtive={isAtive} isFull={isFull}>
+                        {isFull?<p className={styles.load_view_guide_message}>확대 및 축소 시 컨트롤 버튼의 위치가 왜곡되어 보인다면 로드뷰 화면을 한 번 이동해주세요.</p>:null}
                         <Roadview
                             position={{ ...pickCenter, radius: 100 }}
                             style={loadViewSize}
@@ -149,11 +155,8 @@ export default function Maps({ defaultCenter, name, address = '' }: PropsType) {
                             <MapRoadViewSizeControlButton isFull={isFull} onClick={() => setIsFull(old => !old)} />
                         </Roadview>
                     </MapRoadViewContainer>
-
                 </Map>
             </div>
-
-
         </>
     )
 }

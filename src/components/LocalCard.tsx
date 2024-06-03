@@ -4,18 +4,15 @@ import { MouseEventHandler } from 'react'
 
 import { HiSearchCircle } from 'react-icons/hi'
 
-
-
 interface PropsType {
-    id: number
     thnumUrl: string
     title: string
     onClick: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function LocalCard({ id, thnumUrl, title, onClick }: PropsType) {
+export default function LocalCard({ thnumUrl, title, onClick }: PropsType) {
     return (
-        <li className={styles.local_card} key={id}>
+        <li className={styles.local_card} >
             <img
                 className={styles.main_thumb}
                 src={thnumUrl || '/not-image.png'}

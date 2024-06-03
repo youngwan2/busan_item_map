@@ -14,5 +14,8 @@ export default defineConfig({
             { find: '@components', replacement: path.resolve(__dirname, 'src/components') },
 
         ]
+    },
+    preview : {
+        port:8080
     }
 })
