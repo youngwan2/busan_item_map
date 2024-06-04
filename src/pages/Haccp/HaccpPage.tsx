@@ -24,7 +24,7 @@ function HaccpPage() {
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
   const endPointSpanRef = useRef<HTMLSpanElement>(null)
 
-  const url = `https://apis.dat.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&prdkind=${prdkind} &numOfRows=100`;
+  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&prdkind=${prdkind} &numOfRows=100`;
   const queryKey = ['haccp', productName, prdkind]
 
   const {

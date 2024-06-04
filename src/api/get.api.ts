@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { config } from '../config/config';
+import { toast } from 'react-toastify';
 
 export enum ApiType {
   INTERNAL = 'INTERNAL', // 자체 백엔드 api

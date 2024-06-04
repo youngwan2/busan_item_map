@@ -30,7 +30,7 @@ const LocalFoodList = ({ localfoods = [] }: PropsType) => {
       {localfoods.map((localfood) => {
         const { local_food_id, main_thumb_url, title } = localfood;
         return (
-          <LocalCard key={local_food_id} onClick={() => onClickPageChange(local_food_id)} id={local_food_id} thnumUrl={main_thumb_url} title={title} />
+          <LocalCard key={local_food_id} onClick={() => onClickPageChange(local_food_id)} thnumUrl={main_thumb_url} title={title} />
         );
       })}
     </>
