@@ -46,9 +46,8 @@ export default function NutritionProductList({ products }: PropsType) {
 
 
   return (
-    <section className={styles.product_list_container} >
-      <h2 className={styles.product_list_title}>식품영양정보 목록</h2>
 
+     <>
       {products?.map((product: NutritionProductType, i) => {
         return (
           <NutritionProductCard
@@ -61,7 +60,7 @@ export default function NutritionProductList({ products }: PropsType) {
           />
         );
       })}
-    </section>
+  </>
   );
 };
 

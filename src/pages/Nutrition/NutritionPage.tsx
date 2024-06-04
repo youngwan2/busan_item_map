@@ -8,11 +8,12 @@ import NutritionSearchForm from './components/NutritionSearchForm';
 import NutritionPagination from './components/NutritionPagination';
 import NutritionProductList from './components/NutritionProductList';
 import GuideMessage from '../../components/GuideMessage';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 
 import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 
 import { toast } from 'react-toastify';
+import ListContainer from '@/components/Common/Container';
 
 
 
@@ -28,11 +29,12 @@ const Nutrition = () => {
   const url = `/nutritions?search=${productName}&page=${page}`;
   const queryKey = ['nutrition', productName, page];
 
-  const { data = [], error, isError } = useDefaultQuery(queryKey, url);
+  const { data = [], error, isError, isFetching, isPending } = useDefaultQuery(queryKey, url);
 
   const { items: products, totalCount = 0 } = data
-  const hasProducts = Array.isArray(products) && products.length < 1;
-  const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT);
+  const hasProducts = Array.isArray(products) && products.length > 0;
+
+  const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
 
   /** 검색어 반환 */
   function getSearchValue(input: HTMLInputElement) {
@@ -59,13 +61,14 @@ const Nutrition = () => {
     updateState(searchProductName, 1)
   }
 
-  function updateState(productName:string, initialPage:number){
+  function updateState(productName: string, initialPage: number) {
     setProductName(productName)
-    setPage(1)
+    setPage(initialPage)
 
   }
 
   if (isError) return <p>{error?.message}</p>
+
   return (
     <section className={styles.nutrition_page_container}>
       <h2 className={styles.nutrition_page_title}>
@@ -82,7 +85,14 @@ const Nutrition = () => {
         />
         <NutritionSearchForm action={searchAction} onSearch={onSearch} />
         <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
-        {!hasProducts ? <NutritionProductList products={products} /> : <p>조회된 목록이 없습니다.</p>}
+        <ListContainer container={'section'} className={`${styles.product_list_container}`}>
+          <h2 className={styles.product_list_title}>식품영양정보 목록</h2>
+          {isFetching
+            ? <p className={styles.product_list_loading_message}>데이터를 조회중입니다.</p>
+            : hasProducts
+              ? <NutritionProductList products={products} />
+              : <p className={styles.product_list_loading_message}>조회된 목록이 존재하지 않습니다.</p>}
+        </ListContainer>
         <NutritionPagination totalPage={totalPage} />
       </div>
     </section>

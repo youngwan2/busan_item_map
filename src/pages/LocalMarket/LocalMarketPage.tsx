@@ -7,17 +7,20 @@ import useIntersection from '../../hooks/useIntersection';
 
 import GuideMessage from '../../components/GuideMessage';
 import LocalMarketList from './components/LocalMarketList';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import LocalCategoryGrid from '../LocalFood/components/LocalCategoryGrid';
+import ListContainer from '@/components/Common/Container';
 
 import { localMarketRegionState } from '@/atom/LocalAtom';
 import { toast } from 'react-toastify';
+import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
+import { ClipLoader } from 'react-spinners';
+
 
 
 const VIEW_COUNT = 15
 
-export default function LocalMarketPage(){
+export default function LocalMarketPage() {
   useEffect(() => {
     document.title = '향토음식조회 | FoodPicker';
   }, []);
@@ -25,7 +28,7 @@ export default function LocalMarketPage(){
   const observerRef = useRef<HTMLButtonElement>(null);
   const [region, setRegion] = useRecoilState(localMarketRegionState)
   const { isEnd } = useIntersection(observerRef);
-  const { items, totalCount, isFetching, hasNextPage, fetchNextPage } = useInfiniteScroll(
+  const { items, totalCount, isFetching, isFetchingNextPage, isPending, isError, error, hasNextPage, fetchNextPage } = useInfiniteScroll(
     `/localmarkets?region=${region}&page=`,
     'localmarket',
     `${region}`
@@ -51,10 +54,6 @@ export default function LocalMarketPage(){
 
   }, [isEnd]);
 
-
-  if (!items && isFetching) {
-    return <LoadingSpinner />;
-  }
   return (
     <section className={styles.localmarket_page_container}>
       <h2 className={styles.page_title}>
@@ -71,8 +70,23 @@ export default function LocalMarketPage(){
         />
         <LoadViewCountModal totalProductCount={totalCount} currentProductCount={items.length} />
         <LocalCategoryGrid onSetPrdkind={onSetRegion} categoryName={region} />
-        <LocalMarketList localmarkets={items} />
-        <button className={styles.scroll_pointer} ref={observerRef} aria-hidden={'true'}></button>
+        <ListContainer container={'ul'} className={styles.localmarket_list_container} id="localmarket-ul">
+          <h2 className={styles.localmarket_list_title}>향토시장 목록</h2>
+          {isPending
+            ? <p className={styles.localmarket_list_loading_message}>데이터를 조회중 입니다.</p>
+            : items.length > 0 ? <LocalMarketList localmarkets={items} />
+              : <p className={styles.localmarket_list_loading_message}> 조회된 목록이 없습니다.</p>}
+        </ListContainer>
+        {/* 로딩 스피너 겸 스크롤 위치 체크 */}
+        <ObserverSpinner ref={observerRef}>
+          {
+            isError
+              ? error.message
+              : isFetching || isFetchingNextPage
+                ? <ClipLoader className={styles.endPointSpan} size={65} color='#6697d6' />
+                : null
+          }
+        </ObserverSpinner>
       </div>
     </section>
   );

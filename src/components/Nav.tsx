@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import styles from '../Layout/Header.module.scss'
-import { routes } from "../../routes"
+import styles from './Layout/Header.module.scss'
+import { routes } from "../routes"
 
 interface PropsType {
   isOpen: boolean

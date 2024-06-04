@@ -25,7 +25,8 @@ const INITIAL_RECIPE_INFO = {
 }
 
 export default function RecipePage() {
-
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const [pickedCategory, setPickedCategory] = useState('')
   const [productName, setProductName] = useState('')
   const [recipeInfo, setRecipeInfo] = useState<RecipeInfoType>(INITIAL_RECIPE_INFO);
@@ -45,12 +46,13 @@ export default function RecipePage() {
    * @param category 요리 카테고리(ex. 밥, 일품, 후식, 국)
   */
   async function getFetchRecipeData<T extends string>(productName?: T, category?: T) {
+    setIsLoading(true)
     const url =
       category && category !== ''
         ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_PAT2=${category}`
         : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${productName}`
     const { row: recipes = [], total_count: totalCount = '0' } = (await getDefaultFetcher(url, ApiType.EXTERNAL)).COOKRCP01
-
+    setIsLoading(false)
     return { recipes, totalCount }
 
   }
@@ -129,10 +131,12 @@ export default function RecipePage() {
             </>
           }
         </Message>
-
         <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
-
-        <RecipeList recipes={recipeInfo.recipes} totalCount={Number(recipeInfo?.totalCount) || 0} category={pickedCategory} searchValue={productName} />
+        <RecipeList
+          isLoading={isLoading}
+          recipes={recipeInfo.recipes}
+          totalCount={Number(recipeInfo?.totalCount) || 0}
+          category={pickedCategory} searchValue={productName} />
       </div>
     </section>
   );

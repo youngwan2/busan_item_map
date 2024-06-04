@@ -72,17 +72,28 @@
 }
 
 /* 상품 목록 */
+
+.content_container:has(.haccp_product_list_loading_message) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
 .content_container {
   border-radius: 5px;
   padding-top: 7em;
   border: 1px solid rgb(195, 193, 193);
   width: 100%;
   position: relative;
+  min-height: 30vh;
   justify-content: center;
   gap: 15px;
   top: 1rem;
   display: grid;
   grid-template-columns: 295px 295px 295px 295px;
+
+  
 
   // 상품 목록 타이틀
   .haccp_product_list_title {

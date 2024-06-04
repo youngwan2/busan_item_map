@@ -102,6 +102,22 @@
   z-index: -1;
   border: 3px solid #69a9ef;
   box-shadow: 0 0 0 500000px rgba(0, 0, 0, 0.3);
+
+  .load_view_guide_message {
+    position: absolute;
+    z-index: 10000000000000;
+    font-family: sans-serif;
+    left: 0.25em;
+    bottom: 1.5em;
+    color:white;
+    border-radius: 10px;
+    text-shadow: 1px 1px 0 black;
+    padding: 5px;
+    font-size: 0.95em;
+    background-color: rgba(21, 64, 110, 0.301);
+    max-width: 280px;
+    width: 100%;
+  }
 }
 
 .map_roadview_container.active {
@@ -113,6 +129,7 @@
 .map_roadview_container.full {
   top: 0;
   left: 0;
+  z-index: 1000000000000000000000;
   transform: translate(0, 0) scaleY(1);
 }
 
@@ -130,8 +147,8 @@
 .map_loadview_size_control_btn{
   @include map-loadview-control-button-design();
   left: 2.5em;
-  width: 50px;
-  padding: 5.55px;
+  width: 44px;
+  height: 42px;
   font-size: 1.15em;
 }
 

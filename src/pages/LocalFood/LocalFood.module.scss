@@ -33,7 +33,7 @@
   border: 1px solid rgb(190, 187, 187);
   display: grid;
   border-radius: 5px;
-  min-height: 10vh;
+  min-height: 30vh;
   margin-top: 5em;
   padding: 5em 0.5em !important;
   grid-template-columns: repeat(auto-fit, minmax(280px, 290px));
@@ -61,16 +61,25 @@
   visibility: hidden;
 }
 
+
+
+// 로딩 메시지
+.localmarket_list_loading_message{
+  text-align: center;
+}
+
+
+/* 페이지 경로 가이드 메시지 */
+.page_path_guide_message {
+  top: -6.5em;
+  right: 0;
+}
+
+
 @keyframes appear {
   from {
     transform: translateY(-30px);
     visibility: hidden;
     opacity: 0;
   }
-}
-
-/* 페이지 경로 가이드 메시지 */
-.page_path_guide_message {
-  top: -6.5em;
-  right: 0;
 }

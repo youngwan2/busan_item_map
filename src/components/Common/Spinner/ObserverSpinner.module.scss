@@ -1,11 +1,11 @@
 // 스크롤 끝 지점 관찰 및 로딩 스피너 표시 span
 .endPointSpan {
-  display: inline;
+  display: flex;
   padding: 10px;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
-  }
-  
+  min-height: 10vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}

@@ -9,30 +9,29 @@ import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
 import type { RecipeType } from '@/types/Recipe.types';
 
 import { toast } from 'react-toastify';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 
 
 interface ResultType {
+  isLoading: boolean
   recipes: RecipeType[];
   totalCount: number
   category: string
   searchValue: string
 }
 
-export default function RecipeList({ recipes = [], totalCount, searchValue, category }: ResultType) {
+export default function RecipeList({ isLoading, recipes = [], totalCount, searchValue, category }: ResultType) {
   const [visibleRecipes, setVisibleRecipes] = useState<RecipeType[]>([]);
-
   const observerRef = useRef<HTMLSpanElement>(null)
-
   const { isEnd } = useIntersection(observerRef)
-
-  const hasMoreRecipe = (totalCount>0 && totalCount === visibleRecipes.length)
+  const visibleRecipeCount = visibleRecipes.length
+  const hasMoreRecipe = (totalCount > 0 && totalCount === visibleRecipeCount)
 
   // 스크롤 처리 함수
   const handleScroll = (currentLength: number) => {
     if (isEnd && hasMoreRecipe) return toast.info('모든 데이터를 조회하였습니다.')
 
-    if (isEnd && (totalCount > visibleRecipes.length)) {
+    if (isEnd && (totalCount > visibleRecipeCount)) {
 
       // 다음으로 보여줄 레시피가 있는가? 
       // console.log("정상처리 관찰용:",currentLength, currentLength+10)
@@ -61,23 +60,27 @@ export default function RecipeList({ recipes = [], totalCount, searchValue, cate
 
   }, [searchValue, category])
 
-// 스크롤의 끝지점에 도달하는 순간 현재 조회된 레시피 개수를 기억(memo: 이 값은 다음 레시피 목록을 불러오는 기준으로 처리)
+  // 스크롤의 끝지점에 도달하는 순간 현재 조회된 레시피 개수를 기억(memo: 이 값은 다음 레시피 목록을 불러오는 기준으로 처리)
   useEffect(() => {
-    sessionStorage.setItem('currentRecipes', `${visibleRecipes.length}`);
-  }, [visibleRecipes.length, isEnd])
+    sessionStorage.setItem('currentRecipes', `${visibleRecipeCount}`);
+  }, [visibleRecipeCount, isEnd])
 
   return (
     <>
       <div className={styles.recipe_list_container}>
         <h2 className={styles.recipe_list_title}>레시피 목록</h2>
-
-        { visibleRecipes.length>0
-        ? visibleRecipes.map((recipe) => (
-          <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />
-        ))
-        : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.  <br /><br />우측 상단에 검색된 레시피 개수가 보이는 경우에는 아래로 스크롤 하시면 목록이 표시됩니다.</p>}
+        {
+          !isLoading
+            ? totalCount > 0
+              ?
+              visibleRecipes.map((recipe) => {
+                return <RecipeCard key={recipe.RCP_SEQ} recipe={recipe} />}
+              ) 
+              : <p className={styles.replace_message}>현재 조회된 목록이 없습니다.</p>
+            : <p className={styles.replace_message}>데이터를 조회중입니다.</p>
+        }
       </div>
-      <LoadViewCountModal currentProductCount={visibleRecipes.length} totalProductCount={recipes.length}/>
+      <LoadViewCountModal currentProductCount={visibleRecipeCount} totalProductCount={recipes.length} />
       <ObserverSpinner ref={observerRef}>  </ObserverSpinner>
     </>
   );
