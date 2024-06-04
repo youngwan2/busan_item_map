@@ -9,7 +9,7 @@ import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
 import type { RecipeType } from '@/types/Recipe.types';
 
 import { toast } from 'react-toastify';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 
 
 interface ResultType {

@@ -10,6 +10,7 @@ interface SetStorageType {
     value: any
 }
 export function setStoreage({ type, key, value }: SetStorageType) {
+    console.log(value)
 
     if (type === StorageType.LOCAL) {
         window.localStorage.setItem(key, JSON.stringify(value))
@@ -51,7 +52,7 @@ export function getStoreage(type: StorageType, key: string) {
         throw new Error(`현재 저장소에 존재하지 않는 키를 전달하였습니다. 전달된 키는 "${key}" 입니다.`)
     } catch (error) {
         console.error(error)
-        return '잘못된 키'
+        return ''
     }
 
 

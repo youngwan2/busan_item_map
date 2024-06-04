@@ -7,7 +7,7 @@ import useIntersection from '../../hooks/useIntersection';
 
 import GuideMessage from '../../components/GuideMessage';
 import LocalMarketList from './components/LocalMarketList';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import LocalCategoryGrid from '../LocalFood/components/LocalCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 

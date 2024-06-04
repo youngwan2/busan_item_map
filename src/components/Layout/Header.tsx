@@ -2,7 +2,7 @@ import styles from './Header.module.scss';
 
 import { useEffect, useState } from 'react';
 
-import Nav from '../UI/Nav';
+import Nav from '../Nav';
 
 import { Link } from 'react-router-dom';
 import { HiMenu, HiXCircle } from 'react-icons/hi';

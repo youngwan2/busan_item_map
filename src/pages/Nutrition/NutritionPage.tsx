@@ -8,7 +8,7 @@ import NutritionSearchForm from './components/NutritionSearchForm';
 import NutritionPagination from './components/NutritionPagination';
 import NutritionProductList from './components/NutritionProductList';
 import GuideMessage from '../../components/GuideMessage';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 
 import { NutritionPageNumber } from '../../atom/NutritionsAtom';
 

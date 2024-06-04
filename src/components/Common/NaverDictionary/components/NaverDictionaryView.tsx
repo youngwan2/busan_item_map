@@ -1,54 +1,56 @@
-import axios from 'axios';
 import styles from '../NaverDictionary.module.scss';
-import { DictionaryType } from '../NaverDictionary';
-import { CSSProperties, FormEvent, useState } from 'react';
+
+import { FormEvent, useState, type MouseEventHandler, useEffect } from 'react';
+import { useRecoilState } from 'recoil'
+
 import NaverDictionaryList from './NaverDictionaryList';
 import NaverCloseIcon from './NaverCloseIcon';
 import NaverSearchForm from './NaverSearchForm';
-import { config } from '../../../../config/config';
+import LoadingSpinner from '@components/Common/Spinner/LoadingSpinner'
+import Message from '@/components/Message';
+import NaverDictionaryRecentSearchList from './NaverDictionaryRecentSearchList';
+
+import { naverSearchAtom } from '@/atom/NaverSearchAtom';
+
 import { toast } from 'react-toastify';
-import LoadingSpinner from '../../Spinner/LoadingSpinner';
+import { ApiType, getDefaultFetcher } from '@/api/get.api';
+import type { DictionaryType } from '../NaverDictionary';
+import { StorageType, setStoreage } from '@/utils/storage';
+
 
 interface PropsType {
-  display: boolean;
-  setDisplay: (p: boolean) => void;
+  isDisplay: boolean;
+  onToggle: MouseEventHandler<HTMLButtonElement>
 }
 
-const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
+const NaverDictionaryView = ({ isDisplay, onToggle }: PropsType) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('')
   const [items, setItems] = useState<DictionaryType[]>();
+  const [searchList, setSearchList] = useRecoilState<string[]>(naverSearchAtom)
 
-  const modalDisplayStyle: CSSProperties = display
-    ? {
-      visibility: 'visible',
-      opacity: 1,
-      transform: 'translate(-50%,0)',
-    }
-    : {
-      visibility: 'hidden',
-      opacity: 0,
-      transform: 'translate(-50%,5%)',
-    }
+  const hasItems = items && items.length > 0
 
+  /** 사용자 검색 키워드 기록 */
+  function setSearchValue(searchText: string) {
+    setSearchList(old => [...old, searchText])
+  }
 
   async function searchNaverDictionary(value: string) {
-    if (value.length < 2) return toast.error('2자 이상 입력해주세요.')
+    if (value.length < 1) return toast.error('2자 이상 입력해주세요.')
+    setSearchValue(value)
     setLoading(true);
-    const url = config.protocol + config.host + '/naver-search?search=' + value
+    const url = '/naver-search?search=' + value
+    const data = await getDefaultFetcher(url, ApiType.INTERNAL)
+    const { status, meg, result } = data
+    const { items } = result
+    if (status === 200) { setItems(items) }
+    else { toast.error(meg); setError(meg) }
+    setLoading(false)
+  }
 
-    try {
-      const { data } = await axios.get(url)
-      const { status, meg, result } = data
-      const { items } = result
-      if (status === 200) { toast.success(meg); return setItems(items) }
-      if (status !== 200) { toast.error(meg); return setError(meg) }
-    } catch (error) {
-      toast.error('데이터 조회에 실패하였습니다.')
-      setError('서버에서 문제가 발생하였습니다. 나중에 다시시도 해주세요')
-    } finally {
-      setLoading(false)
-    }
+  function onSearch(value: string) {
+    searchNaverDictionary(value)
   }
 
   const searchAction = async (formEvent: FormEvent<HTMLFormElement>) => {
@@ -56,18 +58,30 @@ const NaverDictionaryView = ({ display, setDisplay }: PropsType) => {
     const input = formEvent.currentTarget.firstChild
     if (!(input instanceof HTMLInputElement)) return
     searchNaverDictionary(input.value || '')
-
   };
+
+  // 캐싱
+  useEffect(() => {
+    setStoreage({ type: StorageType.SESSION, key: 'naver', value: searchList }) // 캐싱
+  }, [searchList])
+
+
 
   return (
     <article
-      className={styles.naver_search_modal}
-      style={modalDisplayStyle}
+      aria-hidden={isDisplay ? 'true' : 'false'}
+      className={`${styles.naver_dictionary_modal} ${isDisplay ? styles.active : ''}`}
     >
       <h3 className={styles.title}>네이버 백과사전</h3>
-      <NaverCloseIcon setDisplay={setDisplay} />
-      <NaverSearchForm display={display} action={searchAction} />
-      {loading ? <LoadingSpinner /> : <NaverDictionaryList items={items} error={error} />}
+      <NaverSearchForm isDisplay={isDisplay} action={searchAction} />
+      <NaverCloseIcon onToggle={onToggle} />
+      <NaverDictionaryRecentSearchList searchList={searchList} onSearch={onSearch} />
+      {
+        loading
+          ? <LoadingSpinner />
+          : hasItems
+            ? <NaverDictionaryList items={items} error={error} />
+            : <Message styleClassName={styles.replace_message}>조회된 아이템이 없습니다.</Message>}
     </article>
   );
 };

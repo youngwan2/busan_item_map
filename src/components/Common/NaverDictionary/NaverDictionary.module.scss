@@ -18,13 +18,13 @@
 .nav_search_icon:hover::before {
   content: '';
   position: absolute;
-  left: -1.5rem;
-  top: 0.8rem;
+  left: -2.2rem;
+  top: 0.5rem;
   border-left: 15px solid white;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
   z-index: 100;
-  filter: drop-shadow(4px 0 1px rgb(7, 54, 117));
+  filter: drop-shadow(4px 0 0px rgb(29, 126, 252));
 }
 
 .nav_search_icon:hover::after {
@@ -40,123 +40,201 @@
 }
 
 /* 백과사전 모달 */
-.naver_search_modal {
+.naver_dictionary_modal.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.naver_dictionary_modal {
   user-select: none;
   padding: 2rem 5px;
   position: fixed;
   transition: 0.9s cubic-bezier(0.265, 1.84, 0.44, 1);
-  backdrop-filter: blur(5px);
-  background-color: rgba(83, 81, 81, 0.377);
+  background-color: rgba(34, 32, 32, 0.396);
   left: 50%;
   top: 0;
-  min-width: 300px;
-  max-width: 900px;
   width: 100%;
   height: 100vh;
-  z-index: 100000000000;
+  z-index: 2000000000;
   overflow: hidden scroll;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 5%);
 }
 
-.naver_search_modal::-webkit-scrollbar {
-  width: 0px;
+.naver_dictionary_modal::-webkit-scrollbar {
+  width: 2px;
   background-color: rgb(92, 124, 230);
 }
 
-.naver_search_modal::-webkit-scrollbar-thumb {
+.naver_dictionary_modal::-webkit-scrollbar-thumb {
   background-color: rgb(132, 132, 216);
   border-radius: 10px;
 }
 
 /* 사용자 검색창 */
-.naver_search_modal {
+.naver_dictionary_modal {
   .title {
     text-align: center;
+    font-size: 1.3em;
     margin-top: 1em;
     color: white;
     text-shadow: 0 0 2px black;
   }
+  //검색폼
   form {
     min-width: 300px;
-
-    max-width: 350px;
+    margin: 2em auto 0 auto;
     text-align: center;
-    margin: 1.5rem auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 
-    /* 사용자 입력창과 조회 버튼 */
+    // 사용자 입력창과 조회 버튼
     .user_input {
       margin: 6px;
       border-radius: 5px;
-      padding: 5px 10px;
-      max-width: 280px;
-      min-width: 200px;
+      max-width: 350px;
+      min-width: 230px;
       width: 100%;
-      border: 2px solid rgb(157, 157, 255);
+      border: none;
+      padding: 10px;
       z-index: 0;
     }
+
+    .user_input:focus {
+      outline: none;
+      background: rgb(234, 234, 234);
+      border: none;
+    }
+
+    // 검색 버튼
+    .search_btn {
+      color: white;
+      min-width: 40px;
+      padding: 6px 5px 3px 5px;
+      margin: 0 3px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.25em;
+      background: transparent;
+    }
+
+    .search_btn:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0 1px white;
+    }
   }
-  /* 검색 결과 */
-  .result_section {
-    min-height: 80vh;
-    max-width: 700px;
+
+  /* 최근 검색어 목록*/
+  .recent_search_list_container {
+    position: relative;
+    min-height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5em auto;
+    padding: 8px;
+
+    .recent_search_list_title {
+      min-width: 85px;
+      color: white;
+      text-shadow: 1px 1px 0 black;
+      font-weight: bold;
+    }
+
+    .recent_search_list {
+    margin-left: 0.5em;
+      .search_text {
+        border: none;
+        background: white;
+        border-radius: 10px;
+        margin: 3px;
+        padding: 3px;
+        cursor: pointer;
+      }
+      .search_text:hover{
+        background: rgb(223, 221, 221);
+      }
+    }
+  }
+
+  /*검색 대체 메시지  */
+  .replace_message {
+    margin: 3em auto 0 auto;
+    text-align: center;
+    background-color: rgba(24, 24, 24, 0.126);
+    max-width: 1240px;
+    border-radius: 5px;
+    color:white;
+    padding: 10px;
     width: 100%;
+  }
+  .naver_modal_replace_message {
+    background: white;
+    padding: 3px;
+    border-radius: 10px;
+    font-size: 0.95em;
     margin: 0 auto;
+    max-width: 250px;
   }
-}
 
-.user_input:focus {
-  outline-color: rgb(255, 255, 255);
-  padding: 7px 10px;
-  color: white;
-  border: none;
-  box-shadow: inset 500px 0 0 0 rgb(156, 156, 245);
-}
+  /* 검색 결과 */
+  .naver_dictionary_list_container {
+    max-height: 800px;
+    overflow-y: scroll;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0.5em auto;
+    padding: 0 0 8em 0;
 
-.item_ul:nth-of-type(2n) {
-  color: white;
-  background: linear-gradient(5deg, rgb(90, 90, 238), rgb(26, 108, 232));
-  border-radius: 10px;
-  box-shadow: inset -60px 0px rgb(77, 116, 244);
-  transition: 0.5s;
-  padding: 2rem 1rem;
-}
+    .naver_dictionary_card {
+      margin: 1em 0;
 
-.item_ul:nth-of-type(2n-1) {
-  color: white;
-  background: linear-gradient(-50deg, rgb(90, 90, 238), rgb(26, 108, 232));
-  border-radius: 10px;
-  box-shadow: inset 60px 0px rgb(77, 116, 244);
-  padding: 2rem 1rem;
-}
+      .naver_dictionary_card_content {
+        display: flex;
+        .naver_dictionary_card_content_left {
+          text-align: center;
 
-.item_ul:hover {
-  transition: 0.5s;
-  background: rgb(37, 79, 234);
-  box-shadow:
-    inset 0 0 0 0 rgb(117, 117, 254),
-    0 0 20px 1px rgb(29, 75, 215);
-}
-
-.item_ul {
-  a {
-    color: white;
-    display: inline-block;
-    margin: 7px 0 0 0;
+          figure {
+            box-shadow: 0 0 0 1px rgb(163, 163, 163);
+            max-width: 150px;
+            max-height: 160px;
+            min-width: 150px;
+            min-height: 160px;
+            width: 100%;
+            height: 100%;
+            border: 10px solid white;
+            box-sizing: border-box;
+            border-radius: 3px;
+            img {
+              border: 1px solid rgb(213, 210, 210);
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .naver_dictionary_card_content_right {
+          overflow: hidden;
+          max-height: 150px;
+          background: white;
+          border-radius: 3px;
+          padding: 5px;
+          margin: 0 8px;
+          width: 100%;
+          h3 {
+            font-weight: bold;
+            padding: 3px 0;
+            border-bottom: 2px solid rgb(188, 184, 184);
+          }
+          .naver_dictionary_card_summary{
+            padding: 5px;
+          }
+        }
+      }
+    }
   }
-}
-
-.search_btn {
-  color: white;
-  min-width: 40px;
-  padding: 7px;
-  margin: 0 3px;
-  background-color: rgb(122, 122, 253);
-  border: none;
-  border-radius: 4px;
-  box-shadow: inset -1px -1px 1px 1px rgba(20, 29, 144, 0.411);
-}
-
-.search_btn:hover {
-  background-color: rgb(141, 141, 255);
 }
 
 /* 나가기 버튼 */
@@ -164,25 +242,70 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: rgb(103, 103, 255);
   color: white;
+  background: transparent;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 1.25em;
   border: none;
-  padding: 6px 10px;
-  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.738);
+  border-radius: 50%;
+  padding: 5px;
 }
 
 .close_btn:hover {
-  background-color: rgb(87, 118, 255);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px white;
 }
 
-/* 미디어 쿼리 800px */
-@media screen and (max-width: 800px) {
+/* 미디어 쿼리 */
+@media screen and (max-width: 868px) {
   .nav_search_icon {
     width: 50px;
     height: 50px;
     right: 5px;
     bottom: 70px;
+  }
+
+  /* 검색 결과 */
+  .naver_dictionary_list_container {
+    .naver_dictionary_card {
+      margin: 2em 0;
+      .naver_dictionary_card_content {
+        .naver_dictionary_card_content_left {
+          display: none;
+          text-align: center;
+
+          figure {
+            box-shadow: 0 0 0 1px rgb(163, 163, 163);
+            max-width: 280px;
+            max-height: 160px;
+            min-width: 200px;
+            min-height: 160px;
+            width: 100%;
+            height: 100%;
+            border: 10px solid white;
+            box-sizing: border-box;
+            border-radius: 3px;
+            img {
+              border: 1px solid rgb(213, 210, 210);
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .naver_dictionary_card_content_right {
+          overflow: hidden;
+          max-height: 250px;
+          background: white;
+          border-radius: 3px;
+          padding: 5px;
+          margin: 0 8px;
+          h3 {
+            font-weight: bold;
+            padding: 3px 0;
+            border-bottom: 2px solid rgb(188, 184, 184);
+          }
+        }
+      }
+    }
   }
 }

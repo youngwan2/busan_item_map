@@ -1,10 +1,13 @@
 import styles from './NaverDictionary.module.scss';
+
 import { useState, useRef } from 'react';
-import { gsap } from 'gsap';
-import { Draggable } from 'gsap/Draggable';
-import NaverDictionaryView from './components/NaverDictionaryView';
-import Overlay from './components/Overlay';
 import { useGSAP } from '@gsap/react';
+
+import NaverDictionaryView from './components/NaverDictionaryView';
+
+import { Draggable } from 'gsap/Draggable';
+import { gsap } from 'gsap';
+
 
 export type DictionaryType = {
   title: string;
@@ -19,13 +22,15 @@ function NavSearch() {
   const [display, setDisplay] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  function onClickToggleModal(){
+    setDisplay(old=>!old)
+  }
+
   useGSAP(() => {
     if (!buttonRef.current) return
       Draggable.create(buttonRef.current, {
         bounds: document.documentElement,
-        onClick: function () {
-          setDisplay(!display);
-        },
+        onClick: onClickToggleModal,
       });
   }, []);
 
@@ -38,8 +43,7 @@ function NavSearch() {
         className={styles.nav_search_icon}
       ></button>
       {/* 콘텐츠 뷰 */}
-      <NaverDictionaryView display={display} setDisplay={setDisplay} />
-      <Overlay display={display} setDisplay={setDisplay}></Overlay>
+      <NaverDictionaryView isDisplay={display} onToggle={onClickToggleModal}/>
     </>
   );
 }

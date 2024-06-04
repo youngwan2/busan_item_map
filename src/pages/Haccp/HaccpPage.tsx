@@ -10,7 +10,7 @@ import GuideMessage from '../../components/GuideMessage';
 import ObserverSpinner from '../../components/Common/Spinner/ObserverSpinner';
 import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import ListContainer from '@/components/Common/Container';
-import LoadViewCountModal from '@/components/LoadViewCountModal';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import HaccpProductList from './components/HaccpProductList';
 
 import axios from 'axios';
