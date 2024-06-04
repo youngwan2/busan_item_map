@@ -50,8 +50,8 @@ export function getStoreage(type: StorageType, key: string) {
         }
 
         throw new Error(`현재 저장소에 존재하지 않는 키를 전달하였습니다. 전달된 키는 "${key}" 입니다.`)
-    } catch (error) {
-        console.error(error)
+    } catch {
+        // console.error(error)
         return ''
     }
 

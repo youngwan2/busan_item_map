@@ -33,26 +33,32 @@ const NaverDictionaryView = ({ isDisplay, onToggle }: PropsType) => {
 
   /** 사용자 검색 키워드 기록 */
   function setSearchValue(searchText: string) {
-    setSearchList(old => [...old, searchText])
+    const hasSearchText = searchList.includes(searchText)
+    if (!hasSearchText) setSearchList(old => [...old, searchText])
+
   }
 
   async function searchNaverDictionary(value: string) {
     if (value.length < 1) return toast.error('2자 이상 입력해주세요.')
+
     setSearchValue(value)
     setLoading(true);
     const url = '/naver-search?search=' + value
     const data = await getDefaultFetcher(url, ApiType.INTERNAL)
     const { status, meg, result } = data
     const { items } = result
+
     if (status === 200) { setItems(items) }
     else { toast.error(meg); setError(meg) }
     setLoading(false)
   }
 
+  // 최근 검색어 기반 검색
   function onSearch(value: string) {
     searchNaverDictionary(value)
   }
 
+  // action |  검색
   const searchAction = async (formEvent: FormEvent<HTMLFormElement>) => {
     formEvent.preventDefault()
     const input = formEvent.currentTarget.firstChild
