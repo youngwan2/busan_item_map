@@ -21,7 +21,6 @@ interface PropsType {
     }
 }
 
-
 export default function SearchForm({ action, onSearch, inputOptions, buttonOptions }: PropsType) {
     return (
         <form className={styles.search_container} onSubmit={action}>
@@ -30,7 +29,7 @@ export default function SearchForm({ action, onSearch, inputOptions, buttonOptio
                 inputOptions={inputOptions}
             />
             {/* 조회 버튼 */}
-            <SearchButton onSearch={onSearch} buttonOptions={buttonOptions} />
+            <SearchButton onSearch={onSearch} buttonOptions={buttonOptions}/>
         </form>
     )
 }

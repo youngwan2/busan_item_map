@@ -13,15 +13,15 @@ export default function MacroNutrientCard({ product }: PropsType) {
             </div>
             <div className={styles.product_card_content}>
                 <strong>탄수화물</strong>
-                <p>{product.CARBOH_QY}</p>
+                <p>{product.carbohydrate_g}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>단백질</strong>
-                <p>{product.PROTEIN_QY}</p>
+                <p>{product.protein_g}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>지방</strong>
-                <p>{product.FAT_QY}</p>
+                <p>{product.fat_g}</p>
             </div>
 
         </div>

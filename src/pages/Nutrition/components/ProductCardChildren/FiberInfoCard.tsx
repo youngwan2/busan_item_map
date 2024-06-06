@@ -15,23 +15,23 @@ export default function FiberInfoCard({ product }: PropsType) {
             </div>
             <div className={styles.product_card_content}>
                 <strong>칼륨</strong>
-                <p>{product.POTASSIUM_QY}</p>
+                <p>{product.potassium_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>칼슘</strong>
-                <p>{product.CALCIUM_QY}</p>
+                <p>{product.calcium_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
-                <strong>나트륨</strong>
-                <p>{product.NATRIUM_QY}</p>
+                <strong>나트륨(소듐)</strong>
+                <p>{product.sodium_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>인</strong>
-                <p>{product.PHOSPHORUS_QY}</p>
+                <p>{product.phosphorus_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>철분</strong>
-                <p>{product.IRON_QY}</p>
+                <p>{product.iron_mg||0}</p>
             </div>
         </div>
     )
