@@ -1,5 +1,3 @@
-import styles from '@pages/Nutrition/Nutrition.module.scss'
-
 import { useRef, useEffect, useState } from 'react'
 
 import NutritionProductCard from './NutritionProductCard';

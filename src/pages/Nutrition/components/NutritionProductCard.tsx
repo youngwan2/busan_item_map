@@ -7,6 +7,7 @@ import MacroNutrientCard from './ProductCardChildren/MacroNutrientCard';
 import FiberInfoCard from './ProductCardChildren/FiberInfoCard';
 
 import { type NutritionProductType } from '@/types/Nutrition.types';
+import { HiArrowLongLeft, HiArrowLongRight  } from 'react-icons/hi2';
 
 interface PropsType {
     product: NutritionProductType;
@@ -19,9 +20,11 @@ const NutritionProductCard = forwardRef(({ product, onNext, onPrev, index }: Pro
     return (
         <div>
             <div className={styles.product_card_control_btn_container}>
-                <button aria-label='이전 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onPrev(index)}> 이전 </button>
-                <button aria-label='다음 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onNext(index)}> 다음 </button>
-                <p>{product.PRODUCT_NAME}</p>
+                <div className={styles.product_card_control_btn_inner_wrapper}>
+                    <button title='이전 슬라이드' aria-label='이전 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onPrev(index)}> <HiArrowLongLeft /> </button>
+                    <button title='다음 슬라이드' aria-label='다음 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onNext(index)}> <HiArrowLongRight /> </button>
+                </div>
+                <p>{product.name}</p>
             </div>
             <div
                 data-index={index}

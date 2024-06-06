@@ -14,27 +14,27 @@ export default function VitaminInfoCard({ product }: PropsType) {
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민A(μg)</strong>
-                <p>{product.VITAMIN_A_QY}</p>
+                <p>{product.vitamin_a_μg_rae||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민B1(mg)</strong>
-                <p>{product.THIAMIN}</p>
+                <p>{product.thiamine_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민B2(mg)</strong>
-                <p>{product.VITAMIN_B2_QY}</p>
+                <p>{product.riboflavin_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민B3(mg)</strong>
-                <p>{product.VITAMIN_B3_QY}</p>
+                <p>{product.niacin_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민C(mg)</strong>
-                <p>{product.VITAMIN_C_QY}</p>
+                <p>{product.vitamin_c_mg||0}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>비타민D(μg)</strong>
-                <p>{product.VITAMIN_D_QY}</p>
+                <p>{product.vitamin_d_μg||0}</p>
             </div>
         </div>
     )
