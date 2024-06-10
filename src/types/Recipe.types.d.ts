@@ -64,3 +64,9 @@ export interface RecipeInfoType {
     recipes: RecipeType[]
     totalCount: string
 }
+
+
+export interface RecipeCategoryType {
+    id: number,
+    name: string
+  }

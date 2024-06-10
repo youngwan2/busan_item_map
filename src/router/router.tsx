@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import LocalMarketPage from '../pages/LocalMarket/LocalMarketPage';
 import LocalMarketDetailPage from '../pages/LocalMarket/LocalMarketDetailPage';
 import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import TraditionalFoodPage from '@/pages/TraditionalFood/TraditionalFoodPage';
+import TraditionalFoodDetailPage from '@/pages/TraditionalFood/TraditionalFoodDetailPage';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const LocalFoodPage = lazy(() => import('../pages/LocalFood/LocalFoodPage'));
@@ -89,6 +91,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <RecipeDetail />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/traditional',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <TraditionalFoodPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/traditional/:id',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <TraditionalFoodDetailPage />
           </Suspense>
         ),
       },

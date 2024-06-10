@@ -3,6 +3,7 @@ import { ApiType, getDefaultFetcher } from '../api/get.api';
 import { toast } from 'react-toastify';
 
 /**
+ * 내부 백엔드 호출용 리액트 쿼리
  * @param key 예) useQuery의 식별키 ['localfood', 5]
  * @param url 예) fetch 요청 주소 '/localfood?page=1'
  * @returns

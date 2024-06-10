@@ -93,6 +93,11 @@ export default function RecipePage() {
     setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
   }
 
+  /** 검색 초기화 */
+  function onReset(){
+    setProductName('')
+  }
+
   /** 버튼 검색 액션 */
   async function onSearch(e: MouseEvent<HTMLButtonElement>) {
     const input = e.currentTarget.previousElementSibling as HTMLInputElement
@@ -122,7 +127,7 @@ export default function RecipePage() {
       <h2 className={styles.page_title}>음식 레시피</h2>
       <div className={styles.recipe_page_inner_boundary}>
         <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
-        <RecipeSearchForm action={searchAction} onSearch={onSearch} />
+        <RecipeSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
         <Message>
           {
             <>

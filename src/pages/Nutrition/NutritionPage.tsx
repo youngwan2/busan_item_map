@@ -14,6 +14,7 @@ import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsA
 
 import ListContainer from '@/components/Common/Container';
 import NutritionProductFilter from './components/Filter/NutritionProductFilter';
+import { debounce } from '@/utils/helpers';
 
 interface KeywordType {
   companyName: string[]
@@ -39,6 +40,8 @@ export default function NutritionPage() {
   const hasProducts = Array.isArray(products) && products.length > 0;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
 
+  
+
   /** 검색어 반환 */
   function getSearchValue(input: HTMLInputElement) {
     if (!(input instanceof HTMLInputElement)) return
@@ -54,6 +57,11 @@ export default function NutritionPage() {
     const input = e.currentTarget.childNodes[1] as HTMLInputElement
     const searchProductName = getSearchValue(input) || ''
     updateState(searchProductName, 1)
+  }
+
+  /** 검색어 초기화 */
+  function onReset(){
+    setProductName('')
   }
 
   /** 버튼 검색 액션 */
@@ -79,12 +87,13 @@ export default function NutritionPage() {
 
 
   /** 상호명 필터 */
+  const debounceKeywords = debounce(setKeywords,1000)
   function onChangeRestaurantValue(e: ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
     if (e.currentTarget.checked) {
-      setKeywords(old => ({ ...old, companyName: [...old.companyName, value] }))
+      debounceKeywords((old:KeywordType) => ({ ...old, companyName: [...old.companyName, value] }))
     } else {
-      setKeywords(old => ({ ...old, companyName: [...old.companyName.filter(type => type !== value)] }))
+      setKeywords((old:KeywordType) => ({ ...old, companyName: [...old.companyName.filter(type => type !== value)] }))
     }
   }
 
@@ -104,7 +113,7 @@ export default function NutritionPage() {
           subName={`식품영양정보조회`}
           totalCount={totalCount}
         />
-        <NutritionSearchForm action={searchAction} onSearch={onSearch} />
+        <NutritionSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
         <NutritionProductFilter onChangeFoodTypeValue={onChangeFoodTypeValue}  onChangeRestaurantValue={onChangeRestaurantValue} />
         <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
         <ListContainer container={'section'} className={`${styles.product_list_container}`}>

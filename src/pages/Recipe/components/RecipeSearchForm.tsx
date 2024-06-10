@@ -1,14 +1,15 @@
 import { type FormEventHandler, type MouseEventHandler} from 'react';
 
-import SearchForm from '@/components/Common/Search/SearchForm';
+import SearchForm from '@/components/Search/SearchForm';
 
 interface PropsType {
   onSearch: MouseEventHandler<HTMLButtonElement> ;
+  onReset: MouseEventHandler<HTMLButtonElement> ;
   action: FormEventHandler<HTMLFormElement>
 }
 
 function RecipeSearchForm({
-  onSearch, action
+  onSearch,onReset, action
 }: PropsType) {
 
 
@@ -22,11 +23,15 @@ function RecipeSearchForm({
   const buttonOptions = {
     text:'조회',
     type:'button' as "button" | "submit" | "reset"
+  }
 
+  const resetButtonOptions = {
+    text:'리셋',
+    type:'reset' as "button" | "submit" | "reset"
   }
 
   return (
-    <SearchForm action={action} onSearch={onSearch} inputOptions={inputOptions} buttonOptions={buttonOptions}/>
+    <SearchForm action={action} onSearch={onSearch} onReset={onReset} inputOptions={inputOptions} buttonOptions={buttonOptions} resetButtonOptions={resetButtonOptions}/>
    
   );
 }

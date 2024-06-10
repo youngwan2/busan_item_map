@@ -76,6 +76,10 @@ function HaccpPage() {
 
   }
 
+  function onReset(){
+    setProductName('')
+  }
+
   function onSearch(e: MouseEvent<HTMLButtonElement>) {
     const input = e.currentTarget.previousElementSibling as HTMLInputElement
     const productName = getSearchValue(input)
@@ -107,6 +111,7 @@ function HaccpPage() {
           {/* 검색창 */}
           <HaccpSearchForm
             onSearch={onSearch}
+            onReset={onReset}
             searchAction={searchAction}
             productName={productName}
           />

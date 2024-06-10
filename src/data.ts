@@ -1,8 +1,8 @@
+import { HaccpProductCategoryType } from "./types/Haccp.types";
 import { KoreanProvincesType } from "./types/Local.types";
+import { RecipeCategoryType } from "./types/Recipe.types";
+import { TraditionalFoodCategoryType } from "./types/Traditional.types";
 
-export interface HaccpProductCategoryType {
-  name: string;
-}
 
 // HACCP 카테고리
 export const haccpProductCategories: HaccpProductCategoryType[] = [
@@ -37,25 +37,21 @@ export const haccpProductCategories: HaccpProductCategoryType[] = [
   { name: '참기름' },
 ];
 
-export interface RecipeCategoryType {
-  id: number,
-  name:string
-}
 
 // 레시피 카테고리
-export const recipeCategories:RecipeCategoryType[] = [
+export const recipeCategories: RecipeCategoryType[] = [
   { id: 1, name: '밥' },
   { id: 2, name: '일품' },
   { id: 3, name: '후식' },
   { id: 4, name: '국' },
   { id: 5, name: '반찬' },
   { id: 6, name: '기타' },
-  { id: 7, name:''}
+  { id: 7, name: '' }
 ]
 
 // 지역 카테고리
-export const koreanProvinces:KoreanProvincesType[] = [
-  { id: 0, name: ''},
+export const koreanProvinces: KoreanProvincesType[] = [
+  { id: 0, name: '' },
   { id: 1, name: '서울' },
   { id: 2, name: '부산' },
   { id: 3, name: '대구' },
@@ -184,48 +180,150 @@ export const restaurants = [
 ];
 
 
+// 전통식품 카테고리
+export const tarditionalFoodCategories: TraditionalFoodCategoryType =
+{
+  main: ['부식', '조미식', '주식', '주류', '기타', '기호식'],
+  sub: [
+    "구이류",
+    "국류",
+    "회류",
+    "양념류",
+    "밥류",
+    "기타",
+    "젓갈류",
+    "찜류",
+    "전골류",
+    "김치",
+    "나물류",
+    "장류",
+    "장아찌류",
+    "떡류",
+    "면류",
+    "한과류",
+    "죽류",
+    "양조곡주",
+    "음청류",
+    "보관법",
+    "증류주"
+  ],
+  detail: [
+    "전",
+    "토장국",
+    "생회",
+    "양념류",
+    "기타",
+    "발효젓",
+    "조림",
+    "찌개",
+    "맑은장국",
+    "야채김치",
+    "숙채",
+    "구이",
+    "선",
+    "장아찌",
+    "찜",
+    "볶음",
+    "간장",
+    "전유어",
+    "찐떡",
+    "국수",
+    "흰밥",
+    "다식",
+    "응이",
+    "탕류",
+    "죽",
+    "고명류",
+    "정과",
+    "유밀과",
+    "만두",
+    "순곡주류",
+    "생채",
+    "다류",
+    "된장",
+    "유과",
+    "혼양곡주류",
+    "식해",
+    "친떡",
+    "초회",
+    "적",
+    "음료류",
+    "지진떡",
+    "삶은떡",
+    "약용증류주",
+    "전골",
+    "초",
+    "숙회",
+    "고추장",
+    "배추김치",
+    "무김치",
+    "곰국",
+    "즙",
+    "순곡증류주",
+    "화채",
+    "부각",
+    "냉면",
+    "수제비",
+    "편육",
+    "냉채",
+    "묵",
+    "미음",
+    "엿강정",
+    "과일김치",
+    "떡국",
+    "냉국",
+    "비빔밥",
+    "숙란",
+    "암죽",
+    "잡곡밥",
+    "청국장",
+    "범벅"],
+  foodType: ["복합식품", "단일식품", "기타", "기술"]
+
+}
+
 
 
 //  홈 네비게이션 기능
 export const features = [
-  {  
-      index:0,
-      id: 'local-food',
-      title: '우리 고향 음식과 그 이야기',
-      description: '한국 각 지역의 다양한 향토음식을 소개합니다. 각 지역의 특색 있는 음식에 대한 역사를 확인하세요.',
-      link: '/localfood',
-      imageUrl: '/assets/localfoodback.png'
+  {
+    index: 0,
+    id: 'local-food',
+    title: '우리 고향 음식과 그 이야기',
+    description: '한국 각 지역의 다양한 향토음식을 소개합니다. 각 지역의 특색 있는 음식에 대한 역사를 확인하세요.',
+    link: '/localfood',
+    imageUrl: '/assets/localfoodback.png'
   },
   {
-      index:1,
-      id: 'local-market',
-      title: '지역 역사와 함께 숨쉬는 시장과 그 이야기',
-      description: '전통 시장의 다양한 이야기와 시장에서 만날 수 있는 특별한 음식과 물건들을 소개합니다.',
-      link: '/localmarket',
-      imageUrl: '/assets/slide/market-back.jpg'
+    index: 1,
+    id: 'local-market',
+    title: '지역 역사와 함께 숨쉬는 시장과 그 이야기',
+    description: '전통 시장의 다양한 이야기와 시장에서 만날 수 있는 특별한 음식과 물건들을 소개합니다.',
+    link: '/localmarket',
+    imageUrl: '/assets/slide/market-back.jpg'
   },
   {
-      index:2,
-      id: 'haccp',
-      title: 'Haccp가 붙은 제품은 안전합니다.',
-      description: 'Haccp 인증을 받은 제품과 업체를 조회할 수 있습니다. 안전한 먹거리를 확인하세요.',
-      link: '/haccp',
-      imageUrl: '/assets/slide/haccp-back.jpg'
+    index: 2,
+    id: 'haccp',
+    title: 'Haccp가 붙은 제품은 안전합니다.',
+    description: 'Haccp 인증을 받은 제품과 업체를 조회할 수 있습니다. 안전한 먹거리를 확인하세요.',
+    link: '/haccp',
+    imageUrl: '/assets/slide/haccp-back.jpg'
   },
   {
-      index:3,
-      id: 'nutrition',
-      title: '우리가 먹은(먹는) 음식의 영양성분를 살펴볼까요?',
-      description: '방대한 식품 영양 데이터베이스를 통해 우리가 먹은 음식의 칼로리 정보를 확인하세요.',
-      link: '/nutrition',
-      imageUrl: '/assets/slide/nutrition-back.jpg'
+    index: 3,
+    id: 'nutrition',
+    title: '우리가 먹은(먹는) 음식의 영양성분를 살펴볼까요?',
+    description: '방대한 식품 영양 데이터베이스를 통해 우리가 먹은 음식의 칼로리 정보를 확인하세요.',
+    link: '/nutrition',
+    imageUrl: '/assets/slide/nutrition-back.jpg'
   },
   {
-      index:4,
-      id: 'recipe',
-      title: '간단하게 만들어 먹을 수 있는 요리 없을까?',
-      description: '화려해 보이는 음식부터 단순한 음식까지 간단한 조리법으로 쉽고 편하게 조리해 보세요.',
-      link: '/recipe',
-      imageUrl: '/assets/slide/recipe-back.jpg'
+    index: 4,
+    id: 'recipe',
+    title: '간단하게 만들어 먹을 수 있는 요리 없을까?',
+    description: '화려해 보이는 음식부터 단순한 음식까지 간단한 조리법으로 쉽고 편하게 조리해 보세요.',
+    link: '/recipe',
+    imageUrl: '/assets/slide/recipe-back.jpg'
   }
 ];

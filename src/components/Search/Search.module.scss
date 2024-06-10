@@ -45,8 +45,6 @@
 
 /* 검색 버튼 */
 .search_btn {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   right: 0;
   min-width: 65px;
   color: white;
@@ -55,6 +53,19 @@
   background-color: rgb(53, 106, 162);
 }
 
+.search_btn:nth-of-type(2){
+  background-color: #1c4066;
+  border-end-end-radius:  5px;
+  border-top-right-radius: 5px;
+
+}
+
 .search_btn:hover {
-  background-color: rgb(54, 104, 158);
+  background-color: rgb(78, 142, 210);
+  cursor: pointer;
+}
+
+
+.search_btn:active{
+  background-color: rgb(53, 106, 162);
 }

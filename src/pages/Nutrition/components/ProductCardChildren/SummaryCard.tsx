@@ -19,11 +19,11 @@ export default function SummaryCard({ product }: PropsType) {
             </div>
             <div className={styles.product_card_content}>
                 <strong>총중량</strong>
-                <p>{product.food_weight}g</p>
+                <p>{product.food_weight}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>단위중량</strong>
-                <p>{product.base_g}g</p>
+                <p>{product.base_g}</p>
             </div>
             <div className={styles.product_card_content}>
                 <strong>칼로리</strong>

@@ -2,19 +2,19 @@ import { MouseEventHandler } from 'react'
 import styles from './Search.module.scss'
 
 interface PropsType {
-    onSearch: MouseEventHandler<HTMLButtonElement>
-    buttonOptions: {
+    onClick: MouseEventHandler<HTMLButtonElement>
+    options: {
         text: string
         type?: "submit" | "reset" | "button"
     }
 }
-export default function SearchButton({ onSearch, buttonOptions }: PropsType) {
-    const {type, text} = buttonOptions
+export default function SearchButton({ onClick, options }: PropsType) {
+    const { type, text } = options
     return (
         <button
             type={type}
             className={styles.search_btn}
-            onClick={onSearch}
+            onClick={onClick}
         >
             {text}
         </button>

@@ -10,7 +10,6 @@ interface SetStorageType {
     value: any
 }
 export function setStoreage({ type, key, value }: SetStorageType) {
-    console.log(value)
 
     if (type === StorageType.LOCAL) {
         window.localStorage.setItem(key, JSON.stringify(value))

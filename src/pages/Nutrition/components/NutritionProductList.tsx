@@ -42,9 +42,7 @@ export default function NutritionProductList({ products }: PropsType) {
     }
   }
 
-
   return (
-
      <>
       {products?.map((product: NutritionProductType, i) => {
         return (
