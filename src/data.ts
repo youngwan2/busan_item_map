@@ -298,7 +298,7 @@ export const features = [
     index: 1,
     id: 'local-market',
     title: '지역 역사와 함께 숨쉬는 시장과 그 이야기',
-    description: '전통 시장의 다양한 이야기와 시장에서 만날 수 있는 특별한 음식과 물건들을 소개합니다.',
+    description: '우리가 태어나 자란 지역의 역사와 함께 해온 그 시장, 기억하시나요? 과연 우리의 향토 시장에는 어떤 음식들이 있을까요?',
     link: '/localmarket',
     imageUrl: '/assets/slide/market-back.jpg'
   },
@@ -306,7 +306,7 @@ export const features = [
     index: 2,
     id: 'haccp',
     title: 'Haccp가 붙은 제품은 안전합니다.',
-    description: 'Haccp 인증을 받은 제품과 업체를 조회할 수 있습니다. 안전한 먹거리를 확인하세요.',
+    description: '식품 구매 전, 최고의 선택! 현재 구매를 고민하는 제품이 안전한 제품인지 확인해보세요! ',
     link: '/haccp',
     imageUrl: '/assets/slide/haccp-back.jpg'
   },
@@ -325,5 +325,13 @@ export const features = [
     description: '화려해 보이는 음식부터 단순한 음식까지 간단한 조리법으로 쉽고 편하게 조리해 보세요.',
     link: '/recipe',
     imageUrl: '/assets/slide/recipe-back.jpg'
+  },
+  {
+    index: 5,
+    id: 'traditional',
+    title: '우리나라 전통음식에는 뭐가 있을까?',
+    description: '한 번쯤 궁금할 수 있는 우리나라의 전통음식의 종류에 대한 정보를 제공합니다.',
+    link: '/traditional',
+    imageUrl: '/assets/slide/traditional-back.jpg'
   }
 ];

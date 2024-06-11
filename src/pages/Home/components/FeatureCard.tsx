@@ -22,7 +22,6 @@ export default function FeatureCard({ feature }: PropsType) {
             <h2>{feature.title}</h2>
             <p>{feature.description}</p>
             <a href={feature.link}>더보기</a>
-            
         </div>
     )
 }

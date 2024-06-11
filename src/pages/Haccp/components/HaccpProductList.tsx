@@ -11,7 +11,7 @@ export default function HaccpProductList({ products }: PropsType) {
     return (
         <>
             {
-                products.map((product) => <HaccpProductCard product={product}/>)
+                products.map((product) => <HaccpProductCard key={product.item.prdlstReportNo} product={product}/>)
             }
         </>
     )

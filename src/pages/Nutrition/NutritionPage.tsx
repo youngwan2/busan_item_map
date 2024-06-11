@@ -15,6 +15,7 @@ import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsA
 import ListContainer from '@/components/Common/Container';
 import NutritionProductFilter from './components/Filter/NutritionProductFilter';
 import { debounce } from '@/utils/helpers';
+import Pagination from '@/components/Pagination';
 
 interface KeywordType {
   companyName: string[]
@@ -97,6 +98,11 @@ export default function NutritionPage() {
     }
   }
 
+   /** 페이지네이션 */
+   function onPageSwitch(page: number) {
+    setPage(page)
+  }
+
   if (isError) return <p>{error?.message}</p>
 
   return (
@@ -124,7 +130,7 @@ export default function NutritionPage() {
               ? <NutritionProductList products={products} />
               : <p className={styles.product_list_loading_message}>조회된 목록이 존재하지 않습니다.</p>}
         </ListContainer>
-        <NutritionPagination totalPage={totalPage} />
+        <Pagination totalPage={totalPage} page={page} onPageSwitch={onPageSwitch}/>
       </div>
     </section>
   );

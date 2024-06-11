@@ -1,5 +1,5 @@
-
 import styles from './TraditionalFood.module.scss'
+
 import { ChangeEvent, MouseEvent, SyntheticEvent, useState } from 'react'
 import useDefaultQuery from '@/hooks/useDefaultQuery'
 

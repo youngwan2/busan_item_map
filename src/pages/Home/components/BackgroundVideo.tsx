@@ -2,10 +2,11 @@ import styles from '../Home.module.scss'
 export default function BackgroundVideo() {
     return (
         <>
-            <video className={styles.background_video} autoPlay muted preload='metedata' loop>
-                <source src="/assets/slide/background-video.webm" type="video/webm" />
-                <source src="/assets/slide/background-video.mp4" type="video/mp4" />
-            </video>
+            <picture className={styles.background_image}>
+                <source srcSet='/assets/slide/background_640.jpg' type='image/jpg' media='(max-width:640px)' />
+                <source srcSet='/assets/slide/background_1280.jpg' type='image/jpg' media='(max-width:1280px)' />
+                <img src="/assets/slide/background_1920.jpg" alt="홈 배경 이미지" />
+            </picture>
             <div className={styles.video_overlay}></div>
         </>
     )
