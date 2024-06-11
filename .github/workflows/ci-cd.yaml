@@ -25,8 +25,8 @@ jobs:
         - name: Configure AWS Credentials
           uses: aws-actions/configure-aws-credentials@v4
           with:
-            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}} 
-            aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
+            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}} 
+            aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
             aws-region: ${{env.REGION}}
         
         #.3. 단계 | 프로젝트 관련 종속성을 설치할 노드 설치
