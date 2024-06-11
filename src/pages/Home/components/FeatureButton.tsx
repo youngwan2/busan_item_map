@@ -4,7 +4,6 @@ import { useEffect, useState} from 'react'
 import Button from "@/components/Common/Button"
 
 import gsap from 'gsap'
-import { Flip } from 'gsap/Flip'
 
 import { HiMiniChevronLeft, HiMiniChevronRight } from 'react-icons/hi2';
 import { BiPlay } from "react-icons/bi";
@@ -26,10 +25,6 @@ export default function FeatureButton() {
         return timerId
     }
 
-
-
-    gsap.registerPlugin(Flip)
-
     // 이전 슬라이드 이동
     function onPrevCard() {
         const containers = getElements('#feature_list_container') // memo: FeatureList.tsx 확인
@@ -37,7 +32,6 @@ export default function FeatureButton() {
 
         const firstCard = cards[0]
         containers[0].append(firstCard)
-
     }
 
     // 다음 슬라이드 이동

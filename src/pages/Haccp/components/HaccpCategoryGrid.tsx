@@ -1,5 +1,6 @@
 import styles from '@pages/Haccp/HaccpCategoryGrid.module.scss'
-import { HaccpProductCategoryType, haccpProductCategories as categories } from '@/data';
+import { haccpProductCategories as categories } from '@/data';
+import type { HaccpProductCategoryType } from '@/types/Haccp.types';
 
 interface PropsType {
     categoryName: string;

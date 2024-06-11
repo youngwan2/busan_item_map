@@ -1,7 +1,5 @@
 import styles from './Message.module.scss'
-
 import { ReactNode } from "react"
-
 
 interface PropsType {
   children: ReactNode

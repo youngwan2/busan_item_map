@@ -21,3 +21,10 @@ export interface HaccpProductItemType {
     item: HaccpProductPropertyType
 }
 
+
+
+export interface HaccpProductCategoryType {
+    name: string;
+  }
+  
+  
