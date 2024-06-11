@@ -44,7 +44,7 @@ jobs:
         - name: Install Dependencies
           run: |
             node --version
-            npm ci --production
+            npm ci
 
         # 5. 단계 | 정적 파일 빌드(build 생성)
         - name: Build 
