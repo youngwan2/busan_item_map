@@ -21,6 +21,7 @@ export default function useIntersection(ref: React.RefObject<any>) {
 
   useEffect(() => {
     if (!ref.current) return;
+
     const viewTarget = ref.current;
     obsever.observe(viewTarget);
 

@@ -1,0 +1,197 @@
+.category_container {
+  max-width: 1240px;
+  margin: 6em auto;
+  position: relative;
+
+  .category_title {
+    margin: 0 0 2% 0;
+    display: inline-block;
+    background-color: #1a4e85;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.15em;
+    position: absolute;
+    top: -1em;
+    left: 0.5em;
+    padding: 5px;
+  }
+}
+
+.category_grid {
+  --default-interval-left: 100px;
+  --default-interval-top: 100px;
+  border-radius: 5px;
+  border: 1px solid rgb(195, 193, 193);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112.72px, 112.72px));
+  justify-content: center;
+  margin: 1em auto;
+  padding: 2.3em 0 1em;
+  gap: 5px;
+
+  .category_grid_cell {
+    transition: 0.5s;
+    width: 114px;
+    height: 145px;
+    padding-top: 5px;
+    border-radius: 2;
+    background: none;
+    position: relative;
+    border: 1px solid #ddd;
+    text-align: center;
+    .img_boundary {
+      width: 103px;
+      height: 108px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #ddd;
+
+      border-radius: 5px;
+      .category_grid_cell_img {
+        width: 1688px;
+        height: 450px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/assets/local-splite.png');
+        border-radius: 4px;
+        top: 0;
+        left: 0; // 100px 단위로 움직일 때 다음 이미지를 보여줌
+        position: absolute;
+      }
+    }
+  }
+  .category_grid_cell:hover {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  /** 이미지 스프라이트 처리 */
+  //   서울
+  .category_grid_cell:nth-of-type(2) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * 0);
+    }
+  }
+  //   부산
+  .category_grid_cell:nth-of-type(3) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -0.995);
+    }
+  }
+  //   대구
+  .category_grid_cell:nth-of-type(4) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -1.98);
+    }
+  }
+  //   인천
+  .category_grid_cell:nth-of-type(5) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -2.98);
+    }
+  }
+  //   광주
+  .category_grid_cell:nth-of-type(6) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -3.95);
+    }
+  }
+  //   대전
+  .category_grid_cell:nth-of-type(7) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -4.95);
+    }
+  }
+  //   울산
+  .category_grid_cell:nth-of-type(8) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -5.95);
+    }
+  }
+  //   세종
+  .category_grid_cell:nth-of-type(9) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -6.935);
+    }
+  }
+
+  //   경기도
+  .category_grid_cell:nth-of-type(10) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -7.925);
+    }
+  }
+
+  //   강원도
+  .category_grid_cell:nth-of-type(11) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -8.92);
+    }
+  }
+
+  //   충청북도
+  .category_grid_cell:nth-of-type(12) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -9.9);
+    }
+  }
+
+  //   충청남도
+  .category_grid_cell:nth-of-type(13) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -10.89);
+    }
+  }
+
+  //   전라북도
+  .category_grid_cell:nth-of-type(14) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -11.885);
+    }
+  }
+
+  //   전라남도
+  .category_grid_cell:nth-of-type(15) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -12.875);
+    }
+  }
+
+  //   경상북도
+  .category_grid_cell:nth-of-type(16) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -13.87);
+    }
+  }
+
+  //   경상남도
+  .category_grid_cell:nth-of-type(17) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -14.858);
+    }
+  }
+
+  //   제주도
+  .category_grid_cell:nth-of-type(18) {
+    .category_grid_cell_img {
+      left: calc(var(--default-interval-left) * -15.843);
+    }
+  }
+}
+
+// 카테고리 활성화 체크
+.category_grid_cell.active::before {
+  content: 'Pick';
+  position: absolute;
+  padding: 1px 5px;
+  z-index: 1;
+  font-size: 0.85em;
+  border-radius: 10px;
+  background-color: gold;
+  color: black;
+  top: -8px;
+  right: -10px;
+}
+
+.category_grid_cell.active {
+  background-color: rgb(231, 228, 228);
+}

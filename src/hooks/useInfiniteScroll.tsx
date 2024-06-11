@@ -8,10 +8,11 @@ import { config } from '../config/config';
  * @param url api 경로 ex /localfood?page=
  * @returns
  */
-export const useInfiniteScroll = (key: string, url: string) => {
-  const baseUrl = config.prefix + config.host + url + 0;
-  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: [key],
+export const useInfiniteScroll = (url: string, ...key: string[]) => {
+  const baseUrl = config.protocol + config.host + url + 0;
+
+  const { data, ...props } = useInfiniteQuery({
+    queryKey: key,
     queryFn: async ({ pageParam = baseUrl }) => {
       const res = await axios.get(pageParam);
       return res.data;
@@ -25,8 +26,10 @@ export const useInfiniteScroll = (key: string, url: string) => {
   const items = data?.pages.map((pageData) => {
     return pageData.items;
   });
+
+
   const totalCount = data?.pages[0].totalCount || 0;
   const concatItems = items ? [].concat(...items) : [];
 
-  return { items: concatItems, totalCount, isFetching, hasNextPage, fetchNextPage };
+  return { items: concatItems, totalCount, ...props };
 };

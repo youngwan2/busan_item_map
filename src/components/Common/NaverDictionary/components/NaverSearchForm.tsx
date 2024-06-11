@@ -1,16 +1,21 @@
-import { FormEventHandler, useEffect, useRef } from 'react';
 import styles from '../NaverDictionary.module.scss';
 
+import { FormEventHandler, useEffect, useRef } from 'react';
+
+import { HiSearch } from 'react-icons/hi';
+
 interface PropsType {
-  display: boolean;
+  isDisplay: boolean;
   action: FormEventHandler<HTMLFormElement>
 }
-const NaverSearchForm = ({ display, action }: PropsType) => {
+
+
+const NaverSearchForm = ({ isDisplay, action }: PropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function focus() {
     let timerId: NodeJS.Timeout
-    if (!display && !inputRef.current) return
+    if (!isDisplay && !inputRef.current) return
     timerId = setTimeout(() => {
       inputRef.current?.focus();
     }, 100);
@@ -23,7 +28,7 @@ const NaverSearchForm = ({ display, action }: PropsType) => {
       clearTimeout(timerId)
     }
 
-  }, [display]);
+  }, [isDisplay]);
 
   return (
     <form
@@ -31,14 +36,17 @@ const NaverSearchForm = ({ display, action }: PropsType) => {
     >
       <input
         ref={inputRef}
+        maxLength={15}
         className={styles.user_input}
         type="search"
       />
       <button
+        aria-label='검색'
+        title='검색 버튼'
         className={styles.search_btn}
         type="submit"
       >
-        찾기
+        <HiSearch/>
       </button>
     </form>
   );

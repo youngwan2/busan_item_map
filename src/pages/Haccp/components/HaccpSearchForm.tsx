@@ -1,39 +1,46 @@
-import ReactSpinner from '../../../components/UI/ReactSpinner';
+import { type FormEventHandler, type MouseEventHandler, useEffect, useRef } from 'react';
+
 import useFoucs from '../../../hooks/useFocus';
-import styles from '../Haccp.module.scss';
-import { FormEventHandler, useEffect, useRef } from 'react';
-import HaccpInput from './HaccpInput';
-import SearchButton from './SearchButton';
+
+import SearchForm from '@/components/Search/SearchForm';
 
 interface Type {
-  loading: boolean;
   productName: string;
-  search: () => void;
-  searchAction:FormEventHandler<HTMLFormElement>
+  onSearch: MouseEventHandler<HTMLButtonElement>;
+  onReset: MouseEventHandler<HTMLButtonElement>;
+  searchAction: FormEventHandler<HTMLFormElement>
 }
 
-function HaccpSearchForm({ search, loading, productName, searchAction }: Type) {
+function HaccpSearchForm({ onSearch, onReset, productName, searchAction }: Type) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const inputOptions = {
+    defaultValue: '',
+    placeholder: 'ex. 김치',
+    id: 'haccp_search',
+    type: 'search',
+    name: 'search'
 
-
-  function onClickSearch() {
-    search();
   }
+
+  // TODO : 재사용 가능한 검색 폼을 만들어서 각 검색 페이지 마다 적용 해야 함.
+  const buttonOptions = {
+    text: '조회',
+    type: "button" as 'button' // why? 문자열 타입으로 계속 인식하여 타입 주장
+  }
+  const resetButtonOptions = {
+    text: '리셋',
+    type: 'reset' as "button" | "submit" | "reset"
+  }
+
+
   useFoucs(inputRef)
   useEffect(() => {
     if (inputRef.current) inputRef.current.value = productName;
   }, [productName]);
 
   return (
-    <form className={styles.search_container} onSubmit={searchAction}>
-      <HaccpInput />
-      {/* 조회 버튼 */}
-      <SearchButton onClickSearch={onClickSearch} />
-      <div className={styles.spinner} style={loading ? { display: 'block' } : { display: 'none' }}>
-        <ReactSpinner />
-      </div>
-    </form>
+    <SearchForm action={searchAction} onSearch={onSearch} onReset={onReset} inputOptions={inputOptions} buttonOptions={buttonOptions} resetButtonOptions={resetButtonOptions} />
   );
 }
 

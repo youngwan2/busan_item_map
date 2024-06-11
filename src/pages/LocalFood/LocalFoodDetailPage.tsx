@@ -1,13 +1,16 @@
-import { useParams } from 'react-router-dom';
 import styles from './LocalFoodDetail.module.scss';
-import useDefaultQuery from '../../hooks/useDefaultQuery';
-import PageError from '../../components/Errors/PageError';
+
+import { useParams } from 'react-router-dom';
+import useDefaultQuery from '@/hooks/useDefaultQuery';
+
+import PageError from '@/components/Errors/PageError';
+import GuideMessage from '@/components/GuideMessage';
+import BackMove from '@/components/BackMove';
+import Maps from '@/components/Map/Maps';
+
 import { localFoodType } from '../LocalFood/types/localFood.types';
-import useMap from '../../hooks/useMap';
-import GuideMessage from '../../components/Common/GuideMessage';
-import BackMove from '../../components/Common/BackMove';
-import useHeaderTheme from '../../hooks/useHeaderTheme';
-import ReactSpinner from '../../components/UI/ReactSpinner';
+import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+
 
 export default function LocalFoodDetailPage() {
   const { id } = useParams();
@@ -15,11 +18,13 @@ export default function LocalFoodDetailPage() {
     data: localFood,
     isError,
     isPending,
+    isFetching,
     error,
   } = useDefaultQuery(['localfood', id], '/localfoods/' + id) as {
     data: localFoodType;
     isError: boolean;
     isPending: boolean;
+    isFetching:boolean;
     error: Error | null;
   };
   const {
@@ -34,32 +39,18 @@ export default function LocalFoodDetailPage() {
     rel_rest_name,
     sub_title,
     title,
-  } = localFood || {
-    content: '',
-    content_url: '',
-    create_at: '',
-    update_at: '',
-    keyword: '',
-    lcc_address: '',
-    main_thumb_url: '',
-    rel_rest_address: '',
-    rel_rest_name: '',
-    rel_rest_tel: '',
-    sub_title: '',
-    title: '',
-  };
-  useMap(0, 0, rel_rest_name, 'localfood_map', rel_rest_address);
+  } = localFood || replaceInfo
 
-  useHeaderTheme()
 
-  if (isPending) return <ReactSpinner />;
+  if (isPending || isFetching) return <LoadingSpinner />;
   if (isError) return <PageError error={error?.message} />;
+
   return (
-    <section className={styles.LocalFood_Detail}>
+    <section className={styles.localfood_detail_page_container}>
       <BackMove />
-      <GuideMessage path="/localfood" mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
+      <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localfood" subPath='' mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
       {/* 좌측 컨텐츠 */}
-      <article className={styles.left_content}>
+      <div className={styles.left_content}>
         <h3 className={styles.sub_title}>{sub_title}</h3>
         <h2 className={styles.title}>{title}</h2>
         <img
@@ -68,9 +59,9 @@ export default function LocalFoodDetailPage() {
           alt="썸네일 이미지"
         />
         <p className={styles.sumary}>{content}</p>
-      </article>
+      </div>
       {/* 우측 컨텐츠 */}
-      <article className={styles.right_content}>
+      <div className={styles.right_content}>
         <div>
           <h3>콘텐츠 바로가기</h3>
           <a href={content_url}>{content_url}</a>
@@ -96,14 +87,30 @@ export default function LocalFoodDetailPage() {
           <span>
             {rel_rest_name ? rel_rest_name + `(${rel_rest_address})` : '조회된 데이터가 없습니다.'}
           </span>
-          <div id="localfood_map" style={{ width: '100%', height: '350px' }}></div>
+          <Maps defaultCenter={{ lat: 37.566826, lng: 126.9786567 }} address={rel_rest_address} name={rel_rest_name || '조회된 이름이 없습니다.'} />
         </div>
         <div>
           <hr />
           <h3>지방문화원</h3>
           <span>{lcc_address || '조회된 데이터가 없습니다.'}</span>
         </div>
-      </article>
+      </div>
     </section>
   );
+}
+
+
+const replaceInfo = {
+  content: '',
+  content_url: '',
+  create_at: '',
+  update_at: '',
+  keyword: '',
+  lcc_address: '',
+  main_thumb_url: '',
+  rel_rest_address: '',
+  rel_rest_name: '',
+  rel_rest_tel: '',
+  sub_title: '',
+  title: '',
 }

@@ -24,5 +24,9 @@ export const routes = [
             name: '간단 레시피',
             route: '/recipe'
         },
+        {
+            name: '전통식품',
+            route: '/traditional'
+        },
     ]
 ]

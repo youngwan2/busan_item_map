@@ -1,12 +1,15 @@
-import { RecipeType } from '../types/Recipe.types';
 import styles from '../Recipe.module.scss';
+
 import { useState } from 'react';
-interface Type {
+
+import { RecipeType } from '@/types/Recipe.types';
+
+interface PropsType {
   recipes?: RecipeType[];
   visibleRecipes?: RecipeType[];
 }
 
-function RecipeMessage({ recipes, visibleRecipes }: Type) {
+function RecipeMessage({ recipes, visibleRecipes }: PropsType) {
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
 
   return (
@@ -42,7 +45,7 @@ function RecipeMessage({ recipes, visibleRecipes }: Type) {
               }
         }
       >
-        {recipes?.length}개 중 {visibleRecipes?.length} 포스트 조회..
+        {recipes?.length}개 중 {visibleRecipes?.length}개 레시피 조회중..
       </span>
     </article>
   );

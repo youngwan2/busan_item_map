@@ -1,89 +1,148 @@
 import styles from './Recipe.module.scss';
-import { useEffect, useState, useRef } from 'react';
-import { RecipeType } from './types/Recipe.types';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setRecipe } from '../../features/searchSlice/recipeSearch';
+
+import { useEffect, useState, useRef, SyntheticEvent, MouseEvent } from 'react';
+
 import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeList from './components/RecipeList';
+import GuideMessage from '../../components/GuideMessage';
+import RecipeCategoryGrid from './components/RecipeCategoryGrid';
+import Message from '@/components/Message';
+
 import { ApiType, getDefaultFetcher } from '../../api/get.api';
+
+import { type RecipeInfoType } from '@/types/Recipe.types';
+
+import { HiInformationCircle } from "react-icons/hi2";
+import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
 import { toast } from 'react-toastify';
-import RecipeSpinner from './components/RecipeSpinner';
-import GuideMessage from '../../components/Common/GuideMessage';
+
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
+const INITIAL_RECIPE_INFO = {
+  recipes: [],
+  totalCount: '0'
+}
+
 export default function RecipePage() {
-  const [userInputValue, setUserInputValue] = useState('');
-  const [categories] = useState(['', '후식', '국', '반찬', '밥', '일품', '기타']);
-  const [checkedMenu, setCheckedMenu] = useState('');
-  const [undefinedMessage, setUndefinedMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [recipes, setRecipes] = useState<RecipeType[]>();
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [pickedCategory, setPickedCategory] = useState('')
+  const [productName, setProductName] = useState('')
+  const [recipeInfo, setRecipeInfo] = useState<RecipeInfoType>(INITIAL_RECIPE_INFO);
+
 
   const sectionRef = useRef<HTMLBaseElement>(null);
-  const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => {
-    return state.recipe;
-  });
 
   useEffect(() => {
     document.title = '레시피 정보조회 | FoodPicker';
   }, []);
 
-  useEffect(() => {
-    setRecipes(state.value);
-  }, [state.value]);
 
-  /* axios.then */
-  function axiosThen(data: any) {
-    const result = data.COOKRCP01.row;
-    if (result) {
-      setRecipes(result);
-      setUndefinedMessage('');
-      dispatch(setRecipe(result));
-      toast.success('상품조회에 성공하였습니다.')
-    } else {
-      setUndefinedMessage(data.COOKRCP01.RESULT.MSG);
-      toast.error('조회된 상품이 존재하지 않습니다.')
-    }
-    setLoading(false);
+
+
+  /** GET | 레시피 api 요청 
+   * @param productName  요리명
+   * @param category 요리 카테고리(ex. 밥, 일품, 후식, 국)
+  */
+  async function getFetchRecipeData<T extends string>(productName?: T, category?: T) {
+    setIsLoading(true)
+    const url =
+      category && category !== ''
+        ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_PAT2=${category}`
+        : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${productName}`
+    const { row: recipes = [], total_count: totalCount = '0' } = (await getDefaultFetcher(url, ApiType.EXTERNAL)).COOKRCP01
+    setIsLoading(false)
+    return { recipes, totalCount }
+
   }
-  // 레시피 데이터 API 요청
-  const getRecipeDataFromOpenApi = async (searchFoodName: string = '', foodType: string = '') => {
-    setLoading(true);
-    const hasFoodName = searchFoodName.length;
-    const hasFoodType = foodType.length;
-    const isEmptyReq = hasFoodName === 0 && hasFoodType >= 0
-    const isAllMenu = hasFoodType === 0 && hasFoodName >= 1
-    const isChoiceMenu = hasFoodName >= 1 && hasFoodType > 0
 
-    if (isEmptyReq) {
-      setLoading(false);
-      setUndefinedMessage('검색어를 입력해주세요.');
-      toast.warn('검색어를 입력해주세요.')
-      return;
+  async function onSearchByCategory(pickedName: string) {
+    if (pickedName === '') {
+      setPickedCategory('')
+      setRecipeInfo(INITIAL_RECIPE_INFO)
+      return
     }
-    const url = isAllMenu ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}` : isChoiceMenu ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${searchFoodName}&RCP_PAT2=${foodType}` : null
-    const data = await getDefaultFetcher(url,ApiType.EXTERNAL)
-    if(!data) return toast.error('데이터 요청에 실패하였습니다.')
-    return axiosThen(data)
-  };
+    const { recipes, totalCount } = await getFetchRecipeData(undefined, pickedName)
 
-  const recipeCount  = recipes?.length || 0
+    setPickedCategory(pickedName)
+    setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
+
+  }
+
+
+  /** 검색어 반환 */
+  function getSearchValue(input: HTMLInputElement) {
+    if (!(input instanceof HTMLInputElement)) return
+    if (input.value.length <= 1) return false
+    const searchProduct = input.value
+    return searchProduct
+  }
+
+  /** Form Action | 폼 검색 액션  */
+  async function searchAction(e: SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const input = e.currentTarget.childNodes[1] as HTMLInputElement
+    const productName = getSearchValue(input) || ''
+    if (!productName) return toast.error('2자 이상은 입력해주세요.')
+    const { totalCount, recipes } = await getFetchRecipeData(productName)
+
+    setProductName(productName)
+    setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
+  }
+
+  /** 검색 초기화 */
+  function onReset(){
+    setProductName('')
+  }
+
+  /** 버튼 검색 액션 */
+  async function onSearch(e: MouseEvent<HTMLButtonElement>) {
+    const input = e.currentTarget.previousElementSibling as HTMLInputElement
+    const productName = getSearchValue(input) || ''
+    if (!productName) return toast.error('2자 이상은 입력해주세요.')
+    const { totalCount, recipes } = await getFetchRecipeData(productName)
+
+    setProductName(productName)
+    setRecipeInfo({ totalCount, recipes })
+    setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
+  }
+
+  /** 조회된 레시피가 없는 경우 캐시처리 된 레시피로 업데이트 */
+  function updateRecipeData() {
+    const recipeInfo: RecipeInfoType = getStoreage(StorageType.SESSION, 'recipes')
+    setRecipeInfo(recipeInfo)
+
+  }
+  useEffect(() => {
+    if (recipeInfo.recipes.length < 1) updateRecipeData()
+  }, [])
+
+
+  const recipeCount = Number(recipeInfo.totalCount)
   return (
-    <section className={styles.Recipe} ref={sectionRef}>
+    <section className={styles.recipe_page_container} ref={sectionRef}>
       <h2 className={styles.page_title}>음식 레시피</h2>
-      <GuideMessage path='/recipe' mainName='조회서비스' subName='음식레시피' totalCount={recipeCount}/>
-      <RecipeSearchForm
-        setCheckedMenu={setCheckedMenu}
-        setUserInputValue={setUserInputValue}
-        getRecipeDataFromApi={getRecipeDataFromOpenApi}
-        userInputValue={userInputValue}
-        checkedMenu={checkedMenu}
-        categories={categories}
-      />
-      <RecipeSpinner loading={loading}/>
-      <RecipeList recipes={recipes} meg={undefinedMessage}/>
+      <div className={styles.recipe_page_inner_boundary}>
+        <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
+        <RecipeSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
+        <Message>
+          {
+            <>
+              <HiInformationCircle />
+              <p><mark>검색</mark>과 <mark>분류</mark>는 따로 동작 합니다.</p>
+            </>
+          }
+        </Message>
+        <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
+        <RecipeList
+          isLoading={isLoading}
+          recipes={recipeInfo.recipes}
+          totalCount={Number(recipeInfo?.totalCount) || 0}
+          category={pickedCategory} searchValue={productName} />
+      </div>
     </section>
   );
 }

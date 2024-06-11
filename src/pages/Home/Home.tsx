@@ -1,26 +1,21 @@
-import Introduce from './components/Introduce';
-import { Suspense } from 'react';
-const Home = () => {
+import Header from '@/components/Layout/Header';
+import styles from './Home.module.scss'
+
+import FeatureList from './components/FeatureList';
+import Section from "./components/Section";
+import BackgroundVideo from './components/BackgroundVideo';
+
+
+export default function Home() {
+
   return (
-    <Suspense
-      fallback={
-        <div
-          style={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            height: '100vh',
-            width: '100%',
-            background: 'black',
-            zIndex: 10000000000000,
-          }}
-        >
-          로딩중...
-        </div>
-      }
-    >
-      <Introduce />
-    </Suspense>
+    <section className={styles.container} id='container'>
+      <Header />
+      <Section className={`${styles.section} section`}>
+        <FeatureList />
+      </Section>
+      <BackgroundVideo/>
+    </section>
   );
 };
-export default Home;
+

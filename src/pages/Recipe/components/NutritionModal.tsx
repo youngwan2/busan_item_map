@@ -1,51 +1,52 @@
-import { RecipeType } from '../types/Recipe.types';
-import styles from './RecipeNutrition.module.scss';
+import styles from '@pages/Recipe/RecipeDetail.module.scss';
+
+import { RecipeType } from '@/types/Recipe.types';
 
 interface PropsType {
     recipe: RecipeType
-    modalState:boolean
+    modalState: boolean
 }
 export default function NutritionModal({ recipe, modalState }: PropsType) {
 
-    const {INFO_CAR, INFO_ENG, INFO_FAT, INFO_PRO, INFO_NA, INFO_WGT} = recipe
-    if(!recipe) return <></>
+
+    if (!recipe) return <></>
+    const { INFO_CAR, INFO_ENG, INFO_FAT, INFO_PRO, INFO_NA, INFO_WGT } = recipe
+    
     return (
-        <article
-            className={styles.modal_con}
-            style={
-                modalState
-                    ? { visibility: 'visible', opacity: 1 }
-                    : {
-                        visibility: 'hidden',
-                        opacity: 0,
-                        transform: 'translate(500px,-50%)',
-                    }
-            }
+
+        <div
+            aria-label='영양성분표'
+            aria-hidden={`${!modalState}`}
+            className={`${styles.modal_con} ${modalState ? styles.active : ''}`}
         >
-            <h3 style={{ textAlign: 'center' }}>영양성분표</h3>
+            <h3 className={styles.model_title} >영양성분표</h3>
             <hr />
             <ul>
                 <li>
-                    ㅇ <strong>열량(kcal)</strong>
-                    {INFO_ENG}
+                    <strong>중량(g)</strong>
+                    {INFO_WGT || '정보 없음'}
                 </li>
                 <li>
-                    ㅇ <strong>탄수화물(g)</strong>
-                    {INFO_CAR}
+                    <strong>열량(kcal)</strong>
+                    {INFO_ENG || '정보 없음'}
                 </li>
                 <li>
-                    ㅇ <strong>단백질(g)</strong>
-                    {INFO_PRO}
+                    <strong>탄수화물(g)</strong>
+                    {INFO_CAR || '정보 없음'}
                 </li>
                 <li>
-                    ㅇ <strong>지방(g)</strong>
-                    {INFO_FAT}
+                    <strong>단백질(g)</strong>
+                    {INFO_PRO || '정보 없음'}
                 </li>
                 <li>
-                    ㅇ <strong>나트륨(mg)</strong>
-                    {INFO_NA}
+                    <strong>지방(g)</strong>
+                    {INFO_FAT || '정보 없음'}
+                </li>
+                <li>
+                    <strong>나트륨(mg)</strong>
+                    {INFO_NA || '정보 없음'}
                 </li>
             </ul>
-        </article>
+        </div>
     )
 }
