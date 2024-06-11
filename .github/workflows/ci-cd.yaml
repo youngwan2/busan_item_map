@@ -5,7 +5,7 @@ on:
 jobs:
     build-and-deploy:
         name: Build And Deploy
-        runs-on: unbuntu-latest # 깃허브 액션을 실행할 운영체제(기본 우분투)
+        runs-on: ubuntu-latest # 깃허브 액션을 실행할 운영체제(기본 우분투)
         env: # 환경변수 설정
             BUCKET: foodpick.co.kr # 버켓이름
             DIST: build # 빌드 파일 이름
