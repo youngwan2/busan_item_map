@@ -1,0 +1,60 @@
+name: Build & Deploy to AWS CloudFront
+on: 
+    push:
+        branches: [ deploy ]
+jobs:
+    build-and-deploy:
+        name: Build And Deploy
+        runs-on: unbuntu-latest # 깃허브 액션을 실행할 운영체제(기본 우분투)
+        env: # 환경변수 설정
+            BUCKET: foodpick.co.kr # 버켓이름
+            DIST: build # 빌드 파일 이름
+            REGION: ap-northeast-2 # S3 배포 지역이름
+            DIST_ID: E1PGJUPT8GO29O  # Cloud Front 배포 파일의 식별자 
+
+       
+        steps: # build-and-deploy 워크 플로 작업 실행 시 순차적으로 실행할 작업의 순서
+
+        # 1. 단계 | 깃허브 리포지토리 접근
+        - name: Checkout # 작업 이름
+          uses: actions/checkout@v4 # 워크 플로 작업을 위한 저장소 액세스를 위한 도구
+
+        # 2. 단계 | AWS 자격증명 구성 및 AWS CLI 설치
+        # 참고 | https://docs.github.com/ko/actions/learn-github-actions/contexts#secrets-context
+        # https://github.com/aws-actions/configure-aws-credentials/tree/v4/
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}} 
+            aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
+            aws-region: ${{env.REGION}}
+        
+        #.3. 단계 | 프로젝트 관련 종속성을 설치할 노드 설치
+        - uses: actions/setup-node@v4
+          with:
+           node-version: '20'
+        
+        # 4. 단계 | 종속성 설치(node_modules)
+        - name: Install Dependencies
+          run: |
+            node --version
+            npm ci --production
+
+        # 5. 단계 | 정적 파일 빌드(build 생성)
+        - name: Build 
+          run: npm run build
+
+        # 6. 단계 | AWS CLI 를 사용하여 S3 에 배포 파일을 복사(즉, 업로드)
+        - name : Copy files to the production website with the AWS CLI
+          run: |
+            aws s3 sync --delete ${{env.DIST}} s3://${{env.BUCKET}}
+
+        # 7. 단계 | 캐시 무효화 : 즉, 이전 정적 파일 캐시 버리고, 새로 업로드된 파일이 보이도록
+        - name : Clear Cash
+          run: |
+            aws cloudfront create-invalidation \
+              --distribution-id ${{ env.DIST_ID}} \
+              --paths "/*"
+
+        
+            
