@@ -11,6 +11,12 @@ jobs:
             DIST: build # 빌드 파일 이름
             REGION: ap-northeast-2 # S3 배포 지역이름
             DIST_ID: E1PGJUPT8GO29O  # Cloud Front 배포 파일의 식별자 
+            VITE_FOOD_KEY: ${{secrets.VITE_FOOD_KEY}}
+            VITE_KAKAO:  ${{secrets.VITE_KAKAO}}
+            VITE_NAVER_CLIENT_ID:  ${{secrets.VITE_NAVER_CLIENT_ID}}
+            VITE_NAVER_CLIENT_SECRET:  ${{secrets.VITE_NAVER_CLIENT_SECRET}}
+            VITE_PUBLIC_KEY:  ${{secrets.VITE_PUBLIC_KEY}}
+            
 
        
         steps: # build-and-deploy 워크 플로 작업 실행 시 순차적으로 실행할 작업의 순서
