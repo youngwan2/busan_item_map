@@ -26,7 +26,6 @@ const INITIAL_RECIPE_INFO = {
 
 export default function RecipePage() {
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
   const [pickedCategory, setPickedCategory] = useState('')
   const [productName, setProductName] = useState('')
   const [recipeInfo, setRecipeInfo] = useState<RecipeInfoType>(INITIAL_RECIPE_INFO);

@@ -1,6 +1,6 @@
 import styles from './TraditionalFood.module.scss'
 
-import { ChangeEvent, MouseEvent, SyntheticEvent, useState } from 'react'
+import { ChangeEvent, MouseEvent, SyntheticEvent, useEffect, useState } from 'react'
 import useDefaultQuery from '@/hooks/useDefaultQuery'
 
 import GuideMessage from '@/components/GuideMessage'
@@ -96,6 +96,10 @@ export default function TraditionalFoodPage() {
   function onPageSwitch(page: number) {
     setPage(page)
   }
+
+  useEffect(()=>{
+    document.title="전통음식 | FoodPicker"
+  },[])
 
   return (
     <section className={`${styles.traditional_food_page_container}`}>

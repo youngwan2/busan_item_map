@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import useIntersection from '@/hooks/useIntersection';
 
 import RecipeCard from './RecipeCard';
-import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
+import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 
 import type { RecipeType } from '@/types/Recipe.types';
 

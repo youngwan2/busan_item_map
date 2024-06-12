@@ -28,9 +28,9 @@ export default function RestaurantFilter({onChangeRestaurantValue}:PropsType) {
     <Container container={'div'} className={styles.filter_content_wrapper}  >
       <h3>상호명</h3>
       <div className={styles.filter_contents}>
-        {restaurants.slice(0, visibleRestaurantCount).map((restaurant, i) => {
+        {restaurants.slice(0, visibleRestaurantCount).map((restaurant) => {
           return (
-            <div className={styles.input_container}>
+            <div className={styles.input_container} key={restaurant.id}>
               <input onChange={onChangeRestaurantValue} name='restaurant' type="checkbox" id={restaurant.name + restaurant.id} value={restaurant.name} />
               <label htmlFor={restaurant.name + restaurant.id}>{restaurant.name}</label>
             </div>)

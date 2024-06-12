@@ -11,7 +11,7 @@ import RecipeContents from './components/RecipeContents';
 
 import { RecipeInfoType, RecipeType } from '@/types/Recipe.types';
 import { StorageType, getStoreage } from '@/utils/storage';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 
 
 function RecipeDetail() {

@@ -8,7 +8,7 @@ import Button from '@/components/Common/Button';
 import { Link } from 'react-router-dom';
 
 import { RecipeType } from '@/types/Recipe.types';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 
 
 interface PropsType {

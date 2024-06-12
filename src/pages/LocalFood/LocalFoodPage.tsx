@@ -7,7 +7,7 @@ import useIntersection from '@/hooks/useIntersection';
 
 import LocalFoodList from './components/LocalFoodList';
 import GuideMessage from '@components/GuideMessage';
-import ObserverSpinner from '@components/Common/Spinner/ObserverSpinner';
+import ObserverSpinner from '@components/Spinner/ObserverSpinner';
 
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import LocalCategoryGrid from './components/LocalCategoryGrid';
