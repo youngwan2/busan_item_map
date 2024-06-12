@@ -5,6 +5,16 @@
   font-style: normal;
 }
 
+// 키 프레임
+@keyframes sizeupdown 
+{
+ 0%{
+  transform: scale(1.1);
+  backdrop-filter: blur(5px);
+ }  
+}
+
+// 요소
 .container {
   width: 100%;
   overflow-y: hidden;
@@ -44,7 +54,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   
 
   h2 {
@@ -80,7 +90,7 @@
       max-width: 768px;
       height: 400px;
       width: 100%;
-      animation: sizeupdown 8s infinite linear alternate;
+      animation: sizeupdown 15s infinite linear alternate;
     }
   }
 
@@ -92,21 +102,10 @@
     width: 100%;
     z-index: 100;
     height: 100%;
-    animation: sizeupdown 8s infinite linear alternate;
+    animation: sizeupdown 15s infinite linear alternate;
     background: rgba(36, 36, 36, 0.223);
   }
 }
-
-
-// 키 프레임
-@keyframes sizeupdown 
-{
- 0%{
-  transform: scale(1.1);
-  backdrop-filter: blur(5px);
- }  
-}
-
 
 .feature_card:nth-of-type(1),.feature_card:nth-of-type(2),.feature_card:nth-of-type(3) {
   z-index: 2;
@@ -182,7 +181,7 @@
     width: 100%;
     min-height: 100vh;
     
-    animation: sizeupdown 10s infinite linear alternate;
+    animation: sizeupdown 20s infinite linear alternate;
     
   }
 }

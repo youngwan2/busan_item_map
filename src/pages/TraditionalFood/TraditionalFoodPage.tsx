@@ -78,7 +78,7 @@ export default function TraditionalFoodPage() {
     
   }
 
-  /** 필터*/
+  /** 카테고리 필터*/
   function onChangeSetCategory(e: ChangeEvent<HTMLInputElement>, key: "main" | "sub" | "detail" | "foodType") {
     const value = e.currentTarget.dataset.value
     const isChecked = e.currentTarget.checked
@@ -92,7 +92,7 @@ export default function TraditionalFoodPage() {
 
 
 
-  /** 페이지네이션 */
+  /** 페이지네이션 | 페이지 전환 */
   function onPageSwitch(page: number) {
     setPage(page)
   }
@@ -105,6 +105,7 @@ export default function TraditionalFoodPage() {
         <TraditionalFoodSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
         <TraditionalFoodFilter onChange={onChangeSetCategory} categories={categories} />
         <LoadViewCountModal type totalProductCount={totalPage} currentProductCount={page}/>
+       
         <ListContainer container={'section'} className={`${styles.traditional_food_list_container}`}>
           <h2 className={styles.traditional_food_list_title}>전통음식 목록({totalCount})</h2>
           <span className={styles.traditional_food_category}>{(categories.main||'대분류')+ '>' + (categories.sub||'중분류') + '>' + (categories.detail||'소분류')}</span>

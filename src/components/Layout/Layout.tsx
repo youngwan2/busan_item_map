@@ -1,8 +1,8 @@
 import styles from './Layout.module.scss';
 
 import Header from './Header';
-import Movement from '../Common/Movement';
-import NavSearch from '../Common/NaverDictionary/NaverDictionary';
+import Movement from '../Movement';
+import NavSearch from '../NaverDictionary/NaverDictionary';
 import Footer from './Footer';
 
 import { Outlet } from 'react-router-dom';

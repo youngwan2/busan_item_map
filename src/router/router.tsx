@@ -1,21 +1,25 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-import NotFound from '../components/Errors/NotFound';
-import { lazy, Suspense } from 'react';
-import LocalFoodDetailPage from '../pages/LocalFood/LocalFoodDetailPage';
 import 'react-toastify/dist/ReactToastify.css';
-import LocalMarketPage from '../pages/LocalMarket/LocalMarketPage';
-import LocalMarketDetailPage from '../pages/LocalMarket/LocalMarketDetailPage';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
-import TraditionalFoodPage from '@/pages/TraditionalFood/TraditionalFoodPage';
-import TraditionalFoodDetailPage from '@/pages/TraditionalFood/TraditionalFoodDetailPage';
 
-const Home = lazy(() => import('../pages/Home/Home'));
-const LocalFoodPage = lazy(() => import('../pages/LocalFood/LocalFoodPage'));
-const NutritionPage = lazy(() => import('../pages/Nutrition/NutritionPage'));
-const HaccpPage = lazy(() => import('../pages/Haccp/HaccpPage'));
-const RecipePage = lazy(() => import('../pages/Recipe/RecipePage'));
-const RecipeDetail = lazy(() => import('../pages/Recipe/RecipeDetail'));
+import { createBrowserRouter } from 'react-router-dom';
+
+import { lazy, Suspense } from 'react';
+
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
+import Layout from '@/components/Layout/Layout';
+import NotFound from '@/components/Errors/NotFound';
+
+const Home = lazy(() => import('@/pages/Home/Home'));
+const LocalFoodPage = lazy(() => import('@/pages/LocalFood/LocalFoodPage'));
+const LocalFoodDetailPage = lazy(() => import('@/pages/LocalFood/LocalFoodDetailPage'));
+const LocalMarketPage = lazy(() => import('@/pages/LocalMarket/LocalMarketPage'));
+const LocalMarketDetailPage = lazy(() => import('@/pages/LocalMarket/LocalMarketDetailPage'));
+const NutritionPage = lazy(() => import('@/pages/Nutrition/NutritionPage'));
+const HaccpPage = lazy(() => import('@/pages/Haccp/HaccpPage'));
+const RecipePage = lazy(() => import('@/pages/Recipe/RecipePage'));
+const RecipeDetail = lazy(() => import('@/pages/Recipe/RecipeDetail'));
+const TraditionalFoodPage = lazy(() => import('@/pages/TraditionalFood/TraditionalFoodPage'));
+const TraditionalFoodDetailPage = lazy(() => import('@/pages/TraditionalFood/TraditionalFoodDetailPage'));
+
 
 const router = createBrowserRouter([
   {

@@ -19,7 +19,7 @@ export default function NaverDictionaryCard({ item, i }: PropsType) {
 
     }
     return (
-        <li className={styles.naver_dictionary_card}>
+        <li className={styles.naver_dictionary_card} key={item.link}>
             <ul className={styles.naver_dictionary_card_content}>
 
                 <li className={styles.naver_dictionary_card_content_left}>
