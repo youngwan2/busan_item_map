@@ -19,8 +19,10 @@
 - (유지보수) 2024년 6월 13일 ~
 
 ## 🔥 배포
-- ※ 24.06.11 기준으로 프론트엔드의 경우 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다. 24.06.12 자로 백엔드 배포를 완료 후 정상 동작이 확인되면 배포 도메인을 올릴 예정입니다.
-- 준비중
+- ※ 24.06.11 기준으로 프론트엔드는 React + Vite + TS 환경에서 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다.
+- ※ 24.06.12 기준으로 백엔드는 NodeJS + TS + Express 환경에서 Github Actions + CloudType 플랫폼 기반으로 배포가 진행되었습니다.
+- https://foodpick.co.kr/
+- https://www.foodpick.co.kr/
 
 ## 🚬 트러블 슈팅
 - 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
