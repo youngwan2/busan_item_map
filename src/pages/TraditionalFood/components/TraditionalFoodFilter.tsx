@@ -48,7 +48,7 @@ export default function TraditionalFoodFilter({ onChange, categories }: PropsTyp
             <Filter title='소분류'>
                 {tarditionalFoodCategories.detail.map((detail) => {
                     return (
-                        <div className={styles.input_container}>
+                        <div className={styles.input_container} key={detail}>
                             <input onChange={(e) => onChange(e, "detail")} name='detail' id={'detail-'+detail} type="radio" key={detail} defaultValue={categories.detail} checked={categories.detail === detail} data-value={detail}/>
                             <label htmlFor={'detail-'+detail}>{detail}</label>
                         </div>
@@ -58,7 +58,7 @@ export default function TraditionalFoodFilter({ onChange, categories }: PropsTyp
             <Filter title='타입'>
                 {tarditionalFoodCategories.foodType.map((foodType) => {
                     return (
-                        <div className={styles.input_container}>
+                        <div className={styles.input_container} key={foodType}>
                             <input onChange={(e) => onChange(e, "foodType")} name='foodtype' id={'foodtype-'+foodType} type="radio" key={foodType} defaultValue={categories.foodType} checked={categories.foodType === foodType} data-value={foodType}/>
                             <label htmlFor={'foodtype-'+foodType}>{foodType}</label>
                         </div>

@@ -11,10 +11,14 @@ export default function NaverDictionaryRecentSearchList({ searchList = [], onSea
             <h3 className={styles.recent_search_list_title}>최근 검색어</h3>
             <div className={styles.recent_search_list}>
                 {
-                    dedupedSeachList.slice(0, 15).reverse().map((searchText) => {
-                        return <button onClick={() => onSearch(searchText)}
-                            className={styles.search_text}>{searchText}</button>
-                    })
+                    dedupedSeachList.slice(0, 15).reverse().map((searchText) =>
+                        <button
+                            key={searchText}
+                            onClick={() => onSearch(searchText)}
+                            className={styles.search_text}>
+                            {searchText}
+                        </button>
+                    )
                 }
             </div>
         </div>
