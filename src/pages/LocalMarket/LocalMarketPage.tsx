@@ -13,7 +13,7 @@ import ListContainer from '@/components/Common/Container';
 
 import { localMarketRegionState } from '@/atom/LocalAtom';
 import { toast } from 'react-toastify';
-import ObserverSpinner from '@/components/Common/Spinner/ObserverSpinner';
+import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 import { ClipLoader } from 'react-spinners';
 
 

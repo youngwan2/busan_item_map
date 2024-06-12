@@ -9,7 +9,7 @@ import BackMove from '@/components/BackMove';
 import Maps from '@/components/Map/Maps';
 
 import { localFoodType } from '../LocalFood/types/localFood.types';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 
 
 export default function LocalFoodDetailPage() {

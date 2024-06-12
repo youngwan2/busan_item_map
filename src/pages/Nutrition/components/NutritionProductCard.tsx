@@ -18,7 +18,7 @@ interface PropsType {
 const NutritionProductCard = forwardRef(({ product, onNext, onPrev, index }: PropsType, ref: any) => {
 
     return (
-        <div>
+        <div key={product.id}>
             <div className={styles.product_card_control_btn_container}>
                 <div className={styles.product_card_control_btn_inner_wrapper}>
                     <button title='이전 슬라이드' aria-label='이전 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onPrev(index)}> <HiArrowLongLeft /> </button>

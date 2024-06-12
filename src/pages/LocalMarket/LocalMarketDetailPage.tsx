@@ -9,7 +9,7 @@ import GuideMessage from '@/components/GuideMessage';
 import BackMove from '@/components/BackMove';
 
 import Maps from '@/components/Map/Maps';
-import LoadingSpinner from '@/components/Common/Spinner/LoadingSpinner';
+import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();

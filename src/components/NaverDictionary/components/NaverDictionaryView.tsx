@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 import NaverDictionaryList from './NaverDictionaryList';
 import NaverCloseIcon from './NaverCloseIcon';
 import NaverSearchForm from './NaverSearchForm';
-import LoadingSpinner from '@components/Common/Spinner/LoadingSpinner'
+import LoadingSpinner from '@components/Spinner/LoadingSpinner'
 import Message from '@/components/Message';
 import NaverDictionaryRecentSearchList from './NaverDictionaryRecentSearchList';
 
