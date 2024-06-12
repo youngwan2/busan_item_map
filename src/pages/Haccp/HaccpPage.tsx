@@ -7,7 +7,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import HaccpSearchForm from './components/HaccpSearchForm';
 import HaccpMessage from './components/HaccpMessage';
 import GuideMessage from '../../components/GuideMessage';
-import ObserverSpinner from '../../components/Common/Spinner/ObserverSpinner';
+import ObserverSpinner from '../../components/Spinner/ObserverSpinner';
 import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
@@ -24,7 +24,7 @@ function HaccpPage() {
   const haccpContainerRef = useRef<HTMLBaseElement>(null);
   const endPointSpanRef = useRef<HTMLSpanElement>(null)
 
-  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&prdkind=${prdkind} &numOfRows=100`;
+  const url = `https://apis.data.go.kr/B553748/CertImgListServiceV3/getCertImgListServiceV3?ServiceKey=${import.meta.env.VITE_PUBLIC_KEY}&returnType=json&prdlstNm=${productName}&prdkind=${prdkind}&numOfRows=100`;
   const queryKey = ['haccp', productName, prdkind]
 
   const {
