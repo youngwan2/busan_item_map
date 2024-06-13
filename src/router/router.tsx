@@ -9,10 +9,10 @@ import Layout from '@/components/Layout/Layout';
 import NotFound from '@/components/Errors/NotFound';
 
 const Home = lazy(() => import('@/pages/Home/Home'));
-const LocalFoodPage = lazy(() => import('@/pages/LocalFood/LocalFoodPage'));
-const LocalFoodDetailPage = lazy(() => import('@/pages/LocalFood/LocalFoodDetailPage'));
-const LocalMarketPage = lazy(() => import('@/pages/LocalMarket/LocalMarketPage'));
-const LocalMarketDetailPage = lazy(() => import('@/pages/LocalMarket/LocalMarketDetailPage'));
+const LocalFoodPage = lazy(() => import('@/pages/Local/LocalFood/LocalFoodPage'));
+const LocalFoodDetailPage = lazy(() => import('@/pages/Local/LocalFood/LocalFoodDetailPage'));
+const LocalMarketPage = lazy(() => import('@/pages/Local/LocalMarket/LocalMarketPage'));
+const LocalMarketDetailPage = lazy(() => import('@/pages/Local/LocalMarket/LocalMarketDetailPage'));
 const NutritionPage = lazy(() => import('@/pages/Nutrition/NutritionPage'));
 const HaccpPage = lazy(() => import('@/pages/Haccp/HaccpPage'));
 const RecipePage = lazy(() => import('@/pages/Recipe/RecipePage'));

@@ -69,6 +69,7 @@ export default function RecipeList({ isLoading, recipes = [], totalCount, search
     <>
       <div className={styles.recipe_list_container}>
         <h2 className={styles.recipe_list_title}>레시피 목록</h2>
+        {totalCount>0 && visibleRecipes.length<1 && <p className={styles.replace_message}>조회하려면 아래로 스크롤 해주세요.</p>}
         {
           !isLoading
             ? totalCount > 0

@@ -5,17 +5,17 @@ import { useRecoilState } from 'recoil';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
 
 import NutritionSearchForm from './components/NutritionSearchForm';
-import NutritionPagination from './components/NutritionPagination';
 import NutritionProductList from './components/NutritionProductList';
 import GuideMessage from '../../components/GuideMessage';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
+import Pagination from '@/components/Pagination';
+import ListContainer from '@/components/Common/Container';
+import NutritionProductFilter from './components/Filter/NutritionProductFilter';
 
 import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsAtom';
 
-import ListContainer from '@/components/Common/Container';
-import NutritionProductFilter from './components/Filter/NutritionProductFilter';
 import { debounce } from '@/utils/helpers';
-import Pagination from '@/components/Pagination';
+
 
 interface KeywordType {
   companyName: string[]

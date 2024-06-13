@@ -1,4 +1,4 @@
-import styles from './LocalFood.module.scss';
+import styles from '@pages/Local/Local.module.scss'
 
 import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
@@ -10,7 +10,7 @@ import GuideMessage from '@components/GuideMessage';
 import ObserverSpinner from '@components/Spinner/ObserverSpinner';
 
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
-import LocalCategoryGrid from './components/LocalCategoryGrid';
+import LocalCategoryGrid from '../Common/LocalCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 
 import { localFoodRegionState } from '@/atom/LocalAtom';
@@ -20,9 +20,8 @@ import { toast } from 'react-toastify';
 
 
 const VIEW_COUNT = 15
-const LocalFoodPage = () => {
 
-
+export default function LocalFoodPage(){
   const observerRef = useRef<HTMLButtonElement>(null);
   const [region, setRegion] = useRecoilState(localFoodRegionState)
   const { isEnd } = useIntersection(observerRef);
@@ -54,32 +53,32 @@ const LocalFoodPage = () => {
 
 
   useEffect(() => {
-    document.title = '향토음식조회 | FoodPicker';
+    document.title = '향토음식이야기 | FoodPicker';
   }, []);
 
   return (
-    <section className={styles.localfood_page_container}>
+    <section className={styles.local_page_container}>
       <h2 className={styles.page_title}>
         <p>향토음식이야기</p>
       </h2>
 
-      <div className={styles.localfood_page_inner_bundary}>
+      <div className={styles.local_page_inner_bundary}>
         <GuideMessage
-          stylesClassName={styles.page_path_guide_message}
+          stylesClassName={styles.page_path_guide_message } 
           path="/localfood"
           subPath=''
-          mainName="향토 이야기"
-          subName="향토 음식이야기"
+          mainName="향토이야기"
+          subName="향토음식"
           totalCount={totalCount}
         />
-        <LoadViewCountModal currentProductCount={items?.length || 0} totalProductCount={totalCount} />
+        <LoadViewCountModal currentProductCount={items.length || 0} totalProductCount={totalCount} />
         <LocalCategoryGrid categoryName={region} onSetPrdkind={onSetRegion} />
-        <ListContainer container={'ul'} className={styles.localfood_list_container} id="localfood-ul">
-          <h2 className={styles.localfood_list_title}>향토음식 목록</h2>
+        <ListContainer container={'ul'} className={styles.local_list_container} id="localfood-ul">
+          <h2 className={styles.local_list_title}>향토음식 목록</h2>
           {isPending
-            ? <p className={styles.localmarket_list_loading_message}>데이터를 조회중 입니다.</p>
+            ? <p className={styles.local_list_loading_message}>데이터를 조회중 입니다.</p>
             : items.length > 0 ? <LocalFoodList localfoods={items} />
-              : <p className={styles.localmarket_list_loading_message}> 조회된 목록이 없습니다.</p>}
+              : <p className={styles.local_list_loading_message}> 조회된 목록이 없습니다.</p>}
         </ListContainer>
 
         {/* 로딩 스피너 겸 스크롤 위치 체크 */}
@@ -97,4 +96,3 @@ const LocalFoodPage = () => {
   );
 };
 
-export default LocalFoodPage;

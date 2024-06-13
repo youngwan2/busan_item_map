@@ -1,4 +1,4 @@
-import { forwardRef, } from 'react';
+import { KeyboardEvent, forwardRef, } from 'react';
 import styles from '@pages/Nutrition/Nutrition.module.scss';
 
 import SummaryCard from './ProductCardChildren/SummaryCard';
@@ -15,10 +15,11 @@ interface PropsType {
     onPrev: (index: number) => void
     index: number
 }
+// todo : ref의 any 타입을 적절한 타입을 찾아서 대체해야 함.
 const NutritionProductCard = forwardRef(({ product, onNext, onPrev, index }: PropsType, ref: any) => {
 
     return (
-        <div key={product.id}>
+        <div key={product.id} className={styles.product_card_boundary} >
             <div className={styles.product_card_control_btn_container}>
                 <div className={styles.product_card_control_btn_inner_wrapper}>
                     <button title='이전 슬라이드' aria-label='이전 슬라이드 버튼' className={styles.product_card_control_button} onClick={() => onPrev(index)}> <HiArrowLongLeft /> </button>

@@ -3,11 +3,11 @@ import styles from '@pages/Recipe/RecipeDetail.module.scss';
 import { useState } from 'react';
 
 import NutritionModal from './NutritionModal';
+import Button from '@/components/Common/Button';
 
 import { RecipeType } from '@/types/Recipe.types';
-
 import { HiCalculator, HiXMark } from "react-icons/hi2";
-import Button from '@/components/Common/Button';
+
 
 
 

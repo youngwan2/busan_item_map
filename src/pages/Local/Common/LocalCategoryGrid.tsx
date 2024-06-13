@@ -1,5 +1,5 @@
 import { koreanProvinces as categories } from '@/data';
-import styles from '../LocalCategory.module.scss'
+import styles from './LocalCategoryGrid.module.scss'
 
 interface PropsType {
     categoryName: string;

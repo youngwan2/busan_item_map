@@ -53,7 +53,6 @@
     background-color: white;
     padding: 5px;
     border: 1px solid rgb(205, 205, 205);
-    background: linear-gradient(90deg, rgb(237, 235, 235), white);
   }
 
   // 목록
@@ -85,21 +84,23 @@
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(280px, 300px));
-    gap: 10px;
+    gap: 5px;
     height: 100%;
-    width: 95%;
+    width: 100%;
     .traditional_food_card_inner_wrapper {
+      position: relative;
       border: 1px solid rgb(221, 216, 216);
-      border-radius: 7px;
+      border-radius: 5px;
       margin: 0.5em auto;
-      max-width: 300px;
+      max-width: 290px;
       min-width: 280px;
       width: 100%;
       .card_title {
+        margin: -0.7px;
         background: linear-gradient(90deg, #1a4e85 30%, #296eb9);
         color: white;
-        border-top-right-radius: 7px;
-        border-top-left-radius: 7px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
       }
 
       .traditional_food_card_content {
@@ -111,7 +112,14 @@
     }
   }
   .traditional_food_card_inner_wrapper:hover{
-    box-shadow: 0 0 0 1px black;
+    box-shadow: 0 0 0 1px rgba(81, 80, 80, 0.333);
+  }
+
+  .traditional_food_card_inner_wrapper:hover::after {
+    content: "👀";
+    position: absolute;
+    right: 3px;
+    top: 0;
   }
 
   /* 페이지 경로 가이드 메시지 */

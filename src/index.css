@@ -8,15 +8,14 @@ body {
   overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
 ul {
   padding: 0 !important;
 }
 
 main {
   background-color: rgba(242, 242, 242, 0.16);
+  overflow: hidden;
+  
   
 }
 
