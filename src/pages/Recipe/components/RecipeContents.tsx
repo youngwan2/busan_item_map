@@ -9,7 +9,7 @@ interface PropsType {
 export default function RecipeContents({ recipe }: PropsType) {
 
     return (
-        <div className={styles.recipe_contents_inner_container}>
+        <div key={recipe.RCP_SEQ} className={styles.recipe_contents_inner_container}>
 
             {/* 레시피 개요 */}
             <div className={styles.recipe_contents_summary}>
@@ -38,7 +38,7 @@ export default function RecipeContents({ recipe }: PropsType) {
                             <h3>재료</h3>
                             <p>
                                 {recipe.RCP_PARTS_DTLS.split(',').map((splitText, i) => {
-                                    return <span className={styles.split_container}><mark>{i + 1}</mark> <span className={styles.split_text}>{splitText}</span></span>
+                                    return <span key={splitText} className={styles.split_container}><mark>{i + 1}</mark> <span className={styles.split_text}>{splitText}</span></span>
                                 })}
                             </p>
                         </li>

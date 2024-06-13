@@ -22,7 +22,7 @@ const HaccpInput = forwardRef<HTMLInputElement, PropsType>(({ inputOptions }, re
             defaultValue={defaultValue}
             id={id}
             name={name}
-            placeholder={placeholder}
+            placeholder={'ex. 김치'}
         />
     )
 })

@@ -1,4 +1,4 @@
-import styles from './LocalCard.module.scss'
+import styles from '@pages/Local/Common/LocalCard.module.scss'
 
 import { MouseEventHandler } from 'react'
 

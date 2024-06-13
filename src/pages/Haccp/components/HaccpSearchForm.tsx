@@ -1,17 +1,16 @@
 import { type FormEventHandler, type MouseEventHandler, useEffect, useRef } from 'react';
 
-import useFoucs from '../../../hooks/useFocus';
-
+import useFoucs from '@/hooks/useFocus'
 import SearchForm from '@/components/Search/SearchForm';
 
-interface Type {
+interface PropsType {
   productName: string;
   onSearch: MouseEventHandler<HTMLButtonElement>;
   onReset: MouseEventHandler<HTMLButtonElement>;
   searchAction: FormEventHandler<HTMLFormElement>
 }
 
-function HaccpSearchForm({ onSearch, onReset, productName, searchAction }: Type) {
+function HaccpSearchForm({ onSearch, onReset, productName, searchAction }: PropsType) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const inputOptions = {

@@ -56,7 +56,7 @@
           box-sizing: border-box;
 
           .recipe_menu_title {
-            color: #2968AC;
+            color: #2968ac;
             font-size: 1.5em;
             padding: 0 0 0.75em;
             margin-bottom: 0.75em;
@@ -138,7 +138,7 @@
     margin: 5em 0;
     position: relative;
     h3 {
-      background:#2968AC;
+      background: #2968ac;
       color: white;
       position: absolute;
       width: 140px;
@@ -158,7 +158,7 @@
   .recipe_contents_detail {
     position: relative;
     h3 {
-      background: #2968AC;
+      background: #2968ac;
       color: white;
       position: absolute;
       width: 140px;
@@ -207,6 +207,7 @@
   background: #6697d6;
 }
 
+
 .recipe_navigation_container.active {
   opacity: 1;
   visibility: visible;
@@ -220,6 +221,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
 
   // 버튼 활성화 시
   .recipe_detail_prev_btn.active,
@@ -261,7 +263,8 @@
         text-align: start;
         position: absolute;
         padding: 5px;
-        font-size: 1.25em;
+        font-size: 1.3em;
+        z-index: 100;
         font-weight: bold;
         left: 0;
         color: rgb(227, 226, 226);
@@ -288,9 +291,9 @@
   }
 }
 
-// 영양 성분 모달
 /* 모달 아이콘 */
 .modal_btn {
+  
   border-radius: 5px;
   padding: 3px 5px 8px;
   border: none;
@@ -326,7 +329,7 @@
 // 모달창
 .modal_con {
   transition: 1s;
-  transform: translate(370px, -50%);
+  transform: translate(0, -50%);
   position: fixed;
   top: 50%;
   right: 5%;
@@ -408,8 +411,32 @@
 
 @media screen and (max-width: 500px) {
   .recipe_detail_container {
+
+    .recipe_detail_title {
+      margin: 7em 0 2em 0;
+    }
+
+    // 레시피 내용
     .recipe_detail_content_container {
       padding: 15px;
+
+      .recipe_contents_inner_container {
+        .recipe_contents_summary {
+          flex-direction: column;
+          .recipe_main_image {
+            margin: 0 auto;
+            border: 2px solid gary;
+            border-radius: 2px;
+            min-width: 100%;
+          }
+          .recipe_summary {
+            padding: 0;
+            .recipe_menu_title {
+              padding-top: 1.8em;
+            }
+          }
+        }
+      }
 
       // 하단 조리법
       .recipe_contents_detail {
@@ -440,5 +467,20 @@
         }
       }
     }
+    // 네비게이션
+    .recipe_navigation_container {
+      flex-wrap: wrap;
+      align-content: start;
+      height: 55vh;
+      .recipe_detail_prev_btn,.recipe_detail_next_btn {
+        width: 100%;
+        height: 200px;
+        border: 1px;
+        margin: 0.5em 0;
+        box-shadow: none;
+        background-color:transparent;
+      }
+    
+    }
+    }
   }
-}

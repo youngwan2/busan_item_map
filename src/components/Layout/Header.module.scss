@@ -154,13 +154,10 @@
 }
 
 
-
-
-
 // 미디어 쿼리
 @media screen and (max-width: 1240px) {
   .Header {
-    padding: 5px;
+    padding: 0;
     .menu_icon {
       cursor: pointer;
       display: block;
@@ -191,15 +188,14 @@
       padding: 3px;
       top: 5em;
       position: fixed;
-      transition: 0.5s;
+      transition: transform 0.5s, opacity 0.5s,visibility 0.5s;
       transform-origin: 100% 0%;
-      transform: translate(40px, -60px) scale(0);
+      transform: translate(0, 0) scaleX(0);
       visibility: hidden;
       opacity: 0;
 
       .menu_wrapper_con {
         flex-direction: column;
-        box-shadow: 0 0 0 5000px #1d467246;
 
         .menu_wrapper {
           padding: 0;

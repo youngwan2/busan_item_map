@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import LocalCard from '@/components/LocalCard';
+import LocalCard from '@/pages/Local/Common/LocalCard';
 
 interface PropsType {
   localfoods: {
