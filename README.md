@@ -24,9 +24,9 @@
 ## 🔥 배포
 - ※ 24.06.11 기준으로 프론트엔드는 React + Vite + TS 환경에서 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다.
 - ※ 24.06.12 기준으로 백엔드는 NodeJS + TS + Express 환경에서 Github Actions + CloudType 플랫폼 기반으로 배포가 진행되었습니다.
+
 - 루트 도메인: https://foodpick.co.kr/
 - 서브 도메인: https://www.foodpick.co.kr/
-
 
 ## 🚬 트러블 슈팅
 - 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
