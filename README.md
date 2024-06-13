@@ -1,6 +1,7 @@
 ※ (24.05/25 기준) 오랜만에 프로젝트를 살펴보니 그 당시에는 만족하고 넘어갔던 많은 부분에서 미완성이라고 생각되는 점이 많이 보였고, 로직 자체도 현재에서는 비효율적이고 왜 이렇게 작성했는가에 대한 의문이 많이 들어서 전면적으로 다시 개발중입니다.
 ※ 변경되는 사항은 바로 확인할 수 있게 (https://github.com/youngwan2/food-picker/issues/15) 이슈를 만들어 히스토리 형식으로 정리하고 있습니다.
 
+
 ## 📓 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
 - <변경 전: ~ 2024.05.24 >
@@ -13,14 +14,19 @@
 ## 🎫 프로젝트 목적
 - 우리 지역의 음식, 다양한 음식의 영양정보, 간단한 레시피 등 음식과 관련한 다양한 정보를 쉽게 찾아서 활용할 수 있으면 좋지 않을까 라는 생각에 개발하게 되었습니다.
 
+
 ## 📅 개발기간
 - (1차 개발) 2023년 7월 16일 ~ 2023년 8월 13일
 - (2차 개발) 2024년 5월 24일 ~ 2024년 6월 12일
 - (유지보수) 2024년 6월 13일 ~
 
+
 ## 🔥 배포
-- ※ 24.06.11 기준으로 프론트엔드의 경우 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다. 24.06.12 자로 백엔드 배포를 완료 후 정상 동작이 확인되면 배포 도메인을 올릴 예정입니다.
-- 준비중
+- ※ 24.06.11 기준으로 프론트엔드는 React + Vite + TS 환경에서 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다.
+- ※ 24.06.12 기준으로 백엔드는 NodeJS + TS + Express 환경에서 Github Actions + CloudType 플랫폼 기반으로 배포가 진행되었습니다.
+- 루트 도메인: https://foodpick.co.kr/
+- 서브 도메인: https://www.foodpick.co.kr/
+
 
 ## 🚬 트러블 슈팅
 - 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
@@ -45,44 +51,32 @@
 |    SQLite(^5.11.0)    | 복잡한 관계없이 대량의 데이터를 조회하고 빠른 쿼리를 생각한다면 NoSQL이 최적이겠으나, 개인적으로 관계형 데이터베이스의 학습 목적 및 별도의 서버없이 데이터베이스 구축과 적용이 가능하다는 이점, 향후 타 RDBS 이전 시 용이성이 돋보여서 선택 |
 
 
-## 🗂️ 프로젝트 구조(참고용)
+## 🗂️ 프로젝트 구조
 ```
-src
- ┣ 📂api ------→  서버 요청(= service)
- ┣ 📂app ------→ Redux 스토어 / 타입
- ┣ 📂features ------→ Redux 슬라이스
- ┃ ┣ 📂searchSlice
- ┃ ┗ 📂themeSlice
- ┣ 📂atom ------→ Recoil
- ┣ 📂components ------→ 전역적으로 사용되는 컴포넌트들
- ┃ ┣ 📂Common 
- ┃ ┃ ┣ 📂NaverDictionary 
- ┃ ┃ ┃ ┣ 📂components
- ┃ ┣ 📂Errors
- ┃ ┣ 📂Layout
- ┃ ┗ 📂UI
- ┣ 📂config 
- ┣ 📂hooks -----→ 리액트 커스텀 훅
- ┣ 📂pages -----→ 페이지 : 페이지별 재사용 컴포넌트 및 타입
+📦src
+ ┣ 📂api ---------->  HTTP 요청
+ ┣ 📂atom --------->  전역 상태관리
+ ┣ 📂components --->  전역적으로 쓰이는 컴포넌트 모음
+ ┣ 📂config
+ ┣ 📂hooks --------> 커스텀 훅
+ ┣ 📂pages --------> 페이지 및 관련 컴포넌트 모음
  ┃ ┣ 📂Haccp
  ┃ ┃ ┣ 📂components
  ┃ ┣ 📂Home
  ┃ ┃ ┣ 📂components
- ┃ ┣ 📂LocalFood
- ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📂types
- ┃ ┣ 📂LocalMarket
- ┃ ┃ ┣ 📂components
+ ┃ ┣ 📂Local -----> Local 관련 페이지 역할을 하는 컴포넌트가 2 개 이므로 이를 묶어서 관리
+ ┃ ┃ ┣ 📂Common
+ ┃ ┃ ┣ 📂LocalFood
+ ┃ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂LocalMarket
+ ┃ ┃ ┃ ┣ 📂components
  ┃ ┣ 📂Nutrition
  ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📂types
- ┃ ┣ 📂NutritionDetail
- ┃ ┗ 📂Recipe
+ ┃ ┣ 📂Recipe
  ┃ ┃ ┣ 📂components
- ┃ ┃ ┣ 📂types
- ┣ 📂router -----→ React-router-dom 의 페이지 경로 설정
- ┣ 📂utils  -----→ 재사용 헬퍼 함수 등
- ┣ 📜index.css
- ┣ 📜index.tsx
- ┣ 📜routes.ts -----→ 재사용 네비게이션
+ ┃ ┗ 📂TraditionalFood
+ ┃ ┃ ┣ 📂components
+ ┣ 📂router -----> 페이지 라우터 설정
+ ┣ 📂types  -----> 타입 관리
+ ┣ 📂utils  -----> 유틸 함수 관리
 ```
