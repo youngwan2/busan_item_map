@@ -1,13 +1,13 @@
 import styles from './Haccp.module.scss';
 
 import { useEffect, useState, useRef, type SyntheticEvent, type MouseEvent } from 'react';
-import useIntersection from '../../hooks/useIntersection';
+import useIntersection from '@/hooks/useIntersection';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import HaccpSearchForm from './components/HaccpSearchForm';
 import HaccpMessage from './components/HaccpMessage';
-import GuideMessage from '../../components/GuideMessage';
-import ObserverSpinner from '../../components/Spinner/ObserverSpinner';
+import GuideMessage from '@/components/GuideMessage';
+import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
@@ -44,6 +44,8 @@ function HaccpPage() {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
+      console.log(lastPage)
+      if (!lastPage.body.pageNo) return undefined
       return Number(lastPage.body.pageNo) + 1 || undefined
     },
   })
@@ -76,7 +78,7 @@ function HaccpPage() {
 
   }
 
-  function onReset(){
+  function onReset() {
     setProductName('')
   }
 
