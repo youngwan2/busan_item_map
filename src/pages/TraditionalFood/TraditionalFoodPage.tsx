@@ -10,6 +10,7 @@ import TraditionalFoodList from './components/TraditionalFoodList'
 import TraditionalFoodSearchForm from './components/TraditionalFoodSearchForm'
 import TraditionalFoodFilter from './components/TraditionalFoodFilter'
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal'
+import PageError from '@/components/Errors/PageError'
 
 
 const MIN_VIEW_COUNT = 20
@@ -29,7 +30,7 @@ export default function TraditionalFoodPage() {
 
   const url = `/traditionalfood?name=${productName}&main=${categories.main}&sub=${categories.sub}&detail=${categories.detail}&food_type=${categories.foodType}&page=${page}`
 
-  const { data = [], isFetching } = useDefaultQuery(['traditionalfood',productName, categories, page], url)
+  const { data = [], isFetching, isError, error } = useDefaultQuery(['traditionalfood',productName, categories, page], url)
   const { items: products= [], totalCount = 0 } = data
   const hasProducts = Array.isArray(products) && products.length > 0;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
@@ -100,6 +101,8 @@ export default function TraditionalFoodPage() {
   useEffect(()=>{
     document.title="전통음식 | FoodPicker"
   },[])
+
+  if(isError && error) return <PageError>{error.message}</PageError>
 
   return (
     <section className={`${styles.traditional_food_page_container}`}>
