@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { ApiType, getDefaultFetcher } from '../api/get.api';
 import { toast } from 'react-toastify';
 
@@ -9,10 +9,13 @@ import { toast } from 'react-toastify';
  * @returns
  */
 export default function useDefaultQuery(key: any[], url: string) {
-  const { data, isPending, isError, error, isFetching } = useQuery({
+
+ 
+  const { data, isPending, isError, error, isFetching,isPlaceholderData} = useQuery({
     queryKey: key,
     queryFn: () => getDefaultFetcher(url,ApiType.INTERNAL),
+    placeholderData: keepPreviousData,
   });
   if(isError) toast.error('데이터 조회에 실패하였습니다.')
-  return { data, isPending, isError, error, isFetching };
+  return { data, isPending, isError, error, isFetching, isPlaceholderData};
 }

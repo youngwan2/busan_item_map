@@ -17,6 +17,7 @@ import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsA
 import { debounce } from '@/utils/helpers';
 
 
+
 interface KeywordType {
   companyName: string[]
   foodType: string[]
@@ -30,18 +31,20 @@ export default function NutritionPage() {
   const [keywords, setKeywords] = useState<KeywordType>({ companyName: [], foodType: [] })
   const [kcal] = useRecoilState(nutritionKcalFilter)
 
+
+
   useEffect(() => {
     document.title = '식품영양정보조회 | FoodPicker';
   }, []);
 
   const url = `/nutritions?name=${productName}&company_name=${keywords.companyName}&food_type=${keywords.foodType}&min_kcal=${kcal.min}&max_kcal=${kcal.max}&page=${page}`;
   const queryKey = ['nutrition', productName, keywords, kcal, page];
-  const { data = [], error, isError, isFetching, isPending } = useDefaultQuery(queryKey, url);
+  const { data = [], error, isError, isFetching} = useDefaultQuery(queryKey, url);
   const { items: products, totalCount = 0 } = data
   const hasProducts = Array.isArray(products) && products.length > 0;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
 
-  
+
 
   /** 검색어 반환 */
   function getSearchValue(input: HTMLInputElement) {
