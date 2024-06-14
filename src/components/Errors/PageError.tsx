@@ -1,8 +1,9 @@
+import React from 'react'
 import styles from './PageError.module.scss'
 
 interface PropsType {
   error?:string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 export default function PageError({ error,children }: PropsType) {
 

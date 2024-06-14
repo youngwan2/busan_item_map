@@ -46,7 +46,7 @@ export default function LocalMarketDetailPage() {
 
 
   if (isPending || isFetching) return <LoadingSpinner />;
-  if (isError) return <PageError error={error?.message} />;
+  if (isError && error) return <PageError>{error.message}</PageError>;
 
   return (
     <section className={styles.local_detail_page_container}>
