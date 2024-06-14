@@ -7,6 +7,7 @@ import { lazy, Suspense } from 'react';
 import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 import Layout from '@/components/Layout/Layout';
 import NotFound from '@/components/Errors/NotFound';
+import PageError from '@/components/Errors/PageError';
 
 const Home = lazy(() => import('@/pages/Home/Home'));
 const LocalFoodPage = lazy(() => import('@/pages/Local/LocalFood/LocalFoodPage'));
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement:<PageError>데이터 로드 중 문제가 발생하였어요. 새로고침을 시도해주세요.</PageError>,
     children: [
       {
         path: '/localfood',

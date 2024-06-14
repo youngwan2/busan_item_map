@@ -15,6 +15,7 @@ import NutritionProductFilter from './components/Filter/NutritionProductFilter';
 import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsAtom';
 
 import { debounce } from '@/utils/helpers';
+import PageError from '@/components/Errors/PageError';
 
 
 
@@ -106,7 +107,7 @@ export default function NutritionPage() {
     setPage(page)
   }
 
-  if (isError) return <p>{error?.message}</p>
+  if (isError && error) return <PageError>{error.message}</PageError>
 
   return (
     <section className={styles.nutrition_page_container}>
