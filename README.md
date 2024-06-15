@@ -1,5 +1,5 @@
-※ 변경되는 사항은 바로 확인할 수 있게 (https://github.com/youngwan2/food-picker/issues/15) 이슈를 만들어 히스토리 형식으로 정리하고 있습니다.
-
+※ 변경되는 사항은 바로 확인할 수 있게 (https://github.com/youngwan2/food-picker/issues/15) 이슈를 만들어 히스토리 형식으로 정리하고 있습니다. <br/>
+※ 백엔드 주소: https://github.com/youngwan2/foodpicker-server
 
 ## 📓 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
