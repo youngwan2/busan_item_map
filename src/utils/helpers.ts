@@ -1,5 +1,6 @@
 import { FormEvent } from "react";
 
+// memo: 헬퍼함수 아님
 export const onSubmit=(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
 }

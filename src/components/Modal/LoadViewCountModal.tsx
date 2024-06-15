@@ -3,13 +3,13 @@ import styles from './LoadViewCountModal.module.scss';
 import { useState } from 'react';
 
 
-interface Type {
+interface PropsType {
   type?:boolean
   totalProductCount:number,
   currentProductCount: number;
 }
 
-export default function LoadViewCountModal({type, totalProductCount =0, currentProductCount }: Type) {
+export default function LoadViewCountModal({type, totalProductCount =0, currentProductCount }: PropsType) {
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   return (
     <aside
