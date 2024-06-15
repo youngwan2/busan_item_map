@@ -44,7 +44,6 @@ function HaccpPage() {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      console.log(lastPage)
       if (!lastPage.body.pageNo) return undefined
       return Number(lastPage.body.pageNo) + 1 || undefined
     },

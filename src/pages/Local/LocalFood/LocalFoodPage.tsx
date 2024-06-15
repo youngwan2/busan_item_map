@@ -25,7 +25,7 @@ export default function LocalFoodPage(){
   const observerRef = useRef<HTMLButtonElement>(null);
   const [region, setRegion] = useRecoilState(localFoodRegionState)
   const { isEnd } = useIntersection(observerRef);
-  const { items, totalCount, isPending, isError, error, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteScroll(
+  const { items, totalCount, isPending, isError, error, isFetching, isLastPage, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteScroll(
     `/localfoods?region=${region}&page=`,
     'localfood',
     `${region}`
@@ -46,7 +46,7 @@ export default function LocalFoodPage(){
 
   useEffect(() => {
     if (VIEW_COUNT > totalCount) return
-    if (!hasNextPage && isEnd && totalCount === items.length) return loadAlert()
+    if (isLastPage && isEnd && totalCount === items.length) return loadAlert()
     else nextPageHanlder(isEnd);
 
   }, [isEnd]);

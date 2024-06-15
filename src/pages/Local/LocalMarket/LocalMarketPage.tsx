@@ -24,7 +24,7 @@ export default function LocalMarketPage() {
   const observerRef = useRef<HTMLButtonElement>(null);
   const [region, setRegion] = useRecoilState(localMarketRegionState)
   const { isEnd } = useIntersection(observerRef);
-  const { items, totalCount, isFetching, isFetchingNextPage, isPending, isError, error, hasNextPage, fetchNextPage } = useInfiniteScroll(
+  const { items, totalCount, isFetching, isFetchingNextPage, isPending, isLastPage, isError, error, hasNextPage, fetchNextPage } = useInfiniteScroll(
     `/localmarkets?region=${region}&page=`,
     'localmarket',
     `${region}`
@@ -45,7 +45,7 @@ export default function LocalMarketPage() {
 
   useEffect(() => {
     if (VIEW_COUNT > totalCount) return
-    if (!hasNextPage && VIEW_COUNT > totalCount && isEnd && totalCount === items.length) return loadAlert()
+    if (isLastPage && isEnd && totalCount === items.length) return loadAlert()
     else nextPageHanlder(isEnd);
   }, [isEnd]);
 
