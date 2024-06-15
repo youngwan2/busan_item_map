@@ -2,8 +2,6 @@
 body {
   padding: 0;
   line-height: 25px !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: 'Orbit', sans-serif !important;
   overflow-x: hidden;
 }
