@@ -13,11 +13,13 @@ const Footer = () => {
   return (
     <footer className={styles.footer} ref={footerRef}>
       <div className={styles.div}>
-        <p>© {new Date().getFullYear()} FoodPicker. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} FoodPicker</p>
+        <img src='/origin.jpg' alt='공공데이터 출처표기 이미지' width={150} height={45}></img>
       </div>
       <div className={styles.div}>
-        <p>Contact us: qodna25@gmail.com</p>
+        <p>불편 및 건의사항 신고: <a target='_blank' href="https://forms.gle/y8126r3AWAmuPhUd6" title='https://forms.gle/y8126r3AWAmuPhUd6'>구글폼</a></p>
       </div>
+
     </footer>
   );
 };

@@ -13,15 +13,9 @@ export default function LoadViewCountModal({type, totalProductCount =0, currentP
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   return (
     <aside
-      className={styles.message_container}
-      style={
-        !messageSpanDisplay
-          ? { maxWidth: '30px', maxHeight: '40px' }
-          : { maxWidth: '240px', maxHeight: '40px' }
-      }
+      className={`${styles.message_container} ${!messageSpanDisplay? styles.active:''}`}
     >
       <button
-        style={!messageSpanDisplay ? { transform: 'rotate(0)' } : { transform: 'rotate(-180deg)' }}
         onClick={() => {
           setMessageSpanDisplay((old) => (old = !old));
         }}
@@ -30,19 +24,6 @@ export default function LoadViewCountModal({type, totalProductCount =0, currentP
       </button>
       <span
         className={styles.message}
-        style={
-          !messageSpanDisplay
-            ? {
-                visibility: 'hidden',
-                opacity: 0,
-                transform: 'translateX(5px)',
-              }
-            : {
-                visibility: 'visible',
-                opacity: 1,
-                transform: 'translateX(0)',
-              }
-        }
       >
         {type && Math.ceil(totalProductCount)+' 페이지 중 '+ currentProductCount+' 페이지 조회..' }
         {!type && totalProductCount +'개 중 '+currentProductCount+'개 상품 조회..' }
