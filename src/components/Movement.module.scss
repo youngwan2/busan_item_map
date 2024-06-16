@@ -6,11 +6,24 @@
   display: flex;
   flex-direction: column;
   button {
+    border: 1px solid gray;
     border-radius: 50px;
-    background-color: transparent;
+    font-size: 1.05em;
   }
   button:hover {
-    background-color: rgba(192, 192, 251, 0.282);
+    background-color: rgb(71, 71, 71);
+    color:white;
+  }
+
+  .bottom_btn,
+  .top_btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .active.bottom_btn,
+  .active.top_btn {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
