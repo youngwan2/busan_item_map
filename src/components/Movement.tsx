@@ -4,6 +4,11 @@ import { HiOutlineChevronDoubleUp, HiOutlineChevronDoubleDown } from 'react-icon
 
 const Movement = () => {
   const [scrollY, setScrollY] = useState(0);
+
+
+  const isStart = scrollY < 50
+  const isEnd = scrollY > document.body.offsetHeight - 1000
+
   const scrollYHandler = () => {
     setScrollY(window.scrollY);
   };
@@ -15,27 +20,27 @@ const Movement = () => {
     };
   }, [scrollY]);
 
+
+  /** 스크롤 이동 함수 */
+  function handleScroll(top: number, behavior: ScrollBehavior) {
+    window.scrollTo({ top, behavior })
+  }
+
+
   return (
     <article className={styles.movement}>
       <button
-        style={scrollY < 50 ? { visibility: 'hidden' } : { visibility: 'visible' }}
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        aria-label='위로 이동'
+        className={`${styles.top_btn} ${isStart ? '' : styles.active}`}
+        onClick={() => { handleScroll(0, 'smooth') }}
       >
-        {' '}
         <HiOutlineChevronDoubleUp />
       </button>
 
       <button
-        style={
-          scrollY > document.body.offsetHeight - 1000
-            ? { visibility: 'hidden' }
-            : { visibility: 'visible' }
-        }
-        onClick={() => {
-          window.scrollTo({ top: 10000000000, behavior: 'smooth' });
-        }}
+        aria-label='아애로 이동'
+        className={`${styles.bottom_btn} ${isEnd ? '' : styles.active}`}
+        onClick={() => { handleScroll(10000000000, 'smooth') }}
       >
         <HiOutlineChevronDoubleDown />
       </button>
