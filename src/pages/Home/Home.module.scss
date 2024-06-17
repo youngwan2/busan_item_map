@@ -35,8 +35,8 @@
 }
 
 .feature_card {
-  --y: -9.5%;
   transition: 1s;
+  z-index: 100;
   border-radius: 5px;
   padding: 30px;
   background: #fff;
@@ -79,10 +79,11 @@
     position: relative;
     overflow: hidden;
     img {
+      transform: scale(1.4) rotate(-5deg);
       max-width: 768px;
       height: 400px;
       width: 100%;
-      animation: sizeupdown 15s infinite linear alternate;
+      animation: sizeupdown 20s infinite linear alternate;
     }
   }
 
@@ -94,35 +95,33 @@
     width: 100%;
     z-index: 100;
     height: 100%;
-    animation: sizeupdown 15s infinite linear alternate;
+    animation: sizeupdown 20s infinite linear alternate;
     background: rgba(36, 36, 36, 0.223);
   }
 }
 
-.feature_card:nth-of-type(1),
-.feature_card:nth-of-type(2),
-.feature_card:nth-of-type(3) {
-  z-index: 2;
+.feature_card:nth-of-type(6),.feature_card:nth-of-type(5){
+  transform: translate(-50%,-50%);
+  visibility: hidden;
+  opacity: 0;
 }
 
-.feature_card:nth-of-type(4) {
-  top: -9em;
-  z-index: 3;
-  opacity: 0.95;
-  transform: translate(-79%, var(--y)) scale(0.22) scaleY(0.7);
+.feature_card:nth-of-type(4){
+  transform: translate(-50%,-50%) scale(1);
 }
 
-.feature_card:nth-of-type(5) {
-  top: -9em;
-  z-index: 1;
+
+.feature_card:nth-of-type(3){
+  transform: translate(-50%,-60%) scale(0.9);
   opacity: 0.7;
-  transform: translate(-50.5%, var(--y)) scale(0.2) scaleY(0.7);
 }
 
-.feature_card:nth-of-type(6) {
-  transform: translate(-50%, -50%) scale(0.9);
-  z-index: 0;
+
+.feature_card:nth-of-type(1),.feature_card:nth-of-type(2){
+  transform: translate(-50%,-70%) scale(0.8);
+  opacity: 0.3;
 }
+
 
 .home_feature_card_control_button_container {
   position: absolute;
@@ -172,7 +171,6 @@
   img {
     width: 100%;
     min-height: 100vh;
-
     animation: sizeupdown 20s infinite linear alternate;
   }
 }
@@ -318,32 +316,6 @@
     }
     
   }
-  .feature_card:nth-of-type(1),
-  .feature_card:nth-of-type(2),
-  .feature_card:nth-of-type(3) {
-    z-index: 2;
-    top: 55%;
-    height: 470px;
-  }
-
-  .feature_card:nth-of-type(4) {
-    top: -9em;
-    z-index: 3;
-    opacity: 0.95;
-    transform: translate(-79%, var(--y)) scale(0.22) scaleY(0.7);
-  }
-
-  .feature_card:nth-of-type(5) {
-    top: -10em;
-    z-index: 1;
-    opacity: 0.7;
-    transform: translate(-50%, var(--y)) scale(0.2) scaleY(0.7);
-  }
-
-  .feature_card:nth-of-type(6) {
-    transform: translate(-50%, -50%) scale(0.7);
-    z-index: 0;
-  }
 
   /* 슬라이드 통제 버튼*/
   .home_feature_card_control_button_container {
@@ -365,7 +337,7 @@
 // 키 프레임
 @keyframes sizeupdown {
   0% {
-    transform: scale(1.1);
+    transform: scale(1.2) rotate(5deg);
     backdrop-filter: blur(2px);
   }
 }
