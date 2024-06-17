@@ -4,12 +4,13 @@ import { useEffect, useState, useRef } from 'react';
 import useIntersection from '@/hooks/useIntersection';
 
 import RecipeCard from './RecipeCard';
+import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 
 import type { RecipeType } from '@/types/Recipe.types';
 
 import { toast } from 'react-toastify';
-import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
+
 
 
 interface ResultType {
