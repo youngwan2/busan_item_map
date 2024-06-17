@@ -21,7 +21,7 @@ export default function FeatureButton() {
     function autoSlide() {
         const timerId = setInterval(() => {
             onNextCard()
-        }, 2000)
+        }, 3000)
         return timerId
     }
 
