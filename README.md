@@ -7,7 +7,7 @@
 ![제목을-입력해주세요_-002](https://github.com/youngwan2/food-picker/assets/107159871/947b9886-c3a7-440b-92cd-412b688aa1cb)
 
 - <변경 후: 2024.05.24 ~ >
-![제목을-입력해주세요_-003](https://github.com/youngwan2/food-picker/assets/107159871/1f499879-8d20-473d-b109-26cfdb4256d7)
+![main png](https://github.com/youngwan2/food-picker/assets/107159871/f94e8ddb-a0d1-4f07-b2e1-900253f5e201)
 
 
 ## 🎫 프로젝트 목적
