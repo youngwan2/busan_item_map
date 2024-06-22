@@ -26,6 +26,9 @@
 
 - 루트 도메인: https://foodpick.co.kr/
 - 서브 도메인: https://www.foodpick.co.kr/
+- 배포 아키텍처
+  ![image](https://github.com/youngwan2/food-picker/assets/107159871/7a7844b8-45af-4e0c-b154-1ea5ec085e1d)
+
 
 ## 🚬 트러블 슈팅
 - 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
