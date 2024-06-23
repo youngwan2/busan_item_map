@@ -19,7 +19,6 @@ const HaccpPage = lazy(() => import('@/pages/Haccp/HaccpPage'));
 const RecipePage = lazy(() => import('@/pages/Recipe/RecipePage'));
 const RecipeDetail = lazy(() => import('@/pages/Recipe/RecipeDetail'));
 const TraditionalFoodPage = lazy(() => import('@/pages/TraditionalFood/TraditionalFoodPage'));
-const TraditionalFoodDetailPage = lazy(() => import('@/pages/TraditionalFood/TraditionalFoodDetailPage'));
 
 
 const router = createBrowserRouter([
@@ -105,14 +104,6 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <TraditionalFoodPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/traditional/:id',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <TraditionalFoodDetailPage />
           </Suspense>
         ),
       },

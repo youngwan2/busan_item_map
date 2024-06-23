@@ -40,13 +40,14 @@ export const haccpProductCategories: HaccpProductCategoryType[] = [
 
 // 레시피 카테고리
 export const recipeCategories: RecipeCategoryType[] = [
+  { id: 0, name: '전체' },
   { id: 1, name: '밥' },
   { id: 2, name: '일품' },
   { id: 3, name: '후식' },
   { id: 4, name: '국' },
   { id: 5, name: '반찬' },
-  { id: 6, name: '기타' },
-  { id: 7, name: '' }
+  { id: 6, name: '기타' }
+  
 ]
 
 // 지역 카테고리

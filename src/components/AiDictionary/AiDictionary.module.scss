@@ -1,0 +1,184 @@
+
+/** 검색 버튼 */
+.ai_search_button {
+  border: none;
+  display: flex;
+  align-items: center;
+  background: #1a4e85;
+  color:white;
+  padding: 5px;
+  margin: 3px;
+
+  span {
+    padding: 0 5px;
+  }
+
+}
+.ai_search_button:hover{
+  cursor: pointer;
+  background-color: #2f74bd;
+}
+
+
+/** 모달 */
+.ai_dictionary_modal_container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: 1s;
+  z-index: 100000;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(0,0,0,0.5));
+  visibility: hidden;
+  opacity: 0;
+
+  // 콘텐츠 경계
+  .ai_dictionary_modal_inner_boundary {
+    margin: 10em auto 1em auto;
+    width: 100%;
+    padding: 0 8px;
+    max-width:500px ;
+    min-height: 260px;
+    left: 50%;
+    transform: translate(-50%);
+    height: auto;
+    position: absolute;
+
+      // 닫기 버튼
+  .close_button {
+    border: none;
+    position: absolute;
+    right: 3.3px;
+    top: -1.7em;
+    background-color: transparent;
+    font-size: 1.5em;
+    color:white;
+    svg {
+        fill: white;
+        border-radius: 3px;
+        padding: 5px;
+        background: #3a83d2;
+    }
+
+    svg:hover{
+      background-color: #366ca6;
+      cursor: pointer;
+    }
+
+  }
+  // 응답 참고 메시지
+  .reference_message {
+    text-align: start;
+    font-family: sans-serif;
+    font-size: 0.95em;
+    background-color: white;
+    border-top: 1px solid #4c92dd;;
+    border-left: 1px solid #4c92dd;;  
+    border-right: 1px solid #4c92dd;;
+      border-radius: 5px;
+    border-bottom-left-radius:0 ;
+    border-bottom-right-radius:0 ;
+    padding: 3px 8px;
+    font-size: 0.95em;
+    color:#1a4e85;
+  }
+  .reference_message::before {
+    content: '주의) ';
+  }
+
+  // 응답
+    .response {
+      font-family: sans-serif;
+      box-sizing: border-box;
+      color:white;
+      padding: 8.5px;
+      max-width: 500px;
+      min-height: 150px;
+      height: auto;
+      width: 100%;
+      left: 2.5em;
+      top: 2em;
+      background-color: #3a82cf;
+      border: 1px solid #4c92dd;;
+      border-radius: 5px;
+      border-top-left-radius:0 ;
+      border-top-right-radius:0 ;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .response::after {
+      content: '';
+      position: absolute;
+      right: 1em;
+      bottom: 3em;
+      z-index: 2;
+      border-left: 50px solid  #3a82cf;
+      filter: drop-shadow(1px 1px 0 #4c92dd);
+      border-right: 10px solid transparent;
+      border-top: 10px solid transparent;
+      transform: rotate(76deg);
+      border-bottom: 10px solid transparent;
+      box-shadow: inset -5px -5px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    // 추천 검색어
+    .recommand_text {
+      display: inline-block;
+      padding: 2px 8px;
+      margin-right: 5px;
+      margin-top: 3px;
+      border:1px solid #4c92dd;
+      border-radius: 5px;
+      color:#2c639e;
+      backdrop-filter: blur(20px);
+      font-size: 0.95em;
+      background: white;
+    }
+
+    .recommand_text:hover{
+      background: rgb(235, 233, 233);
+      
+    }
+  }
+}
+
+.ai_dictionary_modal_container.active {
+  visibility: visible;
+  opacity: 1;
+
+  // ai 가이더 이미지
+  .ai_guider {
+    position: absolute;
+    
+    right: 0;
+    bottom: -4em;
+    background-image: url('/assets/ai-guider.png');
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    animation: updown 1s ease-in-out infinite alternate;
+    filter:drop-shadow(0 0 10px white) 
+  }
+    .ai_guider::after{
+    content: 'AI 음식전문 가이드';
+    position: absolute;
+    background-color: #4c92dd;
+    text-align: center;
+    bottom: -2em;
+    color:white;
+    border-radius: 3px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 170px;
+    font-size: 0.85em;
+  }
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-5px) 
+  }
+}
