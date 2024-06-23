@@ -6,13 +6,11 @@ import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeList from './components/RecipeList';
 import GuideMessage from '../../components/GuideMessage';
 import RecipeCategoryGrid from './components/RecipeCategoryGrid';
-import Message from '@/components/Message';
 
 import { ApiType, getDefaultFetcher } from '../../api/get.api';
 
 import { type RecipeInfoType } from '@/types/Recipe.types';
 
-import { HiInformationCircle } from "react-icons/hi2";
 import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
 import { toast } from 'react-toastify';
 
@@ -38,18 +36,17 @@ export default function RecipePage() {
   }, []);
 
 
-
-
   /** GET | 레시피 api 요청 
    * @param productName  요리명
    * @param category 요리 카테고리(ex. 밥, 일품, 후식, 국)
   */
-  async function getFetchRecipeData<T extends string>(productName?: T, category?: T) {
+  async function getFetchRecipeData<T extends string>(productName?: T , category?: T) {
     setIsLoading(true)
+    const recipeName = (!category && !productName) ? '' : `/RCP_NM=${productName}`
     const url =
-      category && category !== ''
+      category 
         ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_PAT2=${category}`
-        : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_NM=${productName}`
+        : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200`+recipeName
     const { row: recipes = [], total_count: totalCount = '0' } = (await getDefaultFetcher(url, ApiType.EXTERNAL)).COOKRCP01
     setIsLoading(false)
     return { recipes, totalCount }
@@ -57,17 +54,11 @@ export default function RecipePage() {
   }
 
   async function onSearchByCategory(pickedName: string) {
-    if (pickedName === '') {
-      setPickedCategory('')
-      setRecipeInfo(INITIAL_RECIPE_INFO)
-      return
-    }
-    const { recipes, totalCount } = await getFetchRecipeData(undefined, pickedName)
-
+    const pickCategory = pickedName === '전체' ? undefined : pickedName
+    const { recipes, totalCount } = await getFetchRecipeData(undefined, pickCategory)
     setPickedCategory(pickedName)
     setRecipeInfo({ totalCount, recipes })
     setStoreage({ type: StorageType.SESSION, key: 'recipes', value: { recipes, totalCount } })
-
   }
 
 
@@ -127,14 +118,6 @@ export default function RecipePage() {
       <div className={styles.recipe_page_inner_boundary}>
         <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />
         <RecipeSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
-        <Message>
-          {
-            <>
-              <HiInformationCircle />
-              <p><mark>검색</mark>과 <mark>분류</mark>는 따로 동작 합니다.</p>
-            </>
-          }
-        </Message>
         <RecipeCategoryGrid onSearch={onSearchByCategory} categoryName={pickedCategory} />
         <RecipeList
           isLoading={isLoading}

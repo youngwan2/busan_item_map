@@ -18,10 +18,15 @@ export const getDefaultFetcher = async (url: string | null, type: ApiType) => {
   const baseUrl = ApiType.INTERNAL === type ? config.protocol + config.host + url : url
   try {
     const response = await axios.get(baseUrl);
+    if (response.status !== 200) throw new Error("HTTP 에러 코드:" + response.status)
     const data = response.data;
     return data;
   } catch (error) {
-    console.error('데이터 요청 실패:', error)
-    return false
+    if (axios.isAxiosError(error)) {
+      console.error(error.cause + ':' + error.message)
+      return error.message
+    }
+    console.error("알 수 없는 문제로 데이터 요청 실패:",error)
+    return error
   }
 };

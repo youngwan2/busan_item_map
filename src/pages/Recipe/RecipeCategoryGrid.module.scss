@@ -60,53 +60,60 @@
     }
   }
   .recipe_category_grid_cell:hover {
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
   }
 
   /** 이미지 스프라이트 처리 */
+   //   전체
+    .recipe_category_grid_cell:nth-of-type(1) {
+      .recipe_category_grid_cell_img {
+        background-image: none;
+        background-color: rgb(219, 217, 217);
+      }
+    }
+    .recipe_category_grid_cell:nth-of-type(1)::before {
+      content: 'All';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50% ,-50%);
+      
+    }
   //   밥
-  .recipe_category_grid_cell:nth-of-type(1) {
+  .recipe_category_grid_cell:nth-of-type(2) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -0.2);
     }
   }
   //   일품
-  .recipe_category_grid_cell:nth-of-type(2) {
+  .recipe_category_grid_cell:nth-of-type(3) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -1.9);
     }
   }
   //   후식
-  .recipe_category_grid_cell:nth-of-type(3) {
+  .recipe_category_grid_cell:nth-of-type(4) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -3.1);
     }
   }
   //   국
-  .recipe_category_grid_cell:nth-of-type(4) {
+  .recipe_category_grid_cell:nth-of-type(5) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -4.56);
     }
   }
   //   반찬
-  .recipe_category_grid_cell:nth-of-type(5) {
+  .recipe_category_grid_cell:nth-of-type(6) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -6);
     }
   }
     // 기타
-  .recipe_category_grid_cell:nth-of-type(6) {
+  .recipe_category_grid_cell:nth-of-type(7) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -7.55);
     }
-  }
-  .recipe_category_grid_cell:last-child{
-    font-size: 3em;
-    padding-top: 0.85em;
-    .img_boundary {
-      border: none;
-    }
-    
   }
 
 }
