@@ -10,6 +10,9 @@ import BackMove from '@/components/BackMove';
 
 import Maps from '@/components/Map/Maps';
 import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
+import { Helmet } from 'react-helmet';
+import LeftContent from './components/LeftContent';
+import RightContent from './components/RightContent';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
@@ -29,17 +32,6 @@ export default function LocalMarketDetailPage() {
   };
 
   const {
-    content,
-    content_url,
-    create_at,
-    update_at,
-    keyword,
-    lcc_address,
-    era,
-    main_thumb_url,
-    la,
-    lo,
-    middle_title,
     sub_title,
     title,
   } = localMarket || REPLACE_VALUE
@@ -50,52 +42,17 @@ export default function LocalMarketDetailPage() {
 
   return (
     <section className={styles.local_detail_page_container}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> {title} | FoodPicker</title>
+        <meta name="description" content={sub_title} />
+      </Helmet>
       <BackMove />
       <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localmarket" subPath='' mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
       {/* 좌측 컨텐츠 */}
-      <div className={styles.left_content}>
-        <h3 className={styles.sub_title}>{sub_title}{'>' + middle_title}</h3>
-        <h2 className={styles.title}>{title}</h2>
-        <img
-          className={styles.thumb}
-          src={main_thumb_url || '/not-image.png'}
-          alt="썸네일 이미지"
-        />
-        <p className={styles.sumary}>{content.replaceAll(/&nbsp;/g, '').replaceAll('?', '')}</p>
-      </div>
+      <LeftContent info={localMarket}/>
       {/* 우측 컨텐츠 */}
-      <div className={styles.right_content}>
-        <div className={styles.content}>
-          <h3>콘텐츠 바로가기</h3>
-          <a target='_blank' href={content_url}>{content_url}</a>
-        </div>
-        <div className={styles.content}>
-          <hr />
-          <h3>시대/연대</h3>
-          <span>{era || '조회된 데이터가 없습니다.'}</span>
-        </div>
-        <div className={styles.content}>
-          <hr />
-          <h3>연관 키워드</h3>
-          <span>{keyword || '조회된 데이터가 없습니다.'}</span>
-        </div>
-        <div className={styles.content}>
-          <hr />
-          <h3>등록일자</h3>
-          <span>{create_at || '조회된 데이터가 없습니다.'}</span>
-        </div>
-        <div className={styles.content}>
-          <hr />
-          <h3>갱신일자</h3>
-          <span>{update_at || '조회된 데이터가 없습니다.'}</span>
-        </div>
-        <div className={styles.content}>
-          <hr />
-          <h3>위치정보/지방문화원</h3>
-          <span>{lcc_address || '조회된 데이터가 없습니다.'}</span>
-          <Maps defaultCenter={{ lat: la, lng: lo }} address={lcc_address} />
-        </div>
-      </div>
+      <RightContent info={localMarket}/>
     </section>
   );
 }

@@ -11,6 +11,7 @@ import TraditionalFoodSearchForm from './components/TraditionalFoodSearchForm'
 import TraditionalFoodFilter from './components/TraditionalFoodFilter'
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal'
 import PageError from '@/components/Errors/PageError'
+import { Helmet } from 'react-helmet'
 
 
 const MIN_VIEW_COUNT = 20
@@ -30,8 +31,8 @@ export default function TraditionalFoodPage() {
 
   const url = `/traditionalfood?name=${productName}&main=${categories.main}&sub=${categories.sub}&detail=${categories.detail}&food_type=${categories.foodType}&page=${page}`
 
-  const { data = [], isFetching, isError, error } = useDefaultQuery(['traditionalfood',productName, categories, page], url)
-  const { items: products= [], totalCount = 0 } = data
+  const { data = [], isFetching, isError, error } = useDefaultQuery(['traditionalfood', productName, categories, page], url)
+  const { items: products = [], totalCount = 0 } = data
   const hasProducts = Array.isArray(products) && products.length > 0;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
 
@@ -57,7 +58,7 @@ export default function TraditionalFoodPage() {
     setProductName('')
   }
 
-  function categoryStateReset(){
+  function categoryStateReset() {
     setCategories({
       main: '',
       sub: '',
@@ -76,7 +77,7 @@ export default function TraditionalFoodPage() {
     categoryStateReset()
     setProductName(productName)
     setPage(initialPage)
-    
+
   }
 
   /** 카테고리 필터*/
@@ -98,24 +99,26 @@ export default function TraditionalFoodPage() {
     setPage(page)
   }
 
-  useEffect(()=>{
-    document.title="전통음식 | FoodPicker"
-  },[])
 
-  if(isError && error) return <PageError>{error.message}</PageError>
+  if (isError && error) return <PageError>{error.message}</PageError>
 
   return (
     <section className={`${styles.traditional_food_page_container}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> 전통음식 | FoodPicker</title>
+        <meta name="description" content="과거 부터 현재까지 이어져 오는 민족의 혼이 담긴 전통음식을 찾아볼 수 있는 페이지 입니다. AI 가이드의 해설을 들어보세요." />
+      </Helmet>
       <h2 className={styles.traditional_food_page_title}>전통음식</h2>
       <div className={styles.traditional_food_page_inner_boundary}>
         <GuideMessage stylesClassName={styles.page_path_guide_message} path='/traditional' subPath='/traditional' mainName='조회서비스' subName='전통식품' totalCount={0} />
         <TraditionalFoodSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
         <TraditionalFoodFilter onChange={onChangeSetCategory} categories={categories} />
-        <LoadViewCountModal type totalProductCount={totalPage} currentProductCount={page}/>
-       
+        <LoadViewCountModal type totalProductCount={totalPage} currentProductCount={page} />
+
         <ListContainer container={'section'} className={`${styles.traditional_food_list_container}`}>
           <h2 className={styles.traditional_food_list_title}>전통음식 목록({totalCount})</h2>
-          <span className={styles.traditional_food_category}>{(categories.main||'대분류')+ '>' + (categories.sub||'중분류') + '>' + (categories.detail||'소분류')}</span>
+          <span className={styles.traditional_food_category}>{(categories.main || '대분류') + '>' + (categories.sub || '중분류') + '>' + (categories.detail || '소분류')}</span>
           {isFetching
             ? <p className={styles.traditional_food_list_loading_message}>데이터를 조회중입니다.</p>
             : hasProducts
