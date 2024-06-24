@@ -1,4 +1,4 @@
-import styles from '@pages/Local/LocalDetail.module.scss'
+import styles from '@pages/Local/LocalDetail.module.scss';
 
 import { useParams } from 'react-router-dom';
 import useDefaultQuery from '@/hooks/useDefaultQuery';
@@ -6,14 +6,12 @@ import useDefaultQuery from '@/hooks/useDefaultQuery';
 import PageError from '@/components/Errors/PageError';
 import GuideMessage from '@/components/GuideMessage';
 import BackMove from '@/components/BackMove';
-import Maps from '@/components/Map/Maps';
 
 import { localFoodType } from '../LocalFood/types/localFood.types';
 import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 import { Helmet } from 'react-helmet';
 import LeftContent from './components/LeftContent';
 import RightContent from './components/RightContent';
-
 
 export default function LocalFoodDetailPage() {
   const { id } = useParams();
@@ -30,20 +28,7 @@ export default function LocalFoodDetailPage() {
     isFetching: boolean;
     error: Error | null;
   };
-  const {
-    content,
-    content_url,
-    create_at,
-    update_at,
-    keyword,
-    lcc_address,
-    main_thumb_url,
-    rel_rest_address,
-    rel_rest_name,
-    sub_title,
-    title,
-  } = localFoodInfo || replaceInfo
-
+  const { sub_title, title } = localFoodInfo || replaceInfo;
 
   if (isPending || isFetching) return <LoadingSpinner />;
   if (isError && error) return <PageError>{error.message}</PageError>;
@@ -56,17 +41,22 @@ export default function LocalFoodDetailPage() {
         <meta name="description" content={sub_title} />
       </Helmet>
       <BackMove />
-      <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localfood" subPath='' mainName="향토 이야기" finalPathName={title} subName='향토음식이야기' />
+      <GuideMessage
+        stylesClassName={styles.page_path_guide_message}
+        path="/localfood"
+        subPath=""
+        mainName="향토 이야기"
+        finalPathName={title}
+        subName="향토음식이야기"
+      />
       {/* 좌측 컨텐츠 */}
-      <LeftContent info={localFoodInfo}/>
+      <LeftContent info={localFoodInfo} />
 
       {/* 우측 컨텐츠 */}
-      <RightContent info={localFoodInfo}/>
-    
+      <RightContent info={localFoodInfo} />
     </section>
   );
 }
-
 
 const replaceInfo = {
   content: '',
@@ -81,4 +71,4 @@ const replaceInfo = {
   rel_rest_tel: '',
   sub_title: '',
   title: '',
-}
+};

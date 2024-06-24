@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
  * @param ref  참조할 DOM 요소의 인스턴스
  * @returns true or false
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function useIntersection(ref: React.RefObject<any>) {
   const [isEnd, setIsEnd] = useState(false);
 

@@ -12,7 +12,9 @@
     "format:fix": "prettier --write ./src",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -46,13 +48,20 @@
     "eslint": "8.56",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
     "kakao.maps.d.ts": "^0.1.39",
+    "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
     "sass": "^1.77.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
     "vitest": "^1.6.0"
+  },
+  "lint-staged": {
+    "*.{js,css,ts,tsx,jsx}": [
+      "npm run format:fix"
+    ]
   }
 }

@@ -1,5 +1,4 @@
-
-import styles from '@pages/Local/LocalDetail.module.scss'
+import styles from '@pages/Local/LocalDetail.module.scss';
 
 import { useParams } from 'react-router-dom';
 import useDefaultQuery from '@/hooks/useDefaultQuery';
@@ -8,11 +7,11 @@ import PageError from '@/components/Errors/PageError';
 import GuideMessage from '@/components/GuideMessage';
 import BackMove from '@/components/BackMove';
 
-import Maps from '@/components/Map/Maps';
 import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 import { Helmet } from 'react-helmet';
 import LeftContent from './components/LeftContent';
 import RightContent from './components/RightContent';
+import { LocalMarketDetailType } from './types/localMarket.types';
 
 export default function LocalMarketDetailPage() {
   const { id } = useParams();
@@ -24,18 +23,14 @@ export default function LocalMarketDetailPage() {
     isFetching,
     error,
   } = useDefaultQuery(['localmarket', id], '/localmarkets/' + id) as {
-    data: any;
+    data: LocalMarketDetailType;
     isError: boolean;
     isFetching: boolean;
     isPending: boolean;
     error: Error | null;
   };
 
-  const {
-    sub_title,
-    title,
-  } = localMarket || REPLACE_VALUE
-
+  const { sub_title, title } = localMarket || REPLACE_VALUE;
 
   if (isPending || isFetching) return <LoadingSpinner />;
   if (isError && error) return <PageError>{error.message}</PageError>;
@@ -48,15 +43,21 @@ export default function LocalMarketDetailPage() {
         <meta name="description" content={sub_title} />
       </Helmet>
       <BackMove />
-      <GuideMessage stylesClassName={styles.page_path_guide_message} path="/localmarket" subPath='' mainName="향토 이야기" subName='향토시장이야기' finalPathName={title} />
+      <GuideMessage
+        stylesClassName={styles.page_path_guide_message}
+        path="/localmarket"
+        subPath=""
+        mainName="향토 이야기"
+        subName="향토시장이야기"
+        finalPathName={title}
+      />
       {/* 좌측 컨텐츠 */}
-      <LeftContent info={localMarket}/>
+      <LeftContent info={localMarket} />
       {/* 우측 컨텐츠 */}
-      <RightContent info={localMarket}/>
+      <RightContent info={localMarket} />
     </section>
   );
 }
-
 
 const REPLACE_VALUE = {
   content: '',

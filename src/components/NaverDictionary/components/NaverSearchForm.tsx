@@ -6,34 +6,30 @@ import { HiSearch } from 'react-icons/hi';
 
 interface PropsType {
   isDisplay: boolean;
-  action: FormEventHandler<HTMLFormElement>
+  action: FormEventHandler<HTMLFormElement>;
 }
-
 
 const NaverSearchForm = ({ isDisplay, action }: PropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function focus() {
-    let timerId: NodeJS.Timeout
-    if (!isDisplay && !inputRef.current) return
+    let timerId: NodeJS.Timeout | null = null;
+    if (!isDisplay && !inputRef.current) return;
     timerId = setTimeout(() => {
       inputRef.current?.focus();
     }, 100);
-    return timerId
+    return timerId;
   }
 
   useEffect(() => {
     const timerId = focus();
     return () => {
-      clearTimeout(timerId)
-    }
-
+      clearTimeout(timerId);
+    };
   }, [isDisplay]);
 
   return (
-    <form
-      onSubmit={action}
-    >
+    <form onSubmit={action}>
       <input
         ref={inputRef}
         maxLength={15}
@@ -41,12 +37,12 @@ const NaverSearchForm = ({ isDisplay, action }: PropsType) => {
         type="search"
       />
       <button
-        aria-label='검색'
-        title='검색 버튼'
+        aria-label="검색"
+        title="검색 버튼"
         className={styles.search_btn}
         type="submit"
       >
-        <HiSearch/>
+        <HiSearch />
       </button>
     </form>
   );
