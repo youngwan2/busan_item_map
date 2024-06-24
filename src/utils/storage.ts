@@ -9,26 +9,44 @@ interface SetStorageType {
     key: string
     value: any
 }
-export function setStoreage({ type, key, value }: SetStorageType) {
 
-    if (type === StorageType.LOCAL) {
-        window.localStorage.setItem(key, JSON.stringify(value))
+/** 브라우저 캐싱 */
+export function setStorage({ type, key, value }: SetStorageType) {
+    try {
+        const serializedValue = JSON.stringify(value);
+
+        if (type === StorageType.LOCAL) {
+            window.localStorage.setItem(key, serializedValue);
+        } else if (type === StorageType.SESSION) {
+            window.sessionStorage.setItem(key, serializedValue);
+        } else {
+            throw new Error('유효한 스토로지 타입이 아님');
+        }
+    } catch (error) {
+        console.error('set Storage 실패:', error);
+        throw error;
     }
+}
 
-    if (type === StorageType.SESSION) {
-        window.sessionStorage.setItem(key, JSON.stringify(value))
+
+export function getLocalStorageItem(key: string): string | null {
+    try {
+        return window.localStorage.getItem(key);
+    } catch (error) {
+        console.error('get Storage 실패:', error);
+        return null;
     }
 }
 
-
-function getLocalStorageItem(key: string) {
-    return window.localStorage.getItem(key)
+export function getSessionStorageItem(key: string): string | null {
+    try {
+        return window.sessionStorage.getItem(key);
+    } catch (error) {
+        console.error('get Storage 실패:', error);
+        return null;
+    }
 }
 
-function getSessionStorageItem(key: string) {
-    return window.sessionStorage.getItem(key)
-
-}
 
 /**
  * 스토로지에 저장된 데이터를 읽어온다.
