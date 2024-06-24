@@ -16,6 +16,7 @@ import { NutritionPageNumber, nutritionKcalFilter } from '../../atom/NutritionsA
 
 import { debounce } from '@/utils/helpers';
 import PageError from '@/components/Errors/PageError';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -32,15 +33,9 @@ export default function NutritionPage() {
   const [keywords, setKeywords] = useState<KeywordType>({ companyName: [], foodType: [] })
   const [kcal] = useRecoilState(nutritionKcalFilter)
 
-
-
-  useEffect(() => {
-    document.title = '식품영양정보조회 | FoodPicker';
-  }, []);
-
   const url = `/nutritions?name=${productName}&company_name=${keywords.companyName}&food_type=${keywords.foodType}&min_kcal=${kcal.min}&max_kcal=${kcal.max}&page=${page}`;
   const queryKey = ['nutrition', productName, keywords, kcal, page];
-  const { data = [], error, isError, isFetching} = useDefaultQuery(queryKey, url);
+  const { data = [], error, isError, isFetching } = useDefaultQuery(queryKey, url);
   const { items: products, totalCount = 0 } = data
   const hasProducts = Array.isArray(products) && products.length > 0;
   const totalPage = Math.ceil(totalCount / MIN_VIEW_COUNT) || 1;
@@ -65,7 +60,7 @@ export default function NutritionPage() {
   }
 
   /** 검색어 초기화 */
-  function onReset(){
+  function onReset() {
     setProductName('')
   }
 
@@ -92,18 +87,18 @@ export default function NutritionPage() {
 
 
   /** 상호명 필터 */
-  const debounceKeywords = debounce(setKeywords,1000)
+  const debounceKeywords = debounce(setKeywords, 1000)
   function onChangeRestaurantValue(e: ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
     if (e.currentTarget.checked) {
-      debounceKeywords((old:KeywordType) => ({ ...old, companyName: [...old.companyName, value] }))
+      debounceKeywords((old: KeywordType) => ({ ...old, companyName: [...old.companyName, value] }))
     } else {
-      setKeywords((old:KeywordType) => ({ ...old, companyName: [...old.companyName.filter(type => type !== value)] }))
+      setKeywords((old: KeywordType) => ({ ...old, companyName: [...old.companyName.filter(type => type !== value)] }))
     }
   }
 
-   /** 페이지네이션 */
-   function onPageSwitch(page: number) {
+  /** 페이지네이션 */
+  function onPageSwitch(page: number) {
     setPage(page)
   }
 
@@ -111,6 +106,11 @@ export default function NutritionPage() {
 
   return (
     <section className={styles.nutrition_page_container}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> 식품영양정보조회 | FoodPicker</title>
+        <meta name="description" content="우리가 즐겨먹는 음식의 영양정보를 조회할 수 있는 페이지 입니다." />
+      </Helmet>
       <h2 className={styles.nutrition_page_title}>
         <strong>식품영양정보조회</strong>
       </h2>
@@ -124,7 +124,7 @@ export default function NutritionPage() {
           totalCount={totalCount}
         />
         <NutritionSearchForm action={searchAction} onSearch={onSearch} onReset={onReset} />
-        <NutritionProductFilter onChangeFoodTypeValue={onChangeFoodTypeValue}  onChangeRestaurantValue={onChangeRestaurantValue} />
+        <NutritionProductFilter onChangeFoodTypeValue={onChangeFoodTypeValue} onChangeRestaurantValue={onChangeRestaurantValue} />
         <LoadViewCountModal type={true} totalProductCount={totalPage} currentProductCount={page} />
         <ListContainer container={'section'} className={`${styles.product_list_container}`}>
           <h2 className={styles.product_list_title}>식품영양정보 목록</h2>
@@ -134,7 +134,7 @@ export default function NutritionPage() {
               ? <NutritionProductList products={products} />
               : <p className={styles.product_list_loading_message}>조회된 목록이 존재하지 않습니다.</p>}
         </ListContainer>
-        <Pagination totalPage={totalPage} page={page} onPageSwitch={onPageSwitch}/>
+        <Pagination totalPage={totalPage} page={page} onPageSwitch={onPageSwitch} />
       </div>
     </section>
   );

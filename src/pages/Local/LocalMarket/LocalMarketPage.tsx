@@ -16,6 +16,7 @@ import { localMarketRegionState } from '@/atom/LocalAtom';
 import { toast } from 'react-toastify';
 
 import { ClipLoader } from 'react-spinners';
+import { Helmet } from 'react-helmet';
 
 
 const VIEW_COUNT = 15
@@ -49,16 +50,17 @@ export default function LocalMarketPage() {
     else nextPageHanlder(isEnd);
   }, [isEnd]);
 
-  useEffect(() => {
-    document.title = '향토시장이야기 | FoodPicker';
-  }, []);
-
   return (
     <section className={styles.local_page_container}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> 향토시장이야기 | FoodPicker</title>
+        <meta name="description" content="우리 고향의 향토시장과 유명한 시장 음식과 명물을 조회할 수 있는 페이지 입니다." />
+      </Helmet>
       <h2 className={styles.page_title}>
         <p>향토시장이야기</p>
       </h2>
-      
+
       <div className={styles.local_page_inner_bundary}>
         <GuideMessage
           stylesClassName={styles.page_path_guide_message}
@@ -68,7 +70,7 @@ export default function LocalMarketPage() {
           subName="향토시장"
           totalCount={totalCount}
         />
-        <LoadViewCountModal totalProductCount={totalCount} currentProductCount={items.length || 0}/>
+        <LoadViewCountModal totalProductCount={totalCount} currentProductCount={items.length || 0} />
         <LocalCategoryGrid onSetPrdkind={onSetRegion} categoryName={region} />
         <ListContainer container={'ul'} className={styles.local_list_container} id="localmarket-ul">
           <h2 className={styles.local_list_title}>향토시장 목록</h2>

@@ -13,6 +13,7 @@ import { type RecipeInfoType } from '@/types/Recipe.types';
 
 import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
@@ -40,13 +41,13 @@ export default function RecipePage() {
    * @param productName  요리명
    * @param category 요리 카테고리(ex. 밥, 일품, 후식, 국)
   */
-  async function getFetchRecipeData<T extends string>(productName?: T , category?: T) {
+  async function getFetchRecipeData<T extends string>(productName?: T, category?: T) {
     setIsLoading(true)
     const recipeName = (!category && !productName) ? '' : `/RCP_NM=${productName}`
     const url =
-      category 
+      category
         ? `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200/RCP_PAT2=${category}`
-        : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200`+recipeName
+        : `https://openapi.foodsafetykorea.go.kr/api/${API_KEY}/COOKRCP01/json/1/200` + recipeName
     const { row: recipes = [], total_count: totalCount = '0' } = (await getDefaultFetcher(url, ApiType.EXTERNAL)).COOKRCP01
     setIsLoading(false)
     return { recipes, totalCount }
@@ -84,7 +85,7 @@ export default function RecipePage() {
   }
 
   /** 검색 초기화 */
-  function onReset(){
+  function onReset() {
     setProductName('')
   }
 
@@ -114,6 +115,11 @@ export default function RecipePage() {
   const recipeCount = Number(recipeInfo.totalCount)
   return (
     <section className={styles.recipe_page_container} ref={sectionRef}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> 음식 레시피 | FoodPicker</title>
+        <meta name="description" content="간단하게 만들어 먹을 수 있는 다양한 레시지 정보를 조회할 수 있는 페이지 입니다." />
+      </Helmet>
       <h2 className={styles.page_title}>음식 레시피</h2>
       <div className={styles.recipe_page_inner_boundary}>
         <GuideMessage stylesClassName={styles.page_path_guide_message} path='/recipe' subPath='/recipe' mainName='조회서비스' subName='간단 레시피' totalCount={recipeCount} />

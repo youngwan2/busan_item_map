@@ -12,6 +12,7 @@ import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import HaccpProductList from './components/HaccpProductList';
+import { Helmet } from 'react-helmet'
 
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
@@ -87,11 +88,6 @@ function HaccpPage() {
     setProductName(productName || '')
   }
 
-
-  useEffect(() => {
-    document.title = 'HACCP 제품 정보조회 | FoodPicker';
-  }, []);
-
   useEffect(() => {
     if (isEnd && hasNextPage && totalCount > 99) {
       setPageNo(old => old + 1)
@@ -102,6 +98,11 @@ function HaccpPage() {
 
   return (
     <section className={styles.haccp_page_container} ref={haccpContainerRef}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> HACCP 제품 정보조회 | FoodPicker</title>
+        <meta name="description" content="HACCP 인증을 받은 제품들을 조회할 수 있는 페이지 입니다. " />
+      </Helmet>
       <h2 className={styles.haccp_page_title}>
         <p>HACCP제품 조회</p>
       </h2>

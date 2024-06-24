@@ -17,11 +17,12 @@ import { localFoodRegionState } from '@/atom/LocalAtom';
 
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 
 const VIEW_COUNT = 15
 
-export default function LocalFoodPage(){
+export default function LocalFoodPage() {
   const observerRef = useRef<HTMLButtonElement>(null);
   const [region, setRegion] = useRecoilState(localFoodRegionState)
   const { isEnd } = useIntersection(observerRef);
@@ -52,19 +53,21 @@ export default function LocalFoodPage(){
   }, [isEnd]);
 
 
-  useEffect(() => {
-    document.title = '향토음식이야기 | FoodPicker';
-  }, []);
 
   return (
     <section className={styles.local_page_container}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title> 향토음식이야기 | FoodPicker</title>
+        <meta name="description" content="우리 고향의 향토음식을 조회 할 수 있는 페이지 입니다." />
+      </Helmet>
       <h2 className={styles.page_title}>
         <p>향토음식이야기</p>
       </h2>
 
       <div className={styles.local_page_inner_bundary}>
         <GuideMessage
-          stylesClassName={styles.page_path_guide_message } 
+          stylesClassName={styles.page_path_guide_message}
           path="/localfood"
           subPath=''
           mainName="향토이야기"
