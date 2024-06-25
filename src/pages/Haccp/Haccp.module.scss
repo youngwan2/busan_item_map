@@ -47,7 +47,6 @@
 
 /* 잠깐 알고가기! */
 .message {
-  
   padding: 1.5em 0;
   margin: 0rem auto;
   position: relative;
@@ -92,8 +91,6 @@
   top: 1rem;
   display: grid;
   grid-template-columns: 295px 295px 295px 295px;
-
-  
 
   // 상품 목록 타이틀
   .haccp_product_list_title {
@@ -168,20 +165,20 @@
     }
   }
   // 카드 호버
-  .haccp_card_container:hover{
+  .haccp_card_container:hover {
     .haccp_card_img {
-      transform: translateY(-70px)  perspective(600px) ;
+      transform: translateY(-70px) perspective(600px);
       opacity: 085;
       cursor: pointer;
     }
-
   }
   .haccp_card_container:focus {
     z-index: 100;
     transform: scale(1.05);
 
     .haccp_card_img {
-      transform: translateY(0) translateX(-20px) translateZ(-100px) perspective(600px) rotateY(-20deg) scale(0.85) ;
+      transform: translateY(0) translateX(-20px) translateZ(-100px)
+        perspective(600px) rotateY(-20deg) scale(0.85);
       opacity: 085;
     }
     .haccp_card_content {
@@ -203,8 +200,6 @@
   }
 }
 
-
-
 @keyframes opencard {
   0% {
     scale: 0.7;
@@ -213,7 +208,8 @@
     left: 0;
     z-index: -1;
   }
-  50%, 80% {
+  50%,
+  80% {
     opacity: 1;
     left: 90%;
     z-index: 1;
@@ -224,14 +220,6 @@
     z-index: 100;
   }
 }
-
-
-
-
-
-
-
-
 
 // 미디어 쿼리
 @media screen and (max-width: 1641px) {

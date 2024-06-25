@@ -64,21 +64,20 @@
   }
 
   /** 이미지 스프라이트 처리 */
-   //   전체
-    .recipe_category_grid_cell:nth-of-type(1) {
-      .recipe_category_grid_cell_img {
-        background-image: none;
-        background-color: rgb(219, 217, 217);
-      }
+  //   전체
+  .recipe_category_grid_cell:nth-of-type(1) {
+    .recipe_category_grid_cell_img {
+      background-image: none;
+      background-color: rgb(219, 217, 217);
     }
-    .recipe_category_grid_cell:nth-of-type(1)::before {
-      content: 'All';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50% ,-50%);
-      
-    }
+  }
+  .recipe_category_grid_cell:nth-of-type(1)::before {
+    content: 'All';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   //   밥
   .recipe_category_grid_cell:nth-of-type(2) {
     .recipe_category_grid_cell_img {
@@ -109,13 +108,12 @@
       left: calc(var(--default-interval-left) * -6);
     }
   }
-    // 기타
+  // 기타
   .recipe_category_grid_cell:nth-of-type(7) {
     .recipe_category_grid_cell_img {
       left: calc(var(--default-interval-left) * -7.55);
     }
   }
-
 }
 
 // 카테고리 활성화 체크

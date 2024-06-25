@@ -24,12 +24,12 @@ export const useInfiniteScroll = (url: string, ...key: string[]) => {
   });
 
   const items = data?.pages.map((pageData) => {
-    return pageData.items || [] ;
-  })
+    return pageData.items || [];
+  });
 
-  const isLastPage= items && items[items.length-1].length<15
+  const isLastPage = items && items[items.length - 1].length < 15;
   const totalCount = data?.pages[0].totalCount || 0;
   const concatItems = items ? [].concat(...items) : [];
 
-  return { items: concatItems, totalCount,isLastPage, ...props };
+  return { items: concatItems, totalCount, isLastPage, ...props };
 };

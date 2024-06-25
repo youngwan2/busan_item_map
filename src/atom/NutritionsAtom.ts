@@ -6,9 +6,9 @@ export const NutritionPageNumber = atom({
 });
 
 export const nutritionKcalFilter = atom({
-  key:'kcal',
+  key: 'kcal',
   default: {
-    min:0,
-    max:1000
-  }
-})
+    min: 0,
+    max: 1000,
+  },
+});

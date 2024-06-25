@@ -3,16 +3,14 @@ import HaccpProductCard from './HaccpProductCard';
 import { HaccpProductItemType } from '../../../types/Haccp.types';
 
 interface PropsType {
-    products: HaccpProductItemType[]
+  products: HaccpProductItemType[];
 }
 export default function HaccpProductList({ products }: PropsType) {
-
-
-    return (
-        <>
-            {
-                products.map((product) => <HaccpProductCard key={product.item.prdlstReportNo} product={product}/>)
-            }
-        </>
-    )
+  return (
+    <>
+      {products.map((product) => (
+        <HaccpProductCard key={product.item.prdlstReportNo} product={product} />
+      ))}
+    </>
+  );
 }

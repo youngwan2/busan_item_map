@@ -1,4 +1,4 @@
-  export interface NutritionProductType{
+export interface NutritionProductType {
   /** 고유 식별자 */
   id: number;
   /** 제품 코드 */
@@ -45,11 +45,11 @@
   /** 비타민 D 함량 (μg) */
   vitamin_d_μg: string;
   /** 비타민B1(= 티아민)(mg) */
-  thiamine_mg:string
+  thiamine_mg: string;
   /** 비타민B2(= 리보플라빈)(mg) */
-  riboflavin_mg:string
+  riboflavin_mg: string;
   /** 비타민B3(= 나이아신)(mg) */
-  niacin_mg:string
+  niacin_mg: string;
   // 기타 영양소 정보
   /** 콜레스테롤 함량 (mg) */
   cholesterol_mg: number;

@@ -10,16 +10,16 @@ import { Link } from 'react-router-dom';
 import { RecipeType } from '@/types/Recipe.types';
 import LoadingSpinner from '@/components/Spinner/LoadingSpinner';
 
-
 interface PropsType {
   param?: string;
-  recipes: RecipeType[]
+  recipes: RecipeType[];
 }
-export default function RecipeDetailNavigation({ param, recipes = [] }: PropsType) {
-
+export default function RecipeDetailNavigation({
+  param,
+  recipes = [],
+}: PropsType) {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
-  const { isEnd } = useIntersection(buttonContainerRef)
-
+  const { isEnd } = useIntersection(buttonContainerRef);
 
   // 현재 레시피의 인덱스 반환
   const currentIndex = recipes.findIndex((recipe) => {
@@ -30,29 +30,37 @@ export default function RecipeDetailNavigation({ param, recipes = [] }: PropsTyp
   const lastIndex = recipes.length - 1;
 
   // 현재 레시피의 이전/다음 레시피
-  const prevRecipe = recipes[currentIndex - 1]||[];
-  const nextRecipe = recipes[currentIndex + 1]||[];
+  const prevRecipe = recipes[currentIndex - 1] || [];
+  const nextRecipe = recipes[currentIndex + 1] || [];
 
-  const hasPrevRecipe = currentIndex >= 1
-  const hasNextRecipe = currentIndex !== lastIndex
+  const hasPrevRecipe = currentIndex >= 1;
+  const hasNextRecipe = currentIndex !== lastIndex;
 
-  if(!prevRecipe || !nextRecipe) return <LoadingSpinner/>
+  if (!prevRecipe || !nextRecipe) return <LoadingSpinner />;
   return (
-    <div >
+    <div>
       <h2 className={styles.recipe_navigation_title}>다른 레시피</h2>
-      <div className={`${isEnd ? styles.active : ''} ${styles.recipe_navigation_container}`} ref={buttonContainerRef} >
+      <div
+        className={`${isEnd ? styles.active : ''} ${styles.recipe_navigation_container}`}
+        ref={buttonContainerRef}
+      >
         <Button
           disabled={!hasPrevRecipe}
-          title={prevRecipe?.RCP_NM||''}
+          title={prevRecipe?.RCP_NM || ''}
           stylesClassName={`${!hasPrevRecipe ? '' : styles.active} ${styles.recipe_detail_prev_btn}`}
         >
-          { hasPrevRecipe
-            ?
+          {hasPrevRecipe ? (
             <Link className={styles.link} to={`/recipe/${prevRecipe?.RCP_SEQ}`}>
               <h4 className={styles.link_title}>{prevRecipe.RCP_NM}</h4>
-              <img width={260} height={200} loading='lazy' src={`${prevRecipe.ATT_FILE_NO_MAIN}`} alt={prevRecipe.RCP_NM} />
+              <img
+                width={260}
+                height={200}
+                loading="lazy"
+                src={`${prevRecipe.ATT_FILE_NO_MAIN}`}
+                alt={prevRecipe.RCP_NM}
+              />
             </Link>
-            : null}
+          ) : null}
         </Button>
 
         <Button
@@ -60,17 +68,20 @@ export default function RecipeDetailNavigation({ param, recipes = [] }: PropsTyp
           title={nextRecipe.RCP_NM}
           stylesClassName={`${!hasNextRecipe ? '' : styles.active} ${styles.recipe_detail_next_btn}`}
         >
-          {hasNextRecipe
-            ?
+          {hasNextRecipe ? (
             <Link className={styles.link} to={`/recipe/${nextRecipe?.RCP_SEQ}`}>
               <h4 className={styles.link_title}>{nextRecipe.RCP_NM}</h4>
-              <img width={260} height={200} loading='lazy' src={`${nextRecipe.ATT_FILE_NO_MAIN}`} alt={nextRecipe.RCP_NM + '이미지'} />
-
+              <img
+                width={260}
+                height={200}
+                loading="lazy"
+                src={`${nextRecipe.ATT_FILE_NO_MAIN}`}
+                alt={nextRecipe.RCP_NM + '이미지'}
+              />
             </Link>
-            : null}
+          ) : null}
         </Button>
       </div>
     </div>
   );
 }
-

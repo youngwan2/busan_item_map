@@ -8,14 +8,16 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Reset } from 'styled-reset';
 
 const queryClient = new QueryClient();
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
 root.render(
   // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <Reset />
-        <RouterProvider router={router} />
-      </RecoilRoot>
+    <RecoilRoot>
+      <Reset />
+      <RouterProvider router={router} />
+    </RecoilRoot>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>,
   // </React.StrictMode>

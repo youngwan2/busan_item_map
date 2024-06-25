@@ -171,13 +171,13 @@
       /* 레시피 요리명 */
       .recipe_card_title {
         font-weight: 600;
-        padding:  7px 3px;
+        padding: 7px 3px;
         text-align: center;
-        background: linear-gradient(60deg,#1a4e85, #437dbb);
+        background: linear-gradient(60deg, #1a4e85, #437dbb);
 
         /* 레시피 상세 링크 */
         .recipe_link {
-          color:white;
+          color: white;
           font-weight: 500;
           font-size: 1.05em;
           margin: 0;
@@ -193,19 +193,18 @@
 
     .recipe_card_container:hover {
       box-shadow: 0 0 0 1px rgb(149, 148, 148);
-        .recipe_card_title{
-          a {
-          color:#dcdcdc
+      .recipe_card_title {
+        a {
+          color: #dcdcdc;
         }
-        }
-      
+      }
     }
 
     .recipe_card_container:hover::before {
       content: '👁‍🗨';
       position: absolute;
-      right:3px;
-      top:1px;
+      right: 3px;
+      top: 1px;
       z-index: 100;
     }
 

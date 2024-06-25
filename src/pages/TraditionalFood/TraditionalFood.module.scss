@@ -27,7 +27,11 @@
     top: 0;
     filter: opacity(1);
     backdrop-filter: grayscale(10%);
-    background: linear-gradient(-180deg, rgba(0, 0, 0, 0) 10%, rgb(255, 255, 255));
+    background: linear-gradient(
+      -180deg,
+      rgba(0, 0, 0, 0) 10%,
+      rgb(255, 255, 255)
+    );
     bottom: 0;
   }
 
@@ -94,7 +98,7 @@
       margin: 0.5em auto;
       max-width: 290px;
       min-width: 280px;
-      
+
       width: 100%;
       .card_title {
         margin: -0.7px;
@@ -106,18 +110,18 @@
 
       .traditional_food_card_content {
         padding: 4px 10px;
-         a {
+        a {
           border-bottom: 1px solid blue;
-         }
+        }
       }
     }
   }
-  .traditional_food_card_inner_wrapper:hover{
+  .traditional_food_card_inner_wrapper:hover {
     box-shadow: 0 0 0 1px rgba(81, 80, 80, 0.333);
   }
 
   .traditional_food_card_inner_wrapper:hover::after {
-    content: "👀";
+    content: '👀';
     position: absolute;
     right: 3px;
     top: 0;
@@ -128,9 +132,9 @@
     top: -7.5em;
     right: 0;
   }
-  
+
   /* 목록이 없을 때*/
-  .traditional_food_list_loading_message{
+  .traditional_food_list_loading_message {
     text-align: center;
   }
 }

@@ -1,7 +1,6 @@
 .local_page_container {
   min-height: 150vh;
 
-
   .page_title {
     font-family: 'Orbit', sans-serif;
     background-color: black;
@@ -19,17 +18,20 @@
       height: 300px;
       padding-bottom: 2em;
       line-height: 3.5;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgb(255, 255, 255) 70%);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0),
+        rgb(255, 255, 255) 70%
+      );
     }
   }
-
 
   .local_page_inner_bundary {
     max-width: 1240px;
     margin: 0 auto;
     position: relative;
 
-    .local_list_container{
+    .local_list_container {
       border: 1px solid rgb(190, 187, 187);
       display: grid;
       border-radius: 5px;

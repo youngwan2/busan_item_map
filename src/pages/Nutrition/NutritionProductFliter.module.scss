@@ -66,11 +66,11 @@
           display: block;
           border-radius: 20px;
           border: 1px solid rgb(179, 176, 176);
-          appearance:none;
+          appearance: none;
           -webkit-appearance: none;
           background: transparent;
         }
-        input[type='range']:focus{
+        input[type='range']:focus {
           background-color: none;
         }
         input[type='range'] + label {

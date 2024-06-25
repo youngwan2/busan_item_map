@@ -9,10 +9,9 @@ import { Outlet } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 
-
 const Layout = () => {
   return (
-    <div className={styles.layout_container} >
+    <div className={styles.layout_container}>
       <ToastContainer closeButton position="bottom-left" />
       <Header />
       <main className={styles.main}>

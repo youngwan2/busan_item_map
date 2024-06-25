@@ -65,12 +65,12 @@
     }
 
     /* 카드 컨테이너*/
-    .product_card_boundary:hover{
+    .product_card_boundary:hover {
       box-shadow: 0 0 0 1px rgb(196, 192, 192);
       border-radius: 5px;
     }
-    .product_card_boundary:hover::before{
-      content: "👀";
+    .product_card_boundary:hover::before {
+      content: '👀';
       font-size: 0.95em;
       border-radius: 5px;
       padding: 1px 5px;
@@ -108,7 +108,7 @@
 
           .product_card_control_button:active {
             background-color: rgb(195, 192, 192);
-            color:white;
+            color: white;
           }
         }
         p {
@@ -141,8 +141,9 @@
         transform-origin: center;
         box-sizing: border-box;
         transform-style: preserve-3d;
-        
-        transform: perspective(4000px) rotateY(calc(90deg * var(--page-number))) rotateX(0);
+
+        transform: perspective(4000px) rotateY(calc(90deg * var(--page-number)))
+          rotateX(0);
 
         .product_card {
           overflow: hidden;

@@ -3,16 +3,15 @@
 .active.message_container {
   max-width: 30px;
   max-height: 40px;
-  
+
   button {
     transform: rotate(0);
   }
 
-  .message{
-  white-space: nowrap;
-  opacity: 0;
-  transform: translate(40px);
-
+  .message {
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(40px);
   }
 }
 .message_container {
@@ -49,7 +48,7 @@
   }
 
   .message {
-    transition:0.5s;
+    transition: 0.5s;
     padding: 0;
     min-width: 180px;
     font-size: 13px;

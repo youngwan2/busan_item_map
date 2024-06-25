@@ -22,7 +22,11 @@ function RecipeMessage({ recipes, visibleRecipes }: PropsType) {
       }
     >
       <button
-        style={!messageSpanDisplay ? { transform: 'rotate(0)' } : { transform: 'rotate(-180deg)' }}
+        style={
+          !messageSpanDisplay
+            ? { transform: 'rotate(0)' }
+            : { transform: 'rotate(-180deg)' }
+        }
         onClick={() => {
           setMessageSpanDisplay(!messageSpanDisplay);
         }}

@@ -10,16 +10,25 @@ import NotFound from '@/components/Errors/NotFound';
 import PageError from '@/components/Errors/PageError';
 
 const Home = lazy(() => import('@/pages/Home/Home'));
-const LocalFoodPage = lazy(() => import('@/pages/Local/LocalFood/LocalFoodPage'));
-const LocalFoodDetailPage = lazy(() => import('@/pages/Local/LocalFood/LocalFoodDetailPage'));
-const LocalMarketPage = lazy(() => import('@/pages/Local/LocalMarket/LocalMarketPage'));
-const LocalMarketDetailPage = lazy(() => import('@/pages/Local/LocalMarket/LocalMarketDetailPage'));
+const LocalFoodPage = lazy(
+  () => import('@/pages/Local/LocalFood/LocalFoodPage'),
+);
+const LocalFoodDetailPage = lazy(
+  () => import('@/pages/Local/LocalFood/LocalFoodDetailPage'),
+);
+const LocalMarketPage = lazy(
+  () => import('@/pages/Local/LocalMarket/LocalMarketPage'),
+);
+const LocalMarketDetailPage = lazy(
+  () => import('@/pages/Local/LocalMarket/LocalMarketDetailPage'),
+);
 const NutritionPage = lazy(() => import('@/pages/Nutrition/NutritionPage'));
 const HaccpPage = lazy(() => import('@/pages/Haccp/HaccpPage'));
 const RecipePage = lazy(() => import('@/pages/Recipe/RecipePage'));
 const RecipeDetail = lazy(() => import('@/pages/Recipe/RecipeDetail'));
-const TraditionalFoodPage = lazy(() => import('@/pages/TraditionalFood/TraditionalFoodPage'));
-
+const TraditionalFoodPage = lazy(
+  () => import('@/pages/TraditionalFood/TraditionalFoodPage'),
+);
 
 const router = createBrowserRouter([
   {
@@ -33,7 +42,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    errorElement:<PageError>데이터 로드 중 문제가 발생하였어요. 새로고침을 시도해주세요.</PageError>,
+    errorElement: (
+      <PageError>
+        데이터 로드 중 문제가 발생하였어요. 새로고침을 시도해주세요.
+      </PageError>
+    ),
     children: [
       {
         path: '/localfood',

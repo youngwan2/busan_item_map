@@ -1,26 +1,21 @@
-
-
 .backmove_btn {
-    background: none;
-    border: none;
-    display:flex;
-    border-radius: 50%;
-    position: fixed;
-    top: 4em;
-    padding: 5px;
-    left: 1em;
-    font-size: 1.15em;
+  background: none;
+  border: none;
+  display: flex;
+  border-radius: 50%;
+  position: fixed;
+  top: 4em;
+  padding: 5px;
+  left: 1em;
+  font-size: 1.15em;
 }
 
 .backmove_btn:hover {
-    box-shadow: 0 0 0 1px black;
+  box-shadow: 0 0 0 1px black;
 }
 
 @media screen and (max-width: 768px) {
-
-    .backmove_btn {
-        top: 3em;
-    }
-    
-    
+  .backmove_btn {
+    top: 3em;
+  }
 }

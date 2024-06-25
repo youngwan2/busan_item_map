@@ -2,18 +2,21 @@ import styles from './LoadViewCountModal.module.scss';
 
 import { useState } from 'react';
 
-
 interface PropsType {
-  type?:boolean
-  totalProductCount:number,
+  type?: boolean;
+  totalProductCount: number;
   currentProductCount: number;
 }
 
-export default function LoadViewCountModal({type, totalProductCount =0, currentProductCount }: PropsType) {
+export default function LoadViewCountModal({
+  type,
+  totalProductCount = 0,
+  currentProductCount,
+}: PropsType) {
   const [messageSpanDisplay, setMessageSpanDisplay] = useState(true);
   return (
     <aside
-      className={`${styles.message_container} ${!messageSpanDisplay? styles.active:''}`}
+      className={`${styles.message_container} ${!messageSpanDisplay ? styles.active : ''}`}
     >
       <button
         onClick={() => {
@@ -22,12 +25,14 @@ export default function LoadViewCountModal({type, totalProductCount =0, currentP
       >
         {'←'}
       </button>
-      <span
-        className={styles.message}
-      >
-        {type && Math.ceil(totalProductCount)+' 페이지 중 '+ currentProductCount+' 페이지 조회..' }
-        {!type && totalProductCount +'개 중 '+currentProductCount+'개 상품 조회..' }
-        
+      <span className={styles.message}>
+        {type &&
+          Math.ceil(totalProductCount) +
+            ' 페이지 중 ' +
+            currentProductCount +
+            ' 페이지 조회..'}
+        {!type &&
+          totalProductCount + '개 중 ' + currentProductCount + '개 상품 조회..'}
       </span>
     </aside>
   );

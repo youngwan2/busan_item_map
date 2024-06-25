@@ -6,10 +6,7 @@ import NutritionModal from './NutritionModal';
 import Button from '@/components/Common/Button';
 
 import { RecipeType } from '@/types/Recipe.types';
-import { HiCalculator, HiXMark } from "react-icons/hi2";
-
-
-
+import { HiCalculator, HiXMark } from 'react-icons/hi2';
 
 function RecipeNutrition({ recipe }: { recipe: RecipeType }) {
   const [modalState, setModalState] = useState(false);
@@ -17,9 +14,10 @@ function RecipeNutrition({ recipe }: { recipe: RecipeType }) {
     <>
       <Button
         stylesClassName={styles.modal_btn}
-        title={modalState? '닫기 버튼' :'영양성분 조회 버튼'}
-        onClick={() => setModalState(old => !old)} >
-        {modalState ? <HiXMark/> : <HiCalculator />}
+        title={modalState ? '닫기 버튼' : '영양성분 조회 버튼'}
+        onClick={() => setModalState((old) => !old)}
+      >
+        {modalState ? <HiXMark /> : <HiCalculator />}
       </Button>
       <NutritionModal recipe={recipe} modalState={modalState} />
     </>

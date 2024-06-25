@@ -12,9 +12,9 @@ interface PropsType {
 function NaverDictionaryList({ items }: PropsType) {
   return (
     <ul className={styles.naver_dictionary_list_container}>
-      {
-        items.map((item, i) => <NaverDictionaryCard key={item.link} item={item} i={i}/> )
-      }
+      {items.map((item, i) => (
+        <NaverDictionaryCard key={item.link} item={item} i={i} />
+      ))}
     </ul>
   );
 }

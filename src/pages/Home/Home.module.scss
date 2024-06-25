@@ -6,7 +6,6 @@
   font-style: normal;
 }
 
-
 // 요소
 .container {
   width: 100%;
@@ -100,28 +99,27 @@
   }
 }
 
-.feature_card:nth-of-type(6),.feature_card:nth-of-type(5){
-  transform: translate(-50%,-50%);
+.feature_card:nth-of-type(6),
+.feature_card:nth-of-type(5) {
+  transform: translate(-50%, -50%);
   visibility: hidden;
   opacity: 0;
 }
 
-.feature_card:nth-of-type(4){
-  transform: translate(-50%,-50%) scale(1);
+.feature_card:nth-of-type(4) {
+  transform: translate(-50%, -50%) scale(1);
 }
 
-
-.feature_card:nth-of-type(3){
-  transform: translate(-50%,-60%) scale(0.9);
+.feature_card:nth-of-type(3) {
+  transform: translate(-50%, -60%) scale(0.9);
   opacity: 0.7;
 }
 
-
-.feature_card:nth-of-type(1),.feature_card:nth-of-type(2){
-  transform: translate(-50%,-70%) scale(0.8);
+.feature_card:nth-of-type(1),
+.feature_card:nth-of-type(2) {
+  transform: translate(-50%, -70%) scale(0.8);
   opacity: 0.3;
 }
-
 
 .home_feature_card_control_button_container {
   position: absolute;
@@ -314,7 +312,6 @@
       font-size: 0.9em;
       margin-top: 0.5em;
     }
-    
   }
 
   /* 슬라이드 통제 버튼*/
@@ -324,15 +321,10 @@
     padding: 0;
 
     .home_feature_card_control_button {
-
       margin: 2px;
     }
   }
-   
 }
-
-
-
 
 // 키 프레임
 @keyframes sizeupdown {

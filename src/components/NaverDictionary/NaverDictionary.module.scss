@@ -145,7 +145,7 @@
     }
 
     .recent_search_list {
-    margin-left: 0.5em;
+      margin-left: 0.5em;
       .search_text {
         border: none;
         background: white;
@@ -154,7 +154,7 @@
         padding: 3px;
         cursor: pointer;
       }
-      .search_text:hover{
+      .search_text:hover {
         background: rgb(223, 221, 221);
       }
     }
@@ -167,7 +167,7 @@
     background-color: rgba(24, 24, 24, 0.126);
     max-width: 1240px;
     border-radius: 5px;
-    color:white;
+    color: white;
     padding: 10px;
     width: 100%;
   }
@@ -228,7 +228,7 @@
             padding: 3px 0;
             border-bottom: 2px solid rgb(188, 184, 184);
           }
-          .naver_dictionary_card_summary{
+          .naver_dictionary_card_summary {
             padding: 5px;
           }
         }

@@ -10,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  
 }
 
 // 검색 폼 타이틀
@@ -53,22 +52,20 @@
   background-color: rgb(53, 106, 162);
 }
 
-.search_btn:nth-of-type(2){
+.search_btn:nth-of-type(2) {
   border: 1px solid rgba(53, 106, 162, 0.861);
   background-color: white;
-  color:#1a4e85;
-  border-end-end-radius:  5px;
+  color: #1a4e85;
+  border-end-end-radius: 5px;
   border-top-right-radius: 5px;
-
 }
 
 .search_btn:hover {
   background-color: rgb(78, 142, 210);
-  color:white;
+  color: white;
   cursor: pointer;
 }
 
-
-.search_btn:active{
+.search_btn:active {
   background-color: rgb(53, 106, 162);
 }

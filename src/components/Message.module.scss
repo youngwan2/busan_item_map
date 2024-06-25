@@ -1,20 +1,19 @@
-
 .message_container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-left: 10px;
-    
-    p {
-        font-size: 0.88em;
-        padding-left: 3px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 10px;
 
-    mark {
-        background: #3870ab;
-        padding: 2px 5px;
-        margin: 0 3px;
-        border-radius: 5px;
-        color:white
-    }
+  p {
+    font-size: 0.88em;
+    padding-left: 3px;
+  }
+
+  mark {
+    background: #3870ab;
+    padding: 2px 5px;
+    margin: 0 3px;
+    border-radius: 5px;
+    color: white;
+  }
 }

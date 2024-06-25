@@ -1,82 +1,79 @@
 @font-face {
-    font-family: 'Freesentation-9Black';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
+  font-family: 'Freesentation-9Black';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2')
+    format('woff2');
+  font-weight: 900;
+  font-style: normal;
 }
 
 .error_page_container {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    background-color: #1A4E85;
-    left: 0;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-
-
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: #1a4e85;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
 }
 
 .error_content_boundary::before {
-    content: '';
-    position: absolute;
-    left: -1.5px;
-    top: -1.5px;
-    border-top: 40px solid #1A4E85;
-    border-bottom-right-radius: 15px;
-    border-right: 30px solid rgba(228, 223, 223, 0.183);
-    border-left:30px solid #1A4E85;
-    border-bottom: 40px solid rgba(228, 223, 223, 0.32);
+  content: '';
+  position: absolute;
+  left: -1.5px;
+  top: -1.5px;
+  border-top: 40px solid #1a4e85;
+  border-bottom-right-radius: 15px;
+  border-right: 30px solid rgba(228, 223, 223, 0.183);
+  border-left: 30px solid #1a4e85;
+  border-bottom: 40px solid rgba(228, 223, 223, 0.32);
 }
-.error_content_boundary{
-    box-shadow: 10px 10px 5px 0 rgba(48, 48, 48, 0.3);
-    position: relative;
-    max-width: 1230px ;
-    text-align: center;
-    width: 100%;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.048);
-    padding: 10px;
-    border-radius: 10px;
+.error_content_boundary {
+  box-shadow: 10px 10px 5px 0 rgba(48, 48, 48, 0.3);
+  position: relative;
+  max-width: 1230px;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.048);
+  padding: 10px;
+  border-radius: 10px;
 
-    h2 {
-        font-size: 2.5em;
-        margin-top: 3.5em;
-        background-clip: text;
-        color: transparent;
-        text-shadow: 1px 1px 0px  rgba(255, 255, 255, 0.915);
-        font-family: 'Freesentation-9Black';
-        
-    }
+  h2 {
+    font-size: 2.5em;
+    margin-top: 3.5em;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.915);
+    font-family: 'Freesentation-9Black';
+  }
 
-    p {
-        padding: 1.5em 5px 0 5px;
-        margin-top: 1em;
-        color:white;
-        
-        font-size: 1.1em;
-    }
+  p {
+    padding: 1.5em 5px 0 5px;
+    margin-top: 1em;
+    color: white;
 
-    .error_page_btn {
-        border: 1px solid  #1A4E85;
-        border-radius: 20px;
-        width: 130px;
-        height: 45px;
-        font-size: 1.05em;
-        color: #1A4E85;
-        padding: 5px;
-        background-color: white;
-        margin: 1.5em 5px;
-        cursor: pointer;
-    }
+    font-size: 1.1em;
+  }
 
-    .error_page_btn:nth-of-type(1) {
-        background:  transparent;
-        border: 1px solid white;
-        color: white;
+  .error_page_btn {
+    border: 1px solid #1a4e85;
+    border-radius: 20px;
+    width: 130px;
+    height: 45px;
+    font-size: 1.05em;
+    color: #1a4e85;
+    padding: 5px;
+    background-color: white;
+    margin: 1.5em 5px;
+    cursor: pointer;
+  }
 
-    }
+  .error_page_btn:nth-of-type(1) {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+  }
 }

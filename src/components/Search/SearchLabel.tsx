@@ -1,16 +1,19 @@
-import {  ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface PropsType {
-    htmlFor: string
-    children: ReactNode
-    className?:string
-
+  htmlFor: string;
+  children: ReactNode;
+  className?: string;
 }
 
-export default function SearchLabel({ className, htmlFor, children }: PropsType) {
-    return (
-        <label htmlFor={htmlFor} className={className}>
-            {children}
-        </label>
-    )
+export default function SearchLabel({
+  className,
+  htmlFor,
+  children,
+}: PropsType) {
+  return (
+    <label htmlFor={htmlFor} className={className}>
+      {children}
+    </label>
+  );
 }
