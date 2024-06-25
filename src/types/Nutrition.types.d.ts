@@ -12,7 +12,7 @@ export interface NutritionProductType {
   /** 칼로리 (kcal) */
   kcal_g: number;
   /** 수분 함량 */
-  water_g: string;
+  water_g: number;
   /** 단백질 함량 (g) */
   protein_g: number;
   /** 지방 함량 (g) */
@@ -22,34 +22,34 @@ export interface NutritionProductType {
   /** 당류 함량 (g) */
   sugar_g: number;
   /** 식이 섬유 함량 (g) */
-  dietary_fiber_g: string;
+  dietary_fiber_g: number;
   /** 칼슘 함량 (mg) */
-  calcium_mg: string;
+  calcium_mg: number;
   /** 철 함량 (mg) */
-  iron_mg: string;
+  iron_mg: number;
   /** 인 함량 (mg) */
-  phosphorus_mg: string;
+  phosphorus_mg: number;
   /** 칼륨 함량 (mg) */
-  potassium_mg: string;
+  potassium_mg: number;
   /** 나트륨 함량 (mg) */
   sodium_mg: number;
   // 비타민 정보
   /** 비타민 A 함량 (μg RAE) */
-  vitamin_a_μg_rae: string;
+  vitamin_a_μg_rae: number;
   /** 레티놀 함량 (μg) */
-  retinol_μg: string;
+  retinol_μg: number;
   /** 베타카로틴 함량 (μg) */
-  beta_carotene_μg: string;
+  beta_carotene_μg: number;
   /** 비타민 C 함량 (mg) */
-  vitamin_c_mg: string;
+  vitamin_c_mg: number;
   /** 비타민 D 함량 (μg) */
-  vitamin_d_μg: string;
+  vitamin_d_μg: number;
   /** 비타민B1(= 티아민)(mg) */
-  thiamine_mg: string;
+  thiamine_mg: number;
   /** 비타민B2(= 리보플라빈)(mg) */
-  riboflavin_mg: string;
+  riboflavin_mg: number;
   /** 비타민B3(= 나이아신)(mg) */
-  niacin_mg: string;
+  niacin_mg: number;
   // 기타 영양소 정보
   /** 콜레스테롤 함량 (mg) */
   cholesterol_mg: number;
@@ -57,6 +57,7 @@ export interface NutritionProductType {
   saturated_fatty_acid_g: number;
   /** 트랜스지방산 함량 (g) */
   trans_fatty_acid_g: number;
+
   // 일반 정보
   /** 출처 이름 */
   source_name: string;
