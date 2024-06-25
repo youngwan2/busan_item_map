@@ -3,7 +3,7 @@ import { KoreanProvincesType } from './types/Local.types';
 import { RecipeCategoryType } from './types/Recipe.types';
 import { TraditionalFoodCategoryType } from './types/Traditional.types';
 
-// HACCP 카테고리
+/** HACCP 카테고리 */
 export const haccpProductCategories: HaccpProductCategoryType[] = [
   { name: '즉석섭취식품' },
   { name: '양념육' },
@@ -36,7 +36,7 @@ export const haccpProductCategories: HaccpProductCategoryType[] = [
   { name: '참기름' },
 ];
 
-// 레시피 카테고리
+/** 레시피 카테고리 */
 export const recipeCategories: RecipeCategoryType[] = [
   { id: 0, name: '전체' },
   { id: 1, name: '밥' },
@@ -47,7 +47,7 @@ export const recipeCategories: RecipeCategoryType[] = [
   { id: 6, name: '기타' },
 ];
 
-// 지역 카테고리
+/** 지역 카테고리 */
 export const koreanProvinces: KoreanProvincesType[] = [
   { id: 0, name: '' },
   { id: 1, name: '서울' },
@@ -69,7 +69,7 @@ export const koreanProvinces: KoreanProvincesType[] = [
   { id: 17, name: '제주' },
 ];
 
-// 식품영양조회 식당 이름
+/** 식품영양조회 식당 이름 */
 export const restaurants = [
   { id: 1, name: '해당없음' },
   { id: 2, name: '배스킨라빈스' },
@@ -176,7 +176,7 @@ export const restaurants = [
   { id: 103, name: '신세계푸드 피코크' },
 ];
 
-// 전통식품 카테고리
+/** 전통식품 카테고리 */
 export const tarditionalFoodCategories: TraditionalFoodCategoryType = {
   main: ['부식', '조미식', '주식', '주류', '기타', '기호식'],
   sub: [
@@ -277,7 +277,7 @@ export const tarditionalFoodCategories: TraditionalFoodCategoryType = {
   foodType: ['복합식품', '단일식품', '기타', '기술'],
 };
 
-//  홈 네비게이션 기능
+/**  홈 네비게이션 기능 */
 export const features = [
   {
     index: 0,
@@ -334,3 +334,44 @@ export const features = [
     imageUrl: '/assets/slide/traditional-back.jpg',
   },
 ];
+
+/**  영양성분기준치데이터*/
+interface NutritionalReferenceValuesType {
+  readonly name: string;
+  readonly unit: string;
+  readonly value: number;
+}
+export const nutritionalReferenceValues: ReadonlyArray<NutritionalReferenceValuesType> =
+  [
+    { name: '탄수화물', unit: 'g', value: 324 },
+    { name: '단백질', unit: 'g', value: 55 },
+    { name: '식이섬유', unit: 'g', value: 25 },
+    { name: '지방', unit: 'g', value: 54 },
+    { name: '포화지방', unit: 'g', value: 15 },
+    { name: '콜레스테롤', unit: 'mg', value: 300 },
+    { name: '나트륨', unit: 'mg', value: 2000 },
+    { name: '칼륨', unit: 'mg', value: 3500 },
+    { name: '비타민A', unit: 'μg RE', value: 700 },
+    { name: '비타민C', unit: 'mg', value: 100 },
+    { name: '크롬', unit: 'μg', value: 30 },
+    { name: '칼슘', unit: 'mg', value: 700 },
+    { name: '철분', unit: 'mg', value: 12 },
+    { name: '비타민D', unit: 'μg', value: 11 },
+    { name: '비타민E', unit: 'mg', value: 11 },
+    { name: '비타민K', unit: 'μg', value: 70 },
+    { name: '비타민B1', unit: 'mg', value: 1.2 },
+    { name: '비타민B2', unit: 'mg', value: 1.4 },
+    { name: '비타민B3', unit: 'mg NE', value: 15 },
+    { name: '비타민B6', unit: 'mg', value: 1.5 },
+    { name: '엽산', unit: 'μg', value: 400 },
+    { name: '판토텐산', unit: 'mg', value: 5 },
+    { name: '아연', unit: 'mg', value: 7.0 },
+    { name: '요오드', unit: 'μg', value: 150 },
+    { name: '마그네슘', unit: 'mg', value: 315 },
+    { name: '비오틴', unit: 'μg', value: 30 },
+    { name: '셀레늄', unit: 'μg', value: 55 },
+    { name: '구리', unit: 'mg', value: 0.8 },
+    { name: '망간', unit: 'mg', value: 3.0 },
+    { name: '몰리브덴', unit: 'μg', value: 25 },
+    { name: '인', unit: 'μg', value: 700 },
+  ];
