@@ -5,7 +5,7 @@ export enum StorageType {
 interface SetStorageType {
   type: StorageType;
   key: string;
-  value: string | number | (string | number)[];
+  value: string | number | (string | number)[] | object;
 }
 
 /** 브라우저 캐싱 */

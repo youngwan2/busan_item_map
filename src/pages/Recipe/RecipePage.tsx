@@ -11,7 +11,7 @@ import { ApiType, getDefaultFetcher } from '../../api/get.api';
 
 import { type RecipeInfoType } from '@/types/Recipe.types';
 
-import { StorageType, getStoreage, setStoreage } from '@/utils/storage';
+import { StorageType, getStoreage, setStorage } from '@/utils/storage';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 
@@ -65,7 +65,7 @@ export default function RecipePage() {
     );
     setPickedCategory(pickedName);
     setRecipeInfo({ totalCount, recipes });
-    setStoreage({
+    setStorage({
       type: StorageType.SESSION,
       key: 'recipes',
       value: { recipes, totalCount },
@@ -90,7 +90,7 @@ export default function RecipePage() {
 
     setProductName(productName);
     setRecipeInfo({ totalCount, recipes });
-    setStoreage({
+    setStorage({
       type: StorageType.SESSION,
       key: 'recipes',
       value: { recipes, totalCount },
@@ -111,7 +111,7 @@ export default function RecipePage() {
 
     setProductName(productName);
     setRecipeInfo({ totalCount, recipes });
-    setStoreage({
+    setStorage({
       type: StorageType.SESSION,
       key: 'recipes',
       value: { recipes, totalCount },

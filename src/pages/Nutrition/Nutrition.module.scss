@@ -208,7 +208,7 @@
           // 추가 정보
           .add_info {
             position: absolute;
-            left:2em;
+            left: 2em;
             bottom: 0em;
             padding: 1em 3px 3px 3px;
             border: 1px solid #2968ac;
@@ -219,19 +219,18 @@
             box-shadow: 0 0 0 1px #205ea0;
           }
 
-          .add_info::before{
+          .add_info::before {
             content: 'Info';
             position: absolute;
             background-color: white;
             width: 30px;
             padding: 0 3px;
             background: #205ea0;
-            color:white;
+            color: white;
             border-radius: 5px;
             border: 1px solid #2968ac;
             top: -0.85em;
             left: 0.5em;
-
           }
         }
         .product_card:nth-of-type(2) {
@@ -245,8 +244,6 @@
         .product_card:nth-of-type(4) {
           transform: rotateY(calc(360deg / 4 * 4)) translateZ(-145px);
         }
-
-              
       }
     }
   }
