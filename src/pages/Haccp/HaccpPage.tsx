@@ -14,7 +14,6 @@ import HaccpSearchForm from './components/HaccpSearchForm';
 import HaccpMessage from './components/HaccpMessage';
 import GuideMessage from '@/components/GuideMessage';
 import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
-import HaccpCategoryGrid from './components/HaccpCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import HaccpProductList from './components/HaccpProductList';
@@ -22,6 +21,8 @@ import { Helmet } from 'react-helmet';
 
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import CategoryGrid from '@/components/CategoryGrid';
+import { haccpProductCategories } from '@/data';
 
 function HaccpPage() {
   const [pageNo, setPageNo] = useState(1);
@@ -131,10 +132,17 @@ function HaccpPage() {
           {/* 잠깐 알고가기 */}
           <HaccpMessage />
           {/* 품목 유형 카테고리 */}
-          <HaccpCategoryGrid
+          <CategoryGrid
+            categories={haccpProductCategories}
             categoryName={prdkind}
             onSetPrdkind={onSetPrdkind}
+            gridTitle="추천 품목"
+            classNames={{
+              cell: 'haccp_category_grid_cell',
+              img: 'haccp_category_grid_cell_img',
+            }}
           />
+
           <br />
         </div>
         <LoadViewCountModal
