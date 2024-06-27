@@ -13,11 +13,11 @@ interface PropsType {
 export default function Button({
   onClick,
   children,
-  dataIndex,
-  disabled,
-  title,
-  ariaLabel,
-  stylesClassName,
+  dataIndex = 0,
+  disabled = false,
+  title = '',
+  ariaLabel = '',
+  stylesClassName = '',
 }: PropsType) {
   return (
     <button
