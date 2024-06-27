@@ -49,7 +49,7 @@ export const recipeCategories: RecipeCategoryType[] = [
 
 /** 지역 카테고리 */
 export const koreanProvinces: KoreanProvincesType[] = [
-  { id: 0, name: '' },
+  { id: 0, name: '전체' },
   { id: 1, name: '서울' },
   { id: 2, name: '부산' },
   { id: 3, name: '대구' },

@@ -7,7 +7,6 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 import LocalMarketList from './components/LocalMarketList';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
-import LocalCategoryGrid from '../Common/LocalCategoryGrid';
 import ListContainer from '@/components/Common/Container';
 import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 import GuideMessage from '@/components/GuideMessage';
@@ -17,6 +16,8 @@ import { toast } from 'react-toastify';
 
 import { ClipLoader } from 'react-spinners';
 import { Helmet } from 'react-helmet';
+import { koreanProvinces } from '@/data';
+import CategoryGrid from '@/components/CategoryGrid';
 
 const VIEW_COUNT = 15;
 
@@ -86,7 +87,16 @@ export default function LocalMarketPage() {
           totalProductCount={totalCount}
           currentProductCount={items.length || 0}
         />
-        <LocalCategoryGrid onSetPrdkind={onSetRegion} categoryName={region} />
+        <CategoryGrid
+          onSetPrdkind={onSetRegion}
+          gridTitle="지역"
+          categories={koreanProvinces}
+          categoryName={region}
+          classNames={{
+            cell: 'local_category_grid_cell',
+            img: 'local_category_grid_cell_img',
+          }}
+        />
         <ListContainer
           container={'ul'}
           className={styles.local_list_container}

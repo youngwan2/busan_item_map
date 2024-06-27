@@ -12,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -25,7 +25,7 @@
     }
     
   },
-  "include": [ "src"],
+  "include": [ "src","./src/setupTests.ts"],
   "exclude": [
   "**/*.test.ts",
   "**/*.test.tsx"]

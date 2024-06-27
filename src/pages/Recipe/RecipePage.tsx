@@ -5,7 +5,6 @@ import { useEffect, useState, useRef, SyntheticEvent, MouseEvent } from 'react';
 import RecipeSearchForm from './components/RecipeSearchForm';
 import RecipeList from './components/RecipeList';
 import GuideMessage from '../../components/GuideMessage';
-import RecipeCategoryGrid from './components/RecipeCategoryGrid';
 
 import { ApiType, getDefaultFetcher } from '../../api/get.api';
 
@@ -14,6 +13,8 @@ import { type RecipeInfoType } from '@/types/Recipe.types';
 import { StorageType, getStoreage, setStorage } from '@/utils/storage';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
+import CategoryGrid from '@/components/CategoryGrid';
+import { recipeCategories } from '@/data';
 
 const API_KEY = import.meta.env.VITE_FOOD_KEY;
 
@@ -156,9 +157,15 @@ export default function RecipePage() {
           onSearch={onSearch}
           onReset={onReset}
         />
-        <RecipeCategoryGrid
-          onSearch={onSearchByCategory}
+        <CategoryGrid
+          categories={recipeCategories}
           categoryName={pickedCategory}
+          gridTitle="분류"
+          classNames={{
+            cell: 'recipe_category_grid_cell',
+            img: 'recipe_category_grid_cell_img',
+          }}
+          onSetPrdkind={onSearchByCategory}
         />
         <RecipeList
           isLoading={isLoading}
