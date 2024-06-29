@@ -1,7 +1,6 @@
 import styles from './Nutrition.module.scss';
 
 import { useState, SyntheticEvent, MouseEvent, ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import useDefaultQuery from '../../hooks/useDefaultQuery';
 
 import NutritionSearchForm from './components/NutritionSearchForm';
@@ -12,14 +11,13 @@ import Pagination from '@/components/Pagination';
 import ListContainer from '@/components/Common/Container';
 import NutritionProductFilter from './components/Filter/NutritionProductFilter';
 
-import {
-  NutritionPageNumber,
-  nutritionKcalFilter,
-} from '../../atom/NutritionsAtom';
-
 import { debounce } from '@/utils/helpers';
 import PageError from '@/components/Errors/PageError';
 import { Helmet } from 'react-helmet';
+import {
+  useNutritionKcalFilterStore,
+  useNutritionPageStore,
+} from '@/stores/NutritionStore';
 
 interface KeywordType {
   companyName: string[];
@@ -29,13 +27,13 @@ interface KeywordType {
 const MIN_VIEW_COUNT = 20;
 
 export default function NutritionPage() {
-  const [page, setPage] = useRecoilState(NutritionPageNumber);
+  const { page, setPage } = useNutritionPageStore();
   const [productName, setProductName] = useState('');
   const [keywords, setKeywords] = useState<KeywordType>({
     companyName: [],
     foodType: [],
   });
-  const [kcal] = useRecoilState(nutritionKcalFilter);
+  const { kcal } = useNutritionKcalFilterStore();
 
   const url = `/nutritions?name=${productName}&company_name=${keywords.companyName}&food_type=${keywords.foodType}&min_kcal=${kcal.min}&max_kcal=${kcal.max}&page=${page}`;
   const queryKey = ['nutrition', productName, keywords, kcal, page];

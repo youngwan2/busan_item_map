@@ -34,27 +34,30 @@ export default function LocalFoodDetailPage() {
   if (isError && error) return <PageError>{error.message}</PageError>;
 
   return (
-    <section className={styles.local_detail_page_container}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title> {title} | FoodPicker</title>
-        <meta name="description" content={sub_title} />
-      </Helmet>
+    <>
       <BackMove />
-      <GuideMessage
-        stylesClassName={styles.page_path_guide_message}
-        path="/localfood"
-        subPath=""
-        mainName="향토 이야기"
-        finalPathName={title}
-        subName="향토음식이야기"
-      />
-      {/* 좌측 컨텐츠 */}
-      <LeftContent info={localFoodInfo} />
+      <section className={styles.local_detail_page_container}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title> {title} | FoodPicker</title>
+          <meta name="description" content={sub_title} />
+        </Helmet>
 
-      {/* 우측 컨텐츠 */}
-      <RightContent info={localFoodInfo} />
-    </section>
+        <GuideMessage
+          stylesClassName={styles.page_path_guide_message}
+          path="/localfood"
+          subPath=""
+          mainName="향토 이야기"
+          finalPathName={title}
+          subName="향토음식이야기"
+        />
+        {/* 좌측 컨텐츠 */}
+        <LeftContent info={localFoodInfo} />
+
+        {/* 우측 컨텐츠 */}
+        <RightContent info={localFoodInfo} />
+      </section>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import {
   setStorage,
 } from '../storage'; // 실제 경로로 수정하세요
 
+/** 브라우저 로컬 스토로지 단위 테스트 */
 describe('getLocalStorageItem', () => {
   beforeEach(() => {
     localStorage.clear();
@@ -37,6 +38,7 @@ describe('getLocalStorageItem', () => {
   });
 });
 
+/** 브라우저 세션 스토로지 단위 테스트 */
 describe('getSessionStorageItem', () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -68,6 +70,7 @@ describe('getSessionStorageItem', () => {
   });
 });
 
+/** 브라우저 로컬/세션 스토로지 설정 함수 단위 테스트 */
 describe('setStorage', () => {
   beforeEach(() => {
     localStorage.clear();

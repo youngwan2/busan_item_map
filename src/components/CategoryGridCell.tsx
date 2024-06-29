@@ -26,7 +26,7 @@ export default function CategoryGridCell({
           className={`${styles[classNames.img]} ${styles.category_grid_cell_img}`}
         />
       </div>
-      <p aria-label="분류이름">{name}</p>
+      <p aria-label="분류이름">{name === '' ? '전체' : name}</p>
     </button>
   );
 }
