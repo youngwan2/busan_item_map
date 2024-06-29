@@ -14,7 +14,6 @@ export default function CategoryGridCell({
   categoryName,
 }: PropsType) {
   const searchName = name === '전체' ? '' : name;
-  console.log(categoryName, searchName, name);
   return (
     <button
       key={name}
