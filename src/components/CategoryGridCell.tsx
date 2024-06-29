@@ -13,11 +13,13 @@ export default function CategoryGridCell({
   onSetPrdkind,
   categoryName,
 }: PropsType) {
+  const searchName = name === '전체' ? '' : name;
+  console.log(categoryName, searchName, name);
   return (
     <button
       key={name}
       title={name}
-      onClick={() => onSetPrdkind(name)}
+      onClick={() => onSetPrdkind(searchName)}
       className={`${styles[classNames.cell]} ${styles.category_grid_cell} ${name === categoryName ? styles.active : ''}`}
     >
       <div className={` ${styles.img_boundary}`}>
@@ -26,7 +28,7 @@ export default function CategoryGridCell({
           className={`${styles[classNames.img]} ${styles.category_grid_cell_img}`}
         />
       </div>
-      <p aria-label="분류이름">{name === '' ? '전체' : name}</p>
+      <p aria-label="분류이름">{name}</p>
     </button>
   );
 }

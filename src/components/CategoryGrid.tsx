@@ -27,7 +27,7 @@ export default function CategoryGrid({
             key={category.name}
             classNames={classNames}
             categoryName={categoryName}
-            name={category.name === '전체' ? '' : category.name}
+            name={category.name}
             onSetPrdkind={onSetPrdkind}
           />
         ))}
