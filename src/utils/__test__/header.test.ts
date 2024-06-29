@@ -3,6 +3,7 @@ import { debounce } from '../helpers';
 
 const mock = vi.fn(() => console.log('실행됨'));
 
+/** 디바운스 함수 단위 테스트 */
 describe('Debounce function', () => {
   beforeEach(() => {
     vi.useFakeTimers();

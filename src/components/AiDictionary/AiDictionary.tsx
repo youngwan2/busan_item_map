@@ -18,7 +18,7 @@ export default function AiDictionary({ searchValue }: PropsType) {
   });
 
   function onModalDisplay() {
-    setIsOpen((old) => !old);
+    setIsOpen(!isOpen);
   }
 
   async function fetchData(url: string) {

@@ -1,7 +1,6 @@
 import styles from '@pages/Local/Local.module.scss';
 
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
 import useIntersection from '@/hooks/useIntersection';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
@@ -11,19 +10,19 @@ import ListContainer from '@/components/Common/Container';
 import ObserverSpinner from '@/components/Spinner/ObserverSpinner';
 import GuideMessage from '@/components/GuideMessage';
 
-import { localMarketRegionState } from '@/atom/LocalAtom';
 import { toast } from 'react-toastify';
 
 import { ClipLoader } from 'react-spinners';
 import { Helmet } from 'react-helmet';
 import { koreanProvinces } from '@/data';
 import CategoryGrid from '@/components/CategoryGrid';
+import { useLocalRegionState } from '@/stores/LocalStore';
 
 const VIEW_COUNT = 15;
 
 export default function LocalMarketPage() {
   const observerRef = useRef<HTMLButtonElement>(null);
-  const [region, setRegion] = useRecoilState(localMarketRegionState);
+  const { marketRegion, setMarketRegion } = useLocalRegionState();
   const { isEnd } = useIntersection(observerRef);
   const {
     items,
@@ -37,9 +36,9 @@ export default function LocalMarketPage() {
     hasNextPage,
     fetchNextPage,
   } = useInfiniteScroll(
-    `/localmarkets?region=${region}&page=`,
+    `/localmarkets?region=${marketRegion}&page=`,
     'localmarket',
-    `${region}`,
+    `${marketRegion}`,
   );
 
   async function nextPageHanlder(isEnd: boolean) {
@@ -47,7 +46,7 @@ export default function LocalMarketPage() {
   }
 
   function onSetRegion(name: string) {
-    setRegion(name);
+    setMarketRegion(name);
   }
 
   function loadAlert() {
@@ -91,7 +90,7 @@ export default function LocalMarketPage() {
           onSetPrdkind={onSetRegion}
           gridTitle="지역"
           categories={koreanProvinces}
-          categoryName={region}
+          categoryName={marketRegion}
           classNames={{
             cell: 'local_category_grid_cell',
             img: 'local_category_grid_cell_img',

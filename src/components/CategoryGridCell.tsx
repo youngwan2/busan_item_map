@@ -13,11 +13,12 @@ export default function CategoryGridCell({
   onSetPrdkind,
   categoryName,
 }: PropsType) {
+  const searchName = name === '전체' ? '' : name;
   return (
     <button
       key={name}
       title={name}
-      onClick={() => onSetPrdkind(name)}
+      onClick={() => onSetPrdkind(searchName)}
       className={`${styles[classNames.cell]} ${styles.category_grid_cell} ${name === categoryName ? styles.active : ''}`}
     >
       <div className={` ${styles.img_boundary}`}>

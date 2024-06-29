@@ -2,27 +2,22 @@ import styles from '@pages/Nutrition/NutritionProductFliter.module.scss';
 
 import { ChangeEvent } from 'react';
 import Container from '@/components/Common/Container';
-import { useRecoilState } from 'recoil';
 
-import { nutritionKcalFilter } from '@/atom/NutritionsAtom';
 import { debounce } from '@/utils/helpers';
+import { useNutritionKcalFilterStore } from '@/stores/NutritionStore';
 
 export default function KcalRangeFilter() {
-  const [kcal, setKcal] = useRecoilState(nutritionKcalFilter);
+  const { kcal, setKcal } = useNutritionKcalFilterStore();
 
   const debounceCloser = debounce(setKcal, 150); // 클로저 생성
 
-  /* eslint-disable @typescript-eslint/no-explicit-any */
   function handleChangeKcal(
     e: ChangeEvent<HTMLInputElement>,
     type: 'min' | 'max',
-    debounceCloser: (old: any) => void,
   ) {
     const value = Number(e.currentTarget.value);
 
-    // memo: 함수의 특성상 old 에 어떤 데이터가 들어올지 알 수 없으므로 any 타입 지정. 대체 가능한 방식이 있으면 대체 필수
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    debounceCloser((old: any) => ({ ...old, [type]: value }));
+    debounceCloser({ ...kcal, [type]: value });
   }
 
   return (
@@ -33,7 +28,7 @@ export default function KcalRangeFilter() {
           <input
             min={0}
             max={1000}
-            onChange={(e) => handleChangeKcal(e, 'min', debounceCloser)}
+            onChange={(e) => handleChangeKcal(e, 'min')}
             name="kcal"
             id="min-kcal"
             type="range"
@@ -45,7 +40,7 @@ export default function KcalRangeFilter() {
           <input
             min={0}
             max={1000}
-            onChange={(e) => handleChangeKcal(e, 'max', debounceCloser)}
+            onChange={(e) => handleChangeKcal(e, 'max')}
             name="kcal"
             id="max-kcal"
             type="range"

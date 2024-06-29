@@ -1,7 +1,7 @@
-import styles from '../NaverDictionary.module.scss';
+import styles from '@components/NaverDictionary/NaverDictionary.module.scss';
 
 import { FormEvent, useState, type MouseEventHandler, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useNaverSearchStore } from '@/stores/NaverStore';
 
 import NaverDictionaryList from './NaverDictionaryList';
 import NaverCloseIcon from './NaverCloseIcon';
@@ -10,12 +10,12 @@ import LoadingSpinner from '@components/Spinner/LoadingSpinner';
 import Message from '@/components/Message';
 import NaverDictionaryRecentSearchList from './NaverDictionaryRecentSearchList';
 
-import { naverSearchAtom } from '@/atom/NaverSearchAtom';
-
 import { toast } from 'react-toastify';
+
 import { ApiType, getDefaultFetcher } from '@/api/get.api';
-import type { DictionaryType } from '../NaverDictionary';
 import { StorageType, setStorage } from '@/utils/storage';
+
+import type { DictionaryType } from '../NaverDictionary';
 
 interface PropsType {
   isDisplay: boolean;
@@ -26,14 +26,14 @@ const NaverDictionaryView = ({ isDisplay, onToggle }: PropsType) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [items, setItems] = useState<DictionaryType[]>();
-  const [searchList, setSearchList] = useRecoilState<string[]>(naverSearchAtom);
+  const { searchList, setSearchList } = useNaverSearchStore();
 
   const hasItems = items && items.length > 0;
 
   /** 사용자 검색 키워드 기록 */
   function setSearchValue(searchText: string) {
     const hasSearchText = searchList.includes(searchText);
-    if (!hasSearchText) setSearchList((old) => [...old, searchText]);
+    if (!hasSearchText) setSearchList([...searchList, searchText]);
   }
 
   async function searchNaverDictionary(value: string) {

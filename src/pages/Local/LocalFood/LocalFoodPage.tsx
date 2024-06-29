@@ -1,7 +1,6 @@
 import styles from '@pages/Local/Local.module.scss';
 
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import useIntersection from '@/hooks/useIntersection';
 
@@ -12,19 +11,18 @@ import ObserverSpinner from '@components/Spinner/ObserverSpinner';
 import LoadViewCountModal from '@/components/Modal/LoadViewCountModal';
 import ListContainer from '@/components/Common/Container';
 
-import { localFoodRegionState } from '@/atom/LocalAtom';
-
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import CategoryGrid from '@/components/CategoryGrid';
 import { koreanProvinces } from '@/data';
+import { useLocalRegionState } from '@/stores/LocalStore';
 
 const VIEW_COUNT = 15;
 
 export default function LocalFoodPage() {
   const observerRef = useRef<HTMLButtonElement>(null);
-  const [region, setRegion] = useRecoilState(localFoodRegionState);
+  const { foodRegion, setFoodRegion } = useLocalRegionState();
   const { isEnd } = useIntersection(observerRef);
   const {
     items,
@@ -38,9 +36,9 @@ export default function LocalFoodPage() {
     hasNextPage,
     fetchNextPage,
   } = useInfiniteScroll(
-    `/localfoods?region=${region}&page=`,
+    `/localfoods?region=${foodRegion}&page=`,
     'localfood',
-    `${region}`,
+    `${foodRegion}`,
   );
 
   async function nextPageHanlder(isEnd: boolean) {
@@ -48,7 +46,7 @@ export default function LocalFoodPage() {
   }
 
   function onSetRegion(name: string) {
-    setRegion(name);
+    setFoodRegion(name);
   }
 
   function loadAlert() {
@@ -92,7 +90,7 @@ export default function LocalFoodPage() {
           onSetPrdkind={onSetRegion}
           gridTitle="지역"
           categories={koreanProvinces}
-          categoryName={region}
+          categoryName={foodRegion}
           classNames={{
             cell: 'local_category_grid_cell',
             img: 'local_category_grid_cell_img',

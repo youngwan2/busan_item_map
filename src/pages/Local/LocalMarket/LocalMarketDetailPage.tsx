@@ -36,26 +36,29 @@ export default function LocalMarketDetailPage() {
   if (isError && error) return <PageError>{error.message}</PageError>;
 
   return (
-    <section className={styles.local_detail_page_container}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title> {title} | FoodPicker</title>
-        <meta name="description" content={sub_title} />
-      </Helmet>
+    <>
       <BackMove />
-      <GuideMessage
-        stylesClassName={styles.page_path_guide_message}
-        path="/localmarket"
-        subPath=""
-        mainName="향토 이야기"
-        subName="향토시장이야기"
-        finalPathName={title}
-      />
-      {/* 좌측 컨텐츠 */}
-      <LeftContent info={localMarket} />
-      {/* 우측 컨텐츠 */}
-      <RightContent info={localMarket} />
-    </section>
+      <section className={styles.local_detail_page_container}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title> {title} | FoodPicker</title>
+          <meta name="description" content={sub_title} />
+        </Helmet>
+
+        <GuideMessage
+          stylesClassName={styles.page_path_guide_message}
+          path="/localmarket"
+          subPath=""
+          mainName="향토 이야기"
+          subName="향토시장이야기"
+          finalPathName={title}
+        />
+        {/* 좌측 컨텐츠 */}
+        <LeftContent info={localMarket} />
+        {/* 우측 컨텐츠 */}
+        <RightContent info={localMarket} />
+      </section>
+    </>
   );
 }
 
