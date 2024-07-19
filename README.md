@@ -15,20 +15,15 @@
 
 
 ## 📅 개발기간
-- (1차 개발) 2023년 7월 16일 ~ 2023년 8월 13일
-- (2차 개발) 2024년 5월 24일 ~ 2024년 6월 12일
+- (이전 개발) 2023년 7월 16일 ~ 2023년 8월 13일
+- (전체 재개발) 2024년 5월 24일 ~ 2024년 6월 12일
 - (유지보수) 2024년 6월 13일 ~
 
-
 ## 🔥 배포
-- ※ 24.06.11 기준으로 프론트엔드는 React + Vite + TS 환경에서 Github Actions + AWS S3 + CloudFront 기반의 배포가 진행되었습니다.
-- ※ 24.06.12 기준으로 백엔드는 NodeJS + TS + Express 환경에서 Github Actions + CloudType 플랫폼 기반으로 배포가 진행되었습니다.
-
 - 루트 도메인: https://foodpick.co.kr/
 - 서브 도메인: https://www.foodpick.co.kr/
 - 배포 아키텍처
 ![Untitled diagram-2024-07-19-111234](https://github.com/user-attachments/assets/2cb9b755-6d2b-4c1c-9e96-f96a427807f5)
-
 
 
 ## 🚬 트러블 슈팅
