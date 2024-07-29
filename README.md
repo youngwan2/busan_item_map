@@ -22,6 +22,8 @@
 ## 🔥 배포
 - 루트 도메인: https://foodpick.co.kr/
 - 서브 도메인: https://www.foodpick.co.kr/
+- 배포 히스토리(프론트): https://github.com/youngwan2/food-picker/issues/27
+- 배포 히스토리(백엔드): https://github.com/youngwan2/food-picker/issues/30
 - 배포 아키텍처
 ![Untitled diagram-2024-07-19-111234](https://github.com/user-attachments/assets/2cb9b755-6d2b-4c1c-9e96-f96a427807f5)
 
