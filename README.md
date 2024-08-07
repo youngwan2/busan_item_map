@@ -25,12 +25,35 @@
 - 배포 히스토리(프론트): https://github.com/youngwan2/food-picker/issues/27
 - 배포 히스토리(백엔드): https://github.com/youngwan2/food-picker/issues/30
 - 배포 아키텍처
-![Untitled diagram-2024-07-19-111234](https://github.com/user-attachments/assets/2cb9b755-6d2b-4c1c-9e96-f96a427807f5)
+``` mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant GH as GitHub
+    participant GHA as GitHub Actions
+    participant Vite
+    participant S3
+    participant CF as CloudFront
+    participant User
+
+    Dev->>GH: Push code
+    GH->>GHA: Trigger workflow
+    GHA->>Vite: Run build command
+    Vite->>Vite: Build React app
+    Vite-->>GHA: Return build artifacts
+    GHA->>S3: Upload build artifacts
+    S3-->>GHA: Confirm upload
+    GHA->>CF: Create invalidation
+    CF-->>GHA: Confirm invalidation request
+    CF->>S3: Fetch updated content
+    S3-->>CF: Serve updated content
+    User->>CF: Request website
+    CF->>User: Serve website content
+```
 
 
 ## 🚬 트러블 슈팅
 - 프로젝트를 진행하면서 경험하게된 이슈를 모음집 형태로 정리해 보았습니다. 
-- [트러블 슈팅 1 ~ 4](https://duklook.tistory.com/444)
+- [트러블 슈팅](https://duklook.tistory.com/444)
 
 ## 🧰 프레임워크 / 라이브러리 / 그 외 도구
 ### 프론트엔드/백엔드
