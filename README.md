@@ -49,11 +49,6 @@ sequenceDiagram
     User->>CF: Request website
     CF->>User: Serve website content
 ```
-
-
-## 🚬 트러블 슈팅
-- [트러블 슈팅](https://duklook.tistory.com/444)
-
 ## 🧰 프레임워크 / 라이브러리 / 그 외 도구
 ### 프론트엔드/백엔드
 
