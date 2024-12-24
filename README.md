@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/cbd851e9-9d1c-4966-a23d-dea8c4390792)※ 백엔드 주소: https://github.com/youngwan2/foodpicker-server
+※ 백엔드 주소: https://github.com/youngwan2/foodpicker-server
 
 ## 📓 프로젝트명
 - 식품 정보공유 웹 사이트: <mark><b>Food Picker</b></mark>
